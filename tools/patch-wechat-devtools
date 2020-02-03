@@ -1,0 +1,32 @@
+#!/usr/bin/env mew_js
+
+let code = @.fs.readFile.sync(@path(__dirname, "../package.nw/js/unpack/hackrequire/index.js"), "utf8");
+
+let signatureBegin = "/* patch wechat devtools begin */\n";
+let signatureEnd = "/* patch wechat devtools end */\n";
+
+let index = code.indexOf(signatureBegin);
+
+let patch = @.fs.listFiles(@path(__dirname, "../patch")).map((file) => {
+    if ((file.name[0] !== ".") && (@.fs.extname(file.name) === ".js")) {
+        return (`/* ${file.name} */\n` + 
+                "(() => {\n\n" + 
+                "    try {\n\n" +
+                @.fs.readFile.sync(@path(__dirname, "../patch", file.name), "utf8").trim().split("\n").map((line) => {
+                    return "        " + line;
+                }).join("\n") + "\n\n" +
+                "    } catch (error) {\n" + 
+                "        process.stderr.write(error.message);\n" +
+                "        process.stderr.write(error.stack);\n" +
+                "    }\n\n" +
+                "})();");
+    }
+    return "";
+}).join("\n").trim() + "\n";
+
+if (code.indexOf(signatureBegin) !== -1) {
+    code = code.split(signatureEnd).slice(1).join(signatureEnd);
+}
+
+@.fs.writeFile.sync(@path(__dirname, "../package.nw/js/unpack/hackrequire/index.js"), 
+                    signatureBegin + patch + signatureEnd + code);

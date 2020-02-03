@@ -1,0 +1,36 @@
+#!/bin/bash
+
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+
+package_dir="$DIR/../package.nw"
+
+export PATH=$DIR/../node/bin:$PATH
+
+rm -fr "${package_dir}/node_modules/vscode-windows-ca-certs" # the module is only available in windows
+
+rm -fr "${package_dir}/node_modules/vscode-ripgrep/bin" # redownload bin on linux
+
+rm -fr "${package_dir}/node_modules/nodegit/build" # rebuild nodegit
+
+(cd "${package_dir}/node_modules" && find -name *.pdb | xargs -I{} rm -r {}) # remove pdb debugging file
+
+rm -fr "${package_dir}/node_modules_tmp" # remove previous hacking tmp 
+mkdir -p "${package_dir}/node_modules_tmp"
+cp -fr "${package_dir}/node_modules" "${package_dir}/node_modules_tmp/node_modules" 
+
+(cd "${package_dir}/node_modules_tmp" && npm install --registry=https://registry.npm.taobao.org) # prepare package.json and dependencies
+(cd "${package_dir}/node_modules_tmp" && npm rebuild --registry=https://registry.npm.taobao.org) # rebuild gyp
+
+mkdir -p "${package_dir}/node_modules/nodegit/build/Release"
+(cd "${package_dir}/node_modules_tmp/node_modules" && find -name *.node | xargs -I{} cp -r {} ${package_dir}/node_modules/{})
+
+# mkdir -p "${package_dir}/node_modules/vscode-ripgrep/bin"
+cp -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep/bin" "${package_dir}/node_modules/vscode-ripgrep/bin"
+
+rm -fr "${package_dir}/node_modules_tmp"

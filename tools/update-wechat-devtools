@@ -1,0 +1,135 @@
+#!/usr/bin/env mew_js
+
+const http = require("http");
+
+const url = "https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki";
+
+let version = undefined;
+
+const packageDir = "$APPDATA/Tencent/微信开发者工具/package.nw";
+
+@.async(function () {
+
+    @.fs.makeDirs(@path(__dirname, "../cache"));
+
+    @info(`Downloading ${url}`);
+
+    let localPath = @path(__dirname, "../cache/wechat-devtools-x64.exe");
+
+    let client = @.net.httpClient();
+
+    let lastSize = 0;
+    let lastProgress = 0;
+    let lastTime = Date.now();
+
+    let filename = "wechat-devtools-x64.exe";
+
+    @.fs.deleteFile.sync(localPath);
+
+    client.download(url, localPath, {
+        "redirects": Object.create(null),
+        "onSuccess": () => {
+            let newPath = @path(__dirname, "../cache", filename);
+            @.fs.moveFile(localPath, newPath);
+            this.next(newPath);
+        },
+        "onRedirect": (location) => {
+            @info(`Redirected to ${location}`);
+            filename = location.split("?")[0].split("/").slice(-1)[0];
+            version = filename.split("_").filter((x) => /^[0-9]+\.[0-9]+.[0-9]+$/.test(x))[0];
+            let newPath = @path(__dirname, "../cache", filename);
+            if (@.fs.exists(newPath)) {
+                this.next(newPath);
+                return true;
+            }
+        },
+        "onProgress": (size, total) => {
+            let progress = size / total * 100;
+            let now = Date.now();
+            if ((progress - lastProgress > 10) || 
+                (now - lastTime > 1000)) {
+                let speed = (size - lastSize) / (now - lastTime) * 1000 / 1024;
+                lastSize = size;
+                lastTime = now;
+                lastProgress = progress;
+                @info(`Downloaded ${filename}: ${progress.toFixed(2)}%, speed ${speed.toFixed(2)} KiB/s`);
+            }
+        },
+        "onError": this.reject
+    });
+
+}).then(function (localPath) {
+
+    @info(`Extracting ${localPath}`);
+
+    let extractPath = @path(__dirname, `../tmp/${@.fs.basename(localPath)}`);
+
+    @.fs.deleteFile.sync(extractPath);
+
+    @.fs.makeDirs(extractPath);
+
+    @.task.execute("7z", ["x", localPath, `-o${extractPath}`, packageDir], extractPath, (error) => {
+
+        if (error) {
+            this.reject(error); return;
+        }
+
+        this.next(extractPath);
+
+    });
+
+}).then(function (extractPath) {
+
+    @info(`Upgrading ${@.fs.filename(extractPath)}`);
+
+    @.fs.deleteFile.sync(@path(__dirname, "../package.nw"));
+
+    @.fs.moveFile.sync(@path(extractPath, packageDir),
+                       @path(__dirname, "../package.nw"));
+
+    @.fs.deleteFile.sync(extractPath);
+
+    if (@.fs.exists(@path(__dirname, "../nwjs"))) {
+        if (!@.fs.exists(@path(__dirname, "../nwjs/package.nw"))) {
+            @.fs.linkFile("../package.nw", @path(__dirname, "../nwjs/package.nw"));
+        }
+    }
+
+    this.next();
+
+}).then(function () {
+
+    @info("Fixing wechat-devtools package name");
+
+    @.task.execute(@path(__dirname, "fix-package-name"), [], false, this.test);
+
+}).then(function () {
+
+    @info("Fix wechat-devtools editor font");
+
+    @.task.execute(@path(__dirname, "fix-editor-font"), [], false, this.test);
+
+}).then(function () {
+
+    @info("Rebuilding wechat-devtools node modules");
+
+    @.task.execute(@path(__dirname, "rebuild-node-modules"), [], false, this.test);
+
+}).then(function () {
+
+    @info("Patching wechat-devtools");
+
+    @.task.execute(@path(__dirname, "patch-wechat-devtools"), [], false, this.test);
+
+}).finished((error) => {
+
+    if (error) {
+        @error(error);
+        process.exit(1);
+    }
+
+    @celebr(`Succeeded upgrading wechat-devtools to version ${version}`);
+
+    process.exit(0);
+
+});

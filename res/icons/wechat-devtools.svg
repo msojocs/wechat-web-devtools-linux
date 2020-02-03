@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024px" height="1024px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>wechat-devtools</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#0E142C" offset="0%"></stop>
+            <stop stop-color="#323C67" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="98.8835515%" id="linearGradient-2">
+            <stop stop-color="#EEEEEE" offset="0%"></stop>
+            <stop stop-color="#D7D7D7" offset="100%"></stop>
+        </linearGradient>
+        <text id="text-3" font-family="Menlo-Bold, Menlo" font-size="230" font-weight="bold">
+            <tspan x="212" y="688">&lt;/&gt;</tspan>
+        </text>
+        <filter x="-3.4%" y="-4.4%" width="106.9%" height="112.4%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.761991914 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <filter x="-9.7%" y="-11.8%" width="123.0%" height="128.1%" filterUnits="objectBoundingBox" id="filter-5">
+            <feOffset dx="0" dy="10" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="10" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.272536058 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-6">
+            <stop stop-color="#9EEE69" offset="0%"></stop>
+            <stop stop-color="#74CD30" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-8.1%" y="-9.1%" width="116.2%" height="118.2%" filterUnits="objectBoundingBox" id="filter-7">
+            <feOffset dx="0" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <linearGradient x1="50%" y1="0.269214527%" x2="50%" y2="100%" id="linearGradient-8">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#E5E9EA" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="wechat-devtools" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill="url(#linearGradient-1)" x="95" y="157" width="832" height="710" rx="34"></rect>
+        <path d="M898,153 C916.777681,153 932,168.222319 932,187 L932,837 C932,855.777681 916.777681,871 898,871 L125,871 C106.222319,871 91,855.777681 91,837 L91,187 C91,168.222319 106.222319,153 125,153 L898,153 Z M877,199 L148,199 C141.924868,199 137,203.924868 137,210 L137,210 L137,816 C137,822.075132 141.924868,827 148,827 L148,827 L877,827 C883.075132,827 888,822.075132 888,816 L888,816 L888,210 C888,203.924868 883.075132,199 877,199 L877,199 Z" id="Combined-Shape" fill="url(#linearGradient-2)"></path>
+        <g id="&lt;/&gt;" opacity="0.0783110119" fill="#FFFFFF">
+            <use fill-opacity="1" filter="url(#filter-4)" xlink:href="#text-3"></use>
+            <use fill-rule="evenodd" xlink:href="#text-3"></use>
+            <use fill-opacity="1" xlink:href="#text-3"></use>
+        </g>
+        <g id="Group-3" filter="url(#filter-5)" transform="translate(211.000000, 266.000000)">
+            <g id="Group-4">
+                <path d="M216.5,364 C336.069648,364 433,282.515824 433,182 C433,81.4841755 336.069648,-2.84217094e-14 216.5,-2.84217094e-14 C96.9303517,-2.84217094e-14 0,81.4841755 0,182 C0,234.824118 26.7704343,282.392034 69.5285421,315.639256 C93.3413194,334.155246 58.2521249,377.054783 69.5285421,386.023056 C80.8049593,394.99133 128.568238,347 151.295389,355.600627 C171.060829,363.080455 193.777604,364 216.5,364 Z" id="Oval-Copy" fill="url(#linearGradient-6)"></path>
+                <circle id="Oval" fill="#126F20" cx="143.5" cy="126.5" r="29.5"></circle>
+                <circle id="Oval-Copy-2" fill="#126F20" cx="289.5" cy="126.5" r="29.5"></circle>
+            </g>
+            <g id="Group-5" filter="url(#filter-7)" transform="translate(237.000000, 167.000000)">
+                <path d="M182,305 C200.898516,305 228.587306,302.288693 236.262178,298.107116 C255.747671,287.490639 287.208639,328.334705 303.2061,323 C319.203561,317.665295 280.639295,283.352792 303.2061,265.082731 C337.702449,237.154525 364,195.852984 364,152.5 C364,68.2765757 282.515824,2.84217094e-14 182,2.84217094e-14 C81.4841755,2.84217094e-14 0,68.2765757 0,152.5 C0,236.723424 81.4841755,305 182,305 Z" id="Oval" fill="url(#linearGradient-8)"></path>
+                <circle id="Oval-Copy-3" fill="#7B7F7F" cx="244.5" cy="107.5" r="24.5"></circle>
+                <circle id="Oval-Copy-4" fill="#7B7F7F" cx="119.5" cy="107.5" r="24.5"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

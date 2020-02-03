@@ -1,0 +1,42 @@
+#!/usr/bin/env mew_js
+
+@.async(function () {
+
+    @info("Initializing node");
+
+    if (@.fs.exists(@path(__dirname, "../node"))) {
+        this.next(); return;
+    }
+
+    @.task.execute(@path(__dirname, "update-node"), [], false, this.test);
+
+}).then(function () {
+
+    @info("Initializing nwjs");
+
+    if (@.fs.exists(@path(__dirname, "../nwjs"))) {
+        this.next(); return;
+    }
+
+    @.task.execute(@path(__dirname, "update-nwjs"), [], false, this.test);
+
+}).then(function () {
+
+    @info("Initializing wechat-devtools package");
+
+    if (@.fs.exists(@path(__dirname, "../package.nw"))) {
+        this.next(); return;
+    }
+
+    @.task.execute(@path(__dirname, "update-wechat-devtools"), [], false, this.test);
+
+}).finished((error) => {
+
+    if (error) {
+        @error(error);
+        process.exit(1);
+    }
+
+    @celebr(`Succeeded setting up wechat-devtools`); 
+
+});

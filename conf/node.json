@@ -1,0 +1,4 @@
+{
+    "version": "12.6.0",
+    "url": "https://npm.taobao.org/mirrors/node/v${version}/node-v${version}-linux-x64.tar.gz"
+}

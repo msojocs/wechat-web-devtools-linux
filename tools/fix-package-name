@@ -1,0 +1,18 @@
+#!/usr/bin/env mew_js
+
+const parseFile = function (path) {
+
+    if (!@.fs.exists(path)) {
+        return;
+    }
+
+    let content = JSON.parse(@.fs.readFile.sync(path, "utf8"));
+
+    content.name = "wechat_devtools";
+
+    @.fs.writeFile.sync(path, JSON.stringify(content, null, 4));
+
+};
+
+parseFile(@path(__dirname, "../package.nw/package.json"));
+parseFile(@path(__dirname, "../package.nw/package-lock.json"));

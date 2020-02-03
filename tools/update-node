@@ -1,0 +1,100 @@
+#!/usr/bin/env mew_js
+
+const node = require("../conf/node.json");
+
+@.async(function () {
+
+    @.fs.makeDirs(@path(__dirname, "../cache"));
+
+    let client = @.net.httpClient();
+
+    let url = @.format(node.url, { "version": node.version });
+
+    let localPath = @path(__dirname, "../cache", url.split("?")[0].split("/").slice(-1)[0]);
+
+    if (@.fs.exists(localPath)) {
+        @info(`Cache available ${@.fs.filename(localPath)}`);
+        this.next(localPath);
+        return;
+    }
+
+    let lastSize = 0;
+    let lastProgress = 0;
+    let lastTime = Date.now();
+
+    @info(`Downloading ${url}`);
+    client.download(url, localPath, {
+        "resumeBroken": true,
+        "redirects": Object.create(null),
+        "onSuccess": () => {
+            this.next(localPath);
+        },
+        "onProgress": (size, total) => {
+            let progress = size / total * 100;
+            let now = Date.now();
+            if ((progress - lastProgress > 10) || 
+                (now - lastTime > 1000)) {
+                let speed = (size - lastSize) / (now - lastTime) * 1000 / 1024;
+                lastSize = size;
+                lastTime = now;
+                lastProgress = progress;
+                @info(`Downloaded ${@.fs.filename(localPath)}: ${progress.toFixed(2)}%, speed ${speed.toFixed(2)} KiB/s`);
+            }
+        },
+        "onError": this.reject
+    });
+
+}).then(function (localPath) {
+
+    @info(`Extracting ${localPath}`);
+
+    let extractPath = @path(__dirname, `../tmp/${@.fs.basename(localPath)}`);
+
+    @.fs.deleteFile.sync(extractPath);
+
+    @.fs.makeDirs(extractPath);
+
+    @.task.execute("tar", ["xf", localPath], extractPath, (error) => {
+
+        if (error) {
+            this.reject(error); return;
+        }
+
+        this.next(extractPath);
+
+    });
+
+}).then(function (extractPath) {
+
+    @info(`Upgrading ${@.fs.filename(extractPath)}`);
+
+    @.fs.deleteFile.sync(@path(__dirname, "../node"));
+
+    @.fs.moveFile.sync(@path(extractPath, @.fs.listFiles(extractPath)[0].name),
+                       @path(__dirname, "../node"))
+
+    @.fs.deleteFile.sync(extractPath);
+
+    if (@.fs.exists(@path(__dirname, "../nwjs"))) {
+        if (!@.fs.exists(@path(__dirname, "../nwjs/node"))) {
+            @.fs.linkFile("../node/bin/node", @path(__dirname, "../nwjs/node"));
+        }
+        if (!@.fs.exists(@path(__dirname, "../nwjs/node.exe"))) {
+            @.fs.linkFile("node", @path(__dirname, "../nwjs/node.exe"));
+        }
+    }
+
+    this.next();
+
+}).finished((error) => {
+
+    if (error) {
+        @error(error);
+        process.exit(1);
+    }
+
+    @celebr(`Succeeded upgrading node to version ${node.version}`);
+
+    process.exit(0);
+
+});
