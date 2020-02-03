@@ -14,11 +14,11 @@
 # 构筑方法
 
 1. 请先在Linux环境中自行安装`wine`和`wine-binfmt`；
-2. 请到[Mewchan网站](https://www.mewchan.com/dist.mhtml)上下载最新的运行时，
+2. 请到[Mewchan网站](https://www.mewchan.com/dists.mhtml)上下载最新的运行时，
 并配置到PATH环境变量中;
 3. 克隆本项目：
 ```
-git clone https://www.github.com/dragonation/wechat-devtools.git
+git clone https://github.com/dragonation/wechat-devtools.git
 ```
 4. 在本地项目目录中执行如下的语句，构筑开发者工具：
 ```
@@ -53,6 +53,8 @@ git clone https://www.github.com/dragonation/wechat-devtools.git
 # 界面截图
 
 ![screenshot](res/screenshots/1.jpg)
+
+![icon](res/icons/wechat-devtools.png)
 
 # 免责声明
 
