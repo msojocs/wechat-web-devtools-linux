@@ -13,4 +13,4 @@ cd $APPDATA/..
 export WECHAT_DEVTOOLS_DIR="$DIR/../nwjs"
 export APPDATA="$DIR/../nwjs"
 
-exec "$DIR"/../nwjs/nw  "$@" --load-extension="$DIR"/../nwjs/package.nw/js/ideplugin "$@"
+LANG=zh_CN exec "$DIR"/../nwjs/nw  "$@" --load-extension="$DIR"/../nwjs/package.nw/js/ideplugin "$@"
