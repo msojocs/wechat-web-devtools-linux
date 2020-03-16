@@ -9,7 +9,7 @@
 
 # 使用方法
 
-可以在本项目的发布中，寻找已经构筑好了的`.tar.gz`包，下载解压后，运行其中的`bin/wechat-devtools`即可运行。
+可以在本项目的[发布](https://github.com/dragonation/wechat-devtools/releases)中，寻找已经构筑好了的`.tar.gz`包，下载解压后，运行其中的`bin/wechat-devtools`即可运行。
 
 # 构筑方法
 
