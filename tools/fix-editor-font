@@ -2,13 +2,16 @@
 
 @info("Writing editor configs");
 
-const fontFamily = "'Mew Source SC', 'Source Code Pro', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace";
+const fontFamily = "'Mew Source SC', 'Source Code Pro', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'SF Mono', Consolas, Menlo, Monaco, 'Courier New', monospace";
 
 let configPath = @.fs.homePath(".config/wechat_devtools/Default/Editor/User/settings.json");
-
-let config = JSON.parse(@.fs.readFile.sync(configPath, "utf8"));
+let config = undefined;
+if (@.fs.exists.file(configPath)) {
+    config = JSON.parse(@.fs.readFile.sync(configPath, "utf8"));
+}
 
 config["editor.fontFamily"] = fontFamily;
 
 @.fs.makeDirs(@.fs.dirname(configPath));
+
 @.fs.writeFile.sync(configPath, JSON.stringify(config, null, 4));
