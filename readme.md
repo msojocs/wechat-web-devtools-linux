@@ -3,6 +3,10 @@
 本项目是一个完整的搭建Linux下可用的“微信开发者工具”的脚本和工具集，
 用于在Linux下的GNOME桌面上搭建可以持续更新和使用的“微信开发者工具”。
 
+# 项目地址
+* https://github.com/dragonation/wechat-devtools
+* https://gitee.com/dragonation/wechat-devtools
+
 # 进度
 
 当前工具可以在Linux上构筑最新版1.02.2004020（截止时间2020年4月2日），但目前暂不支持CLI模式。
@@ -10,6 +14,8 @@
 # 使用方法
 
 可以在本项目的[发布](https://github.com/dragonation/wechat-devtools/releases)中，寻找已经构筑好了的`.tar.gz`包，下载解压后，运行其中的`bin/wechat-devtools`即可运行。
+
+注：gitee上原来我也想放发布包的，但是文件太大了，附件最大只允许100M，而且总体积不能超过1G。所以目前暂时先只放github，如果大家发现下载速度慢的话，可以考虑科学上网，速度快也稳定上传和下载。
 
 # 构筑方法
 
