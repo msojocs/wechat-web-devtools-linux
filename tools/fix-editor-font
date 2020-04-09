@@ -8,6 +8,8 @@ let configPath = @.fs.homePath(".config/wechat_devtools/Default/Editor/User/sett
 let config = undefined;
 if (@.fs.exists.file(configPath)) {
     config = JSON.parse(@.fs.readFile.sync(configPath, "utf8"));
+} else {
+    config = {};
 }
 
 config["editor.fontFamily"] = fontFamily;
