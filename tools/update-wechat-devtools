@@ -115,6 +115,12 @@ const packageDir = "$APPDATA/Tencent/微信开发者工具/package.nw";
 
 }).then(function () {
 
+    @info("Fix wechat-devtools editor selection autocopy");
+
+    @.task.execute(@path(__dirname, "fix-selection-copy"), [], false, this.test);
+
+}).then(function () {
+
     @info("Rebuilding wechat-devtools node modules");
 
     @.task.execute(@path(__dirname, "rebuild-node-modules"), [], false, this.test);
