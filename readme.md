@@ -59,6 +59,17 @@ git clone https://github.com/dragonation/wechat-devtools.git
 1. 增加Docker支持
 2. 将`rebuild-node-modules`工具也改为`mew_js`代码
 
+# FAQ
+
+* 为什么在编辑器里编辑的文本会自动复制到剪贴板？
+
+  新版微信开发者工具使用了新的`vseditor`作为基础编辑器控件，而该控件在Linux下有一个默认配置支持selectionClipboard。
+  ```
+  // Controls whether the Linux primary clipboard should be supported.
+  "editor.selectionClipboard": true
+  ```
+  如果不想用这个功能，可以自己设置关闭。也可以通过`tools/fix-selection-copy`命令来关闭该特性
+
 # 界面截图
 
 ![screenshot](res/screenshots/1.jpg)
