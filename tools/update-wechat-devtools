@@ -137,6 +137,15 @@ const packageDir = "$APPDATA/Tencent/微信开发者工具/package.nw";
 
     @.task.execute(@path(__dirname, "patch-wechat-devtools"), [], false, this.test);
 
+}).then(function () {
+
+    @info("Patching wcc and wcsc");
+
+    @.fs.copyFile.sync(@path(__dirname, "../wine/wcc"), @path(__dirname, "package.nw/js/vendor/wcc"));
+    @.fs.copyFile.sync(@path(__dirname, "../wine/wcsc"), @path(__dirname, "package.nw/js/vendor/wcsc"));
+
+    this.next();
+
 }).finished((error) => {
 
     if (error) {
