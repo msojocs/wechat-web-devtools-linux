@@ -1,0 +1,3 @@
+#!/usr/bin/env node
+
+require("../nwjs/package.nw/js/common/cli/index.js");

@@ -103,21 +103,27 @@ const packageDir = "$APPDATA/Tencent/微信开发者工具/package.nw";
 
 }).then(function () {
 
-    @info("Fixing wechat-devtools package name");
+    @info("Patching wechat-devtools package name");
 
     @.task.execute(@path(__dirname, "fix-package-name"), [], false, this.test);
 
 }).then(function () {
 
-    @info("Fix wechat-devtools editor font");
+    @info("Patching wechat-devtools editor font");
 
     @.task.execute(@path(__dirname, "fix-editor-font"), [], false, this.test);
 
 }).then(function () {
 
-    @info("Fix wechat-devtools editor selection autocopy");
+    @info("Patching wechat-devtools editor selection autocopy");
 
     @.task.execute(@path(__dirname, "fix-selection-copy"), [], false, this.test);
+
+}).then(function () {
+
+    @info("Patching wechat-devtools CLI supports");
+
+    @.task.execute(@path(__dirname, "fix-cli"), [], false, this.test);
 
 }).then(function () {
 

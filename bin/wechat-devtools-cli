@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
@@ -14,4 +14,4 @@ export WECHAT_DEVTOOLS_DIR="$DIR/../nwjs"
 export APPDATA="$DIR/../nwjs"
 export PATH="$DIR/../node/bin:$DIR/../nwjs:$PATH"
 
-LANG=zh_CN.UTF-8 exec "$DIR"/../nwjs/nw --load-extension="$DIR"/../nwjs/package.nw/js/ideplugin "$@"
+$DIR/../tools/wechat-devtools-cli "$@"
