@@ -17,6 +17,10 @@
 
 注：gitee上原来我也想放发布包的，但是文件太大了，附件最大只允许100M，而且总体积不能超过1G。所以目前暂时先只放github，如果大家发现下载速度慢的话，可以考虑科学上网或者度盘链接，速度快也稳定上传和下载。
 
+# CLI支持
+
+在项目的`bin`目录中有`wechat-devtools-cli`命令，是微信开发者工具的命令行支持Linux版本。相关材料可以在[微信CLI命令行V2](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)上找到。
+
 # 构筑方法
 
 1. 请先在Linux环境中自行安装`wine`和`wine-binfmt`；
@@ -52,9 +56,8 @@ git clone https://github.com/dragonation/wechat-devtools.git
 
 # 后续计划
 
-1. 提供CLI命令行支持
-2. 增加Docker支持
-3. 将`rebuild-node-modules`工具也改为`mew_js`代码
+1. 增加Docker支持
+2. 将`rebuild-node-modules`工具也改为`mew_js`代码
 
 # 界面截图
 
