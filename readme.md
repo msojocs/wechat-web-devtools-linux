@@ -70,10 +70,19 @@ git clone https://github.com/dragonation/wechat-devtools.git
   ```
   如果不想用这个功能，可以自己通过修改`~/.config/wechat_devtools/Default/Editor/User/settings.json`文件关闭。也可以通过`tools/fix-selection-copy`命令来关闭该特性
 
+* 为什么编辑器的字体是宋体
+  
+  新版本已经可以在设置中直接手工输入修改编辑器字体了，输入字体名称后界面就会更新
+
 # 界面截图
 
-![screenshot](res/screenshots/1.jpg)
+版本 1.03.2006090
+![screenshot 1.03.2006090](res/screenshots/1.03.2006090.jpg)
 
+版本 1.02.2001191
+![screenshot 1.02.2001191](res/screenshots/1.02.2001191.jpg)
+
+图标
 ![icon](res/icons/wechat-devtools.png)
 
 # 免责声明
