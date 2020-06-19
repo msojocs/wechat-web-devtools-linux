@@ -25,6 +25,7 @@ mkdir -p "${package_dir}/node_modules_tmp"
 cp -fr "${package_dir}/node_modules" "${package_dir}/node_modules_tmp/node_modules" 
 
 (cd "${package_dir}/node_modules_tmp" && npm install --registry=https://registry.npm.taobao.org) # prepare package.json and dependencies
+chmod +x ${package_dir}/node_modules_tmp/node_modules/nodegit/vendor/libssh2/configure # the configure file without execute permission which will make gyp failed
 (cd "${package_dir}/node_modules_tmp" && npm rebuild --registry=https://registry.npm.taobao.org) # rebuild gyp
 
 mkdir -p "${package_dir}/node_modules/nodegit/build/Release"
