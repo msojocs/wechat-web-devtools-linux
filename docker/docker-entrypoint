@@ -1,0 +1,6 @@
+#!/bin/bash
+
+/etc/init.d/dbus start &&
+
+/opt/wechat/devtools/bin/wechat-devtools "$@"
+

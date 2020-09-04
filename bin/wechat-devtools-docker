@@ -1,0 +1,14 @@
+#!/bin/bash
+
+xhost +
+
+docker run \
+    -t -i --rm \
+    -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+    -v $HOME/.Xauthority:/root/.Xauthority \
+    -e DISPLAY=unix:0.0 \
+    -e GDK_SCALE \
+    -e GDK_DPI_SCALE \
+    --privileged \
+    wechat-devtools /opt/wechat/devtools/bin/docker-entrypoint
+
