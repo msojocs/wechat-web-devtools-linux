@@ -13,10 +13,14 @@ package_dir="$DIR/../package.nw"
 export PATH=$DIR/../node/bin:$PATH
 
 rm -fr "${package_dir}/node_modules/vscode-windows-ca-certs" # the module is only available in windows
+rm -fr "${package_dir}/node_modules/vscode-windows-registry" # the module is only available in windows
+rm -fr "${package_dir}/node_modules/vscode-windows-registry-node" # the module is only available in windows
+rm -fr "${package_dir}/node_modules/windows-process-tree" # the module is only available in windows
 
 rm -fr "${package_dir}/node_modules/vscode-ripgrep/bin" # redownload bin on linux
 
-rm -fr "${package_dir}/node_modules/nodegit/build" # rebuild nodegit
+rm -fr "${package_dir}/node_modules/node-pty/build/Release/conpty.node" # the native module is not available in windows
+rm -fr "${package_dir}/node_modules/node-pty/build/Release/conpty_console_list.node" # the native module is not available in windows
 
 (cd "${package_dir}/node_modules" && find -name *.pdb | xargs -I{} rm -r {}) # remove pdb debugging file
 
@@ -24,14 +28,30 @@ rm -fr "${package_dir}/node_modules_tmp" # remove previous hacking tmp
 mkdir -p "${package_dir}/node_modules_tmp"
 cp -fr "${package_dir}/node_modules" "${package_dir}/node_modules_tmp/node_modules" 
 
-(cd "${package_dir}/node_modules_tmp" && npm install --registry=https://registry.npm.taobao.org) # prepare package.json and dependencies
-chmod +x ${package_dir}/node_modules_tmp/node_modules/nodegit/vendor/libssh2/configure # the configure file without execute permission which will make gyp failed
-(cd "${package_dir}/node_modules_tmp" && npm rebuild --registry=https://registry.npm.taobao.org) # rebuild gyp
+rm -fr "${package_dir}/node_modules_tmp/node_modules/node-pty-node"
+rm -fr "${package_dir}/node_modules_tmp/node_modules/oniguruma-node"
+rm -fr "${package_dir}/node_modules_tmp/node_modules/spdlog-node"
 
-mkdir -p "${package_dir}/node_modules/nodegit/build/Release"
+(cd "${package_dir}/node_modules_tmp" && npm install \
+    extract-file-icon \
+    native-keymap \
+    native-watchdog \
+    nodegit \
+    node-pty \
+    oniguruma \
+    spdlog \
+    trash \
+    vscode-oniguruma \
+    vscode-ripgrep \
+    --registry=https://registry.npm.taobao.org) # reinstall modules
+
+(cp -fr "${package_dir}/node_modules_tmp/node_modules/node-pty" "${package_dir}/node_modules_tmp/node_modules/node-pty-node")
+(cp -fr "${package_dir}/node_modules_tmp/node_modules/oniguruma" "${package_dir}/node_modules_tmp/node_modules/oniguruma-node")
+(cp -fr "${package_dir}/node_modules_tmp/node_modules/spdlog" "${package_dir}/node_modules_tmp/node_modules/spdlog-node")
+
 (cd "${package_dir}/node_modules_tmp/node_modules" && find -name *.node | xargs -I{} cp -r {} ${package_dir}/node_modules/{})
 
-# mkdir -p "${package_dir}/node_modules/vscode-ripgrep/bin"
-cp -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep/bin" "${package_dir}/node_modules/vscode-ripgrep/bin"
+mkdir -p "${package_dir}/node_modules/vscode-ripgrep/bin"
+cp -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep/bin/rg" "${package_dir}/node_modules/vscode-ripgrep/bin/rg"
 
 rm -fr "${package_dir}/node_modules_tmp"
