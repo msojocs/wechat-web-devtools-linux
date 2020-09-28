@@ -9,7 +9,7 @@
 
 # 进度
 
-当前工具可以在Linux上构筑最新版1.03.2008270（截止时间2020年9月4日），支持CLI模式。
+当前工具可以在Linux上构筑最新版1.03.2008270（截止时间2020年9月4日），支持CLI模式，现已经有Docker支持（仅用于测试）。
 另现在已经可以直接在设置界面里面修改字体，手工输入字体名称就可以。
 
 # 使用方法
@@ -22,12 +22,25 @@
 
 * 基于Linux的桌面系统，首选GNOME（其他的桌面环境可能会有问题，未测试）
 * 安装有wine和wine-binfmt支持，建议版本在5.0以上，低版本可能会存在有问题
-* 安装有libstdc++的版本为3.4.26，发布包里已经预编译了的Linux原生Node模块有这个依赖
-* 如果运行的是docker镜像版本，请自行安装docker
+* 非兼容版对glibc和libstdc++有一定的版本要求，glibc的版本要求2.3，libstdc++的版本要求3.4.26，发布包里已经预编译了的Linux原生Node模块有这个依赖。兼容版本对这两个系统库的要求则较低，如果发现非兼容版本运行有问题可以考虑尝试切换到兼容版本
+* 如果运行的是Docker镜像版本，请自行安装和编译Docker镜像（仅用于测试）
 
 # CLI支持
 
 在项目的`bin`目录中有`wechat-devtools-cli`命令，是微信开发者工具的命令行支持Linux版本。相关材料可以在[微信CLI命令行V2](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)上找到。
+
+# Docker支持
+
+为了尽可能正常的在Docker内运行完整的微信开发者工具，我们在Docker镜像内提供了GUI界面的支持。但该支持有严格的系统要求，因微信开发者工具的新版本对界面UI的图形化要求较高，导致该部分对OpenGL有必要的需求。所以Container内镜像的图形驱动要求与Host的图形驱动**完全**一致，在非一致的情况下，界面会出现频闪现象。即使是关闭了硬件加速，采用了--use-gl=swiftshader的软件模拟情况下也会出现图片撕裂的情况。因此，请各位在自行构筑Docker镜像时，严格根据自己使用的Linux发行版修改基础镜像。
+
+目前图形界面在Docker内部实现的方案是通过X11的套接字透传实现的，因此请记得准备好一些必要Docker准备。大部分工作已经`bin/wechat-devtools-docker`命令中完成。但是请根据具体运行情况修改必要的参数和Docker镜像构筑脚本。鉴于Docker镜像的基础Linux版本较低，因此建议使用兼容版本的发布包来构筑镜像，而不要轻易使用非兼容版本。
+
+Docker容器启动方法
+```
+./bin/wechat-devtools-docker
+```
+
+如需要映射外部目录，请自行修改Docker启动命令
 
 # 构筑方法
 
@@ -63,7 +76,7 @@ git clone https://github.com/dragonation/wechat-devtools.git
 
 # 后续计划
 
-1. 增加Docker支持（正在尝试制作，应该不难）
+1. 增加Docker镜像的稳定性（对Host要求比较高）
 2. 将`rebuild-node-modules`工具也改为`mew_js`代码
 
 # FAQ
