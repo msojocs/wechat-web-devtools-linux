@@ -14,7 +14,7 @@ nw.MenuItem = function MenuItem(options) {
     delete options.shortcutName;
     delete options.shouldEnabled;
 
-    if (options.label) {
+    if (options.label && (typeof options.label === "string")) {
 
         if (options.label.indexOf("[") !== -1) {
             let rest = options.label.split("[").slice(1).join("[").trim();
