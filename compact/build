@@ -1,0 +1,7 @@
+#!/bin/bash
+
+./tools/setup-wechat-devtools &&
+
+tar cvzf wechat-devtools-compact.tar.gz  bin conf license.md node nwjs package.nw patch readme.md res tools wine
+
+
