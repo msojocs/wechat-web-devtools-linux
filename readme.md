@@ -62,6 +62,13 @@ git clone https://github.com/dragonation/wechat-devtools.git
 
 之后即可通过点击应用图标启动微信开发者工具，也可以运行`bin/wechat-devtools`通过命令行启动
 
+# 版本数据
+| wechat-tool | nw.js | node |
+|-------------|-------|------|
+|1.03.2006090 |0.39.3 |12.6.0|
+|1.05.2201210 |0.49.3 |13.4.0|
+
+
 # 与其他Linux下的微信开发者工具版本区别
 
 1. 支持最新版本，并个人会持续更新，确保运行和测试OK才会上传Release；
@@ -96,7 +103,7 @@ git clone https://github.com/dragonation/wechat-devtools.git
 
 3. 为什么自己构筑或更新后的运行时编辑器和调试器是一片空白？
 
-    检查一下`conf/node.json`和`conf/nwjs.json`里面定义的版本是否与最新微信官方开发者工具的一致。如果有修改版本号的情况，则在更新完这两个JSON文件后，执行`tools/update-node`和`tools/update-nwjs`命令。然后删除`package.nw`目录重新执行`tools/setup-wechat-tools`命令（感谢ReggieCai31的issue和解决方案）
+    检查一下`conf/node.json`和`conf/nwjs.json`里面定义的版本是否与最新微信官方开发者工具的一致。如果有修改版本号的情况，则在更新完这两个JSON文件后，执行`tools/update-node`和`tools/update-nwjs`命令。然后删除`package.nw`目录重新执行`tools/setup-wechat-devtools`命令（感谢ReggieCai31的issue和解决方案）
 
 4. 为什么自己构筑的运行时加载项目时会卡住？
 

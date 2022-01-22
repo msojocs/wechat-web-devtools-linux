@@ -11,6 +11,8 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 package_dir="$DIR/../package.nw"
 
 export PATH=$DIR/../node/bin:$PATH
+# npm config list
+npm --version
 
 rm -fr "${package_dir}/node_modules/vscode-windows-ca-certs" # the module is only available in windows
 rm -fr "${package_dir}/node_modules/vscode-windows-registry" # the module is only available in windows
@@ -32,17 +34,19 @@ rm -fr "${package_dir}/node_modules_tmp/node_modules/node-pty-node"
 rm -fr "${package_dir}/node_modules_tmp/node_modules/oniguruma-node"
 rm -fr "${package_dir}/node_modules_tmp/node_modules/spdlog-node"
 
+# npm install @vscode/ripgrep --registry=https://registry.npm.taobao.org
+# npm install nodegit --registry=https://registry.npm.taobao.org --nodegit_binary_host_mirror=https://npm.taobao.org/mirrors/nodegit/v0.27.0/
 (cd "${package_dir}/node_modules_tmp" && npm install \
     extract-file-icon \
     native-keymap \
     native-watchdog \
-    nodegit \
     node-pty \
     oniguruma \
     spdlog \
     trash \
     vscode-oniguruma \
     vscode-ripgrep \
+    nodegit \
     --registry=https://registry.npm.taobao.org \
     --nodegit_binary_host_mirror=https://npm.taobao.org/mirrors/nodegit/v0.27.0/) # reinstall modules
 

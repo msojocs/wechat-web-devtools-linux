@@ -10,6 +10,7 @@ const urls = {
 };
 
 let branch = @.process.switches().commands[0];
+let ver = @.process.switches().commands[1];
 if ((!branch) || (!urls[branch])) {
     branch = "stable";
 }
@@ -31,8 +32,12 @@ let client = @.net.httpClient();
 
     @.fs.makeDirs(@path(__dirname, "../cache"));
 
-    @info(`Fetching wechat-dev-tool info: ${url}`);
+    info(`Fetching wechat-dev-tool info: ${url}`);
 
+    if(ver){
+        version = ver
+        this.next(`https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=${ver}&version_type=1`);
+    }else
     client.request(url, {
         "onSuccess": (result) => {
             let links = {};
@@ -46,11 +51,11 @@ let client = @.net.httpClient();
                     }
                     let url = link.split("\"")[0];
                     links[content].push(url);
-                    @info(`Found ${content} link: ${url}`);
+                    info(`Found ${content} link: ${url}`);
                 }
             });
             if (!links["windows-64"][0]) {
-                @error("No windows-64 dist found");
+                error("No windows-64 dist found");
                 process.exit(1);
             }
             this.next(links["windows-64"][0]);

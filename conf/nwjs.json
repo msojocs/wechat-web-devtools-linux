@@ -1,4 +1,4 @@
 {
-    "version": "0.39.3",
+    "version": "0.40.0",
     "url": "https://npm.taobao.org/mirrors/nwjs/v${version}/nwjs-sdk-v${version}-linux-x64.tar.gz"
 }
