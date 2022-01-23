@@ -38,7 +38,7 @@ const nwjs = require("../conf/nwjs.json");
                 lastSize = size;
                 lastTime = now;
                 lastProgress = progress;
-                @info(`Downloaded ${@.fs.filename(localPath)}: ${progress.toFixed(2)}%, speed ${speed.toFixed(2)} KiB/s`);
+                process.stdout.write(`Downloaded ${@.fs.filename(localPath)}: ${progress.toFixed(2)}%, speed ${speed.toFixed(2)} KiB/s\r`);
             }
         },
         "onError": this.reject

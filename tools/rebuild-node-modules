@@ -60,3 +60,5 @@ mkdir -p "${package_dir}/node_modules/vscode-ripgrep/bin"
 cp -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep/bin/rg" "${package_dir}/node_modules/vscode-ripgrep/bin/rg"
 
 rm -fr "${package_dir}/node_modules_tmp"
+# 移除旧配置
+rm -fr ~/.config/wechat_devtools

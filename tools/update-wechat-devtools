@@ -104,13 +104,14 @@ let client = @.net.httpClient();
                 lastSize = size;
                 lastTime = now;
                 lastProgress = progress;
-                @info(`Downloaded ${filename}: ${progress.toFixed(2)}%, speed ${speed.toFixed(2)} KiB/s`);
+                process.stdout.write(`Downloaded ${filename}: ${progress.toFixed(2)}%, speed ${speed.toFixed(2)} KiB/s\r`);
             }
         },
         "onError": this.reject
     });
 
 }).then(function (localPath) {
+    // 解压
 
     @info(`Extracting ${localPath}`);
 
@@ -134,15 +135,19 @@ let client = @.net.httpClient();
 
     @info(`Upgrading ${@.fs.filename(extractPath)}`);
 
+    // 删除元文件
     @.fs.deleteFile.sync(@path(__dirname, "../package.nw"));
 
+    // 替换
     @.fs.moveFile.sync(@path(extractPath, packageDir),
                        @path(__dirname, "../package.nw"));
 
+    // 删除临时
     @.fs.deleteFile.sync(extractPath);
 
     if (@.fs.exists(@path(__dirname, "../nwjs"))) {
         if (!@.fs.exists(@path(__dirname, "../nwjs/package.nw"))) {
+            // 链接
             @.fs.linkFile("../package.nw", @path(__dirname, "../nwjs/package.nw"));
         }
     }
