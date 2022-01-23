@@ -38,7 +38,7 @@ const nwjs = require("../conf/nwjs.json");
                 lastSize = size;
                 lastTime = now;
                 lastProgress = progress;
-                process.stdout.write(`Downloaded ${@.fs.filename(localPath)}: ${progress.toFixed(2)}%, speed ${speed.toFixed(2)} KiB/s\r`);
+                @info(`Downloaded ${@.fs.filename(localPath)}: ${progress.toFixed(2)}%, speed ${speed.toFixed(2)} KiB/s`);
             }
         },
         "onError": this.reject
@@ -70,6 +70,7 @@ const nwjs = require("../conf/nwjs.json");
 
     @.fs.deleteFile.sync(@path(__dirname, "../nwjs"));
 
+    console.log(@path(extractPath, @.fs.listFiles(extractPath)[0].name))
     @.fs.moveFile.sync(@path(extractPath, @.fs.listFiles(extractPath)[0].name),
                        @path(__dirname, "../nwjs"))
 

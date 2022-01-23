@@ -135,6 +135,9 @@ git clone https://github.com/dragonation/wechat-devtools.git
 
 # 界面截图
 
+版本 1.05.2201210 (待修复bug)
+![screenshot 1.03.2006090](res/screenshots/1.05.2201210.png)
+
 版本 1.03.2006090
 ![screenshot 1.03.2006090](res/screenshots/1.03.2006090.jpg)
 
