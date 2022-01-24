@@ -11,8 +11,8 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 package_dir="$DIR/../package.nw"
 
 export PATH=$DIR/../node/bin:$PATH
-# npm config list
-npm --version
+
+node --version
 
 rm -fr "${package_dir}/node_modules/vscode-windows-ca-certs" # the module is only available in windows
 rm -fr "${package_dir}/node_modules/vscode-windows-registry" # the module is only available in windows

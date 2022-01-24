@@ -1,0 +1,36 @@
+window.parent.$messager
+$messager: Messenger
+tryTime: 0
+_callback: (16) [ƒ, ƒ, ƒ, ƒ, ƒ, ƒ, ƒ, ƒ, ƒ, ƒ, ƒ, ƒ, ƒ, ƒ, ƒ, ƒ]
+_msgQueue: []
+_needToken: true
+_protocol: "APPSERVICEDEVTOOLS"
+_ws: WebSocket
+binaryType: "blob"
+bufferedAmount: 0
+extensions: ""
+onclose: t=> {…}
+onerror: null
+onmessage: t=> {…}
+onopen: t=> {…}
+protocol: "APPSERVICEDEVTOOLS#ddeb6731d63c79e3b5b91c0f99ebc5da#"
+readyState: 1
+url: "ws://127.0.0.1:47138/"
+__proto__: WebSocket
+__proto__: Object
+
+location.href
+chrome-extension://mbeenbnhnmdhkbicabncjghgnikfbgjh/html/index.html?appid=wxfa2ea65288e28233&projectpath=D%3A%5CProject%5CWeCuit-Project%5CWeCuit-Mini-uni-test_uni_vue-cli%5Cdist%5Cdev%5Cmp-weixin&projectname=mp-weixin&projectid=D%3A%5CProject%5CWeCuit-Project%5CWeCuit-Mini-uni-test_uni_vue-cli%5Cdist%5Cdev%5Cmp-weixin&parentid=&runtimeid=0&isTemp=&isOnline=&theme=dark&bgwsurl=ws%3A%2F%2F127.0.0.1%3A23740&bgwstoken=9f53cf0d5af65d07603b418b2360ca5f&autoPort=&testTicket=&skeletonPath=C%3A%5CUsers%5Cjiyec%5CAppData%5CLocal%5C%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%5CUser%20Data%5Cf13f1c30f325514de496c9db6e27b110%5CWeappCache%5CskeletonCache%5Cdf11d8701a010a8b2a2b0d14471e492b%2Fpageskeleton.html&openedFile=&masterH2ProxyPort=&masterProxyPort=&masterUAToken=&openidMD5=&devtype=miniprogram&frame=0&devid=16d80095a3bb2637b9444afa985c63b3
+
+修改devtools_app.html
+点击“调试调试器”
+调试器源代码有相应变化
+
+
+nw.js v0.49.3
+Node v15.0.1
+Chromium 86.0.4240.111
+commit hash: e587598-d7277f7-d507c96-bbb240e
+NW.JS
+
+并未出现“devtools is not loaded properly“

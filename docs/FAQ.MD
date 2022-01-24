@@ -51,3 +51,4 @@
     猜想：也许可以在0.49.2版本基础上，将这个fix操作回滚，形成0.49.3版本
     Fix: Window opened with new_instance creates always mixed context
     https://github.com/nwjs/nw.js/blob/nw60/CHANGELOG.md#0471--07-24-2020
+    似乎出现过：https://github.com/nwjs/nw.js/issues/7609

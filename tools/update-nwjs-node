@@ -94,7 +94,7 @@ const upgrade = function (extractPath) {
             fs.linkSync(path.resolve(__dirname, "../node/bin/node"), path.resolve(__dirname, "../nwjs/node.exe"));
         }
         if (fs.existsSync(path.resolve(__dirname, "../package.nw"))) {
-            fs.linkSync(path.resolve(__dirname, "../package.nw"), path.resolve(__dirname, "../nwjs/package.nw"));
+            fs.symlinkSync(path.resolve(__dirname, "../package.nw"), path.resolve(__dirname, "../nwjs/package.nw"));
         }
 
         resolve();

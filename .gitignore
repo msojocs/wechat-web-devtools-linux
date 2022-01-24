@@ -4,3 +4,5 @@ node/
 package.nw/
 cache/
 tmp/
+mew/
+node_modules

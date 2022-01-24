@@ -28,8 +28,8 @@ const download = function () {
             return;
         }
 
-        info(`Downloading ${url}`);
-        spawn("wget", ["c", url, "O", `${localPath}.tmp`], {
+        console.info(`Downloading ${url} ---> ${localPath}`);
+        spawn("wget", ["-c", url, "-O", `${localPath}.tmp`], {
             stdio: "inherit",
         }).on("close", (code) => {
             fs.renameSync(`${localPath}.tmp`, localPath);
@@ -74,13 +74,13 @@ const upgrade = function (extractPath) {
 
         if (fs.existsSync(path.resolve(__dirname, "../nwjs"))) {
             if (!fs.existsSync(path.resolve(__dirname, "../nwjs/node"))) {
-                fs.linkSync(
-                    "../node/bin/node",
+                fs.symlinkSync(
+                    path.resolve(__dirname, "../node/bin/node"),
                     path.resolve(__dirname, "../nwjs/node")
                 );
             }
             if (!fs.existsSync(path.resolve(__dirname, "../nwjs/node.exe"))) {
-                fs.linkSync(
+                fs.symlinkSync(
                     "node",
                     path.resolve(__dirname, "../nwjs/node.exe")
                 );
