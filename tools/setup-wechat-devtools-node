@@ -1,0 +1,87 @@
+#!/usr/bin/env node
+const path = require("path");
+const fs = require("fs");
+const { spawn } = require("child_process");
+
+const init_node = function () {
+    console.info("Initializing node");
+    return new Promise((resolve, reject) => {
+        if (fs.existsSync(path.resolve(__dirname, "../node"))) {
+            resolve();
+            return;
+        }
+
+        const updateNode = spawn(
+            path.resolve(__dirname, "update-node-node"),
+            [],
+            {
+                stdio: "inherit",
+            }
+        );
+        updateNode.on("close", (code) => {
+            console.log(`Update Node code: ${code}`);
+            resolve();
+        });
+    });
+};
+
+const init_nwjs = function () {
+    console.info("Initializing nwjs");
+
+    return new Promise((resolve, reject) => {
+        if (fs.existsSync(path.resolve(__dirname, "../nwjs"))) {
+            resolve();
+            return;
+        }
+
+        const updateNwjs = spawn(
+            path.resolve(__dirname, "update-nwjs-node"),
+            [],
+            {
+                stdio: "inherit",
+            }
+        );
+        updateNwjs.on("close", (code) => {
+            console.log(`Update Nwjs result code: ${code}`);
+            resolve();
+        });
+    });
+};
+const init_wechat = function () {
+    console.info("Initializing wechat-devtools package");
+
+    return new Promise((resolve, reject) => {
+        if (fs.existsSync(path.resolve(__dirname, "../package.nw"))) {
+            resolve();
+            return;
+        }
+
+        const updateWechat = spawn(
+            path.resolve(__dirname, "update-wechat-devtools-node"),
+            [],
+            {
+                stdio: "inherit",
+            }
+        );
+        updateWechat.on("close", (code) => {
+            console.log(
+                `Initializing wechat-devtools package result code:${code}`
+            );
+            resolve();
+        });
+    });
+};
+
+const start = async () => {
+    try {
+        await init_node();
+        await init_nwjs();
+        await init_wechat();
+
+        console.log(`Succeeded setting up wechat-devtools`);
+    } catch (error) {
+        console.error("异常", error);
+    }
+};
+
+start();

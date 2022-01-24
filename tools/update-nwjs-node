@@ -4,6 +4,7 @@ const path = require('path')
 const net = require('net')
 const { spawn, execSync } = require('child_process');
 const util = require('util');
+const { exit } = require('process');
 
 const download = (nwjs) => {
     return new Promise((resolve, reject) => {
@@ -92,7 +93,7 @@ const upgrade = function (extractPath) {
             fs.linkSync(path.resolve(__dirname, "../node/bin/node"), path.resolve(__dirname, "../nwjs/node"));
             fs.linkSync(path.resolve(__dirname, "../node/bin/node"), path.resolve(__dirname, "../nwjs/node.exe"));
         }
-        if (!fs.existsSync(path.resolve(__dirname, "../package.nw"))) {
+        if (fs.existsSync(path.resolve(__dirname, "../package.nw"))) {
             fs.linkSync(path.resolve(__dirname, "../package.nw"), path.resolve(__dirname, "../nwjs/package.nw"));
         }
 
@@ -108,11 +109,12 @@ const init = async () => {
         const result = await upgrade(extractPath)
 
         console.info(`Succeeded upgrading nwjs to version ${nwjs.version}`);
-    } catch (error) {
+    } catch (err) {
 
-        if (error) {
-            console.error('error--->', error);
+        if (err) {
+            console.error('error--->', err);
         }
+        exit(-1)
     }
 }
 init()

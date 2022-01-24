@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+const path = require("path");
+const fs = require("fs");
+const { spawn } = require("child_process");
+
+let code = fs.readFileSync(path.resolve(__dirname, "../package.nw/js/unpack/hackrequire/index.js"), {encoding:"utf8"});
+
+let signatureBegin = "/* patch wechat devtools begin */\n";
+let signatureEnd = "/* patch wechat devtools end */\n";
+
+let index = code.indexOf(signatureBegin);
+
+let patch = fs.readdirSync(path.resolve(__dirname, "../patch")).map((file) => {
+    console.log(file)
+    if ((file !== ".") && (file.endsWith(".js"))) {
+        return (`/* ${file} */\n` + 
+                "(() => {\n\n" + 
+                "    try {\n\n" +
+                fs.readFileSync(path.resolve(__dirname, "../patch", file), {encoding:"utf8"}).trim().split("\n").map((line) => {
+                    return "        " + line;
+                }).join("\n") + "\n\n" +
+                "    } catch (error) {\n" + 
+                "        process.stderr.write(error.message);\n" +
+                "        process.stderr.write(error.stack);\n" +
+                "    }\n\n" +
+                "})();");
+    }
+    return "";
+}).join("\n").trim() + "\n";
+
+if (code.indexOf(signatureBegin) !== -1) {
+    code = code.split(signatureEnd).slice(1).join(signatureEnd);
+}
+
+fs.writeFileSync(path.resolve(__dirname, "../package.nw/js/unpack/hackrequire/index.js"), 
+                    signatureBegin + patch + signatureEnd + code);

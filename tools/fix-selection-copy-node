@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+const path = require("path");
+const os = require("os");
+const fs = require("fs");
+const { spawn, execSync } = require("child_process");
+
+console.info("Patching editor selection copy configs");
+
+let configPath = os.homedir() + "/.config/wechat_devtools/Default/Editor/User/settings.json";
+let config = undefined;
+if (fs.existsSync(configPath)) {
+    // console.info(configPath)
+    config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+} else {
+    config = {};
+}
+
+config["editor.selectionClipboard"] = false;
+
+// nodejs只支持一级一级目录创建，效率低
+execSync(`mkdir -p ${path.dirname(configPath)}`)
+
+fs.writeFileSync(configPath, JSON.stringify(config, null, 4));

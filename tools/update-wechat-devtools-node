@@ -1,0 +1,288 @@
+#!/usr/bin/env node
+
+const { execSync, exec, spawn } = require("child_process");
+const https = require("https");
+const fs = require("fs");
+const path = require("path");
+const { info } = require("console");
+const util = require("util");
+
+const urls = {
+    stable: "https://developers.weixin.qq.com/miniprogram/dev/devtools/stable.html",
+    rc: "https://developers.weixin.qq.com/miniprogram/dev/devtools/rc.html",
+    nightly:
+        "https://developers.weixin.qq.com/miniprogram/dev/devtools/nightly.html",
+};
+
+const args = process.argv.slice(2);
+let branch = args[0];
+let ver = args[1];
+if (!branch || !urls[branch]) {
+    branch = "stable";
+}
+
+const url = urls[branch];
+// "https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki";
+// const url = "https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&version_type=1";
+// https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=1022001191&version_type=1
+// https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=1021911180&version_type=1
+// https://dldir1.qq.com/WechatWebDev/nightly/p-7aa88fbb60d64e4a96fac38999591e31/wechat_devtools_1.02.2001202_x64.exe
+
+let version = undefined;
+
+const packageDir = "code/package.nw";
+
+const fetching = function () {
+    return new Promise((resolve, reject) => {
+        try {
+            fs.mkdirSync(path(__dirname, "../cache"));
+        } catch (error) {}
+
+        info(`Fetching wechat-dev-tool info: ${url}`);
+
+        if (ver) {
+            version = ver;
+            resolve(
+                `https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=${ver}&version_type=1`
+            );
+        } else {
+            https
+                .get(url, (res) => {
+                    let result = "";
+                    res.on("data", (data) => {
+                        result += data;
+                    });
+                    res.on("end", () => {
+                        let links = {};
+                        result
+                            .toString("utf8")
+                            .split('<div class="page-inner"')[1]
+                            .split('<a href="')
+                            .slice(1)
+                            .map((a) => {
+                                return a.split("</a>")[0];
+                            })
+                            .filter((link) => link[0] != "#")
+                            .forEach((link) => {
+                                let content = link
+                                    .split(">")
+                                    .slice(1)
+                                    .join(">")
+                                    .replace(/<([^>]*)>/g, "")
+                                    .replace(/\s+/g, "-")
+                                    .toLowerCase();
+                                if (
+                                    content === "windows-64" ||
+                                    content === "windows-32" ||
+                                    content === "macos"
+                                ) {
+                                    if (!links[content]) {
+                                        links[content] = [];
+                                    }
+                                    let url = link.split('"')[0];
+                                    links[content].push(url);
+                                    info(`Found ${content} link: ${url}`);
+                                }
+                            });
+                        if (!links["windows-64"][0]) {
+                            console.error("No windows-64 dist found");
+                            exit(1);
+                        }
+                        resolve(links["windows-64"][0]);
+                    });
+                })
+                .on("error", reject);
+        }
+    });
+};
+
+const download = function (url) {
+    return new Promise((resolve, reject) => {
+        info(`Downloading ${url}`);
+
+        version = url.match(/version=(\d+)&/)[1];
+        let mainVer = version.substring(0, version.length - 9);
+        let subVer = version.substring(version.length - 9, version.length - 7);
+        let time = version.substring(version.length - 7);
+        version = [mainVer, subVer, time].join(".");
+
+        let localPath = path.resolve(
+            __dirname,
+            util.format("../cache/wechat_devtools_%s_x64.exe", version)
+        );
+
+        if (fs.existsSync(localPath)) {
+            resolve(localPath);
+            return;
+        }
+
+        // wget -c url -O out
+        const ls = spawn("wget", ["-c", url, "-O", `${localPath}.tmp`], {
+            stdio: "inherit",
+        });
+
+        ls.on("close", (code) => {
+            fs.renameSync(`${localPath}.tmp`, localPath);
+            resolve(localPath);
+        });
+    });
+};
+
+const extract = function (localPath) {
+    // 解压
+    info(`Extracting ${localPath}`);
+    return new Promise((resolve, reject) => {
+        let extractPath = path.resolve(
+            __dirname,
+            `../tmp/${path.basename(localPath)}`
+        );
+
+        execSync(`rm -rf ${extractPath}`);
+
+        try {
+            fs.mkdirSync(extractPath);
+        } catch (error) {}
+
+        const ext = spawn(
+            "7z",
+            ["x", localPath, `-o${extractPath}`, packageDir],
+            {
+                stdio: "inherit",
+            }
+        );
+        ext.on("close", (code) => {
+            info(`解压完毕：${code}`);
+            resolve(extractPath);
+        });
+    });
+};
+
+const upgrade = function (extractPath) {
+    info(`Upgrading ${path.basename(extractPath)}`);
+
+    return new Promise((resolve, reject) => {
+        // 删除原文件
+        execSync(`rm -rf ${path.resolve(__dirname, "../package.nw")}`);
+
+        // 替换
+        fs.renameSync(
+            path.resolve(extractPath, packageDir),
+            path.resolve(__dirname, "../package.nw")
+        );
+
+        // 删除临时
+        execSync(`rm -rf ${extractPath}`);
+
+        if (fs.existsSync(path.resolve(__dirname, "../nwjs"))) {
+            if (!fs.existsSync(path.resolve(__dirname, "../nwjs/package.nw"))) {
+                // 链接
+                fs.symlinkSync(
+                    path.resolve(__dirname, "../package.nw"),
+                    path.resolve(__dirname, "../nwjs/package.nw")
+                );
+            }
+        }
+
+        resolve();
+    });
+};
+
+const patch_wechat_devtools_package_name = function () {
+    info("Patching wechat-devtools package name");
+
+    return new Promise((resolve, reject) => {
+        spawn(path.resolve(__dirname, "fix-package-name-node"), [], {
+            stdio: "inherit",
+        }).on("close", (code) => {
+            resolve();
+        });
+    });
+};
+const patch_wechat_devtools_editor_selection_autocopy = function () {
+    info("Patching wechat-devtools editor selection autocopy");
+
+    return new Promise((resolve, reject) => {
+        spawn(path.resolve(__dirname, "fix-selection-copy-node"), [], {
+            stdio: 'inherit',
+        }).on("close", (code) => {
+            resolve();
+        });
+    });
+};
+const patch_wechat_devtools_CLI = function () {
+    info("Patching wechat-devtools CLI supports");
+
+    return new Promise((resolve, reject) => {
+        spawn(path.resolve(__dirname, "fix-cli-node"), [], { stdio: "inherit" }).on(
+            "close",
+            (code) => {
+                resolve();
+            }
+        );
+    });
+};
+const rebuild_wechat_devtools_node_modules = function () {
+    info("Rebuilding wechat-devtools node modules");
+
+    return new Promise((resolve, reject) => {
+        spawn(path.resolve(__dirname, "rebuild-node-modules"), [], {
+            stdio: "inherit",
+        }).on("close", (code) => {
+            resolve();
+        });
+    });
+};
+const patch_wechat_devtools = function () {
+    info("Patching wechat-devtools");
+
+    return new Promise((resolve, reject) => {
+        const exec = spawn(
+            path.resolve(__dirname, "patch-wechat-devtools-node"),
+            [],
+            {
+                stdio: "inherit",
+            }
+        );
+        exec.on("close", (code) => {
+            resolve();
+        });
+    });
+};
+const patch_wcc_wcsc = function () {
+    info("Patching wcc and wcsc");
+
+    return new Promise((resolve, reject) => {
+        fs.copyFileSync(
+            path.resolve(__dirname, "../wine/wcc"),
+            path.resolve(__dirname, "../package.nw/js/vendor/wcc")
+        );
+        fs.copyFileSync(
+            path.resolve(__dirname, "../wine/wcsc"),
+            path.resolve(__dirname, "../package.nw/js/vendor/wcsc")
+        );
+
+        resolve();
+    });
+};
+
+const start = async () => {
+    try {
+        const url = await fetching();
+        const localPath = await download(url);
+        const extractPath = await extract(localPath);
+        await upgrade(extractPath);
+        await patch_wechat_devtools_package_name();
+        await patch_wechat_devtools_editor_selection_autocopy();
+        await patch_wechat_devtools_CLI();
+        await rebuild_wechat_devtools_node_modules();
+        await patch_wechat_devtools();
+        await patch_wcc_wcsc();
+        console.log(
+            `Succeeded upgrading wechat-devtools to version ${version}`
+        );
+    } catch (error) {
+        console.error("异常", error);
+        throw error
+    }
+};
+start();
