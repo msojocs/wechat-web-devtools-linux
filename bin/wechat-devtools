@@ -12,7 +12,7 @@ cd $DIR/..
 
 export WECHAT_DEVTOOLS_DIR="$DIR/../nwjs"
 export APPDATA="$( echo ~ )/.config/wechat_devtools"
-export PATH="$DIR/../wine:$DIR/../node/bin:$DIR/../nwjs:$PATH"
+export PATH="$DIR/../node/bin:$DIR/../nwjs:$PATH"
 
 # LANG=zh_CN.UTF-8 exec "$DIR"/../nwjs/nw --load-extension="$DIR"/../nwjs/package.nw/js/ideplugin "$@"
 
@@ -20,7 +20,7 @@ EXTENSION1="-load-extension=$DIR/../nwjs/package.nw/js/ideplugin"
 EXTENSION2="-load-extension=$( echo ~ )/.config/wechat_devtools/WeappPlugin"  # 调试器AppData与Storage可用
 INSPECTOR1="--custom-devtools-frontend=$DIR/../nwjs/package.nw/js/ideplugin/inspector"
 INSPECTOR2="--custom-devtools-frontend=$( echo ~ )/.config/wechat_devtools/WeappPlugin/inspector"
-USERDATADIR="--user-data-dir=$( echo ~ )/.config/wechat_devtools"
+USERDATADIR="$( echo ~ )/.config/wechat_devtools"
 
 LANG=zh_CN.UTF-8
-exec "$DIR"/../nwjs/nw $EXTENSION2 $INSPECTOR2 $USERDATADIR "$@" --app-session-id=XzpLGIehps
+exec "$DIR"/../nwjs/nw $EXTENSION2 $INSPECTOR2 --user-data-dir=$USERDATADIR "$@" --app-session-id=XzpLGIehps
