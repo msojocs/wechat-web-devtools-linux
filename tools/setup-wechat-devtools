@@ -18,7 +18,7 @@
         this.next(); return;
     }
 
-    @.task.execute(@path(__dirname, "update-nwjs-node"), [], false, this.test);
+    @.task.execute(@path(__dirname, "update-nwjs"), [], false, this.test);
 
 }).then(function () {
 

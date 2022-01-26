@@ -122,8 +122,13 @@ const download = function (url) {
         });
 
         ls.on("close", (code) => {
-            fs.renameSync(`${localPath}.tmp`, localPath);
-            resolve(localPath);
+            console.info(`Download Wechat DevTools Result Code: ${code}`);
+            if (code === 0){
+                fs.renameSync(`${localPath}.tmp`, localPath);
+                resolve(localPath);
+            }else{
+                reject()
+            }
         });
     });
 };
@@ -203,7 +208,7 @@ const patch_wechat_devtools_editor_selection_autocopy = function () {
 
     return new Promise((resolve, reject) => {
         spawn(path.resolve(__dirname, "fix-selection-copy-node"), [], {
-            stdio: 'inherit',
+            stdio: "inherit",
         }).on("close", (code) => {
             resolve();
         });
@@ -213,12 +218,11 @@ const patch_wechat_devtools_CLI = function () {
     info("Patching wechat-devtools CLI supports");
 
     return new Promise((resolve, reject) => {
-        spawn(path.resolve(__dirname, "fix-cli-node"), [], { stdio: "inherit" }).on(
-            "close",
-            (code) => {
-                resolve();
-            }
-        );
+        spawn(path.resolve(__dirname, "fix-cli-node"), [], {
+            stdio: "inherit",
+        }).on("close", (code) => {
+            resolve();
+        });
     });
 };
 const rebuild_wechat_devtools_node_modules = function () {
@@ -228,7 +232,12 @@ const rebuild_wechat_devtools_node_modules = function () {
         spawn(path.resolve(__dirname, "rebuild-node-modules"), [], {
             stdio: "inherit",
         }).on("close", (code) => {
+            console.info(`Rebuilding wechat-devtools node modules Result Code: ${code}`)
+            if(0 === code)
             resolve();
+            else{
+                reject()
+            }
         });
     });
 };
@@ -282,7 +291,7 @@ const start = async () => {
         );
     } catch (error) {
         console.error("异常", error);
-        throw error
+        throw error;
     }
 };
 start();
