@@ -2,14 +2,14 @@
 
 本项目是一个完整的搭建Linux下可用的“微信开发者工具”的脚本和工具集，
 用于在Linux下的GNOME桌面上搭建可以持续更新和使用的“微信开发者工具”。
+本项目修改自：https://github.com/dragonation/wechat-devtools/
 
 # 项目地址
-* https://github.com/dragonation/wechat-devtools
-* https://gitee.com/dragonation/wechat-devtools
+* https://github.com/jiyeme/wechat-devtools
 
 # 进度
 
-当前工具可以在Linux上构筑最新版1.03.2009140（截止时间2020年9月28日），支持CLI模式，现已经有Docker支持（仅用于测试）。
+当前工具可以在Linux上构筑最新版1.05.2201240（截止时间2022年1月26日），支持CLI模式，现已经有Docker支持（仅用于测试）。
 另现在已经可以直接在设置界面里面修改字体，手工输入字体名称就可以。
 
 # 使用方法
@@ -42,14 +42,33 @@ Docker容器启动方法
 
 如需要映射外部目录，请自行修改Docker启动命令
 
-# 构筑方法
+# 构筑方法1（推荐）
 
 1. 请先在Linux环境中自行安装`wine`和`wine-binfmt`；
-2. 请到[Mewchan网站](https://www.mewchan.com/dists.mhtml)上下载最新的运行时，
+2. 请安装nodejs，并配置到PATH环境变量中;
+3. 克隆本项目：
+```
+git clone https://github.com/jiyeme/wechat-devtools.git
+```
+4. 在本地项目目录中执行如下的语句，构筑开发者工具：
+```
+./tools/setup-wechat-devtools-node
+```
+5. 在本地项目目录中执行如下的语句，可以安装应用图标（非必须）：
+```
+./tools/install-desktop-icon-node
+```
+
+之后即可通过点击应用图标启动微信开发者工具，也可以运行`bin/wechat-devtools`通过命令行启动
+
+# 构筑方法2
+
+1. 请先在Linux环境中自行安装`wine`和`wine-binfmt`；
+2. 请到[Mewchan第三方仓库](https://github.com/wangjunjie1996/-.git)上下载最新的运行时，
 并配置到PATH环境变量中;
 3. 克隆本项目：
 ```
-git clone https://github.com/dragonation/wechat-devtools.git
+git clone https://github.com/jiyeme/wechat-devtools.git
 ```
 4. 在本地项目目录中执行如下的语句，构筑开发者工具：
 ```
@@ -61,13 +80,6 @@ git clone https://github.com/dragonation/wechat-devtools.git
 ```
 
 之后即可通过点击应用图标启动微信开发者工具，也可以运行`bin/wechat-devtools`通过命令行启动
-
-# 版本数据
-| wechat-tool | nw.js | node |
-|-------------|-------|------|
-|1.03.2006090 |0.39.3 |12.6.0|
-|1.05.2201210 |0.49.3 |13.4.0|
-
 
 # 与其他Linux下的微信开发者工具版本区别
 
@@ -91,8 +103,8 @@ git clone https://github.com/dragonation/wechat-devtools.git
 
 # 界面截图
 
-版本 1.05.2201210 (待修复bug)
-![screenshot 1.03.2006090](res/screenshots/1.05.2201210.png)
+版本 1.05.2201240
+![screenshot 1.03.2006090](res/screenshots/1.05.2201240.png)
 
 版本 1.03.2006090
 ![screenshot 1.03.2006090](res/screenshots/1.03.2006090.jpg)
