@@ -1,0 +1,33 @@
+#!/bin/bash
+
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+
+echo "==========Initializing node=========="
+
+if [ -f "$root_dir/node/bin/node" ]; then
+  echo "node安装完毕"
+else
+  exec "$root_dir/tools/update-node-node"
+fi
+
+if [ ! -f "$root_dir/node/bin/node" ]; then
+  echo "Node安装失败"
+  exit
+fi
+
+# 将node加入环境
+export PATH="$root_dir/node/bin":$PATH
+
+echo "==========Initializing nwjs=========="
+if [ -f "$root_dir/nwjs/nw" ]; then
+  echo "nwjs安装完毕"
+else
+  exec "$root_dir/tools/update-nwjs-node"
+fi
+
+echo "==========Initializing wechat-devtools package=========="
+if [ -f "$root_dir/package.nw/package.json" ]; then
+  echo "微信开发者工具安装完毕"
+else
+  exec "$root_dir/tools/update-wechat-devtools-node"
+fi

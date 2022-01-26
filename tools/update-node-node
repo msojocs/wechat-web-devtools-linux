@@ -5,6 +5,7 @@ const { execSync, spawn } = require("child_process");
 const util = require("util");
 
 const nodeConfig = require("../conf/node.json");
+const { exit } = require("process");
 
 const download = function () {
     return new Promise((resolve, reject) => {
@@ -102,7 +103,7 @@ const start = async () => {
         );
     } catch (error) {
         console.error("异常", error);
-        throw error
+        exit(-1)
     }
 };
 

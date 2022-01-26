@@ -52,6 +52,10 @@ git clone https://github.com/jiyeme/wechat-devtools.git
 ```
 4. 在本地项目目录中执行如下的语句，构筑开发者工具：
 ```
+./tools/setup-wechat-devtools-bash
+```
+或者
+```
 ./tools/setup-wechat-devtools-node
 ```
 5. 在本地项目目录中执行如下的语句，可以安装应用图标（非必须）：

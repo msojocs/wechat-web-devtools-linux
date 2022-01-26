@@ -291,7 +291,7 @@ const start = async () => {
         );
     } catch (error) {
         console.error("异常", error);
-        throw error;
+        exit(-1)
     }
 };
 start();

@@ -49,6 +49,7 @@ const init_nwjs = function () {
         });
     });
 };
+
 const init_wechat = function () {
     console.info(
         "==========Initializing wechat-devtools package=============="
