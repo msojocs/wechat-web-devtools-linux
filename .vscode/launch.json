@@ -1,0 +1,27 @@
+{
+  // 使用 IntelliSense 了解相关属性。 
+  // 悬停以查看现有属性的描述。
+  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "nwjs",
+      "request": "launch",
+      "name": "Launch NWjs",
+      "nwjsVersion": "0.47.0",
+      "webRoot": "${workspaceFolder}/package.nw",
+      "reloadAfterAttached": true,
+      "runtimeArgs": [
+        "--load-extension=${workspaceFolder}/tmp/data/WeappPlugin",
+        "--custom-devtools-frontend=file://${workspaceFolder}/tmp/data/WeappPlugin/inspector/",
+        "--user-data-dir=${workspaceFolder}/tmp/data",
+        "--remote-debugging-port=9999"
+      ],
+      "env": {
+        "LANG": "zh_CN.UTF-8"
+      },
+      "userDataDir": false,
+      "runtimeExecutable": "${workspaceFolder}/nwjs/nw"
+    }
+  ]
+}

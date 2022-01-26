@@ -34,3 +34,25 @@ commit hash: e587598-d7277f7-d507c96-bbb240e
 NW.JS
 
 并未出现“devtools is not loaded properly“
+
+
+
+测试：
+"D:\Program Files (x86)\Tencent\微信web开发者工具\wechatdevtools.exe" "D:\Program Files (x86)\Tencent\微信web开发者工具\code\package.nw" "-load-extension=C:\Users\jiyec\AppData\Local\微信开发者工具\User Data\f13f1c30f325514de496c9db6e27b110\WeappPlugin" "--custom-devtools-frontend=file://C:/Users/jiyec/AppData/Local/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/User Data/f13f1c30f325514de496c9db6e27b110/WeappPlugin/inspector"
+
+编辑器主界面：
+    控制台devtools is not loaded properly
+    调试器显示正常
+调试器：
+    正常，可用
+    控制台window.parent.$messager正常
+
+除去"--custom-devtools-frontend"参数:
+    调试器：
+        不可使用，空白
+        控制台window.parent.$messager异常，not exists
+    主界面：
+        devtools is not loaded properly
+        custom devtools frontend param is missing
+        
+安装 redux-logger redux-devtools-extension

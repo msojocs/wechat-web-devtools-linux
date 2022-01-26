@@ -18,10 +18,10 @@ export PATH="$DIR/../wine:$DIR/../node/bin:$DIR/../nwjs:$PATH"
 
 EXTENSION1="--load-extension=$DIR/../nwjs/package.nw/js/ideplugin"
 EXTENSION2="--load-extension=$( echo ~ )/.config/wechat_devtools/WeappPlugin"  # 调试器AppData与Storage可用
-INSPECTOR1="--custom-devtools-frontend=file://$DIR/../nwjs/package.nw/js/ideplugin/inspector"
-INSPECTOR2="--custom-devtools-frontend=file://$( echo ~ )/.config/wechat_devtools/WeappPlugin/inspector/"
+INSPECTOR1="--custom-devtools-frontend=$DIR/../nwjs/package.nw/js/ideplugin/inspector"
+INSPECTOR2="--custom-devtools-frontend=$( echo ~ )/.config/wechat_devtools/WeappPlugin/inspector"
 USERDATADIR="$( echo ~ )/.config/wechat_devtools"
 
 # "$@"参数
 LANG=zh_CN.UTF-8
-exec "$DIR"/../nwjs/nw $DIR/../package.nw $EXTENSION2 $INSPECTOR1 --user-data-dir=$USERDATADIR "$@"
+exec "$DIR"/../nwjs/nw $DIR/../package.nw $EXTENSION2 $INSPECTOR2 --user-data-dir=tmp/data "$@"

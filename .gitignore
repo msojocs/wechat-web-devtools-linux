@@ -1,7 +1,8 @@
 arch/
 nwjs/
 node/
-package.nw/
+package.nw
+package.nw copy
 cache/
 tmp/
 mew/
