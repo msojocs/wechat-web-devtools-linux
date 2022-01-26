@@ -54,11 +54,12 @@ rm -fr "${package_dir}/node_modules_tmp/node_modules/spdlog-node"
 (cp -fr "${package_dir}/node_modules_tmp/node_modules/oniguruma" "${package_dir}/node_modules_tmp/node_modules/oniguruma-node")
 (cp -fr "${package_dir}/node_modules_tmp/node_modules/spdlog" "${package_dir}/node_modules_tmp/node_modules/spdlog-node")
 
-(cd "${package_dir}/node_modules_tmp/node_modules" && find -name *.node | xargs -I{} cp -r {} ${package_dir}/node_modules/{})
+(cd "${package_dir}/node_modules_tmp/node_modules" && find -name "*.node" | xargs -I{} cp -r {} ${package_dir}/node_modules/{})
 
 mkdir -p "${package_dir}/node_modules/vscode-ripgrep/bin"
 cp -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep/bin/rg" "${package_dir}/node_modules/vscode-ripgrep/bin/rg"
 
-rm -fr "${package_dir}/node_modules_tmp"
+rm -rf "${package_dir}/node_modules_tmp"
+
 # 移除旧配置
-rm -fr ~/.config/wechat_devtools
+# rm -fr ~/.config/wechat_devtools

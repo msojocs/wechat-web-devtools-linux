@@ -6,6 +6,7 @@ const fs = require("fs");
 const path = require("path");
 const { info } = require("console");
 const util = require("util");
+const {exit} = require("process")
 
 const urls = {
     stable: "https://developers.weixin.qq.com/miniprogram/dev/devtools/stable.html",
@@ -155,6 +156,9 @@ const extract = function (localPath) {
                 stdio: "inherit",
             }
         );
+        ext.on("error", code=>{
+            reject(code)
+        })
         ext.on("close", (code) => {
             info(`解压完毕：${code}`);
             resolve(extractPath);
@@ -179,7 +183,9 @@ const upgrade = function (extractPath) {
         execSync(`rm -rf ${extractPath}`);
 
         if (fs.existsSync(path.resolve(__dirname, "../nwjs"))) {
-            if (!fs.existsSync(path.resolve(__dirname, "../nwjs/package.nw"))) {
+            if (!fs.statSync(__dirname, "../nwjs/package.nw").isSymbolicLink()) {
+                execSync(`rm -rf ${path.resolve(__dirname, "../nwjs/package.nw")}`)
+                console.log(`创建链接 ${path.resolve(__dirname, "../package.nw")}--->${path.resolve(__dirname, "../nwjs/package.nw")}`)
                 // 链接
                 fs.symlinkSync(
                     path.resolve(__dirname, "../package.nw"),
@@ -229,14 +235,18 @@ const rebuild_wechat_devtools_node_modules = function () {
     info("Rebuilding wechat-devtools node modules");
 
     return new Promise((resolve, reject) => {
-        spawn(path.resolve(__dirname, "rebuild-node-modules"), [], {
+        const e = spawn(path.resolve(__dirname, "rebuild-node-modules"), [], {
             stdio: "inherit",
-        }).on("close", (code) => {
+        })
+        e.on("error", code=>{
+            reject(code)
+        })
+        e.on("close", (code) => {
             console.info(`Rebuilding wechat-devtools node modules Result Code: ${code}`)
             if(0 === code)
             resolve();
             else{
-                reject()
+                reject(code)
             }
         });
     });

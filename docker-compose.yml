@@ -1,0 +1,7 @@
+version: "3"
+services:
+  web:
+    image: node:16.13.1
+    volumes:
+      - .:/workspace
+    entrypoint: /workspace/docker/entrypoint

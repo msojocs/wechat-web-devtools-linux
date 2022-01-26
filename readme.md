@@ -42,7 +42,26 @@ Docker容器启动方法
 
 如需要映射外部目录，请自行修改Docker启动命令
 
-# 构筑方法1（推荐，支持断点续传）
+# 构筑方法0（推荐，支持断点续传）
+
+1. 请先在Linux环境中自行安装`wine`和`wine-binfmt`；
+2. 请安装`docker` `docker-compose`
+3. 克隆本项目：
+```
+git clone https://github.com/jiyeme/wechat-devtools.git
+```
+4. 在本地项目目录中执行如下的语句，构筑开发者工具：
+```
+docker-compose up
+```
+5. 在本地项目目录中执行如下的语句，可以安装应用图标（非必须）：
+```
+./tools/install-desktop-icon-node
+```
+
+之后即可通过点击应用图标启动微信开发者工具，也可以运行`bin/wechat-devtools`通过命令行启动
+
+# 构筑方法1（支持断点续传）
 
 1. 请先在Linux环境中自行安装`wine`和`wine-binfmt`；
 2. 请安装nodejs，并配置到PATH环境变量中;

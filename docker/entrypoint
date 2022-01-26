@@ -1,0 +1,64 @@
+#!/bin/bash
+
+set -e # 命令出错就退出
+trap 'catchError $LINENO $BASH_COMMAND' SIGHUP SIGINT SIGQUIT EXIT # 捕获错误情况
+
+catchError() {
+    exit_code=$?
+    if [ $exit_code -ne 0 ]; then
+        fail "\033[31mcommand: $2\n  at $0:$1\n  at $STEP\033[0m"
+    fi
+    exit $exit_code
+}
+
+success() {
+    echo -e "\033[42;37m 成功 \033[0m $1"
+}
+
+fail() {
+    echo -e "\033[41;37m 失败 \033[0m $1"
+}
+
+echo "start"
+python --version
+node --version
+
+echo "\
+    deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib non-free\
+    # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib non-free
+    deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-updates main contrib non-free\
+    # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-updates main contrib non-free
+    deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-backports main contrib non-free\
+    # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-backports main contrib non-free
+    deb https://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main contrib non-free\
+    # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main contrib non-free
+    "> /etc/apt/sources.list
+
+apt-get clean;  # 清空缓存
+apt-get update;  # 更新
+apt-get install -y libx11-dev libxkbfile-dev
+
+hash node-gyp 2>/dev/null || { 
+  echo >&2 "I require node-gyp but it's not installed.  Installing.";
+  npm install -g node-gyp
+}
+node-gyp list
+
+
+# test
+# cd /
+# mkdir -p test
+# rm -rf test.a
+# exec /workspace/tools/rebuild-node-modules
+
+# exit 0;
+# end test
+
+cd /workspace
+hash 7z 2>/dev/null || { 
+  echo >&2 "I require 7z but it's not installed.  Installing.";
+  apt-get update
+  apt-get install p7zip-full  -y
+}
+export https_proxy="http://192.168.249.236:7890"
+exec ./tools/setup-wechat-devtools-bash
