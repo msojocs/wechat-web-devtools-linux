@@ -13,8 +13,8 @@ const download = function () {
             fs.mkdirSync(path.resolve(__dirname, "../cache"));
         } catch (error) {}
 
-        let url = nodeConfig.url
-            .replace("${version}", nodeConfig.version)
+        let url = process.env['ACTION'] === 'true'?nodeConfig["url-global"]:nodeConfig.url
+            url = url.replace("${version}", nodeConfig.version)
             .replace("${version}", nodeConfig.version);
 
         let localPath = path.resolve(

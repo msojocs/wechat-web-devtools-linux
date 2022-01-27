@@ -1,7 +1,9 @@
 version: "3"
 services:
-  web:
+  wechat_devtools:
     image: node:16.13.1
     volumes:
       - .:/workspace
+    environment:
+      - ACTION=${ACTION_MODE:-false}
     entrypoint: /workspace/docker/entrypoint

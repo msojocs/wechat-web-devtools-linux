@@ -36,12 +36,10 @@ echo "\
 
 apt-get clean;  # 清空缓存
 apt-get update;  # 更新
-apt-get install -y libx11-dev libxkbfile-dev
+apt-get install -y libx11-dev libxkbfile-dev p7zip-full
 
-hash node-gyp 2>/dev/null || { 
-  echo >&2 "I require node-gyp but it's not installed.  Installing.";
-  npm install -g node-gyp
-}
+npm install -g node-gyp
+node-gyp install
 node-gyp list
 
 
@@ -55,10 +53,5 @@ node-gyp list
 # end test
 
 cd /workspace
-hash 7z 2>/dev/null || { 
-  echo >&2 "I require 7z but it's not installed.  Installing.";
-  apt-get update
-  apt-get install p7zip-full  -y
-}
-export https_proxy="http://192.168.249.236:7890"
+# export https_proxy="http://192.168.249.236:7890"
 exec ./tools/setup-wechat-devtools-bash
