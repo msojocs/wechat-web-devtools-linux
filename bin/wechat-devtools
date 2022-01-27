@@ -16,4 +16,4 @@ USERDATADIR="$( echo ~ )/.config/wechat_devtools"
 
 # "$@"参数
 LANG=zh_CN.UTF-8
-exec "$root_dir/nwjs/nw" $root_dir/package.nw $EXTENSION2 $INSPECTOR1 "$@"
+exec "$root_dir/nwjs/nw" $root_dir/package.nw $EXTENSION2 $INSPECTOR2 "$@"

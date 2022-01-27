@@ -6,4 +6,5 @@ services:
       - .:/workspace
     environment:
       - ACTION=${ACTION_MODE:-false}
+      - https_proxy=${https_proxy:-}
     entrypoint: /workspace/docker/entrypoint

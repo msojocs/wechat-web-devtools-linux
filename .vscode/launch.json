@@ -13,9 +13,9 @@
       "reloadAfterAttached": true,
       "runtimeArgs": [
         "--load-extension=${workspaceFolder}/tmp/data/WeappPlugin",
-        "--custom-devtools-frontend=file://${workspaceFolder}/tmp/data/WeappPlugin/inspector/",
+        // "--custom-devtools-frontend=file://${workspaceFolder}/tmp/data/WeappPlugin/inspector/",
         "--user-data-dir=${workspaceFolder}/tmp/data",
-        "--remote-debugging-port=9999"
+        // "--remote-debugging-port=9999"
       ],
       "env": {
         "LANG": "zh_CN.UTF-8"

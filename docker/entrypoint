@@ -23,7 +23,12 @@ echo "start"
 python --version
 node --version
 
-echo "\
+ACTION_MODE=$( export ACTION_MODE )
+if [ $ACTION_MODE!='true' ]; then
+    npm set registry https://r.npm.taobao.org # 注册模块镜像
+    npm set disturl https://npm.taobao.org/dist # node-gyp 编译依赖的 node 源码镜像
+    npm cache clean --force # 清空缓存
+    echo "\
     deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib non-free\
     # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib non-free
     deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-updates main contrib non-free\
@@ -33,11 +38,13 @@ echo "\
     deb https://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main contrib non-free\
     # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main contrib non-free
     "> /etc/apt/sources.list
+fi
 
 apt-get clean;  # 清空缓存
 apt-get update;  # 更新
 apt-get install -y libx11-dev libxkbfile-dev p7zip-full
 
+npm install -g npm
 npm install -g node-gyp
 node-gyp install
 node-gyp list

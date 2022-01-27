@@ -1,0 +1,5 @@
+#!/bin/bash
+
+tools/update-nwjs-node
+rm -rf ~/.config/wechat_devtools
+bin/wechat-devtools
