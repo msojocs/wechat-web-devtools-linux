@@ -54,8 +54,15 @@ jobs:
         name: 'release-${{ github.ref_name }}'
 
     - name: Release
-      uses: fnkr/github-action-ghr@v1
+      uses: Wandalen/wretry.action@v1.0.11
       if: startsWith(github.ref, 'refs/tags/')
+      with:
+        action: fnkr/github-action-ghr@v1
+        with: |
+          node-version: 14.x
+          architecture: x64
+        attempt_limit: 3
+        attempt_delay: 2000
       env:
         GHR_COMPRESS: xz
         GHR_PATH: /github/workspace

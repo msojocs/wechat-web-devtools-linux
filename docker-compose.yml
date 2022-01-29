@@ -4,6 +4,7 @@ services:
     image: node:16.13.1
     volumes:
       - .:/workspace
+      - ./cache/.npm:/root/.npm
     environment:
       - ACTION=${ACTION_MODE:-false}
       - https_proxy=${https_proxy:-}

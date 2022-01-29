@@ -1,6 +1,0 @@
-#!/bin/bash
-
-root_dir=$(cd `dirname $0`/.. && pwd -P)
-export comspec="/bin/bash"
-echo "test"
-exec $root_dir/test/test

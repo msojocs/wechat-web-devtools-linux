@@ -14,7 +14,7 @@
 
 # 使用方法
 
-可以在本项目的[发布](https://github.com/dragonation/wechat-devtools/releases)中，寻找已经构筑好了的`.tar.gz`包（发布里也有度盘链接），下载解压后，运行其中的`bin/wechat-devtools`即可运行。
+可以在本项目的[发布](https://github.com/jiyeme/wechat-devtools/releases)中，寻找已经构筑好了的`.tar.gz`包（发布里也有度盘链接），下载解压后，运行其中的`bin/wechat-devtools`即可运行。
 
 注：gitee上原来我也想放发布包的，但是文件太大了，附件最大只允许100M，而且总体积不能超过1G。所以目前暂时先只放github，如果大家发现下载速度慢的话，可以考虑科学上网或者度盘链接，速度快也稳定上传和下载。
 
@@ -44,6 +44,8 @@ Docker容器启动方法
 
 # 构筑方法0（推荐，支持断点续传）
 
+理论上此方法99%成功;在网络不稳定时容易失败（原因懂得都懂）
+
 1. 请先在Linux环境中自行安装`wine`和`wine-binfmt`；
 2. 请安装`docker` `docker-compose`
 3. 克隆本项目：
@@ -63,6 +65,8 @@ docker-compose up
 
 # 构筑方法1（支持断点续传）
 
+由于使用到`node-gyp`，此方法会受`python`、`node`版本影响出现一些难以预料的异常（比如使用`node15.0.1`时，大部分模块构建会被忽略，但没有任何报错信息）。但是，`Docker`构建方式会帮你处理好这些问题。
+
 1. 请先在Linux环境中自行安装`wine`和`wine-binfmt`；
 2. 请安装nodejs，并配置到PATH环境变量中;
 3. 克隆本项目：
@@ -73,10 +77,6 @@ git clone https://github.com/jiyeme/wechat-devtools.git
 ```
 ./tools/setup-wechat-devtools-bash
 ```
-或者
-```
-./tools/setup-wechat-devtools-node
-```
 5. 在本地项目目录中执行如下的语句，可以安装应用图标（非必须）：
 ```
 ./tools/install-desktop-icon-node
@@ -84,7 +84,7 @@ git clone https://github.com/jiyeme/wechat-devtools.git
 
 之后即可通过点击应用图标启动微信开发者工具，也可以运行`bin/wechat-devtools`通过命令行启动
 
-# 构筑方法2
+# 构筑方法2 (不再维护，未来将被移除)
 
 1. 请先在Linux环境中自行安装`wine`和`wine-binfmt`；
 2. 请到[Mewchan第三方仓库](https://github.com/wangjunjie1996/-.git)上下载最新的运行时，
@@ -119,7 +119,7 @@ git clone https://github.com/jiyeme/wechat-devtools.git
 # 后续计划
 
 1. 增加Docker镜像的稳定性（对Host要求比较高）
-2. 将`rebuild-node-modules`工具也改为`mew_js`代码
+2. [处理计划](https://github.com/jiyeme/wechat-devtools/projects?type=beta)
 
 # FAQ
 [GO](docs/FAQ.MD)

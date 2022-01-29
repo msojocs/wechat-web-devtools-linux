@@ -1,11 +1,5 @@
 #!/usr/bin/env node
 
-console.log("12312")
-// console.log(process.platform); // linux
-// const cmdPaths = [];
-// cmdPaths.push("/System/Applications/Utilities/Terminal.app",
-//     "/Applications/Utilities/Terminal.app"
-// )
-
-// console.log(cmdPaths);
-console.log(process.env.comspec)
+const sl = require("spdlog")
+console.log(sl)
+// sl.setAsyncMode(5000, 1000);

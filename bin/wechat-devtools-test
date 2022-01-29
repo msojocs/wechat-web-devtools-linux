@@ -1,27 +1,25 @@
 #!/bin/bash
 
-SOURCE="${BASH_SOURCE[0]}"
-while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
-  DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
-  SOURCE="$(readlink "$SOURCE")"
-  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
-done
-DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+root_dir=$(cd `dirname $0`/.. && pwd -P)
 
-cd $DIR/..
-
-export WECHAT_DEVTOOLS_DIR="$DIR/../nwjs"
+export WECHAT_DEVTOOLS_DIR="$root_dir/nwjs"
 export APPDATA="$( echo ~ )/.config/wechat_devtools"
-export PATH="$DIR/../wine:$DIR/../node/bin:$DIR/../nwjs:$PATH"
+export PATH="$root_dir/wine:$root_dir/node/bin:$root_dir/nwjs:$PATH"
 
 # LANG=zh_CN.UTF-8 exec "$DIR"/../nwjs/nw --load-extension="$DIR"/../nwjs/package.nw/js/ideplugin "$@"
 
-EXTENSION1="--load-extension=$DIR/../nwjs/package.nw/js/ideplugin"
+EXTENSION1="--load-extension=$root_dir/nwjs/package.nw/js/ideplugin"
 EXTENSION2="--load-extension=$( echo ~ )/.config/wechat_devtools/WeappPlugin"  # 调试器AppData与Storage可用
-INSPECTOR1="--custom-devtools-frontend=$DIR/../nwjs/package.nw/js/ideplugin/inspector"
-INSPECTOR2="--custom-devtools-frontend=$( echo ~ )/.config/wechat_devtools/WeappPlugin/inspector"
+INSPECTOR1="--custom-devtools-frontend=file://$root_dir/package.nw/js/ideplugin/inspector" # 要加file://指明为本地文件路径
+INSPECTOR2="--custom-devtools-frontend=file://$( echo ~ )/.config/wechat_devtools/WeappPlugin/inspector/"
 USERDATADIR="$( echo ~ )/.config/wechat_devtools"
 
 # "$@"参数
 LANG=zh_CN.UTF-8
-exec "$DIR"/../nwjs/nw $DIR/../package.nw $EXTENSION2 $INSPECTOR2 --user-data-dir=tmp/data "$@"
+"$root_dir/nwjs/nw" $root_dir/package.nw $EXTENSION2 $INSPECTOR2 --crash --crash-dumps-dir=/mnt/disk1/GitHub/wechat-devtools/tmp --remote-debugging-port=9999 "$@"
+
+# https://crashpad.chromium.org/doxygen/classcrashpad_1_1InitialClientData.html#details
+# "$root_dir/nwjs/nw" --type=crashpad-handler "--user-data-dir=$USERDATADIR" /prefetch:7 --monitor-self --monitor-self-argument=--type=crashpad-handler "--monitor-self-argument=--user-data-dir=$USERDATADIR" --monitor-self-argument=/prefetch:7 --monitor-self-annotation=ptype=crashpad-handler "--database=$USERDATADIR/Crashpad" "--metrics-dir=$USERDATADIR" --annotation=plat=Linux --annotation=prod=微信开发者工具 --annotation=ver=1.05.2201240 --initial-client-data=0x220,0x224,0x228,0x1fc,0x22c,0x7ffae66ebeb8,0x7ffae66ebec8,0x7ffae66ebed8 &
+
+
+# "$root_dir/nwjs/nw" --type=crashpad-handler "--user-data-dir=$USERDATADIR" /prefetch:7 --no-periodic-tasks --monitor-self-annotation=ptype=crashpad-handler "--database=$USERDATADIR/Crashpad" --annotation=plat=Linux --annotation=prod=微信开发者工具 --annotation=ver=1.05.2201240 --initial-client-data=0x1b0,0x1b4,0x1b8,0x188,0x1c0,0x7ff67c6f8e50,0x7ff67c6f8e60,0x7ff67c6f8e70 &

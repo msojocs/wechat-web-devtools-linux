@@ -1,0 +1,11 @@
+#!/bin/bash
+
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+export PATH="$root_dir/node/bin:$PATH"
+
+cd "$root_dir/tmp"
+mkdir node_test
+cd node_test
+npm install native-watchdog --save
+rm -rf "$root_dir/package.nw/node_modules/native-watchdog"
+cp -f "$root_dir/node_modules/native-watchdog" "$root_dir/package.nw/node_modules"
