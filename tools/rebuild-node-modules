@@ -41,6 +41,7 @@ rm -fr "${package_dir}/node_modules_tmp/node_modules/spdlog-node"
     extract-file-icon \
     native-keymap \
     node-pty \
+    native-watchdog \
     oniguruma \
     spdlog@0.11.1 \
     trash \
@@ -58,7 +59,6 @@ rm -fr "${package_dir}/node_modules_tmp/node_modules/spdlog-node"
 mkdir -p "${package_dir}/node_modules/vscode-ripgrep/bin"
 cp -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep/bin/rg" "${package_dir}/node_modules/vscode-ripgrep/bin/rg"
 
-cd "${package_dir}/node_modules_tmp" && npm install native-watchdog --save
 rm -rf "${package_dir}/node_modules/native-watchdog" && cp -fr "${package_dir}/node_modules_tmp/node_modules/native-watchdog" "${package_dir}/node_modules"
 
 rm -rf "${package_dir}/node_modules_tmp"

@@ -97,9 +97,20 @@ const upgrade = function (extractPath) {
 
 const start = async () => {
     try {
+        const nodePath = path.resolve(__dirname, "../node/bin/node")
+        if(fs.existsSync(nodePath)){
+            const version = execSync(`${path.resolve(__dirname, "../node/bin/node")} --version`).toString().replace('\n', '')
+            if(version === `v${nodeConfig.version}`){
+                console.log(`Node版本：${version} 已经安装，忽略`)
+                exit(0)
+            }else{
+                console.log(`已安装Node版本：${version}，将要安装v${nodeConfig.version}`)
+            }
+        }
         const localPath = await download();
         const extractPath = await extract(localPath);
         await upgrade(extractPath);
+        execSync(`${path.resolve(__dirname, "../node/bin/npm")} install node-gyp`)
 
         console.log(
             `Succeeded upgrading nodeConfig to version ${nodeConfig.version}`
