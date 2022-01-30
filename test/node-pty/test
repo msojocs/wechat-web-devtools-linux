@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# update
+root_dir=$(cd `dirname $0`/../.. && pwd -P)
+current_dir=$(dirname $0)
+echo "项目目录: $root_dir"
+echo "脚本目录: $current_dir"
+nwjs_version=0.53.1
+$root_dir/tools/update-node-node 16.1.0
+$root_dir/tools/update-nwjs-node $nwjs_version
+
+export PATH="$root_dir/node/bin:$PATH"
+# install
+echo "安装node-pty"
+npm install -g nw-gyp node-gyp
+
+rm -rf "$current_dir/code/package-lock.json" "$current_dir/code/node_modules"
+npm install --prefix="$current_dir/code" node-pty
+npm config set python "/usr/bin/python2"
+ln -s "/usr/bin/python2" "$root_dir/node/bin/python"
+python --version
+cd "$current_dir/code/node_modules/node-pty" && nw-gyp rebuild "--target=$nwjs_version" --arch=x64 --python=/usr/bin/python2
+
+# run
+rm -rf "$root_dir/tmp/node-pty"
+"$root_dir/nwjs/nw" "$current_dir/code" --nwapp="$current_dir/code" --user-data-dir="$root_dir/tmp/node-pty"

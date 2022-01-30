@@ -1,0 +1,6 @@
+#!/bin/bash
+
+root_dir=$(cd `dirname $0`/../../.. && pwd -P)
+echo $root_dir
+export PATH="$root_dir/node/bin:$PATH"
+$(dirname $0)/test2

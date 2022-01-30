@@ -97,6 +97,8 @@ const upgrade = function (extractPath) {
 
 const start = async () => {
     try {
+        const args = process.argv.slice(2);
+        if(args[0])nodeConfig.version=args[0]
         const nodePath = path.resolve(__dirname, "../node/bin/node")
         if(fs.existsSync(nodePath)){
             const version = execSync(`${path.resolve(__dirname, "../node/bin/node")} --version`).toString().replace('\n', '')

@@ -21,7 +21,7 @@ fail() {
 
 echo "start"
 python --version
-node --version
+echo "docker node version: $( node --version )"
 # export http_proxy="http://192.168.249.236:7890"
 
 ACTION_MODE=$( export ACTION_MODE )
@@ -54,8 +54,8 @@ apt-get clean;  # 清空缓存
 apt-get update;  # 更新
 apt-get install -y libx11-dev libxkbfile-dev p7zip-full
 
-npm install -g npm
-npm install -g node-gyp
+echo "=====安装node-gyp nw-gyp===="
+npm install -g npm node-gyp nw-gyp
 node-gyp install
 node-gyp list
 
@@ -70,4 +70,7 @@ node-gyp list
 # end test
 
 cd /workspace
+# rm -rf package.nw node nwjs 
+# 
+# exec ./tools/rebuild-node-modules 0.53.1
 exec ./tools/setup-wechat-devtools-bash

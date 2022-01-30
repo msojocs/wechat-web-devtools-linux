@@ -235,7 +235,8 @@ const rebuild_wechat_devtools_node_modules = function () {
     info("Rebuilding wechat-devtools node modules");
 
     return new Promise((resolve, reject) => {
-        const e = spawn(path.resolve(__dirname, "rebuild-node-modules"), [], {
+        const nwConfig = require(path.resolve(__dirname, "../conf/nwjs.json"))
+        const e = spawn(path.resolve(__dirname, "rebuild-node-modules"), [nwConfig.version], {
             stdio: "inherit",
         })
         e.on("error", code=>{

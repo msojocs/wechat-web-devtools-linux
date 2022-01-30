@@ -24,3 +24,7 @@ devtools_app.html并没有被加载
 |-------------|-------|------|
 |1.03.2006090 |0.39.3 |12.6.0|
 |1.05.2201210 |0.49.3 |13.14.0|
+
+# 终端测试
+
+return r.handleEvent ? r.handleEvent.apply(this, o) : r.apply(this, o)

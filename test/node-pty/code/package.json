@@ -1,0 +1,9 @@
+{
+  "name": "node_pty_test",
+  "main": "index.html",
+  "dependencies": {
+    "native-watchdog": "^1.3.0",
+    "node-gyp": "^8.4.1",
+    "node-pty": "^0.10.1"
+  }
+}

@@ -103,7 +103,10 @@ const upgrade = function (extractPath) {
 }
 const init = async () => {
     try {
+        const args = process.argv.slice(2);
         const nwjs = require("../conf/nwjs.json");
+        if(args[0])nwjs.version = args[0]
+
         const localPath = await download(nwjs)
         const extractPath = await extract(localPath)
         const result = await upgrade(extractPath)

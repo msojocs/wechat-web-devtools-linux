@@ -9,3 +9,4 @@ mew/
 node_modules
 test/mini-ci
 crash-server
+build
