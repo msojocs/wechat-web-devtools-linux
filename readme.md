@@ -1,3 +1,7 @@
+[![Node.js CI](https://github.com/jiyeme/wechat-devtools-linux/actions/workflows/release.yml/badge.svg)](https://github.com/jiyeme/wechat-devtools-linux/actions/workflows/release.yml)
+[![wechat-tools](https://img.shields.io/badge/wechat--devtools-1.05.2201240-yellow)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+[![nwjs](https://img.shields.io/badge/nwjs-0.53.1-green)](https://nwjs.io/downloads/)
+[![node](https://img.shields.io/badge/node-16.1.0-orange)](https://nodejs.org/en/)
 # 项目说明
 
 本项目是一个完整的搭建Linux下可用的“微信开发者工具”的脚本和工具集，

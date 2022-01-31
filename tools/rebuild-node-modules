@@ -82,6 +82,7 @@ rm -rf "${package_dir}/node_modules/native-watchdog" && cp -fr "${package_dir}/n
 (cp -fr "${package_dir}/node_modules_tmp/node_modules/oniguruma" "${package_dir}/node_modules_tmp/node_modules/oniguruma-node")
 (cp -fr "${package_dir}/node_modules_tmp/node_modules/spdlog" "${package_dir}/node_modules_tmp/node_modules/spdlog-node")
 
+(cd "${package_dir}/node_modules_tmp/node_modules" && find -name "obj.target" | xargs -I{} rm -rf {})
 (cd "${package_dir}/node_modules_tmp/node_modules" && find -name "*.node" | xargs -I{} /bin/cp -rf {} ${package_dir}/node_modules/{})
 
 mkdir -p "${package_dir}/node_modules/vscode-ripgrep/bin"
