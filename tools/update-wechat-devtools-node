@@ -273,12 +273,12 @@ const patch_wcc_wcsc = function () {
 
     return new Promise((resolve, reject) => {
         fs.copyFileSync(
-            path.resolve(__dirname, "../wine/wcc"),
-            path.resolve(__dirname, "../package.nw/js/vendor/wcc")
+            path.resolve(__dirname, "../compiler/wcc"),
+            path.resolve(__dirname, "../package.nw/js/vendor/wcc.exe")
         );
         fs.copyFileSync(
-            path.resolve(__dirname, "../wine/wcsc"),
-            path.resolve(__dirname, "../package.nw/js/vendor/wcsc")
+            path.resolve(__dirname, "../compiler/wcsc"),
+            path.resolve(__dirname, "../package.nw/js/vendor/wcsc.exe")
         );
 
         resolve();
