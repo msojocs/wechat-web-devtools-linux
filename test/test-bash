@@ -1,5 +1,8 @@
 #!/bin/bash
 
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+export PATH="$root_dir/node/bin:$PATH"
+
 PY_VERSION=`python -V 2>&1|awk '{print $2}'|awk -F '.' '{print $1}'`
 echo $PY_VERSION
 if [ "$PY_VERSION" == "Python 3.10.1" ]; then

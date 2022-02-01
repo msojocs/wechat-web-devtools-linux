@@ -1,0 +1,111 @@
+#!/bin/bash
+# 参数：
+# 1 ---- NW版本
+# 
+set -e
+
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+NW_VERSION=$1
+package_dir="$DIR/../package.nw"
+
+if [ -z $NW_VERSION ]; then
+  echo "NW 版本未指定！"
+  exit 1
+fi
+echo "目录: $DIR"
+echo "NW VERSION: $NW_VERSION"
+
+export PATH="$DIR/../node/bin:$PATH"
+PY_VERSION=`python -V 2>&1|awk '{print $2}'|awk -F '.' '{print $1}'`
+if [ $PY_VERSION != 2 ]; then
+  hash python2 2>/dev/null || { echo >&2 "I require python2 but it's not installed.  Aborting."; exit 1; }
+  ln -s "$( which python2 )" "$DIR/../node/bin/python"
+fi
+
+hash nw-gyp 2>/dev/null || {
+  echo "=======请安装nw-gyp======="
+  exit 1
+}
+
+rm -fr "${package_dir}/node_modules_tmp" # remove previous hacking tmp 
+mkdir -p "${package_dir}/node_modules_tmp"
+cp -fr "${package_dir}/node_modules" "${package_dir}/node_modules_tmp/node_modules" 
+
+rm -fr "${package_dir}/node_modules_tmp/node_modules/node-pty"
+rm -fr "${package_dir}/node_modules_tmp/node_modules/node-pty-node"
+rm -fr "${package_dir}/node_modules_tmp/node_modules/native-watchdog"
+rm -fr "${package_dir}/node_modules_tmp/node_modules/oniguruma-node"
+rm -fr "${package_dir}/node_modules_tmp/node_modules/spdlog"
+rm -fr "${package_dir}/node_modules_tmp/node_modules/spdlog-node"
+rm -fr "${package_dir}/node_modules_tmp/node_modules/nodegit"
+rm -fr "${package_dir}/node_modules_tmp/node_modules/extract-file-icon"
+npm install node-gyp nw-gyp -g
+npm config delete registry
+(npm install \
+    extract-file-icon \
+    native-keymap \
+    native-watchdog \
+    node-pty \
+    oniguruma \
+    spdlog@0.11.1 \
+    trash \
+    vscode-oniguruma \
+    vscode-ripgrep \
+    --prefix="${package_dir}/node_modules_tmp" ) # reinstall modules
+
+# rebuild
+echo "nw-gyp version: $( nw-gyp --version )"
+
+for mod in "${package_dir}/node_modules_tmp/node_modules"/*; do 
+  mod_name=$(basename "$mod")
+  echo -e "\e[1;34mrebuild $mod_name\e[0m" >&2
+  cd "$mod"
+  case "$mod_name" in
+    # extract-file-icon|spdlog-node|oniguruma-node|native-keymap|node-pty-node)
+    #     npm install
+    #     ;;
+    spdlog|oniguruma|node-pty|native-watchdog|nodegit)
+        nw-gyp rebuild --arch=x64 --target="${NW_VERSION}"
+        ;;
+    # nodegit)
+    #     mkdir lib
+    #     npm install
+    #     npm run recompile
+    #     ;;
+    vscode-ripgrep)
+        rm -rf bin
+        npm install
+        mkdir -p "${package_dir}/node_modules/vscode-ripgrep/bin"
+        cp -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep/bin/rg" "${package_dir}/node_modules/vscode-ripgrep/bin/rg"
+        ;;
+    vscode-windows-*|windows-*)
+        cd ../
+        rm -rf "${mod}"
+        ;;
+    trash|vscode-oniguruma)
+        ;;
+    *)
+        echo -e "\e[1;31mcannot rebuild $mod\e[0m" >&2
+        rm -rf "$mod"
+        ;;
+  esac
+  find -name "obj.target" | xargs -I{} rm -rf {}
+  find -name "*.node" | xargs -I{} cp -rf {} "${package_dir}/node_modules/$mod_name/{}"
+done
+
+# (cd "${package_dir}/node_modules_tmp/node_modules" && find -name "obj.target" | xargs -I{} rm -rf {})
+# (cd "${package_dir}/node_modules_tmp/node_modules" && find -name "*.node" | xargs -I{} cp -rf {} ${package_dir}/node_modules/{})
+
+mkdir -p "${package_dir}/node_modules/vscode-ripgrep/bin"
+cp -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep/bin/rg" "${package_dir}/node_modules/vscode-ripgrep/bin/rg"
+
+rm -rf "${package_dir}/node_modules_tmp"
+
+# 移除旧配置
+# rm -fr ~/.config/wechat_devtools

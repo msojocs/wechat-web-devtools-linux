@@ -1,0 +1,11 @@
+#!/bin/bash
+
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+export PATH="$root_dir/node/bin:$PATH"
+
+cd "$root_dir/tmp"
+mkdir node_test
+cd node_test
+# npm install nodegit --save --prefix="$root_dir/tmp/node_test"
+rm -rf "$root_dir/package.nw/node_modules/nodegit"
+cp -r "$root_dir/tmp/node_test/node_modules/nodegit" "$root_dir/package.nw/node_modules"

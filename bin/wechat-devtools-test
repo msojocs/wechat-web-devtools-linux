@@ -16,7 +16,7 @@ USERDATADIR="$( echo ~ )/.config/wechat_devtools"
 
 # "$@"参数
 LANG=zh_CN.UTF-8
-"$root_dir/nwjs/nw" $root_dir/package.nw $EXTENSION2 $INSPECTOR2 --crash --crash-dumps-dir=/mnt/disk1/GitHub/wechat-devtools/tmp --remote-debugging-port=9999 "$@"
+"$root_dir/nwjs/nw" $root_dir/package.nw $EXTENSION2 "$@"
 
 # https://crashpad.chromium.org/doxygen/classcrashpad_1_1InitialClientData.html#details
 # "$root_dir/nwjs/nw" --type=crashpad-handler "--user-data-dir=$USERDATADIR" /prefetch:7 --monitor-self --monitor-self-argument=--type=crashpad-handler "--monitor-self-argument=--user-data-dir=$USERDATADIR" --monitor-self-argument=/prefetch:7 --monitor-self-annotation=ptype=crashpad-handler "--database=$USERDATADIR/Crashpad" "--metrics-dir=$USERDATADIR" --annotation=plat=Linux --annotation=prod=微信开发者工具 --annotation=ver=1.05.2201240 --initial-client-data=0x220,0x224,0x228,0x1fc,0x22c,0x7ffae66ebeb8,0x7ffae66ebec8,0x7ffae66ebed8 &
