@@ -52,6 +52,7 @@ jobs:
           mkdir ${{ env. name }}
           find -maxdepth 1 -not -name ${{ env.name }} -not -name . -exec mv {} ${{ env.name }} \;
           ls -l
+          cp -r "${{ env.name }}/package.nw/node_modules/nodegit" nodegit
       env:
         name: 'release-${{ github.ref_name }}'
 

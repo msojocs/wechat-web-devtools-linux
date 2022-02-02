@@ -70,7 +70,7 @@ node-gyp list
 # end test
 
 cd /workspace
-# rm -rf package.nw
-# node nwjs 
+# rm -rf node nwjs package.nw
+# 
 # exec ./tools/rebuild-node-modules 0.53.1
 exec ./tools/setup-wechat-devtools-bash

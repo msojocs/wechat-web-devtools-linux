@@ -268,22 +268,22 @@ const patch_wechat_devtools = function () {
         });
     });
 };
-const patch_wcc_wcsc = function () {
-    info("Patching wcc and wcsc");
+// const patch_wcc_wcsc = function () {
+//     info("Patching wcc and wcsc");
 
-    return new Promise((resolve, reject) => {
-        fs.copyFileSync(
-            path.resolve(__dirname, "../compiler/wcc"),
-            path.resolve(__dirname, "../package.nw/js/vendor/wcc.exe")
-        );
-        fs.copyFileSync(
-            path.resolve(__dirname, "../compiler/wcsc"),
-            path.resolve(__dirname, "../package.nw/js/vendor/wcsc.exe")
-        );
+//     return new Promise((resolve, reject) => {
+//         fs.copyFileSync(
+//             path.resolve(__dirname, "../compiler/wcc"),
+//             path.resolve(__dirname, "../package.nw/js/vendor/wcc.exe")
+//         );
+//         fs.copyFileSync(
+//             path.resolve(__dirname, "../compiler/wcsc"),
+//             path.resolve(__dirname, "../package.nw/js/vendor/wcsc.exe")
+//         );
 
-        resolve();
-    });
-};
+//         resolve();
+//     });
+// };
 
 const start = async () => {
     try {
@@ -296,7 +296,7 @@ const start = async () => {
         await patch_wechat_devtools_CLI();
         await rebuild_wechat_devtools_node_modules();
         await patch_wechat_devtools();
-        await patch_wcc_wcsc();
+        // await patch_wcc_wcsc();
         console.log(
             `Succeeded upgrading wechat-devtools to version ${version}`
         );

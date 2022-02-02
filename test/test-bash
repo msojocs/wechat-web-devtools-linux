@@ -2,6 +2,12 @@
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 export PATH="$root_dir/node/bin:$PATH"
+export http_proxy="http://127.0.0.1:54321"
+
+
+if [[ ! -z $https_proxy || ! -z $http_proxy ]]; then
+  echo -e "\033[41;37m 警告: 你设置了代理，有可能导致安装出现异常 \033[0m"
+fi
 
 PY_VERSION=`python -V 2>&1|awk '{print $2}'|awk -F '.' '{print $1}'`
 echo $PY_VERSION
