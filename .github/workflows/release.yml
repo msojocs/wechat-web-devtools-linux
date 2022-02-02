@@ -41,18 +41,19 @@ jobs:
           chmod 777 docker/entrypoint
           chmod 777 tools/*
           export ACTION_MODE=true
-          npm install nw-gyp -g
+          npm uninstall node-gyp -g
+          npm install node-gyp nw-gyp npm -g
 
     - name: Build
-      run: tools/setup-wechat-devtools-node
+      run: docker-compose up
 
     - name: Delete unused file
       run: |
           sudo rm -rf cache tmp
           mkdir ${{ env. name }}
-          find -maxdepth 1 -not -name ${{ env.name }} -not -name . -exec mv {} ${{ env.name }} \;
+          sudo find -maxdepth 1 -not -name ${{ env.name }} -not -name . -exec mv {} ${{ env.name }} \;
           ls -l
-          cp -r "${{ env.name }}/package.nw/node_modules/nodegit" nodegit
+          sudo cp -r "${{ env.name }}/package.nw/node_modules/nodegit" nodegit
       env:
         name: 'release-${{ github.ref_name }}'
 
