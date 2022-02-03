@@ -75,3 +75,8 @@
 | nodegit | NODE_MODULE_VERSION |
 |---------|----------|
 | 0.27.0  | 64, 72, 83 |
+
+|      | wechat-devtools | miniprogram-compiler |
+|------|-----------------|----------------------|
+| wcc  | v0.5vv_20200413_syb_scopedata  | v0.5vv_20200413_syb_scopedata |
+| wcsc | v0.4me_20190328_db  | v0.4me_20190328_db |

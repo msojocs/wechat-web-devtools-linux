@@ -1,4 +1,4 @@
-[![Node.js CI](https://github.com/jiyeme/wechat-devtools-linux/actions/workflows/release.yml/badge.svg)](https://github.com/jiyeme/wechat-devtools-linux/actions/workflows/release.yml)
+[![Node.js CI](https://github.com/msojocs/wechat-devtools-linux/actions/workflows/release.yml/badge.svg)](https://github.com/msojocs/wechat-devtools-linux/actions/workflows/release.yml)
 [![wechat-tools](https://img.shields.io/badge/wechat--devtools-1.05.2201240-yellow)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 [![nwjs](https://img.shields.io/badge/nwjs-0.53.1-green)](https://nwjs.io/downloads/)
 [![node](https://img.shields.io/badge/node-16.1.0-orange)](https://nodejs.org/en/)
@@ -9,7 +9,7 @@
 本项目修改自：https://github.com/dragonation/wechat-devtools/
 
 # 项目地址
-* https://github.com/jiyeme/wechat-devtools
+* https://github.com/msojocs/wechat-devtools
 
 # 进度
 
@@ -18,7 +18,7 @@
 
 # 使用方法
 
-可以在本项目的[发布](https://github.com/jiyeme/wechat-devtools/releases)中，寻找已经构筑好了的`.tar.gz`包（发布里也有度盘链接），下载解压后，运行其中的`bin/wechat-devtools`即可运行。
+可以在本项目的[发布](https://github.com/msojocs/wechat-devtools/releases)中，寻找已经构筑好了的`.tar.gz`包（发布里也有度盘链接），下载解压后，运行其中的`bin/wechat-devtools`即可运行。
 
 注：gitee上原来我也想放发布包的，但是文件太大了，附件最大只允许100M，而且总体积不能超过1G。所以目前暂时先只放github，如果大家发现下载速度慢的话，可以考虑科学上网或者度盘链接，速度快也稳定上传和下载。
 
@@ -54,7 +54,7 @@ Docker容器启动方法
 2. 请安装`docker` `docker-compose`
 3. 克隆本项目：
 ```
-git clone https://github.com/jiyeme/wechat-devtools.git
+git clone https://github.com/msojocs/wechat-devtools.git
 ```
 4. 在本地项目目录中执行如下的语句，构筑开发者工具：
 ```
@@ -75,7 +75,7 @@ docker-compose up
 2. 请安装nodejs，并配置到PATH环境变量中;
 3. 克隆本项目：
 ```
-git clone https://github.com/jiyeme/wechat-devtools.git
+git clone https://github.com/msojocs/wechat-devtools.git
 ```
 4. 在本地项目目录中执行如下的语句，构筑开发者工具：
 ```
@@ -95,7 +95,7 @@ git clone https://github.com/jiyeme/wechat-devtools.git
 并配置到PATH环境变量中;
 3. 克隆本项目：
 ```
-git clone https://github.com/jiyeme/wechat-devtools.git
+git clone https://github.com/msojocs/wechat-devtools.git
 ```
 4. 在本地项目目录中执行如下的语句，构筑开发者工具：
 ```
@@ -123,7 +123,7 @@ git clone https://github.com/jiyeme/wechat-devtools.git
 # 后续计划
 
 1. 增加Docker镜像的稳定性（对Host要求比较高）
-2. [处理计划](https://github.com/jiyeme/wechat-devtools/projects?type=beta)
+2. [处理计划](https://github.com/msojocs/wechat-devtools/projects?type=beta)
 
 # FAQ
 [GO](docs/FAQ.MD)

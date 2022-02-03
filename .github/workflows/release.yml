@@ -54,6 +54,7 @@ jobs:
           sudo find -maxdepth 1 -not -name ${{ env.name }} -not -name . -exec mv {} ${{ env.name }} \;
           ls -l
           sudo cp -r "${{ env.name }}/package.nw/node_modules/nodegit" nodegit
+          sudo cp -r "${{ env.name }}/compiler" compiler
       env:
         name: 'release-${{ github.ref_name }}'
 

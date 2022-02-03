@@ -101,9 +101,19 @@ mkdir -p "${package_dir}/node_modules/vscode-ripgrep/bin"
 cp -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep/bin/rg" "${package_dir}/node_modules/vscode-ripgrep/bin/rg"
 
 # wcc wcsc
+# 预览编译
 cd "${package_dir}/js/vendor/" && rm -rf "wcc.exe" "wcsc.exe"
 cp "${package_dir}/node_modules_tmp/node_modules/miniprogram-compiler/bin/linux/wcc" "${package_dir}/js/vendor/wcc.exe"
 cp "${package_dir}/node_modules_tmp/node_modules/miniprogram-compiler/bin/linux/wcsc" "${package_dir}/js/vendor/wcsc.exe"
+# 可视化编译
+(cd "${package_dir}/node_modules/" \
+&& rm -rf wcc wcsc \
+&& mkdir -p "wcc/bin/linux" "wcsc/bin/linux" \
+&& cp -r "${package_dir}/node_modules_tmp/node_modules/miniprogram-compiler/bin/linux/wcc" "wcc/bin/linux/wcc" \
+&& cp -r "${package_dir}/node_modules_tmp/node_modules/miniprogram-compiler/bin/linux/wcsc" "wcsc/bin/linux/wcsc" \
+&& cp -r "${package_dir}/../compiler/wcc_node"/* "wcc" \
+&& cp -r "${package_dir}/../compiler/wcsc_node"/* "wcsc"
+)
 
 rm -rf "${package_dir}/node_modules_tmp"
 
