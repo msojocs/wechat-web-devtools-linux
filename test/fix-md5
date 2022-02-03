@@ -1,0 +1,7 @@
+#!/bin/bash
+package_dir="/mnt/disk1/GitHub/wechat-devtools/package.nw"
+cd "${package_dir}/js/vendor" && \
+wcc_md5=$( md5sum wcc.exe|cut -d ' ' -f1 ) && \
+sed -i  's/wcc.exe": ".*"/wcc.exe": "'"${wcc_md5}"'"/g' "config.json" && \
+wcsc_md5=$( md5sum wcsc.exe|cut -d ' ' -f1 ) && \
+sed -i  's/wcsc.exe": ".*"/wcsc.exe": "'"${wcsc_md5}"'"/g' "config.json"

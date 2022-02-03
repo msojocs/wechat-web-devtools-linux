@@ -10,6 +10,7 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 NW_VERSION=$1
+srcdir=$(cd `dirname $0`/.. && pwd -P)
 package_dir="$DIR/../package.nw"
 
 export PATH="$DIR/../node/bin:$PATH"
@@ -29,7 +30,6 @@ if [ -z $NW_VERSION ]; then
 fi
 
 echo -e "\033[42;37m ######## 版本信息 $(date '+%Y-%m-%d %H:%M:%S') ########\033[0m"
-echo "目录: $DIR"
 echo "NW VERSION: $NW_VERSION"
 echo "nw-gyp version: $( nw-gyp --version )"
 echo "node version: $(node --version )"
@@ -105,14 +105,20 @@ cp -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep/bin/rg" "${p
 cd "${package_dir}/js/vendor/" && rm -rf "wcc.exe" "wcsc.exe"
 cp "${package_dir}/node_modules_tmp/node_modules/miniprogram-compiler/bin/linux/wcc" "${package_dir}/js/vendor/wcc.exe"
 cp "${package_dir}/node_modules_tmp/node_modules/miniprogram-compiler/bin/linux/wcsc" "${package_dir}/js/vendor/wcsc.exe"
+cd "${package_dir}/js/vendor" && \
+wcc_md5=$( md5sum wcc.exe|cut -d ' ' -f1 ) && \
+sed -i  's/wcc.exe": ".*"/wcc.exe": "'"${wcc_md5}"'"/g' "config.json" && \
+wcsc_md5=$( md5sum wcsc.exe|cut -d ' ' -f1 ) && \
+sed -i  's/wcsc.exe": ".*"/wcsc.exe": "'"${wcsc_md5}"'"/g' "config.json"
+
 # 可视化编译
 (cd "${package_dir}/node_modules/" \
 && rm -rf wcc wcsc \
 && mkdir -p "wcc/bin/linux" "wcsc/bin/linux" \
 && cp -r "${package_dir}/node_modules_tmp/node_modules/miniprogram-compiler/bin/linux/wcc" "wcc/bin/linux/wcc" \
 && cp -r "${package_dir}/node_modules_tmp/node_modules/miniprogram-compiler/bin/linux/wcsc" "wcsc/bin/linux/wcsc" \
-&& cp -r "${package_dir}/../compiler/wcc_node"/* "wcc" \
-&& cp -r "${package_dir}/../compiler/wcsc_node"/* "wcsc"
+&& cp -r "${srcdir}/compiler/wcc_node"/* "wcc" \
+&& cp -r "${srcdir}/compiler/wcsc_node"/* "wcsc"
 )
 
 rm -rf "${package_dir}/node_modules_tmp"
