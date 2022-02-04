@@ -102,14 +102,14 @@ cp -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep/bin/rg" "${p
 
 # wcc wcsc
 # 预览编译
-cd "${package_dir}/js/vendor/" && rm -rf "wcc.exe" "wcsc.exe"
-cp "${package_dir}/node_modules_tmp/node_modules/miniprogram-compiler/bin/linux/wcc" "${package_dir}/js/vendor/wcc.exe"
-cp "${package_dir}/node_modules_tmp/node_modules/miniprogram-compiler/bin/linux/wcsc" "${package_dir}/js/vendor/wcsc.exe"
-cd "${package_dir}/js/vendor" && \
-wcc_md5=$( md5sum wcc.exe|cut -d ' ' -f1 ) && \
-sed -i  's/wcc.exe": ".*"/wcc.exe": "'"${wcc_md5}"'"/g' "config.json" && \
-wcsc_md5=$( md5sum wcsc.exe|cut -d ' ' -f1 ) && \
-sed -i  's/wcsc.exe": ".*"/wcsc.exe": "'"${wcsc_md5}"'"/g' "config.json"
+# cd "${package_dir}/js/vendor/" && rm -rf "wcc.exe" "wcsc.exe"
+# cp "${package_dir}/node_modules_tmp/node_modules/miniprogram-compiler/bin/linux/wcc" "${package_dir}/js/vendor/wcc.exe"
+# cp "${package_dir}/node_modules_tmp/node_modules/miniprogram-compiler/bin/linux/wcsc" "${package_dir}/js/vendor/wcsc.exe"
+# cd "${package_dir}/js/vendor" && \
+# wcc_md5=$( md5sum wcc.exe|cut -d ' ' -f1 ) && \
+# sed -i  's/wcc.exe": ".*"/wcc.exe": "'"${wcc_md5}"'"/g' "config.json" && \
+# wcsc_md5=$( md5sum wcsc.exe|cut -d ' ' -f1 ) && \
+# sed -i  's/wcsc.exe": ".*"/wcsc.exe": "'"${wcsc_md5}"'"/g' "config.json"
 
 # 可视化编译
 (cd "${package_dir}/node_modules/" \
