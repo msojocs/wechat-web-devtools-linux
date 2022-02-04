@@ -231,6 +231,17 @@ const patch_wechat_devtools_CLI = function () {
         });
     });
 };
+const patch_wechat_devtools_core = function () {
+    info("Patching wechat-devtools CLI supports");
+
+    return new Promise((resolve, reject) => {
+        spawn(path.resolve(__dirname, "fix-cloudconsole"), [], {
+            stdio: "inherit",
+        }).on("close", (code) => {
+            resolve();
+        });
+    });
+};
 const rebuild_wechat_devtools_node_modules = function () {
     info("Rebuilding wechat-devtools node modules");
 
@@ -268,22 +279,22 @@ const patch_wechat_devtools = function () {
         });
     });
 };
-// const patch_wcc_wcsc = function () {
-//     info("Patching wcc and wcsc");
+const patch_wcc_wcsc = function () {
+    info("Patching wcc and wcsc");
 
-//     return new Promise((resolve, reject) => {
-//         fs.copyFileSync(
-//             path.resolve(__dirname, "../compiler/wcc"),
-//             path.resolve(__dirname, "../package.nw/js/vendor/wcc.exe")
-//         );
-//         fs.copyFileSync(
-//             path.resolve(__dirname, "../compiler/wcsc"),
-//             path.resolve(__dirname, "../package.nw/js/vendor/wcsc.exe")
-//         );
+    return new Promise((resolve, reject) => {
+        fs.copyFileSync(
+            path.resolve(__dirname, "../compiler/wine/wcc"),
+            path.resolve(__dirname, "../package.nw/js/vendor/wcc")
+        );
+        fs.copyFileSync(
+            path.resolve(__dirname, "../compiler/wine/wcsc"),
+            path.resolve(__dirname, "../package.nw/js/vendor/wcsc")
+        );
 
-//         resolve();
-//     });
-// };
+        resolve();
+    });
+};
 
 const start = async () => {
     try {
@@ -294,9 +305,10 @@ const start = async () => {
         await patch_wechat_devtools_package_name();
         await patch_wechat_devtools_editor_selection_autocopy();
         await patch_wechat_devtools_CLI();
+        await patch_wechat_devtools_core();
         await rebuild_wechat_devtools_node_modules();
         await patch_wechat_devtools();
-        // await patch_wcc_wcsc();
+        await patch_wcc_wcsc();
         console.log(
             `Succeeded upgrading wechat-devtools to version ${version}`
         );

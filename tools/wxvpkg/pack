@@ -1,16 +1,22 @@
+#!/usr/bin/env node
+
 // https://gist.github.com/chemzqm/9f2334ca201dc2fbc363fdd757aa2ed4
 const path = require('path')
 const fs = require('fs')
 const { execSync } = require('child_process')
 
-let file = path.resolve(__dirname, '../package.nw/core.wxvpkg')
+const args = process.argv.slice(2);
+const from = args[0]
+const to = args[1]
+
+let file = to
 console.log(file)
 if (fs.existsSync(file)) {
   execSync(`rm -rf ${file}`)
 }
 
 let fd = fs.openSync(file, 'w')
-let dest = path.join(__dirname, '../package.nw/core.wxvpkg.ext')
+let dest = from
 
 function writeSync(buf, start) {
   fs.writeSync(fd, buf, 0, buf.length, start)

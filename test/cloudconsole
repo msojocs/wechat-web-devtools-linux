@@ -1,0 +1,5 @@
+#!/bin/bash
+# node test/pack
+tools/fix-cloudconsole
+rm -rf /home/msojocs/.config/wechat_devtools/WeappCache
+bin/wechat-devtools

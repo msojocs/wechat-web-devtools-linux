@@ -1,0 +1,29 @@
+#!/bin/bash
+echo "Fix Cloud Console"
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+
+package_dir="$root_dir/package.nw"
+tmp_dir="$root_dir/tmp"
+
+# unpack 文件 到 路径
+node "$root_dir/tools/wxvpkg/unpack" "$package_dir/core.wxvpkg" "$tmp_dir/core.wxvpkg"
+
+
+# find
+open_find_result=$( grep -lr "this.props.onWindowOpenFail());" "$root_dir/tmp/core.wxvpkg" )
+token_find_result=$( grep -lr "constructor(){this._sessionToken=\"\",this._tokenMap={}}" "$root_dir/tmp/core.wxvpkg" )
+echo "云开发控制台启动点: $open_find_result"
+echo "WebSocket token存储对象位置: $token_find_result"
+
+
+# replace
+new_cb_handle="this.props.onWindowOpenFail());Object.keys(window).forEach(key=>{if(!e.window[key]){try{e.window[key]=window[key];}catch(e){console.error(e);}}});"
+sed -i "s/this.props.onWindowOpenFail());/$new_cb_handle/g" $open_find_result
+
+new_constructor="constructor(){if(window.tokenData){/*有就直接用*/this._sessionToken=window.tokenData._sessionToken;this._tokenMap=window.tokenData._tokenMap;}else{/*没有就新建*/this._sessionToken=\"\",this._tokenMap={};window.tokenData=this;/*新建完要给中间人*/}}"
+sed -i "s#constructor(){this._sessionToken=\"\",this._tokenMap={}}#$new_constructor#g" "$token_find_result"
+
+
+# pack 路径 到 文件
+node "$root_dir/tools/wxvpkg/pack" "$root_dir/tmp/core.wxvpkg" "$package_dir/core.wxvpkg"
+rm -rf "$tmp_dir/core.wxvpkg"
