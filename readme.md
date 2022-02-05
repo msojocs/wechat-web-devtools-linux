@@ -16,6 +16,10 @@
 当前工具可以在Linux上构筑最新版1.05.2201240（截止时间2022年1月26日），支持CLI模式，现已经有Docker支持（仅用于测试）。
 另现在已经可以直接在设置界面里面修改字体，手工输入字体名称就可以。
 
+# 功能测试记录
+
+[测试记录](docs/Features.MD)
+
 # 使用方法
 
 可以在本项目的[发布](https://github.com/msojocs/wechat-devtools-linux/releases)中，寻找已经构筑好了的`.tar.xz`包（发布里也有度盘链接），下载解压后，运行其中的`bin/wechat-devtools`即可运行。
