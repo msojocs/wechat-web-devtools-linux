@@ -88,26 +88,6 @@ git clone https://github.com/msojocs/wechat-devtools.git
 
 之后即可通过点击应用图标启动微信开发者工具，也可以运行`bin/wechat-devtools`通过命令行启动
 
-# 构筑方法2 (不再维护，未来将被移除)
-
-1. 请先在Linux环境中自行安装`wine`和`wine-binfmt`；
-2. 请到[Mewchan第三方仓库](https://github.com/wangjunjie1996/-.git)上下载最新的运行时，
-并配置到PATH环境变量中;
-3. 克隆本项目：
-```
-git clone https://github.com/msojocs/wechat-devtools.git
-```
-4. 在本地项目目录中执行如下的语句，构筑开发者工具：
-```
-./tools/setup-wechat-devtools
-```
-5. 在本地项目目录中执行如下的语句，可以安装应用图标（非必须）：
-```
-./tools/install-desktop-icon
-```
-
-之后即可通过点击应用图标启动微信开发者工具，也可以运行`bin/wechat-devtools`通过命令行启动
-
 # 与其他Linux下的微信开发者工具版本区别
 
 1. 支持最新版本，并个人会持续更新，确保运行和测试OK才会上传Release；
