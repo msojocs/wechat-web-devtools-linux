@@ -5,6 +5,7 @@ root_dir=$(cd `dirname $0`/.. && pwd -P)
 export WECHAT_DEVTOOLS_DIR="$root_dir/nwjs"
 export APPDATA="$( echo ~ )/.config/wechat_devtools"
 export PATH="$root_dir/wine:$root_dir/node/bin:$root_dir/nwjs:$PATH"
+export USERPROFILE=$( echo ~ )
 
 # LANG=zh_CN.UTF-8 exec "$DIR"/../nwjs/nw --load-extension="$DIR"/../nwjs/package.nw/js/ideplugin "$@"
 
