@@ -302,6 +302,7 @@ const patch_wcc_wcsc = function () {
             path.resolve(__dirname, "../compiler/wine/wcsc"),
             path.resolve(__dirname, "../package.nw/js/vendor/wcsc")
         );
+        execSync(path.resolve(__dirname, "fix-wcc-wcsc"))
 
         resolve();
     });

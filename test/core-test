@@ -1,0 +1,4 @@
+#!/bin/bash
+node tools/wxvpkg/pack package.nw/core.wxvpkg.ext package.nw/core.wxvpkg
+rm -rf /home/msojocs/.config/wechat_devtools/WeappCache
+bin/wechat-devtools

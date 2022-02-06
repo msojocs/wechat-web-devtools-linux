@@ -9,9 +9,9 @@
     ```
     如果不想用这个功能，可以自己通过修改`~/.config/wechat_devtools/Default/Editor/User/settings.json`文件关闭。也可以通过`tools/fix-selection-copy`命令来关闭该特性
 
-2. 为什么编辑器的字体是宋体？
+2. 为什么编辑器的字体看起来很异常？
   
-    新版本已经可以在设置中直接手工输入修改编辑器字体了，输入字体名称后界面就会更新
+    Linux嘛，换个字体就行，推荐 [FiraCode](https://github.com/tonsky/FiraCode)
 
 3. 为什么自己构筑或更新后的运行时编辑器和调试器是一片空白？
 
@@ -44,11 +44,3 @@
 10. 如何汇报自己遇到的问题？
   
     如果是界面功能上的奇怪表现，直接描述，并附上操作系统发行版版本，内核版本，桌面系统类型，wine版本，libstdc++版本即可。如果发现运行有问题，可以考虑复制命令行输出，条件允许的情况下，可以打开微信开发者工具菜单中的调试窗口，并截图提交问题
-
-11. 为什么nw.js版本为0.47.0？
-
-    请看nw.js更新日志，0.47.1修复了一个bug，这导致微信开发者工具使用后续nwjs版本作为环境时，打开项目会出现“nw undefined”错误; 微信官方使用的0.49.3版本并未出现过，且截止目前都是.049.3，这疑似微信团队自行编译的版本。
-    猜想：也许可以在0.49.2版本基础上，将这个fix操作回滚，形成0.49.3版本
-    Fix: Window opened with new_instance creates always mixed context
-    https://github.com/nwjs/nw.js/blob/nw60/CHANGELOG.md#0471--07-24-2020
-    似乎出现过：https://github.com/nwjs/nw.js/issues/7609

@@ -22,8 +22,7 @@
 
 # 使用方法
 
-可以在本项目的[发布](https://github.com/msojocs/wechat-devtools-linux/releases)中，寻找已经构筑好了的`.tar.xz`包（发布里也有度盘链接），下载解压后，运行其中的`bin/wechat-devtools`即可运行。
-
+可以在本项目的[发布](https://github.com/msojocs/wechat-devtools-linux/releases)中，寻找已经构筑好了的`.tar.xz`包，下载解压后，运行其中的`bin/wechat-devtools`即可运行。
 
 # 系统要求
 
@@ -125,4 +124,4 @@ git clone https://github.com/msojocs/wechat-devtools-linux.git
 
 # 免责声明
 
-微信开发者工具版权归腾讯公司所有，本项目旨在交流学习之用。如有不当之处，请联系本人，邮箱：dragonation@gmail.com
+微信开发者工具版权归腾讯公司所有，本项目旨在交流学习之用。如有不当之处，请联系本人，邮箱：jiyecafe@gmail.com
