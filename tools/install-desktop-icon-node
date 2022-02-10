@@ -32,7 +32,7 @@ fs.copyFileSync(
 
 let desktopCode = fs
     .readFileSync(path.resolve(__dirname, "../res/template.desktop"), "utf8")
-    .replace("dir", path.resolve(__dirname, ".."));
+    .replace(new RegExp("dir", "g"), path.resolve(__dirname, ".."));
 
 desktopPath =
     os.homedir() + "/.local/share/applications/wechat-devtools.desktop";
