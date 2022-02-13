@@ -33,9 +33,10 @@ echo "NW VERSION: $NW_VERSION"
 echo "nw-gyp version: $( nw-gyp --version )"
 echo "node version: $(node --version )"
 echo "npm version: $(npm --version )"
+python --version
 
 if [[ ! -z $https_proxy || ! -z $http_proxy ]]; then
-  echo -e "\033[41;37m 警告: 你设置了代理，这有可能导致安装出现异常 \033[0m"
+  echo -e "\033[41;37m 警告: 你设置了代理，这有可能导致安装出现异常 $http_proxy, $https_proxy \033[0m"
 fi
 
 rm -fr "${package_dir}/node_modules/vscode-windows-ca-certs" # the module is only available in windows
@@ -77,13 +78,13 @@ rm -fr "${package_dir}/node_modules_tmp/node_modules/spdlog-node"
     --nodegit_binary_host_mirror=https://npm.taobao.org/mirrors/nodegit/v0.27.0/) # reinstall modules
 
 # rebuild
-cd "$package_dir/node_modules_tmp/node_modules/node-pty" && nw-gyp rebuild --arch=x64 "--target=$NW_VERSION"
+cd "$package_dir/node_modules_tmp/node_modules/node-pty" && nw-gyp rebuild --arch=x64 "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
 (cp -fr "${package_dir}/node_modules_tmp/node_modules/node-pty" "${package_dir}/node_modules_tmp/node_modules/node-pty-node")
 rm -rf "${package_dir}/node_modules/node-pty" "${package_dir}/node_modules/node-pty-node"
 cp -fr "${package_dir}/node_modules_tmp/node_modules/node-pty" "${package_dir}/node_modules"
 (cp -fr "${package_dir}/node_modules/node-pty" "${package_dir}/node_modules/node-pty-node")
 
-cd "$package_dir/node_modules_tmp/node_modules/native-watchdog" && nw-gyp rebuild --arch=x64 "--target=$NW_VERSION"
+cd "$package_dir/node_modules_tmp/node_modules/native-watchdog" && nw-gyp rebuild --arch=x64 "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
 rm -rf "${package_dir}/node_modules/native-watchdog" && cp -fr "${package_dir}/node_modules_tmp/node_modules/native-watchdog" "${package_dir}/node_modules"
 
 cd "${package_dir}/node_modules_tmp/node_modules/nodegit" && rm -rf .github include src lifecycleScripts vendor utils build/vendor build/Release/.deps
