@@ -17,7 +17,7 @@ node "$root_dir/tools/wxvpkg/unpack" "$package_dir/core.wxvpkg" "$tmp_dir/core.w
 #                                                                        
 
 # find
-open_find_result=$( grep -lr "this.props.onWindowOpenFail());" "$root_dir/tmp/core.wxvpkg" )
+open_find_result=$( grep -lr "this.props.onWindowOpenFail());" "$tmp_dir/core.wxvpkg" )
 echo "云开发控制台启动点: $open_find_result"
 # replace
 new_cb_handle="this.props.onWindowOpenFail());Object.keys(window).forEach(key=>{if(!e.window[key]){try{e.window[key]=window[key];}catch(e){console.error(e);}}});"
