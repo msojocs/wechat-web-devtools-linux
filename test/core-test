@@ -1,4 +1,12 @@
 #!/bin/bash
-node tools/wxvpkg/pack package.nw/core.wxvpkg.ext package.nw/core.wxvpkg
-rm -rf /home/msojocs/.config/wechat_devtools/WeappCache
-bin/wechat-devtools
+set -e
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+a=$1
+if [ "$a" == '1' ];then
+  rm -rf "$root_dir/package.nw/core.wxvpkg.ext"
+  node tools/wxvpkg/unpack "$root_dir/package.nw/core.wxvpkg" "$root_dir/package.nw/core.wxvpkg.ext"
+else
+  node tools/wxvpkg/pack package.nw/core.wxvpkg.ext package.nw/core.wxvpkg
+  rm -rf ~/.config/wechat_devtools/WeappCache
+  bin/wechat-devtools
+fi

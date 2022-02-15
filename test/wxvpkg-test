@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+tmp_dir="$root_dir/tmp"
+
+# unpack 文件 到 路径
+node "$root_dir/tools/wxvpkg/unpack" "$tmp_dir/core.wxvpkg" "$tmp_dir/core.wxvpkg.ext"
+
+# pack 路径 到 文件
+node "$root_dir/tools/wxvpkg/pack" "$tmp_dir/core.wxvpkg.ext" "$tmp_dir/core.wxvpkg.test"
+
+# unpack 文件 到 路径
+rm -rf "$tmp_dir/core.wxvpkg.ext1"
+node "$root_dir/tools/wxvpkg/unpack" "$tmp_dir/core.wxvpkg.test" "$tmp_dir/core.wxvpkg.ext1"
+

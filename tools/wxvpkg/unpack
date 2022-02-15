@@ -19,6 +19,7 @@ function readSync(start, length) {
 }
 
 const totalCount = readSync(14, 4).readInt32BE(0)
+console.log('totalCount', totalCount)
 const map = {};
 let n = 18;
 for (let i = 0; i < totalCount; i++) {

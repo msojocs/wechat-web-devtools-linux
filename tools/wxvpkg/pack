@@ -29,10 +29,13 @@ function writeInt32(number, start) {
 }
 
 let files = fs.readdirSync(dest)
+// 文件数
 let totalCount = files.length
+
 let buf = Buffer.alloc(4)
 buf.writeInt32BE(totalCount, 0)
 writeSync(buf, 14)
+
 let start = 18
 // 12 + /name.length
 let dataOffset = start

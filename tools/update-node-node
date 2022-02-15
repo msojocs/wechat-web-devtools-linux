@@ -2,7 +2,6 @@
 const path = require("path");
 const fs = require("fs");
 const { execSync, spawn } = require("child_process");
-const util = require("util");
 
 const nodeConfig = require("../conf/node.json");
 const { exit } = require("process");
