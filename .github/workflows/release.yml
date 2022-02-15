@@ -4,12 +4,8 @@
 name: Node.js CI
 
 on:
-  release:
-    types: [published]
   push:
-    tags:        
-      - v*
-    branches: [ master, actions ]
+    branches: [ master, appimage ]
   pull_request:
     branches: [ master ]
   # # Allows you to run this workflow manually from the Actions tab
@@ -17,51 +13,111 @@ on:
 
 jobs:
   build:
-
     name: Build
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
         node-version: [16.x]
+        ARCH: ['x86_64']
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
 
-    - name: Prepare
-      run: |
-          pwd
+      - name: Prepare
+        run: |
+            pwd
+            ls -l
+            export ACTION_MODE=true
+            npm uninstall node-gyp -g
+            npm install node-gyp nw-gyp npm -g
+
+      - id: tag
+        run: |
+          tag='continuous'
+          name='Continuous Build'
+          if [ 'true' == ${{ startsWith(github.ref, 'refs/tags/') }} ];then
+            tag='${{ github.ref_name }}'
+            name='${{ github.ref_name }}'
+          fi
+          echo "tag result: $tag - $name"
+          echo "::set-output name=tag::$tag"
+          echo "::set-output name=name::$name"
+
+      - name: Build
+        run: docker-compose up
+
+      - name: Build AppImage
+        run: |
+          sudo chmod -R 777 tmp package.nw node
+          bash tools/appimage.sh
+          wget "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
+          chmod a+x appimagetool-x86_64.AppImage
+          ./appimagetool-x86_64.AppImage ./tmp/AppDir
+        env:
+          name: 'release-${{ github.ref_name }}'
+          ARCH: '${{ matrix.ARCH }}'
+
+      - name: Delete unused file
+        run: |
+            ls -l
+            sudo rm -rf cache tmp appimagetool-x86_64.AppImage
+            mkdir ${{ env. name }}
+            sudo find -maxdepth 1 -not -name ${{ env.name }} -not -name . -exec mv {} ${{ env.name }} \;
+            sudo cp -r "${{ env.name }}/package.nw/node_modules/nodegit" nodegit
+            sudo cp -r "${{ env.name }}/compiler" compiler
+            sudo mv ${{ env.name }}/WeChat*.AppImage .
+            ls -l
+            cd "${{ env.name }}"
+        env:
+          name: 'release-${{ github.ref_name }}'
+
+      - name: Compress
+        run: |
           ls -l
-          chmod 777 docker/entrypoint
-          chmod 777 tools/*
-          export ACTION_MODE=true
-          npm uninstall node-gyp -g
-          npm install node-gyp nw-gyp npm -g
+          tar -zvcf ${{ env.name }}.tar.gz ${{ env.name }}
+          tar -zvcf compiler.tar.gz compiler
+          tar -zvcf nodegit.tar.gz nodegit
+          sudo rm -rf ${{ env.name }} compiler nodegit
+          ls -l
+        env:
+          name: 'release-${{ github.ref_name }}'
 
-    - name: Build
-      run: docker-compose up
+    # - name: Release
+    #   uses: fnkr/github-action-ghr@v1
+    #   if: startsWith(github.ref, 'refs/tags/')
+    #   env:
+    #     GHR_COMPRESS: xz
+    #     GHR_PATH: .
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Delete unused file
-      run: |
-          sudo rm -rf cache tmp
-          mkdir ${{ env. name }}
-          sudo find -maxdepth 1 -not -name ${{ env.name }} -not -name . -exec mv {} ${{ env.name }} \;
-          sudo cp -r "${{ env.name }}/package.nw/node_modules/nodegit" nodegit
-          sudo cp -r "${{ env.name }}/compiler" compiler
-          ls -ls
-      env:
-        name: 'release-${{ github.ref_name }}'
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          # note you'll typically need to create a personal access token
+          # with permissions to create releases in the other repo
+          name: ${{ steps.tag.outputs.name }}
+          tag_name: ${{ steps.tag.outputs.tag }}
+          files: |
+            ${{ env.name }}.tar.gz
+            compiler.tar.gz
+            nodegit.tar.gz
+            *.AppImage
+        env:
+          name: 'release-${{ github.ref_name }}'
 
-    - name: Release
-      uses: fnkr/github-action-ghr@v1
-      if: startsWith(github.ref, 'refs/tags/')
-      env:
-        GHR_COMPRESS: xz
-        GHR_PATH: .
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Create release and upload artifacts
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     GITHUB_CONTINUOUS_RELEASE_TAG: ${{ steps.tag.outputs.tag }}
+      #     GITHUB_CONTINUOUS_RELEASE_NAME: ${{ steps.tag.outputs.name }}
+      #   run: |
+      #     wget -q https://github.com/TheAssassin/pyuploadtool/releases/download/continuous/pyuploadtool-x86_64.AppImage
+      #     chmod +x pyuploadtool-x86_64.AppImage
+      #     ./pyuploadtool-x86_64.AppImage **/*.AppImage* 
