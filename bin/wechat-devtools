@@ -13,7 +13,7 @@ if [ -d ~/.config/wechat_devtools/WeappCache ];then
 fi
 
 EXTENSION1="--load-extension=$root_dir/nwjs/package.nw/js/ideplugin"
-EXTENSION2="--load-extension=$( echo ~ )/.config/wechat_devtools/WeappPlugin" 
+EXTENSION2=--load-extension=~/.config/wechat_devtools/WeappPlugin 
 INSPECTOR1="--custom-devtools-frontend=file://$root_dir/package.nw/js/ideplugin/inspector" # 要加file://指明为本地文件路径
 INSPECTOR2="--custom-devtools-frontend=file://$( echo ~ )/.config/wechat_devtools/WeappPlugin/inspector/"
 USERDATADIR="$( echo ~ )/.config/wechat_devtools"

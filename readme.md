@@ -1,7 +1,26 @@
+
+  
+<div align="center">
+
+  <img src="./res/icons/wechat-devtools.png" height="100px" width="100px"/>
+
+  <h3>微信开发者工具 Linux版</h3>
+  <br>
+
+----
+
 [![Node.js CI](https://github.com/msojocs/wechat-devtools-linux/actions/workflows/release.yml/badge.svg)](https://github.com/msojocs/wechat-devtools-linux/actions/workflows/release.yml)
 [![wechat-tools](https://img.shields.io/badge/wechat--devtools-1.05.2201240-yellow)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 [![nwjs](https://img.shields.io/badge/nwjs-0.53.1-green)](https://nwjs.io/downloads/)
 [![node](https://img.shields.io/badge/node-16.1.0-orange)](https://nodejs.org/en/)
+
+  这是微信开发者工具 Linux版
+  
+  图标作者[dragonation](https://github.com/dragonation), 由于是基于其项目修改，未经授权。
+
+  <br>
+</div>
+
 # 项目说明
 
 本项目是一个完整的搭建Linux下可用的“微信开发者工具”的脚本和工具集，
@@ -118,9 +137,6 @@ git clone https://github.com/msojocs/wechat-devtools-linux.git
 
 版本 1.02.2001191
 ![screenshot 1.02.2001191](res/screenshots/1.02.2001191.jpg)
-
-图标
-![icon](res/icons/wechat-devtools.png)
 
 # 免责声明
 
