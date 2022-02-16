@@ -94,7 +94,7 @@ jobs:
           name: 'release-${{ steps.tag.outputs.tag }}'
 
       - name: Create release and upload artifacts
-        if: ! startsWith(github.ref, 'refs/tags/')
+        if: startsWith(github.ref, 'refs/heads/')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
