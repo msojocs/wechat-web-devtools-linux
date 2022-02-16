@@ -44,3 +44,23 @@
 10. 如何汇报自己遇到的问题？
   
     如果是界面功能上的奇怪表现，直接描述，并附上操作系统发行版版本，内核版本，桌面系统类型，wine版本，libstdc++版本即可。如果发现运行有问题，可以考虑复制命令行输出，条件允许的情况下，可以打开微信开发者工具菜单中的调试窗口，并截图提交问题
+
+11. Downloading XXX failed: TypeError [ERR_INVALID_PROTOCOL]: Protocol "https:" not supported. Expected "http:"
+
+    你似乎设置了代理，你需要删除代理
+    ```bash
+    unset http_proxy
+    unset HTTP_PROXY
+    unset https_proxy
+    unset HTTPS_PROXY
+    unset socket_proxy
+    unset SOCKET_PROXY
+    unset all_proxy
+    unset ALL_PROXY
+    ```
+
+12. 启动后界面空白
+
+    请尝试删除缓存`rm -rf ~/.config/wechat_devtools/WeappCache`
+    
+    若无效，请尝试删除全部配置`rm -rf ~/.config/wechat_devtools`

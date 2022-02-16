@@ -9,7 +9,7 @@ on:
   push:
     tags:        
       - v*
-    branches: [ master, appimage ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
   # # Allows you to run this workflow manually from the Actions tab
@@ -94,9 +94,26 @@ jobs:
           name: 'release-${{ steps.tag.outputs.tag }}'
 
       - name: Create release and upload artifacts
+        if: startsWith(github.ref, 'refs/heads/')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           wget -q https://github.com/TheAssassin/pyuploadtool/releases/download/continuous/pyuploadtool-x86_64.AppImage
           chmod +x pyuploadtool-x86_64.AppImage
-          ./pyuploadtool-x86_64.AppImage *.AppImage* *.tar.gz
+          ./pyuploadtool-x86_64.AppImage WeChat*.AppImage *.tar.gz
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          # note you'll typically need to create a personal access token
+          # with permissions to create releases in the other repo
+          name: ${{ steps.tag.outputs.name }}
+          tag_name: ${{ steps.tag.outputs.tag }}
+          files: |
+            ${{ env.name }}.tar.gz
+            compiler.tar.gz
+            nodegit.tar.gz
+            *.AppImage
+        env:
+          name: 'release-${{ steps.tag.outputs.tag }}'

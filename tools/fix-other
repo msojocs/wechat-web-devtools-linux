@@ -10,8 +10,6 @@ package_dir="$root_dir/package.nw"
 # 1. 代码依赖分析不可用
 # 2. 拓展中的“SERVICE MARKET RECOMMENDS”功能不可用
 echo "fix: webview manager"
-root_dir=$(cd `dirname $0`/.. && pwd -P)
-package_dir="$root_dir/package.nw"
 sed -i 's#module.exports = createWebviewManager;#module.exports = createWebviewManager,( /** @type {any} */ (window)).createWebviewManager = createWebviewManager;#g' "$package_dir/js/libs/vseditor/webview-resource/main.js"
 
 # 修复：可视化用的wcc,wcsc
