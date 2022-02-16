@@ -42,7 +42,7 @@ jobs:
             npm uninstall node-gyp -g
             npm install node-gyp nw-gyp npm -g
 
-      - id: tag
+      - id: Tag
         run: |
           tag='continuous'
           name='Continuous Build'
@@ -65,7 +65,7 @@ jobs:
           chmod a+x appimagetool-x86_64.AppImage
           ./appimagetool-x86_64.AppImage ./tmp/AppDir
         env:
-          name: 'release-${{ github.ref_name }}'
+          name: 'release-${{ steps.tag.outputs.tag }}'
           ARCH: '${{ matrix.ARCH }}'
 
       - name: Delete unused file
@@ -80,7 +80,7 @@ jobs:
             ls -l
             cd "${{ env.name }}"
         env:
-          name: 'release-${{ github.ref_name }}'
+          name: 'release-${{ steps.tag.outputs.tag }}'
 
       - name: Compress
         run: |
@@ -91,21 +91,12 @@ jobs:
           sudo rm -rf ${{ env.name }} compiler nodegit
           ls -l
         env:
-          name: 'release-${{ github.ref_name }}'
+          name: 'release-${{ steps.tag.outputs.tag }}'
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          # note you'll typically need to create a personal access token
-          # with permissions to create releases in the other repo
-          prerelease: true
-          target_commitish: ${{ github.sha }}
-          name: ${{ steps.tag.outputs.name }}
-          tag_name: ${{ steps.tag.outputs.tag }}
-          files: |
-            ${{ env.name }}.tar.gz
-            compiler.tar.gz
-            nodegit.tar.gz
-            *.AppImage
+      - name: Create release and upload artifacts
         env:
-          name: 'release-${{ github.ref_name }}'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          wget -q https://github.com/TheAssassin/pyuploadtool/releases/download/continuous/pyuploadtool-x86_64.AppImage
+          chmod +x pyuploadtool-x86_64.AppImage
+          ./pyuploadtool-x86_64.AppImage *.AppImage* *.tar.gz

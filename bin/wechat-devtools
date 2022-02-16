@@ -7,7 +7,10 @@ export APPDATA="$( echo ~ )/.config/wechat_devtools"
 export PATH="$root_dir/wine:$root_dir/node/bin:$root_dir/nwjs:$PATH"
 export USERPROFILE=$( echo ~ )
 
-# LANG=zh_CN.UTF-8 exec "$DIR"/../nwjs/nw --load-extension="$DIR"/../nwjs/package.nw/js/ideplugin "$@"
+if [ -d ~/.config/wechat_devtools/WeappCache ];then
+  echo "删除缓存"
+  rm -rf ~/.config/wechat_devtools/WeappCache
+fi
 
 EXTENSION1="--load-extension=$root_dir/nwjs/package.nw/js/ideplugin"
 EXTENSION2="--load-extension=$( echo ~ )/.config/wechat_devtools/WeappPlugin" 
