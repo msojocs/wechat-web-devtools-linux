@@ -93,8 +93,8 @@ jobs:
 
           # reduce wine
           export REDUCE_WINE=true
-          source ${{ env.name }}/tools/fix-core
-          source ${{ env.name }}/tools/fix-other
+          bash ${{ env.name }}/tools/fix-core
+          bash ${{ env.name }}/tools/fix-other
           bash ./${{ env.name }}/tools/appimage.sh
           # build AppImage
           ./appimagetool-x86_64.AppImage ./${{ env.name }}/tmp/AppDir ${{ env.name }}_${{ env.ARCH }}_reduce_wine.AppImage
