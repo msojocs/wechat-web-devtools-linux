@@ -59,7 +59,7 @@ jobs:
 
       - name: Refactor Directory Structure
         run: |
-          cd ${{ env.name }} && sudo chmod -R 777 package.nw node
+          sudo chmod -R 777 package.nw node
           ls -l
           sudo rm -rf cache tmp
           mkdir ${{ env. name }}
