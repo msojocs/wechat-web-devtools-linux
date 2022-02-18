@@ -71,8 +71,7 @@ Docker容器启动方法
 > 注：
 > 如需进行降低`wine`依赖的操作，请添加环境变量：`REDUCE_WINE=true`
 
-
-## 构筑方法0（推荐）
+## 方法0（推荐）
 
 理论上此方法99%成功;在网络不稳定时容易失败（原因懂得都懂）
 
@@ -117,18 +116,14 @@ git clone https://github.com/msojocs/wechat-devtools-linux.git
 # 与其他Linux下的微信开发者工具版本区别
 
 1. 支持最新版本，并个人会持续更新，在添加新的tag时，actions会自动构建并上传Release；
-2. 自己制作了一个看得过去的图标，官方的太丑了；
-3. 核心构筑过程完全开源，可以自行修改；
-4. 修复了nwjs上关于Menu的段错误，确保最新版本可以正常启动；
-5. 在构筑过程中会重新编译node_modules，确保原生模块可以在Linux上正确运行；
-6. 可以随时更新开发者工具中的node和nwjs版本；
-7. 下载更新可以支持断点再续，并使用了taobao国内的npm源，加速下载；
-8. 使用了更为严谨的JS代码来控制整个构筑过程，避免Shell中出现的各类异常。
+2. 核心构筑过程完全开源，可以自行修改；
+3. 修复了nwjs上关于Menu的段错误，确保最新版本可以正常启动；
+4. 在构筑过程中会重新编译node_modules，确保原生模块可以在Linux上正确运行；
+5. 下载更新可以支持断点再续，并使用了taobao国内的npm源，加速下载（稳定性待测试）。
 
 # 后续计划
 
-1. 增加Docker镜像的稳定性（对Host要求比较高）
-2. [处理计划](https://github.com/msojocs/wechat-devtools-linux/projects?type=beta)
+1. [处理计划](https://github.com/msojocs/wechat-devtools-linux/projects?type=beta)
 
 # FAQ
 [GO](docs/FAQ.MD)
@@ -147,3 +142,8 @@ git clone https://github.com/msojocs/wechat-devtools-linux.git
 # 免责声明
 
 微信开发者工具版权归腾讯公司所有，本项目旨在交流学习之用。如有不当之处，请联系本人，邮箱：jiyecafe@gmail.com
+
+# 赞赏
+  如果这个仓库让你感到舒适，可以请我喝杯咖啡：
+
+  ![赞赏码](https://user-images.githubusercontent.com/20937135/154661198-93854dc1-c8ba-4c97-a7ab-9f8de26c0226.png)
