@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 srcdir=$root_dir
 tmp_dir="$root_dir/tmp"
@@ -14,20 +14,11 @@ sed -i 's#module.exports = createWebviewManager;#module.exports = createWebviewM
 
 # 修复：可视化用的wcc,wcsc
 echo "fix: wcc,wcsc"
-mkdir "$tmp_dir/node_modules"
+if [[ ! -d "$tmp_dir/node_modules" ]];then
+  mkdir "$tmp_dir/node_modules"
+fi
 cd $tmp_dir && npm install miniprogram-compiler
 # wcc wcsc
-# 预览编译
-# cd "${package_dir}/js/vendor/" && rm -rf "wcc.exe"
-# cp "${package_dir}/node_modules_tmp/node_modules/miniprogram-compiler/bin/linux/wcc" "${package_dir}/js/vendor/wcc.exe"
-# wcc_md5=$( md5sum wcc.exe|cut -d ' ' -f1 ) && \
-# sed -i  's/wcc.exe": ".*"/wcc.exe": "'"${wcc_md5}"'"/g' "config.json"
-# cd "${package_dir}/js/vendor/" && rm -rf "wcsc.exe"
-# cp "${package_dir}/node_modules_tmp/node_modules/miniprogram-compiler/bin/linux/wcsc" "${package_dir}/js/vendor/wcsc.exe"
-# cd "${package_dir}/js/vendor" && \
-# wcsc_md5=$( md5sum wcsc.exe|cut -d ' ' -f1 ) && \
-# sed -i  's/wcsc.exe": ".*"/wcsc.exe": "'"${wcsc_md5}"'"/g' "config.json"
-
 # 可视化编译
 (cd "${package_dir}/node_modules/" \
 && rm -rf wcc wcsc \
@@ -37,4 +28,20 @@ cd $tmp_dir && npm install miniprogram-compiler
 && cp -r "${srcdir}/compiler/wcc_node"/* "wcc" \
 && cp -r "${srcdir}/compiler/wcsc_node"/* "wcsc"
 )
+
+# 预览编译，设置REDUCE_WINE环境变量生效
+# 如果是mac执行wcc,否则wcc.exe
+if [[ $REDUCE_WINE == 'true' ]];then
+  \cp -rf "${srcdir}/compiler/generatemd5.js" "${package_dir}/js/vendor/generatemd5.js"
+  \cp -rf "${srcdir}/compiler/wine/wcc" "${package_dir}/js/vendor/wcc"
+  \cp -rf "${srcdir}/compiler/wine/wcsc" "${package_dir}/js/vendor/wcsc"
+  \cp -rf "${tmp_dir}/node_modules/miniprogram-compiler/bin/linux/wcc" "${package_dir}/js/vendor/wcc.bin"
+  \cp -rf "${tmp_dir}/node_modules/miniprogram-compiler/bin/linux/wcsc" "${package_dir}/js/vendor/wcsc.bin"
+  node "${package_dir}/js/vendor/generatemd5.js"
+
+  current=`date "+%Y-%m-%d %H:%M:%S"`
+  timeStamp=`date -d "$current" +%s`
+  echo $timeStamp > "${package_dir}/.build_time"
+fi
+
 rm -rf "$tmp_dir/node_modules"
