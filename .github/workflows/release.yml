@@ -76,7 +76,7 @@ jobs:
           ls -l
           tar -zvcf compiler.tar.gz compiler
           tar -zvcf nodegit.tar.gz nodegit
-          sudo rm -rf ${{ env.name }} compiler nodegit
+          sudo rm -rf compiler nodegit
           ls -l
         env:
           name: 'WeChat_Dev_Tools_${{ steps.tag.outputs.tag }}'
@@ -101,7 +101,7 @@ jobs:
           # pack
           tar -zvcf ${{ env.name }}_${{ env.ARCH }}_reduce_wine.tar.gz ${{ env.name }}
 
-          rm -rf appimagetool-x86_64.AppImage
+          rm -rf appimagetool-x86_64.AppImage ${{ env.name }}
         env:
           name: 'WeChat_Dev_Tools_${{ steps.tag.outputs.tag }}'
           ARCH: '${{ matrix.ARCH }}'
