@@ -59,14 +59,15 @@ jobs:
 
       - name: Refactor Directory Structure
         run: |
-            ls -l
-            sudo rm -rf cache tmp
-            mkdir ${{ env. name }}
-            sudo find -maxdepth 1 -not -name ${{ env.name }} -not -name . -exec mv {} ${{ env.name }} \;
-            sudo cp -r "${{ env.name }}/package.nw/node_modules/nodegit" nodegit
-            sudo cp -r "${{ env.name }}/compiler" compiler
-            ls -l
-            cd "${{ env.name }}"
+          cd ${{ env.name }} && sudo chmod -R 777 package.nw node
+          ls -l
+          sudo rm -rf cache tmp
+          mkdir ${{ env. name }}
+          sudo find -maxdepth 1 -not -name ${{ env.name }} -not -name . -exec mv {} ${{ env.name }} \;
+          sudo cp -r "${{ env.name }}/package.nw/node_modules/nodegit" nodegit
+          sudo cp -r "${{ env.name }}/compiler" compiler
+          ls -l
+          cd "${{ env.name }}"
         env:
           name: 'WeChat_Dev_Tools_${{ steps.tag.outputs.tag }}'
 
@@ -82,7 +83,6 @@ jobs:
 
       - name: Build AppImage && Pack
         run: |
-          cd ${{ env.name }} && sudo chmod -R 777 package.nw node
           bash ./${{ env.name }}/tools/appimage.sh
           wget "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
           chmod a+x appimagetool-x86_64.AppImage
