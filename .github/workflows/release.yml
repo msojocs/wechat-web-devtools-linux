@@ -9,7 +9,7 @@ on:
   push:
     tags:        
       - v*
-    branches: [ master ]
+    branches: [ master, reduce-wine]
   pull_request:
     branches: [ master ]
   # # Allows you to run this workflow manually from the Actions tab
@@ -57,41 +57,55 @@ jobs:
       - name: Build
         run: docker-compose up
 
-      - name: Build AppImage
-        run: |
-          sudo chmod -R 777 tmp package.nw node
-          bash tools/appimage.sh
-          wget "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
-          chmod a+x appimagetool-x86_64.AppImage
-          ./appimagetool-x86_64.AppImage ./tmp/AppDir
-        env:
-          name: 'release-${{ steps.tag.outputs.tag }}'
-          ARCH: '${{ matrix.ARCH }}'
-
-      - name: Delete unused file
+      - name: Refactor Directory Structure
         run: |
             ls -l
-            sudo rm -rf cache tmp appimagetool-x86_64.AppImage
+            sudo rm -rf cache tmp
             mkdir ${{ env. name }}
             sudo find -maxdepth 1 -not -name ${{ env.name }} -not -name . -exec mv {} ${{ env.name }} \;
             sudo cp -r "${{ env.name }}/package.nw/node_modules/nodegit" nodegit
             sudo cp -r "${{ env.name }}/compiler" compiler
-            sudo mv ${{ env.name }}/WeChat*.AppImage .
             ls -l
             cd "${{ env.name }}"
         env:
-          name: 'release-${{ steps.tag.outputs.tag }}'
+          name: 'WeChat_Dev_Tools_${{ steps.tag.outputs.tag }}'
 
       - name: Compress
         run: |
           ls -l
-          tar -zvcf ${{ env.name }}.tar.gz ${{ env.name }}
           tar -zvcf compiler.tar.gz compiler
           tar -zvcf nodegit.tar.gz nodegit
           sudo rm -rf ${{ env.name }} compiler nodegit
           ls -l
         env:
-          name: 'release-${{ steps.tag.outputs.tag }}'
+          name: 'WeChat_Dev_Tools_${{ steps.tag.outputs.tag }}'
+
+      - name: Build AppImage && Pack
+        run: |
+          cd ${{ env.name }} && sudo chmod -R 777 package.nw node
+          bash ./${{ env.name }}/tools/appimage.sh
+          wget "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
+          chmod a+x appimagetool-x86_64.AppImage
+          # build AppImage
+          ./appimagetool-x86_64.AppImage ./${{ env.name }}/tmp/AppDir ${{ env.name }}_${{ env.ARCH }}_wine.AppImage
+          # pack
+          tar -zvcf ${{ env.name }}_${{ env.ARCH }}_wine.tar.gz ${{ env.name }}
+
+          # reduce wine
+          export REDUCE_WINE=true
+          source ${{ env.name }}/tools/fix-core
+          source ${{ env.name }}/tools/fix-other
+          bash ./${{ env.name }}/tools/appimage.sh
+          # build AppImage
+          ./appimagetool-x86_64.AppImage ./${{ env.name }}/tmp/AppDir ${{ env.name }}_${{ env.ARCH }}_reduce_wine.AppImage
+          # pack
+          tar -zvcf ${{ env.name }}_${{ env.ARCH }}_reduce_wine.tar.gz ${{ env.name }}
+
+          rm -rf appimagetool-x86_64.AppImage
+        env:
+          name: 'WeChat_Dev_Tools_${{ steps.tag.outputs.tag }}'
+          ARCH: '${{ matrix.ARCH }}'
+
 
       - name: Create release and upload artifacts
         if: startsWith(github.ref, 'refs/heads/')
@@ -111,9 +125,5 @@ jobs:
           name: ${{ steps.tag.outputs.name }}
           tag_name: ${{ steps.tag.outputs.tag }}
           files: |
-            ${{ env.name }}.tar.gz
-            compiler.tar.gz
-            nodegit.tar.gz
+            *.tar.gz
             *.AppImage
-        env:
-          name: 'release-${{ steps.tag.outputs.tag }}'
