@@ -40,13 +40,13 @@ if [[ ! -z $find_result ]];then
   sed -i "s#open -a Terminal \"\`pwd\`\"#$new_str#g" "$find_result"
 fi
 
-# wcc、wcsc处理，设置REDUCE_WINE环境变量生效
-if [[ $REDUCE_WINE == 'true' ]];then
+# wcc、wcsc处理，设置NO_WINE=true环境变量生效
+if [[ $NO_WINE == 'true' ]];then
   # "wcc.exe":!0,"wcsc.exe":!0
   find_result=$( grep -lr '{wcc:!0,wcsc:!0,DevToolProtector:!0}' "$tmp_dir/core.wxvpkg" )
   if [[ ! -z $find_result ]];then
     echo "wcc: $find_result"
-    new_str='{"wcc.exe":!0,"wcsc.exe":!0,"wcc.bin":!0,"wcsc.bin":!0,wcc:!0,wcsc:!0,DevToolProtector:!0}'
+    new_str='{"wcc.bin":!0,"wcsc.bin":!0,wcc:!0,wcsc:!0,DevToolProtector:!0}'
     sed -i "s#{wcc:!0,wcsc:!0,DevToolProtector:!0}#$new_str#g" "$find_result"
     new_str='"linux"===process.platform'
     sed -i "s#\"darwin\"===process.platform#$new_str#g" "$find_result"
@@ -61,8 +61,3 @@ fi
 echo "pack"
 node "$root_dir/tools/wxvpkg/pack" "$tmp_dir/core.wxvpkg" "$package_dir/core.wxvpkg"
 rm -rf "$tmp_dir/core.wxvpkg"
-
-if [ -d ~/.config/wechat_devtools/WeappCache ];then
-  echo "删除缓存"
-  rm -rf ~/.config/wechat_devtools/WeappCache
-fi

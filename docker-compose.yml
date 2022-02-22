@@ -8,4 +8,5 @@ services:
     environment:
       - ACTION=${ACTION_MODE:-false}
       - https_proxy=${https_proxy:-}
+      - NO_WINE=${NO_WINE:-false}
     entrypoint: /workspace/docker/entrypoint

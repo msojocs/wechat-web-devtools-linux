@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-if [[ $REDUCE_WINE == 'true' ]];then
+if [[ $NO_WINE == 'true' ]];then
   echo "not wine"
 fi
 

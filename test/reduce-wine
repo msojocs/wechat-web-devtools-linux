@@ -1,6 +1,5 @@
 #!/bin/bash
-export REDUCE_WINE=true
-
+export NO_WINE=true
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 $root_dir/tools/fix-core

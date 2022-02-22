@@ -29,9 +29,9 @@ cd $tmp_dir && npm install miniprogram-compiler
 && cp -r "${srcdir}/compiler/wcsc_node"/* "wcsc"
 )
 
-# 预览编译，设置REDUCE_WINE环境变量生效
+# 预览编译，设置NO_WINE=true环境变量生效
 # 如果是mac执行wcc,否则wcc.exe
-if [[ $REDUCE_WINE == 'true' ]];then
+if [[ $NO_WINE == 'true' ]];then
   \cp -rf "${srcdir}/compiler/generatemd5.js" "${package_dir}/js/vendor/generatemd5.js"
   \cp -rf "${srcdir}/compiler/nodejs/wcc" "${package_dir}/js/vendor/wcc"
   \cp -rf "${srcdir}/compiler/nodejs/wcsc" "${package_dir}/js/vendor/wcsc"

@@ -92,15 +92,15 @@ jobs:
           tar -zvcf ${{ env.name }}_${{ env.ARCH }}_wine.tar.gz ${{ env.name }}
 
           # reduce wine
-          export REDUCE_WINE=true
+          export NO_WINE=true
           bash ${{ env.name }}/tools/fix-core
           bash ${{ env.name }}/tools/fix-other
           bash ./${{ env.name }}/tools/appimage.sh
           # build AppImage
-          ./appimagetool-x86_64.AppImage ./${{ env.name }}/tmp/AppDir ${{ env.name }}_${{ env.ARCH }}_reduce_wine.AppImage
+          ./appimagetool-x86_64.AppImage ./${{ env.name }}/tmp/AppDir ${{ env.name }}_${{ env.ARCH }}_no_wine.AppImage
           sudo rm -rf compiler nodegit ${{ env.name }}/tmp
           # pack
-          tar -zvcf ${{ env.name }}_${{ env.ARCH }}_reduce_wine.tar.gz ${{ env.name }}
+          tar -zvcf ${{ env.name }}_${{ env.ARCH }}_no_wine.tar.gz ${{ env.name }}
 
           sudo rm -rf appimagetool-x86_64.AppImage ${{ env.name }}
           ls -l
