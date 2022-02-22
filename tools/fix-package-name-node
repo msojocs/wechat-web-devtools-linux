@@ -5,11 +5,9 @@ const { spawn } = require("child_process");
 
 const parseFile = function (path) {
 
-    console.log("fix start")
     if (!fs.existsSync(path)) {
         return;
     }
-    console.log("content")
     let content = JSON.parse(fs.readFileSync(path, "utf8"));
 
     content.name = "wechat_devtools";

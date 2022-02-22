@@ -10,3 +10,4 @@ Type=Application
 Terminal=false
 StartupWMClass=wechat_devtools
 Actions=
+MimeType=x-scheme-handler/wechatide

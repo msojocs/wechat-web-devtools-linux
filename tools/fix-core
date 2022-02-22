@@ -6,6 +6,7 @@ package_dir="$root_dir/package.nw"
 tmp_dir="$root_dir/tmp/core"
 
 mkdir -p $tmp_dir
+
 # unpack 文件 到 路径
 node "$root_dir/tools/wxvpkg/unpack" "$package_dir/core.wxvpkg" "$tmp_dir/core.wxvpkg"
 

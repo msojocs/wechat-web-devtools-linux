@@ -41,41 +41,28 @@
 
 # 使用方法
 
-可以在本项目的[发布](https://github.com/msojocs/wechat-devtools-linux/releases)中，寻找已经构筑好了的`.tar.xz`包，下载解压后，运行其中的`bin/wechat-devtools`即可运行。
+可以在本项目的[Release](https://github.com/msojocs/wechat-devtools-linux/releases)中，寻找已经构筑好了的`.tar.gz`包，下载解压后，运行其中的`bin/wechat-devtools`即可运行；也可以下载`AppImage`授予可执行权限后，直接运行。
 
 # 系统要求
 
 * 基于Linux的桌面系统，首选GNOME（其他的桌面环境可能会有问题，未测试）
-* 安装有wine支持，建议版本在5.0以上，低版本可能会存在有问题
 * 非兼容版对glibc和libstdc++有一定的版本要求，glibc的版本要求2.3，libstdc++的版本要求3.4.26，发布包里已经预编译了的Linux原生Node模块有这个依赖。兼容版本对这两个系统库的要求则较低，如果发现非兼容版本运行有问题可以考虑尝试切换到兼容版本
+* 如果你下载的是`wine`版本，你么你需要安装有`wine`支持，建议版本在5.0以上，低版本可能会存在有问题
 
 # CLI支持
 
 在项目的`bin`目录中有`wechat-devtools-cli`命令，是微信开发者工具的命令行支持Linux版本。相关资料可以在[微信CLI命令行V2](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)上找到。
 
-# Docker支持
-
-为了尽可能正常的在Docker内运行完整的微信开发者工具，我们在Docker镜像内提供了GUI界面的支持。但该支持有严格的系统要求，因微信开发者工具的新版本对界面UI的图形化要求较高，导致该部分对OpenGL有必要的需求。所以Container内镜像的图形驱动要求与Host的图形驱动**完全**一致，在非一致的情况下，界面会出现频闪现象。即使是关闭了硬件加速，采用了--use-gl=swiftshader的软件模拟情况下也会出现图片撕裂的情况。因此，请各位在自行构筑Docker镜像时，严格根据自己使用的Linux发行版修改基础镜像。
-
-目前图形界面在Docker内部实现的方案是通过X11的套接字透传实现的，因此请记得准备好一些必要Docker准备。大部分工作已经`bin/wechat-devtools-docker`命令中完成。但是请根据具体运行情况修改必要的参数和Docker镜像构筑脚本。鉴于Docker镜像的基础Linux版本较低，因此建议使用兼容版本的发布包来构筑镜像，而不要轻易使用非兼容版本。
-
-Docker容器启动方法
-```
-./bin/wechat-devtools-docker
-```
-
-如需要映射外部目录，请自行修改Docker启动命令
-
 # 自行构建
 
 > 注：
-> 如果不想使用`wine`，请添加环境变量：`NO_WINE=true`,但是稳定性未测试
+> 如果不想使用`wine`，请添加环境变量：`export NO_WINE=true`,但是稳定性未测试
 
 ## 方法0（推荐）
 
-理论上此方法99%成功;在网络不稳定时容易失败（原因懂得都懂）
+理论上此方法99%成功;在网络不稳定时容易失败（原因懂得都懂，构建过程已经尽量使用镜像源）
 
-1. 请先在Linux环境中自行安装`wine`；
+1. 如果构建`wine`版本，请先在Linux环境中自行安装`wine`；
 2. 请安装`docker` `docker-compose`
 3. 克隆本项目：
 ```
@@ -96,7 +83,7 @@ docker-compose up
 
 由于使用到`node-gyp` `nw-gyp`，此方法会受`python`、`node`版本影响出现一些难以预料的异常（比如使用`node15.0.1`时，大部分模块构建会被忽略，但没有任何报错信息）。但是，`Docker`构建方式会帮你处理好这些问题。
 
-1. 请先在Linux环境中自行安装`wine`；
+1. 如果构建`wine`版本，请先在Linux环境中自行安装`wine`；
 2. 请安装nodejs，并配置到PATH环境变量中，版本不限;
 3. 克隆本项目：
 ```
