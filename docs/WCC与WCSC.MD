@@ -68,5 +68,9 @@ Usage: ./bin/linux/wcsc [-lc] [-o OUTPUT] [-s <NAME OF FILE>] [-st] [-js] [-db] 
  -cp: add class prefix
  -pc: page wxss files count
 ```
+
+## 按需注入和用时注入
+https://developers.weixin.qq.com/miniprogram/dev/framework/ability/lazyload.html#%E6%8C%89%E9%9C%80%E6%B3%A8%E5%85%A5
+
 # 输出
 

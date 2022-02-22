@@ -33,8 +33,8 @@ cd $tmp_dir && npm install miniprogram-compiler
 # 如果是mac执行wcc,否则wcc.exe
 if [[ $REDUCE_WINE == 'true' ]];then
   \cp -rf "${srcdir}/compiler/generatemd5.js" "${package_dir}/js/vendor/generatemd5.js"
-  \cp -rf "${srcdir}/compiler/wine/wcc" "${package_dir}/js/vendor/wcc"
-  \cp -rf "${srcdir}/compiler/wine/wcsc" "${package_dir}/js/vendor/wcsc"
+  \cp -rf "${srcdir}/compiler/nodejs/wcc" "${package_dir}/js/vendor/wcc"
+  \cp -rf "${srcdir}/compiler/nodejs/wcsc" "${package_dir}/js/vendor/wcsc"
   \cp -rf "${tmp_dir}/node_modules/miniprogram-compiler/bin/linux/wcc" "${package_dir}/js/vendor/wcc.bin"
   \cp -rf "${tmp_dir}/node_modules/miniprogram-compiler/bin/linux/wcsc" "${package_dir}/js/vendor/wcsc.bin"
   node "${package_dir}/js/vendor/generatemd5.js"

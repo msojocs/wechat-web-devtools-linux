@@ -9,7 +9,8 @@ let exeList = []
 const macExeList = [
   'wcc',
   'wcsc',
-  'wcc.bin'
+  'wcc.bin',
+  'wcsc.bin'
 ]
 const winExeList = [
   'wcc.exe',

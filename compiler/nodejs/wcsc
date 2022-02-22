@@ -1,0 +1,145 @@
+#!/usr/bin/env node
+const { spawn, spawnSync } = require("child_process");
+const path = require("path");
+const args = process.argv.slice(2);
+const wcscPath = path.resolve(__dirname, "./wcsc.bin")
+function encode1(s) {
+    return encodeURI(s).replace(
+        /%(u[0-9A-F]{4})|(%[0-9A-F]{2})/gm,
+        function ($0, $1, $2) {
+            return ($1 && "\\" + $1.toLowerCase()) || decodeURI($2);
+        }
+    );
+}
+if (args.includes("-ll")) {
+    const wcsc = spawn(wcscPath, args, {
+        cwd: process.cwd(),
+    });
+    const spwanData = [],
+        errData = [];
+    wcsc.stdout.on("data", (e) => {
+        spwanData.push(e);
+    });
+    wcsc.stderr.on("data", (e) => {
+        errData.push(e);
+    });
+    wcsc.on("close", (n) => {
+        // console.log('close', new Date().getTime()/1000)
+        if (0 === n) {
+            const str = Buffer.concat(spwanData).toString().replace(/\\\\/g, '\\\\u005c');
+            const resultSplit = encode1(str).split("=");
+            const tempObj = {};
+            for (
+                let i = 0, total = resultSplit.length;
+                i < total && resultSplit[i + 1];
+                i += 2
+            ) {
+                // a=b ---> a: b
+                const key = resultSplit[i];
+                if (key === "version") continue;
+                tempObj[key] = resultSplit[i + 1].replace(
+                    /((\\x[\da-f]{2}|\\u[\da-f]{4})){1,}/gi,
+                    function ($0, $1, $2) {
+                        return eval('"' + $0 + '"');
+                        // return dict[$0] ? dict[$0] : eval('"' + $0 + '"')
+                    }
+                );
+            }
+            const resultObj = {
+                common: tempObj.comm, //.replace(/\\n/g, '\\u000a'),
+                pageWxss: {},
+            };
+            // console.log(resultObj.common)
+            // console.log('for key', new Date().getTime()/1000)
+            for (const key in tempObj) {
+                if (key.endsWith(".wxss")) {
+                    resultObj.pageWxss[key] = tempObj[key];
+                }
+            }
+            let result = JSON.stringify(resultObj);
+            String.prototype.splice = function (start, newStr) {
+                return this.slice(0, start) + newStr + this.slice(start + 1);
+            };
+            result = result.replace(/\\\\/g, "\\");
+            // console.log('main replace', new Date().getTime()/1000)
+            // for (let i = 0; i < result.length; i++) {
+            //     if (result[i] === "\\") {
+            //         // && result[i + 1] !== 'u'
+            //         const c = result[i + 1] === "n" ? "\n" : result[i + 1];
+            //         result = result.splice(
+            //             i + 1,
+            //             "u" + c.charCodeAt(0).toString(16).padStart(4, "0")
+            //         );
+            //     }
+            // }
+            result = result.replace(/\\[\s\S]{1}/gi, function ($0, $1, $2) {
+                // console.log($0, $1)
+                const c = $0 === "\\n" ? "\n" : $0[1];
+                return "\\u" + c.charCodeAt(0).toString(16).padStart(4, "0")
+            })
+            // console.log('main replace end', new Date().getTime()/1000)
+            // result = result.replace(/u005c"/g, 'u005cx22')
+            // console.log('done', new Date().getTime()/1000)
+            process.stdout.write(result);
+        }
+    });
+
+    // const wcsc = spawnSync(path.resolve(__dirname, "../wcsc"), args, {
+    //     cwd: process.cwd(),
+    // });
+    // if (wcsc.status !== 0) {
+    //     console.error(wcsc.error);
+    //     process.exit(wcsc.status);
+    // }
+    // const str = wcsc.stdout.toString();
+    // // console.log(str)
+    // const resultSplit = encode1(str).split("=");
+    // const tempObj = {};
+    // for (
+    //     let i = 0, total = resultSplit.length;
+    //     i < total && resultSplit[i + 1];
+    //     i += 2
+    // ) {
+    //     // a=b ---> a: b
+    //     const key = resultSplit[i];
+    //     if (key === "version") continue;
+    //     tempObj[key] = resultSplit[i + 1].replace(
+    //         /((\\x[\da-f]{2}|\\u[\da-f]{4})){1,}/gi,
+    //         function ($0, $1, $2) {
+    //             return eval('"' + $0 + '"');
+    //             // return dict[$0] ? dict[$0] : eval('"' + $0 + '"')
+    //         }
+    //     );
+    // }
+    // const resultObj = {
+    //     common: tempObj.comm, //.replace(/\\n/g, '\\u000a'),
+    //     pageWxss: {},
+    // };
+    // // console.log(resultObj.common)
+    // for (const key in tempObj) {
+    //     if (key.endsWith(".wxss")) {
+    //         resultObj.pageWxss[key] = tempObj[key];
+    //     }
+    // }
+    // let result = JSON.stringify(resultObj);
+    // String.prototype.splice = function (start, newStr) {
+    //     return this.slice(0, start) + newStr + this.slice(start + 1);
+    // };
+    // result = result.replace(/\\\\/g, "\\");
+    // for (let i = 0; i < result.length; i++) {
+    //     if (result[i] === "\\") {
+    //         // && result[i + 1] !== 'u'
+    //         const c = result[i + 1] === "n" ? "\n" : result[i + 1];
+    //         result = result.splice(
+    //             i + 1,
+    //             "u" + c.charCodeAt(0).toString(16).padStart(4, "0")
+    //         );
+    //     }
+    // }
+    // process.stdout.write(result);
+} else {
+    spawn(wcscPath, args, {
+        cwd: process.cwd(),
+        stdio: "inherit",
+    });
+}

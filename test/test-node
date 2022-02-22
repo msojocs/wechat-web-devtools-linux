@@ -1,5 +1,14 @@
 #!/usr/bin/env node
 
-const sl = require("spdlog")
-console.log(sl)
-// sl.setAsyncMode(5000, 1000);
+function encode1(s) {
+  return encodeURI(s).replace(
+      /%(u[0-9A-F]{4})|(%[0-9A-F]{2})/gm,
+      function ($0, $1, $2) {
+          return ($1 && "\\" + $1.toLowerCase()) || decodeURI($2);
+      }
+  );
+}
+
+console.log(encode1('content:\\\\x22\\\\x22'))
+console.log(encodeURI('\\\\x22\\\\x22'))
+// console.log(JSON.parse())
