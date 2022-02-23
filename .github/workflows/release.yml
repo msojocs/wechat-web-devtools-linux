@@ -9,7 +9,7 @@ on:
   push:
     tags:        
       - v*
-    branches: [ master, reduce-wine]
+    branches: [ master, actions-dev]
   pull_request:
     branches: [ master ]
   # # Allows you to run this workflow manually from the Actions tab
@@ -57,7 +57,7 @@ jobs:
       - name: Build
         run: |
           docker-compose up
-          sudo chmod -R 755 package.nw node
+          sudo chmod -R 755 package.nw node tmp
           bash tools/build-release.sh ${{ steps.tag.outputs.tag }} ${{ matrix.ARCH }}
 
       - name: Compress nodegit compiler
