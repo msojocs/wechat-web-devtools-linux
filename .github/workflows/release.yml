@@ -59,7 +59,7 @@ jobs:
         run: |
           # docker-compose up
           tools/setup-wechat-devtools-bash
-          # sudo chmod -R 755 package.nw node tmp
+          sudo chmod -R 755 package.nw
           bash tools/build-release.sh ${{ steps.tag.outputs.tag }} ${{ matrix.ARCH }}
 
       - name: Compress nodegit compiler
@@ -68,10 +68,9 @@ jobs:
           sudo cp -r package.nw/node_modules/nodegit tmp/build/nodegit
           sudo cp -r compiler tmp/build/compiler
           cd tmp/build
-          sudo chmod -R 755 nodegit
           ls -l
           tar -zcf compiler.tar.gz compiler
-          tar -zvcf nodegit.tar.gz nodegit
+          tar -zcf nodegit.tar.gz nodegit
           sudo rm -rf compiler nodegit
           ls -l
 
@@ -84,6 +83,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          cd tmp/build
           wget -q https://github.com/TheAssassin/pyuploadtool/releases/download/continuous/pyuploadtool-x86_64.AppImage
           chmod +x pyuploadtool-x86_64.AppImage
           ./pyuploadtool-x86_64.AppImage WeChat*.AppImage *.tar.gz
@@ -97,5 +97,5 @@ jobs:
           name: ${{ steps.tag.outputs.name }}
           tag_name: ${{ steps.tag.outputs.tag }}
           files: |
-            *.tar.gz
-            *.AppImage
+            tmp/build/*.tar.gz
+            tmp/build/*.AppImage
