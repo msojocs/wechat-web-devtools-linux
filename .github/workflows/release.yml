@@ -61,7 +61,7 @@ jobs:
         run: |
           sudo chmod -R 777 package.nw node
           ls -l
-          sudo rm -rf cache tmp .git
+          sudo rm -rf cache tmp .git test
           mkdir ${{ env. name }}
           sudo find -maxdepth 1 -not -name ${{ env.name }} -not -name . -exec mv {} ${{ env.name }} \;
           sudo cp -r "${{ env.name }}/package.nw/node_modules/nodegit" nodegit

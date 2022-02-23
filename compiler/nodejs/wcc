@@ -4,7 +4,8 @@ const version = "20220222"
 const path = require("path");
 const args = process.argv.slice(2);
 const funcName = args[args.indexOf('-gn') + 1]
-const wccPath = path.resolve(__dirname, './wcc.bin')
+const debugWXS = args.includes('-ds')
+const wccPath = path.resolve(__dirname, '../wcc')
 function genFunctionContent_LLW(wxmlName, config={}, source) {
     // 起始
     let content = `var cs = cs || [];\u000a${config.funcName}` + "=function(_,_v,_n,_p,_s,_wp,_wl,$gwn,$gwl,$gwh,wh,$gstack,$gwrt,gra,grb,TestTest,wfor,_ca,_da,_r,_rz,_o,_oz,_1,_1z,_2,_2z,_m,_mz,nv_getDate,nv_getRegExp,nv_console,nv_parseInt,nv_parseFloat,nv_isNaN,nv_isFinite,nv_decodeURI,nv_decodeURIComponent,nv_encodeURI,nv_encodeURIComponent,$gdc,nv_JSON,_af,_gv,_ai,_grp,_gd,_gapi,$ixc,_ic,_w,_ev,_tsd){return function(path,global){\u000aif(typeof global==='undefined'){if (typeof __GWX_GLOBAL__==='undefined')global={};else global=__GWX_GLOBAL__;}if(typeof __WXML_GLOBAL__ === 'undefined') {__WXML_GLOBAL__={};\u000a}__WXML_GLOBAL__.modules = __WXML_GLOBAL__.modules || {};\u000a"
@@ -20,10 +21,10 @@ function genFunctionContent_LLW(wxmlName, config={}, source) {
     const exp = `function gz\\${funcName}_${config.num+1}\\(\\)\\{[\\s\\S]*_WXML_GLOBAL__\\.ops_cached\\.\\${funcName}_${config.num+1}\n}`
     const gz = source.match(new RegExp(exp))[0]
     content += gz
+
     // debug要作为判断依据，所以放前面
     let debug = source.match(new RegExp(`\\n__WXML_GLOBAL__\\.ops_set\\.\\${funcName}=[\\s\\S]*?\\nvar`))
     debug = debug[0].substring(0, debug[0].length-3).replace(new RegExp(`\\${funcName}`, 'g'), config.funcName)
-    
     content += debug
 
     content += `var x=['./${wxmlName}.wxml'];d_[x[0]]={}\u000a`
@@ -65,11 +66,8 @@ function genFunctionContent_LLA(wxmlName, config={}, source) {
     
     content += "var cs = cs || [];" + cs[1].replace(new RegExp(`\\${funcName}`, 'g'), config.funcName)
     
-    // debug要作为判断依据，所以放前面
-    let debug = source.match(new RegExp(`\\n__WXML_GLOBAL__\\.ops_set\\.\\${funcName}=[\\s\\S]*?\\nvar`))
-    debug = debug[0].substring(0, debug[0].length-3).replace(new RegExp(`\\${funcName}`, 'g'), config.funcName)
     // gz函数
-    if(!debug.includes('debuginfo_set')){
+    if(!debugWXS){
         const exp = `function gz\\${funcName}_${config.num+1}\\(\\)\\{[\\s\\S]*?\\)}`
         const gz = source.match(new RegExp(exp))
         // console.log(gz)
@@ -80,20 +78,23 @@ function genFunctionContent_LLA(wxmlName, config={}, source) {
         const gz = source.match(new RegExp(exp))
         content += gz[0].replace(new RegExp(`\\${funcName}\\_\\d+`, 'g'), `${config.funcName}_1`)
     }
+
+    // debug
+    let debug = source.match(new RegExp(`\\n__WXML_GLOBAL__\\.ops_set\\.\\${funcName}=[\\s\\S]*?\\nvar`))
+    debug = debug[0].substring(0, debug[0].length-3).replace(new RegExp(`\\${funcName}`, 'g'), config.funcName)
     content += debug
 
     content += `var x=['./${wxmlName}.wxml'];d_[x[0]]={}\u000a`
 
     // m0 --- m{num}
-    if(!debug.includes('debuginfo_set')){
+    if(!debugWXS){
         content += `var m0=function(e,s,r,gg){\u000avar z=gz${config.funcName}_1()\u000areturn r\u000a}\u000ae_[x[0]]={f:m0,j:[],i:[],ti:[],ic:[]}`
     }else{
-        //m0 -2
         // m0 --- m{num}
         const m0Exp = `var m${config.num}=function\\(e,s,r,gg\\){[\\s\\S]*{f:m${config.num},j:\\[\\],i:\\[\\],ti:\\[\\],ic:\\[\\]}`
         const m0 = source.match(new RegExp(m0Exp))[0].replace(new RegExp(`m${config.num}`, 'g'), 'm0').replace(new RegExp(`x\\[${config.num}\\]`, 'g'), 'x[0]')
         content += m0.replace(new RegExp(`\\${funcName}\\_\\d+`, 'g'), `${config.funcName}_1`)
-}
+    }
     content += `\u000aif(path&&e_[path]){\u000areturn function(env,dd,global){$gwxc=0;var root={\u0022tag\u0022:\u0022wx-page\u0022};root.children=[]\u000a;g=\u0022${config.funcName}\u0022;var main=e_[path].f\u000acs=[]\u000aif (typeof global===\u0022undefined\u0022)global={};global.f=$gdc(f_[path],\u0022\u0022,1);\u000atry{\u000amain(env,{},root,global);\u000a_tsd(root)\u000a}catch(err){\u000aconsole.log(cs, env);\u000aconsole.log(err)\u000athrow err\u000a}\u000a;g=\u0022\u0022;\u000areturn root;\u000a}\u000a}\u000a}\u000a}(__g.a,__g.b,__g.c,__g.d,__g.e,__g.f,__g.g,__g.h,__g.i,__g.j,__g.k,__g.l,__g.m,__g.n,__g.o,__g.p,__g.q,__g.r,__g.s,__g.t,__g.u,__g.v,__g.w,__g.x,__g.y,__g.z,__g.A,__g.B,__g.C,__g.D,__g.E,__g.F,__g.G,__g.H,__g.I,__g.J,__g.K,__g.L,__g.M,__g.N,__g.O,__g.P,__g.Q,__g.R,__g.S,__g.T,__g.U,__g.V,__g.W,__g.X,__g.Y,__g.Z,__g.aa);if(__vd_version_info__.delayedGwx||false)${config.funcName}();`
     
     // console.log(content)

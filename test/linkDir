@@ -1,9 +1,0 @@
-#!/usr/bin/env node
-const path = require("path")
-const fs = require("fs")
-
-fs.symlinkSync(
-  path.resolve(__dirname, "../package.nw"),
-  path.resolve(__dirname, "../nwjs/package.nw")
-
-)

@@ -96,7 +96,7 @@ function getAllFiles(rootPath, files) {
  * @param {*} files 文件列表，包含组件
  * @param {*} param2 
  * @param {*} options 配置选项
- * @returns 
+ * @returns string
  */
 function wxmlToJS(rootPath, files, { cut } = {}, options={}) {
   const type = cut ? '-xc' : '-cc'
@@ -108,7 +108,6 @@ function wxmlToJS(rootPath, files, { cut } = {}, options={}) {
     .concat(files)
     .concat(['-gn', '$gwx'])
 
-  // TODO:可用性检测
   // wxs调试
   if(options.debugWXS)args.unshift('-ds')
   // 懒加载
