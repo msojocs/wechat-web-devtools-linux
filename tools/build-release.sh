@@ -32,7 +32,12 @@ rm -rf "$build_dir"
 mkdir -p "$build_dir"
 
 notice "下载AppImage构建工具"
-wget "https://download.fastgit.org/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" \
+if [ $ACTION_MODE!='true' ]; then
+  appimagetool_host="github.com"
+else
+  appimagetool_host="download.fastgit.org"
+fi
+wget "https://$appimagetool_host/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" \
   -O "$tmp_dir/appimagetool-x86_64.AppImage"
 chmod a+x "$tmp_dir/appimagetool-x86_64.AppImage"
 
