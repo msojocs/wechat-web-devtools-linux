@@ -9,7 +9,7 @@ on:
   push:
     tags:        
       - v*
-    branches: [ master, reduce-wine]
+    branches: [ master, actions-dev]
   pull_request:
     branches: [ master ]
   # # Allows you to run this workflow manually from the Actions tab
@@ -39,8 +39,9 @@ jobs:
             pwd
             ls -l
             export ACTION_MODE=true
-            npm uninstall node-gyp -g
+            sudo apt-get install -y libx11-dev libxkbfile-dev p7zip-full  python2 python3 libkrb5-dev gcc openssl libssh2-1-dev g++ make
             npm install node-gyp nw-gyp npm -g
+            node-gyp install
 
       - id: Tag
         run: |
@@ -55,65 +56,34 @@ jobs:
           echo "::set-output name=name::$name"
 
       - name: Build
-        run: docker-compose up
-
-      - name: Refactor Directory Structure
         run: |
-          sudo chmod -R 777 package.nw node
-          ls -l
-          sudo rm -rf cache tmp .git test
-          mkdir ${{ env. name }}
-          sudo find -maxdepth 1 -not -name ${{ env.name }} -not -name . -exec mv {} ${{ env.name }} \;
-          sudo cp -r "${{ env.name }}/package.nw/node_modules/nodegit" nodegit
-          sudo cp -r "${{ env.name }}/compiler" compiler
-          ls -l
-        env:
-          name: 'WeChat_Dev_Tools_${{ steps.tag.outputs.tag }}'
+          # docker-compose up
+          tools/setup-wechat-devtools-bash
+          sudo chmod -R 755 package.nw
+          bash tools/build-release.sh ${{ steps.tag.outputs.tag }} ${{ matrix.ARCH }}
 
-      - name: Compress
+      - name: Compress nodegit compiler
         run: |
           ls -l
-          tar -zvcf compiler.tar.gz compiler
-          tar -zvcf nodegit.tar.gz nodegit
-          sudo rm -rf compiler nodegit ${{ env.name }}/node_modules
+          sudo cp -r package.nw/node_modules/nodegit tmp/build/nodegit
+          sudo cp -r compiler tmp/build/compiler
+          cd tmp/build
           ls -l
-        env:
-          name: 'WeChat_Dev_Tools_${{ steps.tag.outputs.tag }}'
+          tar -zcf compiler.tar.gz compiler
+          tar -zcf nodegit.tar.gz nodegit
+          sudo rm -rf compiler nodegit
+          ls -l
 
-      - name: Build AppImage && Pack
+      - name: View Directory
         run: |
-          bash ./${{ env.name }}/tools/appimage.sh
-          wget "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
-          chmod a+x appimagetool-x86_64.AppImage
-          # build AppImage
-          ./appimagetool-x86_64.AppImage ./${{ env.name }}/tmp/AppDir ${{ env.name }}_${{ env.ARCH }}_wine.AppImage
-          # pack
-          sudo rm -rf compiler nodegit ${{ env.name }}/tmp
-          tar -zvcf ${{ env.name }}_${{ env.ARCH }}_wine.tar.gz ${{ env.name }}
-
-          # reduce wine
-          export NO_WINE=true
-          bash ${{ env.name }}/tools/fix-core
-          bash ${{ env.name }}/tools/fix-other
-          bash ./${{ env.name }}/tools/appimage.sh
-          # build AppImage
-          ./appimagetool-x86_64.AppImage ./${{ env.name }}/tmp/AppDir ${{ env.name }}_${{ env.ARCH }}_no_wine.AppImage
-          sudo rm -rf compiler nodegit ${{ env.name }}/tmp
-          # pack
-          tar -zvcf ${{ env.name }}_${{ env.ARCH }}_no_wine.tar.gz ${{ env.name }}
-
-          sudo rm -rf appimagetool-x86_64.AppImage ${{ env.name }}
           ls -l
-        env:
-          name: 'WeChat_Dev_Tools_${{ steps.tag.outputs.tag }}'
-          ARCH: '${{ matrix.ARCH }}'
-
 
       - name: Create release and upload artifacts
         if: startsWith(github.ref, 'refs/heads/')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          cd tmp/build
           wget -q https://github.com/TheAssassin/pyuploadtool/releases/download/continuous/pyuploadtool-x86_64.AppImage
           chmod +x pyuploadtool-x86_64.AppImage
           ./pyuploadtool-x86_64.AppImage WeChat*.AppImage *.tar.gz
@@ -127,5 +97,5 @@ jobs:
           name: ${{ steps.tag.outputs.name }}
           tag_name: ${{ steps.tag.outputs.tag }}
           files: |
-            *.tar.gz
-            *.AppImage
+            tmp/build/*.tar.gz
+            tmp/build/*.AppImage
