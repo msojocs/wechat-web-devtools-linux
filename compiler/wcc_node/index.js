@@ -57,7 +57,6 @@ exports = async function (options) {
     let result
     try {
       // console.warn('final options:', options);
-      // TODO: fix
       result = wcc(options.cwd, options.files, {cut: options.isCut}, options)
       // console.warn('wcc result', result)
     } catch(errmsg) {
@@ -71,7 +70,7 @@ exports = async function (options) {
       const dir = path.dirname(output)
       if (lazyload) {
         // lazyload 为 true时，wcc 返回值是个对象, 需要序列化一下
-        result = JSON.stringify(result)
+        // result = JSON.stringify(result)
       }
       try {
         await fs.stat(dir)

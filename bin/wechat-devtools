@@ -7,29 +7,23 @@ export APPDATA="$( echo ~ )/.config/wechat_devtools"
 export PATH="$root_dir/wine:$root_dir/node/bin:$root_dir/nwjs:$PATH"
 export USERPROFILE=$( echo ~ )
 
-current=`date "+%Y-%m-%d %H:%M:%S"`
-timeStamp=`date -d "$current" +%s`
+clean_cache() {
+  echo "清理缓存";
+  rm -rf "$APPDATA/WeappCache";
+  rm -rf "$APPDATA/WeappVendor";
+}
 
-# 获取首次运行时间
-if [[ -f "$APPDATA/.run_time" ]];then
-  run_time=`cat "$APPDATA/.run_time"`
+# 检测是否有清除缓存的必要
+if [[ -f "$APPDATA/.build_time" ]];then
+  diff "$APPDATA/.build_time" "$root_dir/package.nw/.build_time" >/dev/null;
+  if [ ! "$?" == "0" ];then
+    \cp -f "$root_dir/package.nw/.build_time" "$APPDATA/.build_time";
+    clean_cache;
+  fi;
 else
-  run_time=0
-fi
-
-# 获取构建时间
-if [[ -f "$root_dir/package.nw/.build_time" ]];then
-  build_time=`cat "$root_dir/package.nw/.build_time"`
-else
-  build_time=timeStamp
-fi
-
-if [[ ! $build_time < $run_time ]];then
-  echo "清理缓存"
-  echo $timeStamp > "$APPDATA/.run_time"
-  rm -rf "$APPDATA/WeappCache"
-  rm -rf "$APPDATA/WeappVendor"
-fi
+  \cp -f "$root_dir/package.nw/.build_time" "$APPDATA/.build_time";
+  clean_cache;
+fi;
 
 EXTENSION1="--load-extension=$root_dir/nwjs/package.nw/js/ideplugin"
 EXTENSION2=--load-extension=~/.config/wechat_devtools/WeappPlugin 
