@@ -77,16 +77,10 @@ const upgrade = function (extractPath) {
 
         if (fs.existsSync(path.resolve(__dirname, "../nwjs"))) {
             if (!fs.existsSync(path.resolve(__dirname, "../nwjs/node"))) {
-                fs.symlinkSync(
-                    path.resolve(__dirname, "../node/bin/node"),
-                    path.resolve(__dirname, "../nwjs/node")
-                );
+                execSync(`cd ${path.resolve(__dirname, "../nwjs")} && ln -sr ../node/bin/node node`)
             }
             if (!fs.existsSync(path.resolve(__dirname, "../nwjs/node.exe"))) {
-                fs.symlinkSync(
-                    "node",
-                    path.resolve(__dirname, "../nwjs/node.exe")
-                );
+                execSync(`cd ${path.resolve(__dirname, "../nwjs")} && ln -s node node.exe`)
             }
         }
 
