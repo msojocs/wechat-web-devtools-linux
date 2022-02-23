@@ -68,7 +68,8 @@ jobs:
           sudo cp -r package.nw/node_modules/nodegit tmp/build/nodegit
           sudo cp -r compiler tmp/build/compiler
           cd tmp/build
-          tar -zvcf compiler.tar.gz compiler
+          ls -l
+          tar -zcf compiler.tar.gz compiler
           tar -zvcf nodegit.tar.gz nodegit
           sudo rm -rf compiler nodegit
           ls -l
