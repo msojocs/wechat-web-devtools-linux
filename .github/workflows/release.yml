@@ -39,7 +39,7 @@ jobs:
             pwd
             ls -l
             export ACTION_MODE=true
-            apt-get install -y libx11-dev libxkbfile-dev p7zip-full
+            sudo apt-get install -y libx11-dev libxkbfile-dev p7zip-full
             npm install node-gyp nw-gyp npm -g
             node-gyp install
 
