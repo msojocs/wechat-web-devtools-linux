@@ -104,14 +104,14 @@ function wxmlToJS(rootPath, files, { cut } = {}, options={}) {
 
   // @TODO，如果遇到参数过长被操作系统干掉的情况，可以使用 --config-path FILE 配置，参数空格换成空行
   // const componentArgs = getComponentArgs(files), componentArgs.join(' ')
-  const args = ['-d', '--split', options.wxmlCompileConfigSplit, type, options.wxmlCompileConfig]
+  let args = ['-d', '--split', options.wxmlCompileConfigSplit, type, options.wxmlCompileConfig]
     .concat(files)
     .concat(['-gn', '$gwx'])
 
   // wxs调试
   if(options.debugWXS)args.unshift('-ds')
   // 懒加载
-  if(options.lazyload)args=args.concat(['-ll', options.lazyloadConfig])
+  // if(options.lazyload)args=args.concat(['-ll', options.lazyloadConfig])
 
   // wxmlParserPath 二进制可执行文件路径
   const wxmlParserPath = getWXMLParsePath()

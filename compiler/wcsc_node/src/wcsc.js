@@ -58,19 +58,29 @@ function getAllFiles(rootPath, files) {
  * 编译 wxss 到 js
  */
 function wxssToJS(rootPath, files, options) {
-  files = getAllFiles(rootPath, files)
+  // files = getAllFiles(rootPath, files)
 
-  const args = ['-db', '-pc', String(files.compWxssNum)].concat(files.list)
+  const args = ['-db', '-pc', String(options.pageCount)].concat(files)
 
   const wxssParserPath = getWXSSParsePath()
   console.warn('wcsc args: ', args)
   const wcsc = spawnSync(wxssParserPath, args, { cwd: rootPath })
 
   if (wcsc.status === 0) {
-    const res = wcsc.stdout.toString().split('=')
+    let res = wcsc.stdout.toString();
+    res = res.split('=')
     const funcList = {}
     for (let i = 0, len = res.length; i < len && res[i + 1]; i += 2) {
-      funcList[res[i]] = res[i + 1]
+      funcList[res[i]] = res[i + 1].replace(
+          /((\\x[\da-f]{2}|\\u[\da-f]{4})){1,}/gi,
+          function ($0, $1, $2) {
+              return eval('"' + $0 + '"');
+          }
+        ).replace(/\\[\s\S]{1}/gi, function ($0, $1, $2) {
+          // console.log($0, $1)
+          const c = $0 === "\\n" ? "\n" : $0[1];
+          return c
+      })
     }
     return funcList
   } else {

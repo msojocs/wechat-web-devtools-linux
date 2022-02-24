@@ -56,15 +56,28 @@ exports = async function (options) {
     options.contents = await Promise.all(tasks) || []
   }
 
-  let wccResult
+  let wcscResult
   try {
     console.warn('wcsc options', options)
-    wccResult = wcsc(options.cwd, options.files, options)
+    wcscResult = wcsc(options.cwd, options.files, options)
+    if(options.lazyload){
+      const t = wcscResult
+      wcscResult = {
+        common: t.comm,
+        pageWxss: {}
+      }
+      for(let key in t){
+        console.log(key)
+        if(key.endsWith('.wxss')){
+          wcscResult.pageWxss[key] = t[key]
+        }
+      }
+    }
   } catch (errmsg) {
     throw new Error(errmsg)
   }
 
-  const result = options.lazyload ? wccResult : tranWcscResultToObject(wccResult)
+  const result = options.lazyload ? wcscResult : tranWcscResultToObject(wcscResult)
 
   if (options.output) {
     const output = path.resolve(options.cwd, options.output)
