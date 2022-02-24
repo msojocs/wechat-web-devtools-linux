@@ -5,7 +5,7 @@ const path = require("path");
 const args = process.argv.slice(2);
 const funcName = args[args.indexOf('-gn') + 1]
 const debugWXS = args.includes('-ds')
-const wccPath = path.resolve(__dirname, '../wcc')
+const wccPath = path.resolve(__dirname, './wcc.bin')
 function genFunctionContent_LLW(wxmlName, config={}, source) {
     // 起始
     let content = `var cs = cs || [];\u000a${config.funcName}` + "=function(_,_v,_n,_p,_s,_wp,_wl,$gwn,$gwl,$gwh,wh,$gstack,$gwrt,gra,grb,TestTest,wfor,_ca,_da,_r,_rz,_o,_oz,_1,_1z,_2,_2z,_m,_mz,nv_getDate,nv_getRegExp,nv_console,nv_parseInt,nv_parseFloat,nv_isNaN,nv_isFinite,nv_decodeURI,nv_decodeURIComponent,nv_encodeURI,nv_encodeURIComponent,$gdc,nv_JSON,_af,_gv,_ai,_grp,_gd,_gapi,$ixc,_ic,_w,_ev,_tsd){return function(path,global){\u000aif(typeof global==='undefined'){if (typeof __GWX_GLOBAL__==='undefined')global={};else global=__GWX_GLOBAL__;}if(typeof __WXML_GLOBAL__ === 'undefined') {__WXML_GLOBAL__={};\u000a}__WXML_GLOBAL__.modules = __WXML_GLOBAL__.modules || {};\u000a"
