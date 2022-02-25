@@ -102,12 +102,13 @@ cp -fr "${package_dir}/node_modules_tmp/node_modules/nodegit" "${package_dir}/no
 (cp -fr "${package_dir}/node_modules_tmp/node_modules/oniguruma" "${package_dir}/node_modules_tmp/node_modules/oniguruma-node")
 (cp -fr "${package_dir}/node_modules_tmp/node_modules/spdlog" "${package_dir}/node_modules_tmp/node_modules/spdlog-node")
 
-(cd "${package_dir}/node_modules_tmp/node_modules" && find -name "obj.target" | xargs -I{} rm -rf {})
-(cd "${package_dir}/node_modules_tmp/node_modules" && find -name "*.node" | xargs -I{} cp -rf {} ${package_dir}/node_modules/{})
+(cd "${package_dir}/node_modules_tmp/node_modules" && find -name ".deps" | xargs -I{} rm -rf {} && find -name "obj.target" | xargs -I{} rm -rf {} && find -name "*.a" -delete && find -name "*.lib" -delete && find -name "*.mk" -delete)
+(cd "${package_dir}/node_modules_tmp/node_modules" && find -name "*.node" | xargs -I{} \cp -rf {} ${package_dir}/node_modules/{})
 
 mkdir -p "${package_dir}/node_modules/vscode-ripgrep/bin"
-cp -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep/bin/rg" "${package_dir}/node_modules/vscode-ripgrep/bin/rg"
+\cp -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep/bin/rg" "${package_dir}/node_modules/vscode-ripgrep/bin/rg"
 
+(cd "${package_dir}/node_modules" && find -name ".deps" | xargs -I{} rm -rf {} && find -name "obj.target" | xargs -I{} rm -rf {} && find -name "*.a" -delete && find -name "*.lib" -delete && find -name "*.mk" -delete && find -name "*Makefile" -delete && find -name "*gyp*" -delete)
 rm -rf "${package_dir}/node_modules_tmp"
 
 # 移除旧配置

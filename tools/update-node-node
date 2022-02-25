@@ -105,7 +105,6 @@ const start = async () => {
         const localPath = await download();
         const extractPath = await extract(localPath);
         await upgrade(extractPath);
-        execSync(`${path.resolve(__dirname, "../node/bin/npm")} install node-gyp`)
 
         console.log(
             `Succeeded upgrading nodeConfig to version ${nodeConfig.version}`
