@@ -2,7 +2,6 @@ const util = require('./util')
 const path = require('path')
 const fs = util.fs
 
-// TODO:未找到触发操作，所以相关功能未验证
 let wcsc
 try {
   wcsc = require('./src/wcsc')
@@ -59,20 +58,8 @@ exports = async function (options) {
   let wcscResult
   try {
     console.warn('wcsc options', options)
-    wcscResult = wcsc(options.cwd, options.files, options)
-    if(options.lazyload){
-      const t = wcscResult
-      wcscResult = {
-        common: t.comm,
-        pageWxss: {}
-      }
-      for(let key in t){
-        console.log(key)
-        if(key.endsWith('.wxss')){
-          wcscResult.pageWxss[key] = t[key]
-        }
-      }
-    }
+    wcscResult = await wcsc(options)
+    console.warn('wcsc ok')
   } catch (errmsg) {
     throw new Error(errmsg)
   }

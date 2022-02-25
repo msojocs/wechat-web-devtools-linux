@@ -1,14 +1,17 @@
 #!/usr/bin/env node
 
-function encode1(s) {
-  return encodeURI(s).replace(
-      /%(u[0-9A-F]{4})|(%[0-9A-F]{2})/gm,
-      function ($0, $1, $2) {
-          return ($1 && "\\" + $1.toLowerCase()) || decodeURI($2);
-      }
-  );
-}
-
-console.log(encode1('content:\\\\x22\\\\x22'))
-console.log(encodeURI('\\\\x22\\\\x22'))
-// console.log(JSON.parse())
+let str1 = "window.screen.orientation \\x26\\x26 /^landscape/.tes";
+str1 = str1
+    .replace(
+        /[^\\]((\\x[\da-f]{2}|\\u[\da-f]{4})){1,}/gi,
+        function ($0, $1, $2) {
+            console.log($0, eval('"' + $0 + '"'));
+            return eval('"' + $0 + '"');
+        }
+    )
+    .replace(/\\[\s\S]{1}/gi, function ($0, $1, $2) {
+        // console.log($0, $1)
+        const c = $0 === "\\n" ? "\n" : $0[1];
+        return c;
+    });
+console.log(str1);
