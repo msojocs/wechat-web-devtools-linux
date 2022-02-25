@@ -15,12 +15,11 @@ function genFunctionContent_LL(wxmlName, config={}, source, funcName) {
   content += "var cs" + cs[1].replace(new RegExp(`\\${funcName}`, 'g'), config.funcName)
   
   // gz函数
-  // `function gz\\$gwx_${config.num+1}\\(\\){[\s\S]+_WXML_GLOBAL__\\.ops_cached\\.\\$gwx_${config.num+1}\\u000a}`
   const exp = `function gz\\${funcName}_${config.num+1}\\(\\)\\{[\\s\\S]*_WXML_GLOBAL__\\.ops_cached\\.\\${funcName}_${config.num+1}\n}`
   const gz = source.match(new RegExp(exp))[0]
   content += gz
 
-  // debug要作为判断依据，所以放前面
+  // debug
   let debug = source.match(new RegExp(`\\n__WXML_GLOBAL__\\.ops_set\\.\\${funcName}=[\\s\\S]*?\\nvar`))
   debug = debug[0].substring(0, debug[0].length-3).replace(new RegExp(`\\${funcName}`, 'g'), config.funcName)
   content += debug
@@ -47,7 +46,6 @@ function genCommonContent_LL(source, funcName){
       common += "var cs" + cs[1]
 
       // nv_require
-      // bug llw1.sh
       const nv_require = source.match(new RegExp(`(__WXML_GLOBAL__\\.ops_set\\.\\${funcName}=[\\s\\S]*)var x=\\[`))
       common += nv_require[1]
 
@@ -222,24 +220,6 @@ function wxmlToJS(options={}) {
       }
       // console.log(pageConfig)
       result = resultObj
-      // result = result.replace(/\\[\s\S]{1}/gi, function ($0, $1, $2) {
-      //     // console.log($0, $1)
-      //     let c
-      //     switch ($0) {
-      //         case "\\n":
-      //             c = "\n"
-      //             break;
-      //         case "\\t":
-      //             c = "\t"
-      //             break;
-          
-      //         default:
-      //             c = $0[1]
-      //             break;
-      //     }
-      //     return "\\u" + c.charCodeAt(0).toString(16).padStart(4, "0")
-      // })
-      // console.log(pageConfig)
     }
     return result
   } else {

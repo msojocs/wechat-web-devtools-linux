@@ -6,6 +6,7 @@ const args = process.argv.slice(2);
 const funcName = args[args.indexOf('-gn') + 1]
 const debugWXS = args.includes('-ds')
 const wccPath = path.resolve(__dirname, './wcc.bin')
+
 function genFunctionContent_LLW(wxmlName, config={}, source) {
     // 起始
     let content = `var cs = cs || [];\u000a${config.funcName}` + "=function(_,_v,_n,_p,_s,_wp,_wl,$gwn,$gwl,$gwh,wh,$gstack,$gwrt,gra,grb,TestTest,wfor,_ca,_da,_r,_rz,_o,_oz,_1,_1z,_2,_2z,_m,_mz,nv_getDate,nv_getRegExp,nv_console,nv_parseInt,nv_parseFloat,nv_isNaN,nv_isFinite,nv_decodeURI,nv_decodeURIComponent,nv_encodeURI,nv_encodeURIComponent,$gdc,nv_JSON,_af,_gv,_ai,_grp,_gd,_gapi,$ixc,_ic,_w,_ev,_tsd){return function(path,global){\u000aif(typeof global==='undefined'){if (typeof __GWX_GLOBAL__==='undefined')global={};else global=__GWX_GLOBAL__;}if(typeof __WXML_GLOBAL__ === 'undefined') {__WXML_GLOBAL__={};\u000a}__WXML_GLOBAL__.modules = __WXML_GLOBAL__.modules || {};\u000a"
@@ -17,12 +18,11 @@ function genFunctionContent_LLW(wxmlName, config={}, source) {
     content += "var cs = cs || [];" + cs[1].replace(new RegExp(`\\${funcName}`, 'g'), config.funcName)
     
     // gz函数
-    // `function gz\\$gwx_${config.num+1}\\(\\){[\s\S]+_WXML_GLOBAL__\\.ops_cached\\.\\$gwx_${config.num+1}\\u000a}`
     const exp = `function gz\\${funcName}_${config.num+1}\\(\\)\\{[\\s\\S]*_WXML_GLOBAL__\\.ops_cached\\.\\${funcName}_${config.num+1}\n}`
     const gz = source.match(new RegExp(exp))[0]
     content += gz
 
-    // debug要作为判断依据，所以放前面
+    // debug
     let debug = source.match(new RegExp(`\\n__WXML_GLOBAL__\\.ops_set\\.\\${funcName}=[\\s\\S]*?\\nvar`))
     debug = debug[0].substring(0, debug[0].length-3).replace(new RegExp(`\\${funcName}`, 'g'), config.funcName)
     content += debug
@@ -49,7 +49,6 @@ function genCommonContent_LLW(source){
         common += "var cs = cs || [];" + cs[1]
 
         // nv_require
-        // bug llw1.sh
         const nv_require = source.match(new RegExp(`(__WXML_GLOBAL__\\.ops_set\\.\\${funcName}=[\\s\\S]*)var x=\\[`))
         common += nv_require[1]
 
@@ -70,7 +69,6 @@ function genFunctionContent_LLA(wxmlName, config={}, source) {
     if(!debugWXS){
         const exp = `function gz\\${funcName}_${config.num+1}\\(\\)\\{[\\s\\S]*?\\)}`
         const gz = source.match(new RegExp(exp))
-        // console.log(gz)
         content += gz[0].replace(new RegExp(`\\${funcName}\\_\\d+`, 'g'), `${config.funcName}_1`) + `\u000a})(__WXML_GLOBAL__.ops_cached.${config.funcName}_1);return __WXML_GLOBAL__.ops_cached.${config.funcName}_1\u000a}`
     }else{
         // gz函数2
@@ -109,7 +107,6 @@ function genCommonContent_LLA(source){
 
         // nv_require
         const nv_require = source.match(new RegExp(`(__WXML_GLOBAL__\\.ops_set\\.\\${funcName}=[\\s\\S]*)var x=\\[`))
-        // console.log(nv_require)
         common += nv_require[1]
 
         common += "var x=[];if(path&&e_[path]){\u000areturn function(env,dd,global){$gwxc=0;var root={\u0022tag\u0022:\u0022wx-page\u0022};root.children=[]\u000a;g=\u0022"
@@ -132,7 +129,6 @@ if (args.includes("-llw")) {
         errData.push(e);
     });
     wcc.on("close", (n) => {
-        // console.log('close', new Date().getTime()/1000)
         if (0 === n) {
             const str = Buffer.concat(spwanData).toString()
             const resultObj = {
@@ -158,10 +154,8 @@ if (args.includes("-llw")) {
                 resultObj.generateFunctionName[key] = pageConfig[key].funcName
                 resultObj.generateFunctionContent[key] = genFunctionContent_LLW(key, pageConfig[key], str)
             }
-            // console.log(pageConfig)
             let result = JSON.stringify(resultObj)
             result = result.replace(/\\[\s\S]{1}/gi, function ($0, $1, $2) {
-                // console.log($0, $1)
                 let c
                 switch ($0) {
                     case "\\n":
@@ -177,8 +171,7 @@ if (args.includes("-llw")) {
                 }
                 return "\\u" + c.charCodeAt(0).toString(16).padStart(4, "0")
             })
-            // console.log(pageConfig)
-            process.stdout.write(" " + result + " ")
+            process.stdout.write(result)
         }
     });
 
@@ -197,7 +190,6 @@ if (args.includes("-llw")) {
         errData.push(e);
     });
     wcc.on("close", (n) => {
-        // console.log('close', new Date().getTime()/1000)
         if (0 === n) {
             let str = Buffer.concat(spwanData).toString();
             // 获取Linux wcc的输出数据，用于分析
@@ -211,7 +203,6 @@ if (args.includes("-llw")) {
                     "__COMMON__": funcName,
                 }
             }
-            // str = str.replace(/\n/g, '\\u000a')
             const indexArr = eval(str.match(/var x=(\[.*\]);/)[1])
             const pageConfig = {}
             indexArr.forEach((ele, i) => {
@@ -226,7 +217,6 @@ if (args.includes("-llw")) {
             }
             let result = JSON.stringify(resultObj)
             result = result.replace(/\\[\s\S]{1}/gi, function ($0, $1, $2) {
-                // console.log($0, $1)
                 let c
                 switch ($0) {
                     case "\\n":
@@ -242,8 +232,7 @@ if (args.includes("-llw")) {
                 }
                 return "\\u" + c.charCodeAt(0).toString(16).padStart(4, "0")
             })
-            // console.log(pageConfig)
-            process.stdout.write(" " + result + " ")
+            process.stdout.write(result)
         }
     });
 
