@@ -39,6 +39,12 @@
 
 [测试记录](docs/Features.MD)
 
+注意: 
+
+此测试仅在修复某项功能时测试通过，并不代表阁下在使用时是正常可用的；因为我没有精力在每个版本发布前进行一次测试。
+
+在阁下遇到任何无法解决的问题时，请新建一个 [issue](https://github.com/msojocs/wechat-web-devtools-linux/issues/new/choose)
+
 # 使用方法
 
 可以在本项目的[Release](https://github.com/msojocs/wechat-devtools-linux/releases)中，寻找已经构筑好了的`.tar.gz`包，下载解压后，运行其中的`bin/wechat-devtools`即可运行；也可以下载`AppImage`授予可执行权限后，直接运行。
@@ -84,8 +90,9 @@ docker-compose up
 由于使用到`node-gyp` `nw-gyp`，此方法会受`python`、`node`版本影响出现一些难以预料的异常（比如使用`node15.0.1`时，大部分模块构建会被忽略，但没有任何报错信息）。但是，`Docker`构建方式会帮你处理好这些问题。
 
 1. 如果构建`wine`版本，请先在Linux环境中自行安装`wine`；
-2. 请安装nodejs，并配置到PATH环境变量中，版本不限;
-3. 克隆本项目：
+2. 安装编译`nodegit`所需的依赖：`python2 libkrb5-dev gcc openssl libssh2-1-dev g++ make`
+3. 请安装nodejs，并配置到PATH环境变量中，版本不限;
+4. 克隆本项目：
 ```
 git clone https://github.com/msojocs/wechat-devtools-linux.git
 ```
@@ -104,9 +111,10 @@ git clone https://github.com/msojocs/wechat-devtools-linux.git
 
 1. 支持最新版本，并个人会持续更新，在添加新的tag时，actions会自动构建并上传Release；
 2. 核心构筑过程完全开源，可以自行修改；
-3. 修复了nwjs上关于Menu的段错误，确保最新版本可以正常启动；
+3. 修复了nwjs上关于Menu的段错误，确保最新版本可以正常启动 (by dragonation)；
 4. 在构筑过程中会重新编译node_modules，确保原生模块可以在Linux上正确运行；
 5. 下载更新可以支持断点再续，并使用了taobao国内的npm源，加速下载（稳定性待测试）。
+6. 可以不需要`wine`环境的支持
 
 # 后续计划
 

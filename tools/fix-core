@@ -4,11 +4,12 @@ root_dir=$(cd `dirname $0`/.. && pwd -P)
 
 package_dir="$root_dir/package.nw"
 tmp_dir="$root_dir/tmp/core"
-
+unpack_script="$root_dir/tools/wxvpkg/unpack"
+pack_script="$root_dir/tools/wxvpkg/pack"
 mkdir -p $tmp_dir
 
 # unpack 文件 到 路径
-node "$root_dir/tools/wxvpkg/unpack" "$package_dir/core.wxvpkg" "$tmp_dir/core.wxvpkg"
+node "$unpack_script" "$package_dir/core.wxvpkg" "$tmp_dir/core.wxvpkg"
 
 #    ____  _____ ____  _        _    ____ _____    ____ ___  ____  _____ 
 #   |  _ \| ____|  _ \| |      / \  / ___| ____|  / ___/ _ \|  _ \| ____|
@@ -60,5 +61,5 @@ fi
 
 # pack 路径 到 文件
 echo "pack"
-node "$root_dir/tools/wxvpkg/pack" "$tmp_dir/core.wxvpkg" "$package_dir/core.wxvpkg"
+node "$pack_script" "$tmp_dir/core.wxvpkg" "$package_dir/core.wxvpkg"
 rm -rf "$tmp_dir/core.wxvpkg"
