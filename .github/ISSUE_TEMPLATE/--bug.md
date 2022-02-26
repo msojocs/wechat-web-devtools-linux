@@ -25,7 +25,7 @@ assignees: ''
 **版本信息 (这是必要的):**
  - OS: [e.g. iOS]
  - Package [e.g. xxx_wine.tar.gz]
- - Version [e.g. 0.1]
+ - Wine Version [e.g. 7]
 
 **额外的信息**
 一些关于此问题的额外信息.

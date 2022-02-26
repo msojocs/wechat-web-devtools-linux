@@ -26,7 +26,7 @@ If applicable, add screenshots to help explain your problem.
 **Version Information (please complete the following information):**
  - OS: [e.g. iOS]
  - Package [e.g. xxx_wine.tar.gz]
- - Version [e.g. 22]
+ - Wine Version [e.g. 7]
 
 **Additional context**
 Add any other context about the problem here.
