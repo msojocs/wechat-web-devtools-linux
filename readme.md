@@ -53,7 +53,7 @@
 
 * 基于Linux的桌面系统，首选GNOME（其他的桌面环境可能会有问题，未测试）
 * 非兼容版对glibc和libstdc++有一定的版本要求，glibc的版本要求2.3，libstdc++的版本要求3.4.26，发布包里已经预编译了的Linux原生Node模块有这个依赖。兼容版本对这两个系统库的要求则较低，如果发现非兼容版本运行有问题可以考虑尝试切换到兼容版本
-* 如果你下载的是`wine`版本，你么你需要安装有`wine`支持，建议版本在5.0以上，低版本可能会存在有问题
+* 如果你下载的是`wine`版本，那么你需要安装有`wine` `wine-binfmt`支持，建议版本在5.0以上，低版本可能会存在有问题
 
 # CLI支持
 
@@ -68,7 +68,7 @@
 
 理论上此方法99%成功;在网络不稳定时容易失败（原因懂得都懂，构建过程已经尽量使用镜像源）
 
-1. 如果构建`wine`版本，请先在Linux环境中自行安装`wine`；
+1. 如果构建`wine`版本，请先在Linux环境中自行安装`wine` `wine-binfmt`；
 2. 请安装`docker` `docker-compose`
 3. 克隆本项目：
 ```
@@ -89,7 +89,7 @@ docker-compose up
 
 由于使用到`node-gyp` `nw-gyp`，此方法会受`python`、`node`版本影响出现一些难以预料的异常（比如使用`node15.0.1`时，大部分模块构建会被忽略，但没有任何报错信息）。但是，`Docker`构建方式会帮你处理好这些问题。
 
-1. 如果构建`wine`版本，请先在Linux环境中自行安装`wine`；
+1. 如果构建`wine`版本，请先在Linux环境中自行安装`wine` `wine-binfmt`；
 2. 安装编译`nodegit`所需的依赖：`python2 libkrb5-dev gcc openssl libssh2-1-dev g++ make`
 3. 请安装nodejs，并配置到PATH环境变量中，版本不限;
 4. 克隆本项目：
