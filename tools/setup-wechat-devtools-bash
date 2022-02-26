@@ -38,6 +38,11 @@ fi
 
 # 将node加入环境
 export PATH="$root_dir/node/bin":$PATH
+echo "=====安装node-gyp nw-gyp===="
+npm uninstall node-gyp -g
+npm install node-gyp nw-gyp npm -g --registry=https://registry.npm.taobao.org
+node-gyp install
+node-gyp list
 
 echo "==========Initializing nwjs=========="
 if [ -f "$root_dir/nwjs/nw" ]; then

@@ -179,6 +179,14 @@ const upgrade = function (extractPath) {
             path.resolve(__dirname, "../package.nw")
         );
 
+        // 尝试修改权限
+        try {
+            execSync(`chmod -R 755 ${path.resolve(__dirname, '../package.nw')}`)
+        } catch (err) {
+            // ignore
+            console.error(err)
+        }
+        
         // 删除临时
         execSync(`rm -rf ${extractPath}`);
 

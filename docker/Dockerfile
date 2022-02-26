@@ -1,52 +1,20 @@
-FROM debian:buster
-LABEL maintainer="minun (minun@mewmew.cn)"
+FROM node:16.13.1
 
-ENV LANG=C.UTF-8
+RUN echo "\
+    deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib non-free\
+    # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib non-free
+    deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-updates main contrib non-free\
+    # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-updates main contrib non-free
+    deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-backports main contrib non-free\
+    # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-backports main contrib non-free
+    deb https://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main contrib non-free\
+    # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main contrib non-free
+    "> /etc/apt/sources.list && apt-get clean && \
+    apt-get update && set -eux; \
+    apt-get update; \
+    apt-get install -y gosu libx11-dev libxkbfile-dev p7zip-full; \
+    rm -rf /var/lib/apt/lists/*; \
+    # verify that the binary works
+    gosu nobody true;
 
-# update repo sources
-RUN set -ex; \
-    cp /etc/apt/sources.list /etc/apt/sources.list.bak; \
-    echo "deb http://mirrors.aliyun.com/debian buster main" > /etc/apt/sources.list; \
-    echo "deb http://mirrors.aliyun.com/debian buster-updates main" >> /etc/apt/sources.list; \
-    apt-get clean; \
-    dpkg --add-architecture i386; \
-    apt-get update;
-
-RUN set -ex; \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        apt-utils \
-        dbus-x11 \
-        libasound2 \
-        libatk1.0-0 \
-        libatomic1 \
-        libcanberra-gtk3-module \
-        libgconf-2-4 \
-        libgtk3.0 \
-        libnss3 \
-        libupower-glib3 \
-        libxtst6 \
-        libx11-6 \
-        libx11-xcb1 \
-        libxss1 \
-        libxrandr2 \
-        mesa-utils \
-        ttf-wqy-microhei \
-        upower \
-        wine \
-        wine32 \
-        wine-binfmt \
-        xserver-xorg-video-all;
-
-ADD wechat-devtools-compact-1.03.2008270.tar.gz /opt/wechat/devtools
-
-COPY docker-entrypoint /opt/wechat/devtools/bin/docker-entrypoint
-
-# COPY spdlog.docker.node /opt/wechat/devtools/package.nw/node_modules/spdlog/build/Release/spdlog.node
-# COPY spdlog.docker.node /opt/wechat/devtools/package.nw/node_modules/spdlog-node/build/Release/spdlog.node
-
-# RUN apt-get build-essential python libx11-dev pkg-config libxkbfile-dev
-# RUN useradd -m minun
-
-# xhost +
-# docker run -t -i --rm -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/root/.Xauthority wechat-devtools bash
-
+WORKDIR /workspace

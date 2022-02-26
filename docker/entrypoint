@@ -19,55 +19,9 @@ fail() {
     echo -e "\033[41;37m 失败 \033[0m $1"
 }
 
-echo "start"
+echo "start $UID"
 python --version
 echo "docker node version: $( node --version )"
-
-ACTION_MODE=$( export ACTION_MODE )
-if [ $ACTION_MODE!='true' ]; then
-    npm set registry https://r.npm.taobao.org # 注册模块镜像
-    npm set disturl https://npm.taobao.org/dist # node-gyp 编译依赖的 node 源码镜像
-    ## 以下选择添加
-    npm set sass_binary_site https://npm.taobao.org/mirrors/node-sass # node-sass 二进制包镜像
-    npm set electron_mirror https://npm.taobao.org/mirrors/electron/ # electron 二进制包镜像
-    npm set puppeteer_download_host https://npm.taobao.org/mirrors # puppeteer 二进制包镜像
-    npm set chromedriver_cdnurl https://npm.taobao.org/mirrors/chromedriver # chromedriver 二进制包镜像
-    npm set operadriver_cdnurl https://npm.taobao.org/mirrors/operadriver # operadriver 二进制包镜像
-    npm set phantomjs_cdnurl https://npm.taobao.org/mirrors/phantomjs # phantomjs 二进制包镜像
-    npm set selenium_cdnurl https://npm.taobao.org/mirrors/selenium # selenium 二进制包镜像
-    npm set node_inspector_cdnurl https://npm.taobao.org/mirrors/node-inspector # node-inspector 二进制包镜像
-    # npm cache clean --force # 清空缓存
-    echo "\
-    deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib non-free\
-    # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib non-free
-    deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-updates main contrib non-free\
-    # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-updates main contrib non-free
-    deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-backports main contrib non-free\
-    # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-backports main contrib non-free
-    deb https://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main contrib non-free\
-    # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main contrib non-free
-    "> /etc/apt/sources.list
-fi
-
-apt-get clean;  # 清空缓存
-apt-get update;  # 更新
-apt-get install -y libx11-dev libxkbfile-dev p7zip-full
-
-echo "=====安装node-gyp nw-gyp===="
-npm uninstall node-gyp -g
-npm install node-gyp nw-gyp npm -g --registry=https://registry.npm.taobao.org
-node-gyp install
-node-gyp list
-
-
-# test
-# cd /
-# mkdir -p test
-# rm -rf test.a
-# exec /workspace/tools/rebuild-node-modules
-
-# exit 0;
-# end test
 
 cd /workspace
 rm -rf node nwjs package.nw
