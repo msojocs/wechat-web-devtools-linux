@@ -5,6 +5,7 @@ const fs = require("fs");
 const parseFile = function (path) {
 
     if (!fs.existsSync(path)) {
+        console.error(`${path}文件不存在`)
         return;
     }
     let content = JSON.parse(fs.readFileSync(path, "utf8"));
@@ -17,5 +18,8 @@ const parseFile = function (path) {
 
 };
 
-parseFile(path.resolve(__dirname, "../package.nw/package.json"));
-parseFile(path.resolve(__dirname, "../package.nw/package-lock.json"));
+let basedir = __dirname;
+if(undefined !== process.env['srcdir'])
+    basedir = process.env['srcdir'] + '/tools';
+parseFile(path.resolve(basedir, "../package.nw/package.json"));
+parseFile(path.resolve(basedir, "../package.nw/package-lock.json"));

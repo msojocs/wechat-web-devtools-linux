@@ -37,6 +37,7 @@ if [[ $NO_WINE == 'true' ]];then
   \cp -rf "${srcdir}/compiler/nodejs/wcsc" "${package_dir}/js/vendor/wcsc"
   \cp -rf "${tmp_dir}/node_modules/miniprogram-compiler/bin/linux/wcc" "${package_dir}/js/vendor/wcc.bin"
   \cp -rf "${tmp_dir}/node_modules/miniprogram-compiler/bin/linux/wcsc" "${package_dir}/js/vendor/wcsc.bin"
+  cd "${package_dir}/js/vendor" && chmod 0755 wcc.bin wcsc.bin
   node "${package_dir}/js/vendor/generatemd5.js"
 
   current=`date "+%Y-%m-%d %H:%M:%S"`
