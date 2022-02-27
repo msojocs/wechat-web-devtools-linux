@@ -15,7 +15,7 @@ sed -i 's#module.exports = createWebviewManager;#module.exports = createWebviewM
 # 修复：可视化用的wcc,wcsc
 echo "fix: wcc,wcsc"
 if [[ ! -d "$tmp_dir/node_modules" ]];then
-  mkdir "$tmp_dir/node_modules"
+  mkdir -p "$tmp_dir/node_modules"
 fi
 cd $tmp_dir && npm install miniprogram-compiler
 # wcc wcsc

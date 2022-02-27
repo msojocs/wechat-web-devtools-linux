@@ -2,7 +2,7 @@
 const path = require("path");
 const os = require("os");
 const fs = require("fs");
-const { spawn, execSync } = require("child_process");
+const { execSync } = require("child_process");
 
 console.info("Patching editor selection copy configs");
 

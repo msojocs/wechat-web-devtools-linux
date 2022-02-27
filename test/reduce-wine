@@ -2,5 +2,5 @@
 export NO_WINE=true
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
-$root_dir/tools/fix-core
-$root_dir/tools/fix-other
+$root_dir/tools/fix-core.sh
+$root_dir/tools/fix-other.sh

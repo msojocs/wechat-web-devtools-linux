@@ -19,7 +19,7 @@
 
 4. 为什么自己构筑的运行时加载项目时会卡住？
 
-    检查一下在`package.nw/node_modules`目录下的node文件，是否依旧是Windows版本的dll，而非linux需要的so。如果依旧是Windows下的dll的话，可以考虑执行`tools/rebuild-node-modules`命令重新编译。如果已经是linux的so文件的话，则同问题3解决方法
+    检查一下在`package.nw/node_modules`目录下的node文件，是否依旧是Windows版本的dll，而非linux需要的so。如果依旧是Windows下的dll的话，可以考虑执行`tools/rebuild-node-modules.sh`命令重新编译。如果已经是linux的so文件的话，则同问题3解决方法
 
 5. 为什么自己构筑或更新后的在加载项目后，IDE界面会显示错误崩溃？
 
@@ -35,7 +35,7 @@
 
 8. 直接下载下来的发布包，在加载项目后，为什么右侧的编辑界面是空白？
     
-    根据相关的情况分析，可以打开在微信开发者工具菜单里的调试支持。查看里面的日志报错，目前大部分情况是您的系统里libstdc++版本与预编译的版本不一致。可以考虑采用docker版本，或者执行`tools/rebuild-node-modules`命令重新编译系统支持的原生模块。
+    根据相关的情况分析，可以打开在微信开发者工具菜单里的调试支持。查看里面的日志报错，目前大部分情况是您的系统里libstdc++版本与预编译的版本不一致。可以考虑采用docker版本，或者执行`tools/rebuild-node-modules.sh`命令重新编译系统支持的原生模块。
 
 9. 自己构筑时，为什么会报告python执行错误？
 

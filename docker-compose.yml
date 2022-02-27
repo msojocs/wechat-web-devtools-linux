@@ -11,7 +11,7 @@ services:
     environment:
       - ACTION=${ACTION_MODE:-false}
       # - https_proxy=${https_proxy:-}
-      - NO_WINE=${NO_WINE:-false}
+      - NO_WINE=${NO_WINE:-true}
       - LOCAL_USER_ID=${UID:-1000}
     entrypoint: /workspace/docker/docker-entrypoint
     userns_mode: "host"

@@ -1,13 +1,13 @@
 #!/bin/bash
-echo "Fix Core"
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 
 package_dir="$root_dir/package.nw"
 tmp_dir="$root_dir/tmp/core"
-unpack_script="$root_dir/tools/wxvpkg/unpack"
-pack_script="$root_dir/tools/wxvpkg/pack"
 mkdir -p $tmp_dir
-
+unpack_script="$root_dir/tools/wxvpkg_unpack.js"
+pack_script="$root_dir/tools/wxvpkg_pack.js"
+ 
+echo "Fix Core"
 # unpack 文件 到 路径
 node "$unpack_script" "$package_dir/core.wxvpkg" "$tmp_dir/core.wxvpkg"
 

@@ -47,8 +47,8 @@ for type in wine no_wine; do
   if [[ $type == 'no_wine' ]];then
     notice "no wine handle"
     export NO_WINE=true
-    bash "$root_dir/tools/fix-core"
-    bash "$root_dir/tools/fix-other"
+    bash "$root_dir/tools/fix-core.sh"
+    bash "$root_dir/tools/fix-other.sh"
   fi
   mkdir -p "$build_dir/$FULL_NAME"
 

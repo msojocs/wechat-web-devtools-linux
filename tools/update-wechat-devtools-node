@@ -208,7 +208,7 @@ const patch_wechat_devtools_package_name = function () {
     info("Patching wechat-devtools package name");
 
     return new Promise((resolve, reject) => {
-        spawn(path.resolve(__dirname, "fix-package-name-node"), [], {
+        spawn(path.resolve(__dirname, "fix-package-name.js"), [], {
             stdio: "inherit",
         }).on("close", (code) => {
             resolve();
@@ -230,7 +230,7 @@ const patch_wechat_devtools_CLI = function () {
     info("Patching wechat-devtools CLI supports");
 
     return new Promise((resolve, reject) => {
-        spawn(path.resolve(__dirname, "fix-cli-node"), [], {
+        spawn(path.resolve(__dirname, "fix-cli.sh"), [], {
             stdio: "inherit",
         }).on("close", (code) => {
             resolve();
@@ -241,7 +241,7 @@ const patch_wechat_devtools_core = function () {
     info("Patching wechat-devtools core.wxvpkg");
 
     return new Promise((resolve, reject) => {
-        spawn(path.resolve(__dirname, "fix-core"), [], {
+        spawn(path.resolve(__dirname, "fix-core.sh"), [], {
             stdio: "inherit",
         }).on("close", (code) => {
             resolve();
@@ -253,7 +253,7 @@ const rebuild_wechat_devtools_node_modules = function () {
 
     return new Promise((resolve, reject) => {
         const nwConfig = require(path.resolve(__dirname, "../conf/nwjs.json"))
-        const e = spawn(path.resolve(__dirname, "rebuild-node-modules"), [nwConfig.version], {
+        const e = spawn(path.resolve(__dirname, "rebuild-node-modules.sh"), [nwConfig.version], {
             stdio: "inherit",
         })
         e.on("error", code=>{
@@ -274,7 +274,7 @@ const patch_wechat_devtools = function () {
 
     return new Promise((resolve, reject) => {
         const exec = spawn(
-            path.resolve(__dirname, "patch-wechat-devtools-node"),
+            path.resolve(__dirname, "fix-menu.sh"),
             [],
             {
                 stdio: "inherit",
@@ -289,7 +289,7 @@ const patch_other = function () {
     info("Patching Other");
 
     return new Promise((resolve, reject) => {
-        execSync(path.resolve(__dirname, "fix-other"))
+        execSync(path.resolve(__dirname, "fix-other.sh"))
 
         resolve();
     });

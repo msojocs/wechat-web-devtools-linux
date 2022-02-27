@@ -3,17 +3,13 @@
 # 1 ---- NW版本
 
 set -e
-SOURCE="${BASH_SOURCE[0]}"
-while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
-  DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
-  SOURCE="$(readlink "$SOURCE")"
-  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
-done
-DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
-package_dir="$DIR/../package.nw"
-export PATH="$DIR/../node/bin:$PATH"
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+package_dir="$root_dir/package.nw"
+export PATH="$root_dir/node/bin:$PATH"
 
-NW_VERSION=$1
+if [ ! -z $1 ];then
+  NW_VERSION=$1
+fi
 if [ -z $NW_VERSION ]; then
   echo "NW 版本未指定！"
   exit 1
@@ -22,7 +18,7 @@ fi
 PY_VERSION=`python -V 2>&1|awk '{print $2}'|awk -F '.' '{print $1}'`
 if [ $PY_VERSION != 2 ]; then
   hash python2 2>/dev/null || { echo >&2 "I require python2 but it's not installed.  Aborting."; exit 1; }
-  ln -s "$( which python2 )" "$DIR/../node/bin/python"
+  ln -s "$( which python2 )" "$root_dir/node/bin/python"
 fi
 
 hash nw-gyp 2>/dev/null || {
