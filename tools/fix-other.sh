@@ -25,6 +25,7 @@ cd $tmp_dir && npm install miniprogram-compiler
 && mkdir -p "wcc/bin/linux" "wcsc/bin/linux" \
 && cp -r "${tmp_dir}/node_modules/miniprogram-compiler/bin/linux/wcc" "wcc/bin/linux/wcc" \
 && cp -r "${tmp_dir}/node_modules/miniprogram-compiler/bin/linux/wcsc" "wcsc/bin/linux/wcsc" \
+&& chmod 0755 "wcc/bin/linux/wcc" "wcsc/bin/linux/wcsc" \
 && cp -r "${srcdir}/compiler/wcc_node"/* "wcc" \
 && cp -r "${srcdir}/compiler/wcsc_node"/* "wcsc"
 )
