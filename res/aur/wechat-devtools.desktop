@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=WeChat Devtools
+Name[zh_CN]=微信web开发者工具
+Comment=The development tools for wechat web develop
+Categories=Development;WebDevelopment;IDE;
+Exec=env APPDATA=~/.config/wechat_devtools USERPROFILE=~ bash -c ' clean_cache(){ echo "清理缓存"; rm -rf "$APPDATA/WeappCache"; rm -rf "$APPDATA/WeappVendor";}; if [[ -f "$APPDATA/.build_time" ]];then diff "$APPDATA/.build_time" "/opt/wechat-devtools/package.nw/.build_time" >/dev/null; if [ ! "$?" == "0" ];then \cp -f "/opt/wechat-devtools/package.nw/.build_time" "$APPDATA/.build_time";clean_cache; fi; else \cp -f "/opt/wechat-devtools/package.nw/.build_time" "$APPDATA/.build_time"; clean_cache; fi; /opt/wechat-devtools/nw --load-extension=~/.config/wechat_devtools/WeappPlugin --custom-devtools-frontend=file:///opt/wechat-devtools/package.nw/js/ideplugin/inspector %U'
+Path=/opt/wechat-devtools
+Icon=wechat-devtools
+Type=Application
+Terminal=false
+StartupWMClass=nwjs_mbeenbnhnmdhkbicabncjghgnikfbgjh
+MimeType=x-scheme-handler/wechatide

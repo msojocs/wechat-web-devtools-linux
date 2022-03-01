@@ -10,7 +10,9 @@ const download = function () {
     return new Promise((resolve, reject) => {
         try {
             fs.mkdirSync(path.resolve(__dirname, "../cache"));
-        } catch (error) {}
+        } catch (error) {
+            console.error(error)
+        }
 
         let url = process.env['ACTION'] === 'true'?nodeConfig["url-global"]:nodeConfig.url
             url = url.replace("${version}", nodeConfig.version)
