@@ -1,0 +1,34 @@
+#!/bin/bash
+
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+# exit 1
+sudo sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+
+strings /usr/lib/x86_64-linux-gnu/libstdc++.so.6 | grep GLIBC
+strings /lib/x86_64-linux-gnu/libc.so.6 | grep GLIBC_2.2
+
+sudo apt-get update
+sudo apt install -y python gconf2 libxkbfile-dev p7zip-full make libssh2-1-dev libkrb5-dev
+sudo apt-get install -y openssl pkg-config build-essential gcc-8 g++-8 git
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
+
+# install bsdtar 3.3.0
+wget https://launchpad.net/ubuntu/+source/libarchive/3.3.3-1/+build/15782551/+files/libarchive13_3.3.3-1_amd64.deb
+sudo dpkg -i libarchive13_3.3.3-1_amd64.deb
+wget https://launchpad.net/ubuntu/+source/libarchive/3.3.3-1/+build/15782551/+files/libarchive-tools_3.3.3-1_amd64.deb
+sudo dpkg -i libarchive-tools_3.3.3-1_amd64.deb
+wget http://launchpadlibrarian.net/401610929/bsdtar_3.3.3-1_all.deb
+sudo dpkg -i bsdtar_3.3.3-1_all.deb
+bsdtar --version
+bsdtar --no-fflags
+
+# sudo chmod -R 777 /workspace
+cd /workspace
+rm -rf src
+gcc -v
+g++ -v
+cc -v
+makedeb --printsrcinfo | tee .SRCINFO
+ls -la
+makedeb -s
+# tail -f /etc/issue

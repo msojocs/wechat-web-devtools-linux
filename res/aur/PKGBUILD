@@ -64,7 +64,7 @@ prepare() {
     ls | grep node-*linux* | xargs -I{} mv {} node
     ls | grep nwjs-*linux* | xargs -I{} mv {} nwjs
 
-    mkdir tools
+    mkdir -p tools
     for file in *.js *.sh; do
         mv $file tools;
     done

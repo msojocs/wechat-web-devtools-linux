@@ -35,14 +35,14 @@ if [ ! -f "$root_dir/node/bin/node" ]; then
   fail "Node安装失败"
   exit
 fi
-
-# 将node加入环境
+  # 将node加入环境
 export PATH="$root_dir/node/bin":$PATH
-echo "=====安装node-gyp nw-gyp===="
-npm uninstall node-gyp -g
-npm install node-gyp nw-gyp npm -g --registry=https://registry.npm.taobao.org
-node-gyp install
-node-gyp list
+  echo "=====安装node-gyp nw-gyp===="
+  npm uninstall node-gyp -g
+  npm install node-gyp nw-gyp npm -g --registry=https://registry.npm.taobao.org
+  node-gyp install
+  node-gyp list
+
 
 echo "==========Initializing nwjs=========="
 if [ -f "$root_dir/nwjs/nw" ]; then
@@ -51,6 +51,14 @@ else
   node "$root_dir/tools/update-nwjs-node"
 fi
 
+# rm -rf "$root_dir/tmp/7z"
+# mkdir -p "$root_dir/tmp/7z"
+# cd "$root_dir/tmp/7z"
+# wget https://www.7-zip.org/a/7z2107-linux-x64.tar.xz
+# tar -xJf 7z2107-linux-x64.tar.xz
+# ln -s 7zz 7z
+# export PATH="$root_dir/tmp/7z:$PATH"
+# 7z
 echo "==========Initializing wechat-devtools package=========="
 if [ -f "$root_dir/package.nw/package.json" ]; then
   success "微信开发者工具安装完毕"

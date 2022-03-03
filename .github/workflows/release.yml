@@ -91,11 +91,10 @@ jobs:
 
   build-deb:
     name: Build Deb Package
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     strategy:
       matrix:
-        node-version: [16.x]
         ARCH: ['x86_64']
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
@@ -103,26 +102,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-
-      - name: Prepare
-        run: |
-            pwd
-            ls -l
-            export ACTION_MODE=true
-            sudo apt-get install -y libx11-dev libxkbfile-dev p7zip-full  python2 python3 libkrb5-dev gcc openssl libssh2-1-dev g++ make
-            npm install node-gyp nw-gyp npm -g
-            node-gyp install
-            # https://docs.makedeb.org/home/installing/apt-repository/
-            wget -qO - 'https://proget.hunterwittenborn.com/debian-feeds/makedeb.pub' | \
-            gpg --dearmor | \
-            sudo tee /usr/share/keyrings/makedeb-archive-keyring.gpg &> /dev/null
-            echo 'deb [signed-by=/usr/share/keyrings/makedeb-archive-keyring.gpg arch=all] https://proget.hunterwittenborn.com/ makedeb main' | \
-            sudo tee /etc/apt/sources.list.d/makedeb.list
-            sudo apt update
-            sudo apt-get install -y makedeb gconf2
 
       - name: Generate TAG
         id: Tag
@@ -139,16 +118,14 @@ jobs:
          
       - name: Build Deb Package
         run: |
-          tools/build-aur.sh deb
+          export BUILD_VERSION=${{ steps.tag.outputs.tag }}
+          tools/build-deb.sh
           # deb
-          cd tmp/AUR
-          makedeb
-          cd ../
-          # ./tmp
-          ls -l AUR
+          sudo chmod -R 777 tmp
+          cd tmp
+          ls -l deb
           mkdir -p build
-          mv AUR/*.deb build
-          rm -rf AUR/pkg AUR/src
+          mv deb/*.deb build
           ls -l build
 
       - name: Upload artifact

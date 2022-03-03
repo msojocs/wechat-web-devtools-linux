@@ -1,5 +1,13 @@
 #!/bin/bash
 
+BUILD_VERSION='v1'
+if [[ ! $BUILD_VERSION -eq 'continuous' ]];then
+    BUILD_VERSION=v0
+fi
+echo $BUILD_VERSION
+sed -i "s/BUILD_VERSION/${BUILD_VERSION//v/}/" "/mnt/disk2/wechat-web-devtools-linux/tmp/deb/DEBIAN/control"
+
+exit
 
 if [[ $NO_WINE == 'true' ]];then
   echo "not wine"

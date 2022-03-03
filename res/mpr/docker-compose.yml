@@ -1,0 +1,7 @@
+version: "3"
+services:
+  wechat_devtools:
+    image: proget.hunterwittenborn.com/docker/makedeb/makedeb:ubuntu-bionic
+    volumes:
+      - .:/workspace
+    entrypoint: /workspace/docker/entrypoint
