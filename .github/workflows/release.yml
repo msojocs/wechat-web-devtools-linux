@@ -9,7 +9,7 @@ on:
   push:
     tags:        
       - v*
-    branches: [ master, aur]
+    branches: [ master, build]
   pull_request:
     branches: [ master ]
   # # Allows you to run this workflow manually from the Actions tab
@@ -22,7 +22,6 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
         ARCH: ['x86_64']
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
@@ -30,18 +29,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
 
-      - name: Prepare
+      - name: Test
         run: |
-            pwd
-            ls -l
-            export ACTION_MODE=true
-            sudo apt-get install -y libx11-dev libxkbfile-dev p7zip-full  python2 python3 libkrb5-dev gcc openssl libssh2-1-dev g++ make
-            npm install node-gyp nw-gyp npm -g
-            node-gyp install
+          echo "$UID, $GID"
 
       - name: Generate TAG
         id: Tag
@@ -58,24 +49,25 @@ jobs:
          
       - name: Build
         run: |
-          # docker-compose up
-          export ACTION=true
+          export ACTION_MODE=true
+          export DOCKER_UID=$UID
+          export DOCKER_GID=$GID
           # tar.gz AppImage
           ls -l
-          tools/setup-wechat-devtools-bash
-          sudo chmod -R 755 package.nw
-          bash tools/build-release.sh ${{ steps.tag.outputs.tag }} ${{ matrix.ARCH }}
+          docker-compose up
+          mkdir -p tmp/build
+          tools/build-release.sh ${{ steps.tag.outputs.tag }} ${{ matrix.ARCH }}
 
       - name: Compress nodegit compiler
         run: |
           ls -l
-          sudo cp -r package.nw/node_modules/nodegit tmp/build/nodegit
-          sudo cp -r compiler tmp/build/compiler
+          cp -r package.nw/node_modules/nodegit tmp/build/nodegit
+          cp -r compiler tmp/build/compiler
           cd tmp/build
           ls -l
           tar -zcf compiler.tar.gz compiler
           tar -zcf nodegit.tar.gz nodegit
-          sudo rm -rf compiler nodegit
+          rm -rf compiler nodegit
           ls -l
 
       - name: View Directory
@@ -119,14 +111,12 @@ jobs:
       - name: Build Deb Package
         run: |
           export BUILD_VERSION=${{ steps.tag.outputs.tag }}
-          tools/build-deb.sh
-          # deb
-          sudo chmod -R 777 tmp
-          cd tmp
-          ls -l deb
-          mkdir -p build
-          mv deb/*.deb build
-          ls -l build
+          export DOCKER_UID=$UID
+          export DOCKER_GID=$GID
+          docker-compose up
+          ls -l
+          mkdir -p tmp/build
+          tools/build-deb.sh ${{ steps.tag.outputs.tag }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2.3.1

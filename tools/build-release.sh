@@ -4,9 +4,13 @@
 set -e
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 tmp_dir="$root_dir/tmp"
-build_dir="$tmp_dir/build"
-version=$1
-ARCH=$2
+if [ -z $VERSION ];then
+  export VERSION=$1
+fi
+if [ -z $ARCH ];then
+  export ARCH=$2
+fi
+
 
 success() {
     echo -e "\033[42;37m 成功 \033[0m $1"
@@ -19,58 +23,29 @@ fail() {
     echo -e "\033[41;37m 失败 \033[0m $1"
 }
 
-if [[ $version == '' ]];then
-  fail "请指定版本"
+if [[ $VERSION == '' ]];then
+  fail "请指定版本号"
   exit 1
 elif [[ $ARCH == '' ]];then
   fail "请指定架构"
   exit 1
 fi
-export ARCH=$ARCH
-
-rm -rf "$build_dir"
-mkdir -p "$build_dir"
-
-notice "下载AppImage构建工具"
-if [ $ACTION_MODE!='true' ]; then
-  appimagetool_host="github.com"
-else
-  appimagetool_host="download.fastgit.org"
-fi
-wget "https://$appimagetool_host/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" \
-  -O "$tmp_dir/appimagetool-x86_64.AppImage"
-chmod a+x "$tmp_dir/appimagetool-x86_64.AppImage"
 
 for type in wine no_wine; do
   notice "当前构建类型: $type";
-  FULL_NAME="WeChat_Dev_Tools_${version}_${ARCH}_$type"
   if [[ $type == 'no_wine' ]];then
     notice "no wine handle"
     export NO_WINE=true
-    bash "$root_dir/tools/fix-core.sh"
-    bash "$root_dir/tools/fix-other.sh"
+    "$root_dir/tools/fix-core.sh"
+    "$root_dir/tools/fix-other.sh"
   fi
-  mkdir -p "$build_dir/$FULL_NAME"
 
   # 构建压缩包
-  notice "COPY bin"
-  \cp -rf "$root_dir/bin" "$build_dir/$FULL_NAME/bin"
-  notice "COPY nwjs"
-  \cp -drf "$root_dir/nwjs" "$build_dir/$FULL_NAME/nwjs"
-  notice "COPY node"
-  rm -rf "$build_dir/$FULL_NAME/nwjs/node"
-  \cp -rf "$root_dir/node/bin/node" "$build_dir/$FULL_NAME/nwjs/node"
-  notice "COPY package.nw"
-  \cp -rf "$root_dir/package.nw" "$build_dir/$FULL_NAME/package.nw"
-  notice "MAKE tar.gz"
-  cd "$build_dir" && tar -zcf "$FULL_NAME.tar.gz" "$FULL_NAME"
+  notice "BUILD Simple Package"
+  "$root_dir/tools/build-tar.sh"
 
   # 构建AppImage
   notice "BUILD AppImage"
-  bash "$root_dir/tools/appimage.sh"
-  "$tmp_dir/appimagetool-x86_64.AppImage" "$root_dir/tmp/AppDir" "$build_dir/$FULL_NAME.AppImage"
+  "$root_dir/tools/build-appimage.sh"
 
-  # 删除构建资源
-  notice "DELETE Build Source"
-  rm -rf "$build_dir/$FULL_NAME"
 done

@@ -1,13 +1,21 @@
 #!/bin/bash
 
-if [ "$(id -u)" -eq '0' ]
-then
-    USER_ID=${LOCAL_USER_ID:-9001}
-    usermod -u ${USER_ID} -g ${USER_ID} node > /dev/null 2>&1
-    chown -R ${USER_ID}:${USER_ID} /workspace > /dev/null 2>&1
+strings /usr/lib/x86_64-linux-gnu/libstdc++.so.6 | grep GLIBC
+strings /lib/x86_64-linux-gnu/libc.so.6 | grep GLIBC_2.2
 
-    ACTION_MODE=$( export ACTION_MODE )
+notice() {
+    echo -e "\033[36m $1 \033[0m "
+}
+
+if [ "$(id -u)" -eq '0' ];then
+    USER_ID=${LOCAL_USER_ID:-1000}
+    GROUP_ID=${LOCAL_GROUP_ID:-1000}
+    notice "$USER_ID, $GROUP_ID"
+    usermod -u ${USER_ID} -g ${GROUP_ID} user > /dev/null 2>&1
+    chown -R ${USER_ID}:${GROUP_ID} /workspace > /dev/null 2>&1
+
     if [ $ACTION_MODE!='true' ]; then
+        notice "非ACTION模式, 设置镜像源"
         npm set registry https://r.npm.taobao.org # 注册模块镜像
         npm set disturl https://npm.taobao.org/dist # node-gyp 编译依赖的 node 源码镜像
         ## 以下选择添加
@@ -20,12 +28,11 @@ then
         npm set selenium_cdnurl https://npm.taobao.org/mirrors/selenium # selenium 二进制包镜像
         npm set node_inspector_cdnurl https://npm.taobao.org/mirrors/node-inspector # node-inspector 二进制包镜像
         # npm cache clean --force # 清空缓存
-        
     fi
     
     # ls -l
     # cat /etc/passwd
-    exec gosu node docker/entrypoint
+    exec gosu user docker/entrypoint
 
 fi
 

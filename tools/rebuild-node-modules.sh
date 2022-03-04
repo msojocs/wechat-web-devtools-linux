@@ -43,6 +43,7 @@ echo "nw-gyp version: $( nw-gyp --version )"
 echo "node version: $(node --version )"
 echo "npm version: $(npm --version )"
 python --version
+python3 --version
 
 rm -fr "${package_dir}/node_modules/vscode-windows-ca-certs" # the module is only available in windows
 rm -fr "${package_dir}/node_modules/vscode-windows-registry" # the module is only available in windows

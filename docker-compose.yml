@@ -1,17 +1,19 @@
 version: "3"
 services:
   wechat_devtools:
-    # image: node:16.13.1
-    build:
-      context: ./docker
-      dockerfile: Dockerfile
+    image: jiyecafe/wechat-devtools-build:latest 
+    # build:
+    #   context: ./docker
+    #   dockerfile: Dockerfile
     volumes:
       - .:/workspace
       - ./cache/.npm:/root/.npm
     environment:
-      - ACTION=${ACTION_MODE:-false}
+      - ACTION_MODE=${ACTION_MODE:-false}
       # - https_proxy=${https_proxy:-}
       - NO_WINE=${NO_WINE:-true}
-      - LOCAL_USER_ID=${UID:-1000}
+      - LOCAL_USER_ID=${DOCKER_UID:-1000}
+      - LOCAL_GROUP_ID=${DOCKER_GID:-1000}
+      - BUILD_VERSION=${BUILD_VERSION:-v0}
     entrypoint: /workspace/docker/docker-entrypoint
     userns_mode: "host"

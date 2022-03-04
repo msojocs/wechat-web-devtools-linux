@@ -14,7 +14,7 @@ const download = function () {
             console.error(error)
         }
 
-        let url = process.env['ACTION'] === 'true'?nodeConfig["url-global"]:nodeConfig.url
+        let url = process.env['ACTION_MODE'] === 'true'?nodeConfig["url-global"]:nodeConfig.url
             url = url.replace("${version}", nodeConfig.version)
             .replace("${version}", nodeConfig.version);
 
