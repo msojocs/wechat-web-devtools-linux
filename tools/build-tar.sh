@@ -49,6 +49,9 @@ rm -rf "$build_dir/nwjs/node"
 \cp -rf "$root_dir/node/bin/node" "$build_dir/nwjs/node"
 notice "COPY package.nw"
 \cp -rf "$root_dir/package.nw" "$build_dir/package.nw"
+
 notice "MAKE tar.gz"
-cd "$tmp_dir/tar" && tar -zcf "$store_dir/WeChat_Dev_Tools_${VERSION}_${ARCH}_${TYPE}.tar.gz" "WeChat_Dev_Tools_${VERSION}_${ARCH}_${TYPE}"
+ver=$( cat "$root_dir/package.nw/package.json" | grep -m 1 -Eo "\"[0-9]{1}\.[0-9]{2}\.[0-9]+" )
+ver="${ver//\"/}"
+cd "$tmp_dir/tar" && tar -zcf "$store_dir/WeChat_Dev_Tools_${ver}_${VERSION}_${ARCH}_${TYPE}.tar.gz" "WeChat_Dev_Tools_${VERSION}_${ARCH}_${TYPE}"
 rm -rf $build_dir
