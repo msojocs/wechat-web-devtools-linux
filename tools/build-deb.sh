@@ -46,4 +46,6 @@ notice "BUILD DEB Package"
 cd "$root_dir/tmp/deb"
 ls -l "$root_dir/tmp/deb"
 mkdir -p "$root_dir/tmp/build"
-dpkg-deb -b . "$root_dir/tmp/build/WeChat_Dev_Tools_$BUILD_VERSION.deb"
+ver=$( cat "$root_dir/package.nw/package.json" | grep -m 1 -Eo "\"[0-9]{1}\.[0-9]{2}\.[0-9]+" )
+ver="${ver//\"/}"
+dpkg-deb -b . "$root_dir/tmp/build/WeChat_Dev_Tools_${ver}_$BUILD_VERSION.deb"

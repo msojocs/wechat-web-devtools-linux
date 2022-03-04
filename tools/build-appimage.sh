@@ -60,6 +60,8 @@ cd "$app_dir"
 
 # appimagetool $app_dir
 notice "MAKE APPIMAGE"
-"$tmp_dir/appimagetool-x86_64.AppImage" "$app_dir" "$build_dir/WeChat_Dev_Tools_${VERSION}_${ARCH}_${TYPE}.AppImage"
+ver=$( cat "$root_dir/package.nw/package.json" | grep -m 1 -Eo "\"[0-9]{1}\.[0-9]{2}\.[0-9]+" )
+ver="${ver//\"/}"
+"$tmp_dir/appimagetool-x86_64.AppImage" "$app_dir" "$build_dir/WeChat_Dev_Tools_${ver}_${VERSION}_${ARCH}_${TYPE}.AppImage"
 
 rm -rf $app_dir
