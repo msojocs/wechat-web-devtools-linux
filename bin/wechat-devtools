@@ -4,13 +4,13 @@ root_dir=$(cd `dirname $0`/.. && pwd -P)
 
 # 数据目录处理
 if [ -z $XDG_CONFIG_HOME ];then
-  DATA_DIR=$HOME
+  DATA_DIR=$HOME/.config
 else
   DATA_DIR=$XDG_CONFIG_HOME
 fi
 
 export WECHAT_DEVTOOLS_DIR="$root_dir/nwjs"
-export APPDATA="$DATA_DIR/.config/wechat_devtools"
+export APPDATA="$DATA_DIR/wechat_devtools"
 export PATH="$root_dir/wine:$root_dir/node/bin:$root_dir/nwjs:$PATH"
 export USERPROFILE=$DATA_DIR
 

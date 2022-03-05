@@ -29,7 +29,7 @@ rm -rf $build_dir
 # Make usr and icons dirs
 notice "Make Dirs"
 mkdir -p $base_dir/{entries,files}
-mkdir -p $base_dir/entries/{applications,icons,mime,plugins,services}
+mkdir -p $base_dir/entries/{applications,icons/hicolor/scalable/apps/,mime,plugins,services}
 mkdir -p $base_dir/files/{bin/bin,doc,lib}
 
 notice "COPY Files"
@@ -44,10 +44,10 @@ else
 fi
 # desktop
 \cp -rf "$root_dir/res/template.desktop" "$base_dir/entries/applications/wechat-devtools.desktop"
-sed -i 's#Icon=dir/res/icons/wechat-devtools.svg#Icon=wechat-devtools#' "$base_dir/entries/applications/wechat-devtools.desktop"
+sed -i 's#Icon=dir/res/icons/wechat-devtools.svg#Icon=io.github.msojocs.wechat-devtools#' "$base_dir/entries/applications/wechat-devtools.desktop"
 sed -i "s#dir#/opt/apps/$package_name/files/bin#" "$base_dir/entries/applications/wechat-devtools.desktop"
 
-\cp -rf "$root_dir/res/icons/wechat-devtools.png" "$base_dir/entries/icons/wechat-devtools.png"
+\cp -rf "$root_dir/res/icons/wechat-devtools.svg" "$base_dir/entries/icons/hicolor/scalable/apps/io.github.msojocs.wechat-devtools.svg"
 
 cp -r "$root_dir/package.nw" "$base_dir/files/bin/package.nw"
 cp -r "$root_dir/nwjs" "$base_dir/files/bin/nwjs"
