@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 notice() {
     echo -e "\033[36m $1 \033[0m "
 }
@@ -20,6 +21,7 @@ root_dir=$(cd `dirname $0`/.. && pwd -P)
 tmp_dir="$root_dir/tmp"
 app_dir="$tmp_dir/AppDir"
 build_dir="$tmp_dir/build"
+mkdir -p $build_dir
 
 notice "下载AppImage构建工具 ACTION_MODE:$ACTION_MODE"
 if [[ $ACTION_MODE == 'false' ]]; then
@@ -42,8 +44,9 @@ mkdir -p $app_dir/usr/share/{metainfo,icons}
 
 notice "COPY FILES"
 cp "$root_dir/bin/wechat-devtools" "$app_dir/bin/wechat-devtools"
-cp "$root_dir/res/appimage.desktop" "$app_dir/wechat-devtools.desktop"
 cp "$root_dir/res/icons/wechat-devtools.png" "$app_dir/wechat-devtools.png"
+\cp -rf "$root_dir/res/appimage"/* "$app_dir"
+cp $app_dir/usr/share/applications/*.desktop "$app_dir/io.github.msojocs.wechat_devtools.desktop"
 
 cat > "$app_dir/AppRun" <<- EOF
 #!/bin/bash

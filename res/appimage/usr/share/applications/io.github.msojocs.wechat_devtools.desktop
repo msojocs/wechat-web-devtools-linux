@@ -11,3 +11,4 @@ Terminal=false
 StartupWMClass=wechat_devtools
 Actions=
 MimeType=x-scheme-handler/wechatide
+X-AppImage-Version=v0

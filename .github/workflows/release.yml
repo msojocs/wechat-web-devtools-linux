@@ -113,6 +113,7 @@ jobs:
           export BUILD_VERSION=${{ steps.tag.outputs.tag }}
           export DOCKER_UID=$UID
           export DOCKER_GID=$GID
+          export ACTION_MODE=true
           docker-compose up
           ls -l
           mkdir -p tmp/build
