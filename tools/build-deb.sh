@@ -39,7 +39,7 @@ if [[ ! $BUILD_VERSION -eq 'continuous' ]];then
 else
     sed -i "s/BUILD_VERSION/0/" "$app_dir/DEBIAN/control"
 fi
-cp "$root_dir/res/icons/wechat-devtools.png" "$app_dir/usr/share/icons/wechat-devtools.png"
+cp "$root_dir/res/icons/wechat-devtools.svg" "$app_dir/usr/share/icons/wechat-devtools.svg"
 
 cp -r "$root_dir/package.nw" "$app_dir/opt/wechat-devtools/package.nw"
 cp -r "$root_dir/nwjs" "$app_dir/opt/wechat-devtools/nwjs"
@@ -53,4 +53,4 @@ ls -l "$root_dir/tmp/deb"
 mkdir -p "$root_dir/tmp/build"
 ver=$( cat "$root_dir/package.nw/package.json" | grep -m 1 -Eo "\"[0-9]{1}\.[0-9]{2}\.[0-9]+" )
 ver="${ver//\"/}"
-dpkg-deb -b . "$root_dir/tmp/build/WeChat_Dev_Tools_${ver}_$BUILD_VERSION.deb"
+dpkg-deb -b . "$root_dir/tmp/build/WeChat_Dev_Tools_${ver}-${BUILD_VERSION}_amd64.deb"

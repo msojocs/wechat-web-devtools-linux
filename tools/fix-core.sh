@@ -52,6 +52,8 @@ if [[ $NO_WINE == 'true' ]];then
     sed -i "s#{wcc:!0,wcsc:!0,DevToolProtector:!0}#$new_str#g" "$find_result"
     new_str='"linux"===process.platform'
     sed -i "s#\"darwin\"===process.platform#$new_str#g" "$find_result"
+    sed -i 's#return I("wcc")#return I("wcc.bin"),I("wcc")#g' "$find_result"
+    sed -i 's#return I("wcsc")#return I("wcsc.bin"),I("wcsc")#g' "$find_result"
   fi
 
   current=`date "+%Y-%m-%d %H:%M:%S"`
