@@ -50,6 +50,7 @@ jobs:
       - name: Build
         run: |
           export ACTION_MODE=true
+          export NO_WINE=false
           export DOCKER_UID=$UID
           export DOCKER_GID=$GID
           # tar.gz AppImage
@@ -118,6 +119,51 @@ jobs:
           ls -l
           mkdir -p tmp/build
           tools/build-deb.sh ${{ steps.tag.outputs.tag }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          # Artifact name
+          name: wechat-devtools-${{ matrix.ARCH }}.build
+          path: tmp/build
+
+  build-deepin:
+    name: Build Deepin Package
+    runs-on: ubuntu-18.04
+
+    strategy:
+      matrix:
+        ARCH: ['x86_64']
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+
+      - name: Generate TAG
+        id: Tag
+        run: |
+          tag='continuous'
+          name='Continuous Build'
+          if [ 'true' == ${{ startsWith(github.ref, 'refs/tags/') }} ];then
+            tag='${{ github.ref_name }}'
+            name='${{ github.ref_name }}'
+          fi
+          echo "tag result: $tag - $name"
+          echo "::set-output name=tag::$tag"
+          echo "::set-output name=name::$name"
+         
+      - name: Build Deepin Package
+        run: |
+          export BUILD_VERSION=${{ steps.tag.outputs.tag }}
+          export DOCKER_UID=$UID
+          export DOCKER_GID=$GID
+          export ACTION_MODE=true
+          docker-compose up
+          ls -l
+          mkdir -p tmp/build
+          tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2.3.1
@@ -202,6 +248,7 @@ jobs:
     needs:
       - build
       - build-deb
+      - build-deepin
       - build-arch
     runs-on: ubuntu-latest
     steps:

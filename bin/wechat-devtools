@@ -2,10 +2,17 @@
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 
+# 数据目录处理
+if [ -z $XDG_CONFIG_HOME ];then
+  DATA_DIR=$HOME
+else
+  DATA_DIR=$XDG_CONFIG_HOME
+fi
+
 export WECHAT_DEVTOOLS_DIR="$root_dir/nwjs"
-export APPDATA="$( echo ~ )/.config/wechat_devtools"
+export APPDATA="$DATA_DIR/.config/wechat_devtools"
 export PATH="$root_dir/wine:$root_dir/node/bin:$root_dir/nwjs:$PATH"
-export USERPROFILE=$( echo ~ )
+export USERPROFILE=$DATA_DIR
 
 clean_cache() {
   echo "清理缓存";
@@ -26,10 +33,10 @@ else
 fi;
 
 EXTENSION1="--load-extension=$root_dir/nwjs/package.nw/js/ideplugin"
-EXTENSION2=--load-extension=~/.config/wechat_devtools/WeappPlugin 
+EXTENSION2=--load-extension=$APPDATA/WeappPlugin 
 INSPECTOR1="--custom-devtools-frontend=file://$root_dir/package.nw/js/ideplugin/inspector" # 要加file://指明为本地文件路径
-INSPECTOR2="--custom-devtools-frontend=file://$( echo ~ )/.config/wechat_devtools/WeappPlugin/inspector/"
-USERDATADIR="$( echo ~ )/.config/wechat_devtools"
+INSPECTOR2="--custom-devtools-frontend=file://$APPDATA/WeappPlugin/inspector/"
+USERDATADIR="$APPDATA"
 
 # "$@"参数
 LANG=zh_CN.UTF-8

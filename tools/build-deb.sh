@@ -9,6 +9,9 @@ echo $BUILD_VERSION
 if [ -z "$BUILD_VERSION" ];then
   export BUILD_VERSION=$1
 fi
+if [ -z "$BUILD_VERSION" ];then
+  export BUILD_VERSION='continuous'
+fi
 echo $BUILD_VERSION
 
 ############ 构建deb包 ################
@@ -28,7 +31,9 @@ mkdir -p $app_dir/usr/share/{metainfo,icons,applications}
 notice "COPY Files"
 cp -r "$root_dir/res/deb/data"/* $app_dir
 cp "$root_dir/bin/wechat-devtools" "$app_dir/opt/wechat-devtools/bin"
-cp "$root_dir/res/deb.desktop" "$app_dir/usr/share/applications/wechat-devtools.desktop"
+cp "$root_dir/res/template.desktop" "$app_dir/usr/share/applications/wechat-devtools.desktop"
+sed -i 's#Icon=dir/res/icons/wechat-devtools.svg#Icon=wechat-devtools#' "$app_dir/usr/share/applications/wechat-devtools.desktop"
+sed -i "s#dir#/opt/wechat-devtools#" "$app_dir/usr/share/applications/wechat-devtools.desktop"
 if [[ ! $BUILD_VERSION -eq 'continuous' ]];then
     sed -i "s/BUILD_VERSION/${BUILD_VERSION//v/}/" "$app_dir/DEBIAN/control"
 else
