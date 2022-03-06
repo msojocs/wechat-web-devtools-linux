@@ -6,7 +6,7 @@ const fs = require("fs");
 const path = require("path");
 const { info } = require("console");
 const util = require("util");
-const {exit} = require("process")
+const { exit } = require("process");
 
 const urls = {
     stable: "https://developers.weixin.qq.com/miniprogram/dev/devtools/stable.html",
@@ -15,9 +15,13 @@ const urls = {
         "https://developers.weixin.qq.com/miniprogram/dev/devtools/nightly.html",
 };
 
-const args = process.argv.slice(2);
-let branch = args[0];
-let ver = args[1];
+const arguments = process.argv.slice(2);
+const args = {};
+for (let arg of arguments) {
+    let t = arg.split("=");
+    args[t[0]] = t[1];
+}
+let branch = args.branch;
 if (!branch || !urls[branch]) {
     branch = "stable";
 }
@@ -29,7 +33,7 @@ const url = urls[branch];
 // https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=1021911180&version_type=1
 // https://dldir1.qq.com/WechatWebDev/nightly/p-7aa88fbb60d64e4a96fac38999591e31/wechat_devtools_1.02.2001202_x64.exe
 
-let version = undefined;
+let version = args.version;
 
 const packageDir = "code/package.nw";
 
@@ -39,14 +43,15 @@ const fetching = function () {
             fs.mkdirSync(path(__dirname, "../cache"));
         } catch (error) {}
 
-        info(`Fetching wechat-dev-tool info: ${url}`);
-
-        if (ver) {
-            version = ver;
-            resolve(
-                `https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=${ver}&version_type=1`
-            );
+        if (version && version !== "latest") {
+            if (!/\d+\.\d+\.\d+/.test(version)) reject("版本格式有误！");
+            else {
+                resolve(
+                    `https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=${version.replace(/\./g, '')}&version_type=1`
+                );
+            }
         } else {
+            info(`Fetching wechat-dev-tool info: ${url}`);
             https
                 .get(url, (res) => {
                     let result = "";
@@ -124,11 +129,11 @@ const download = function (url) {
 
         ls.on("close", (code) => {
             console.info(`Download Wechat DevTools Result Code: ${code}`);
-            if (code === 0){
+            if (code === 0) {
                 fs.renameSync(`${localPath}.tmp`, localPath);
                 resolve(localPath);
-            }else{
-                reject()
+            } else {
+                reject();
             }
         });
     });
@@ -156,9 +161,9 @@ const extract = function (localPath) {
                 stdio: "inherit",
             }
         );
-        ext.on("error", code=>{
-            reject(code)
-        })
+        ext.on("error", (code) => {
+            reject(code);
+        });
         ext.on("close", (code) => {
             info(`解压完毕：${code}`);
             resolve(extractPath);
@@ -181,22 +186,37 @@ const upgrade = function (extractPath) {
 
         // 尝试修改权限
         try {
-            execSync(`chmod -R 755 ${path.resolve(__dirname, '../package.nw')}`)
+            execSync(
+                `chmod -R 755 ${path.resolve(__dirname, "../package.nw")}`
+            );
         } catch (err) {
             // ignore
-            console.error(err)
+            console.error(err);
         }
-        
+
         // 删除临时
         execSync(`rm -rf ${extractPath}`);
 
         if (fs.existsSync(path.resolve(__dirname, "../nwjs"))) {
-            if (!fs.statSync(__dirname, "../nwjs/package.nw").isSymbolicLink()) {
-                execSync(`rm -rf ${path.resolve(__dirname, "../nwjs/package.nw")}`)
-                console.log(`创建链接 ${path.resolve(__dirname, "../package.nw")}--->${path.resolve(__dirname, "../nwjs/package.nw")}`)
+            if (
+                !fs.statSync(__dirname, "../nwjs/package.nw").isSymbolicLink()
+            ) {
+                execSync(
+                    `rm -rf ${path.resolve(__dirname, "../nwjs/package.nw")}`
+                );
+                console.log(
+                    `创建链接 ${path.resolve(
+                        __dirname,
+                        "../package.nw"
+                    )}--->${path.resolve(__dirname, "../nwjs/package.nw")}`
+                );
                 // 链接
-                execSync(`cd ${path.resolve(__dirname, "../nwjs")} && ln -s ../package.nw package.nw`)
-                
+                execSync(
+                    `cd ${path.resolve(
+                        __dirname,
+                        "../nwjs"
+                    )} && ln -s ../package.nw package.nw`
+                );
             }
         }
 
@@ -252,19 +272,24 @@ const rebuild_wechat_devtools_node_modules = function () {
     info("Rebuilding wechat-devtools node modules");
 
     return new Promise((resolve, reject) => {
-        const nwConfig = require(path.resolve(__dirname, "../conf/nwjs.json"))
-        const e = spawn(path.resolve(__dirname, "rebuild-node-modules.sh"), [nwConfig.version], {
-            stdio: "inherit",
-        })
-        e.on("error", code=>{
-            reject(code)
-        })
+        const nwConfig = require(path.resolve(__dirname, "../conf/nwjs.json"));
+        const e = spawn(
+            path.resolve(__dirname, "rebuild-node-modules.sh"),
+            [nwConfig.version],
+            {
+                stdio: "inherit",
+            }
+        );
+        e.on("error", (code) => {
+            reject(code);
+        });
         e.on("close", (code) => {
-            console.info(`Rebuilding wechat-devtools node modules Result Code: ${code}`)
-            if(0 === code)
-            resolve();
-            else{
-                reject(code)
+            console.info(
+                `Rebuilding wechat-devtools node modules Result Code: ${code}`
+            );
+            if (0 === code) resolve();
+            else {
+                reject(code);
             }
         });
     });
@@ -273,13 +298,9 @@ const patch_wechat_devtools = function () {
     info("Patching wechat-devtools");
 
     return new Promise((resolve, reject) => {
-        const exec = spawn(
-            path.resolve(__dirname, "fix-menu.sh"),
-            [],
-            {
-                stdio: "inherit",
-            }
-        );
+        const exec = spawn(path.resolve(__dirname, "fix-menu.sh"), [], {
+            stdio: "inherit",
+        });
         exec.on("close", (code) => {
             resolve();
         });
@@ -289,7 +310,7 @@ const patch_other = function () {
     info("Patching Other");
 
     return new Promise((resolve, reject) => {
-        execSync(path.resolve(__dirname, "fix-other.sh"))
+        execSync(path.resolve(__dirname, "fix-other.sh"));
 
         resolve();
     });
@@ -309,13 +330,16 @@ const start = async () => {
         await patch_wechat_devtools();
         await patch_other();
         // 写入构建时间戳
-        fs.writeFileSync(path.resolve(__dirname, '../package.nw/.build_time'), '' + parseInt(new Date().getTime()/1000))
+        fs.writeFileSync(
+            path.resolve(__dirname, "../package.nw/.build_time"),
+            "" + parseInt(new Date().getTime() / 1000)
+        );
         console.log(
             `Succeeded upgrading wechat-devtools to version ${version}`
         );
     } catch (error) {
         console.error("异常", error);
-        exit(-1)
+        exit(-1);
     }
 };
 start();

@@ -1,7 +1,9 @@
 {
     "version": "0.53.1",
     "url": "https://oss.npmmirror.com/dist/nwjs/v${version}/nwjs-sdk-v${version}-linux-x64.tar.gz",
+    "url-global": "https://dl.nwjs.io/v${version}/nwjs-sdk-v${version}-linux-x64.tar.gz",
     "nw2node": {
+        "0.61.0": "17.3.0",
         "0.60.0": "17.3.0",
         "0.59.1": "17.1.0",
         "0.59.0": "17.1.0",
