@@ -3,6 +3,10 @@ set -e
 notice() {
     echo -e "\033[36m $1 \033[0m "
 }
+fail() {
+    echo -e "\033[41;37m 失败 \033[0m $1"
+}
+
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 DEVTOOLS_VERSION=$( cat "$root_dir/package.nw/package.json" | grep -m 1 -Eo "\"[0-9]{1}\.[0-9]{2}\.[0-9]+" )
@@ -18,6 +22,13 @@ if [ "$BUILD_VERSION" == "continuous" ];then
   export BUILD_VERSION="v${DEVTOOLS_VERSION}-continuous"
 fi
 echo $BUILD_VERSION
+
+notice "检查版本号 -> $BUILD_VERSION"
+INPUT_VERSION=$( echo $BUILD_VERSION | sed 's/v//' | sed 's/-.*//' )
+if [[ "$INPUT_VERSION" != "$DEVTOOLS_VERSION" ]];then
+  fail "传入版本号与实际版本号不一致！"
+  exit 1
+fi
 
 ############ 构建deb包 ################
 root_dir=$(cd `dirname $0`/.. && pwd -P)
