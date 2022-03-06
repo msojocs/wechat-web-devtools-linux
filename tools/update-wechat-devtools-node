@@ -16,6 +16,8 @@ const urls = {
 };
 
 const arguments = process.argv.slice(2);
+console.log(arguments)
+
 const args = {};
 for (let arg of arguments) {
     let t = arg.split("=");
@@ -334,6 +336,11 @@ const start = async () => {
             path.resolve(__dirname, "../package.nw/.build_time"),
             "" + parseInt(new Date().getTime() / 1000)
         );
+        // 写入版本
+        fs.writeFileSync(
+            path.resolve(__dirname, "../conf/devtools_v"),
+            version
+        )
         console.log(
             `Succeeded upgrading wechat-devtools to version ${version}`
         );

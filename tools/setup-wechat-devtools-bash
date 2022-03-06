@@ -60,8 +60,28 @@ fi
 # export PATH="$root_dir/tmp/7z:$PATH"
 
 echo "==========Initializing wechat-devtools package=========="
-if [ -f "$root_dir/package.nw/package.json" ]; then
-  success "微信开发者工具安装完毕"
+
+if [[ $@ == *version* ]];then
+  # 参数有版本号，优先级高，清空TARGET_VERSION
+  echo "参数有版本号"
+  TARGET_VERSION=""
 else
-  node "$root_dir/tools/update-wechat-devtools-node" $@
+  # 参数没有版本号，获取
+  echo "参数没有版本号"
+  TARGET_VERSION="version="$( cat "$root_dir/conf/devtools_v")
 fi
+echo "TARGET_VERSION: $TARGET_VERSION"
+if [ ! -f "$root_dir/package.nw/package.json" ];then
+  # 没装，直接装
+  node "$root_dir/tools/update-wechat-devtools-node" $TARGET_VERSION $@
+  exit 0
+fi
+# 装了，获取已安装版本
+DEVTOOLS_VERSION=$( cat "$root_dir/package.nw/package.json" | grep -m 1 -Eo "\"[0-9]{1}\.[0-9]{2}\.[0-9]+" )
+DEVTOOLS_VERSION="${DEVTOOLS_VERSION//\"/}"
+# 已安装, 比较目标版本
+if [ "$TARGET_VERSION" == "$DEVTOOLS_VERSION" ];then
+  success "微信开发者工具安装完毕"
+  exit 0
+fi
+node "$root_dir/tools/update-wechat-devtools-node" $TARGET_VERSION $@
