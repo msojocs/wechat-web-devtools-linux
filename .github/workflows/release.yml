@@ -57,7 +57,7 @@ jobs:
           ls -l
           docker-compose up
           mkdir -p tmp/build
-          tools/build-release.sh ${{ steps.tag.outputs.tag }} ${{ matrix.ARCH }}
+          tools/build-release.sh ${{ matrix.ARCH }} ${{ steps.tag.outputs.tag }}
 
       - name: Compress nodegit compiler
         run: |
