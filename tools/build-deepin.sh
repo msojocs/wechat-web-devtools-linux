@@ -5,12 +5,17 @@ notice() {
 }
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
+DEVTOOLS_VERSION=$( cat "$root_dir/package.nw/package.json" | grep -m 1 -Eo "\"[0-9]{1}\.[0-9]{2}\.[0-9]+" )
+DEVTOOLS_VERSION="${DEVTOOLS_VERSION//\"/}"
 echo $BUILD_VERSION
 if [ -z "$BUILD_VERSION" ];then
   export BUILD_VERSION=$1
 fi
 if [ -z "$BUILD_VERSION" ];then
   export BUILD_VERSION='continuous'
+fi
+if [ "$BUILD_VERSION" == "continuous" ];then
+  export BUILD_VERSION="v${DEVTOOLS_VERSION}-continuous"
 fi
 echo $BUILD_VERSION
 
@@ -21,8 +26,6 @@ tmp_dir="$root_dir/tmp"
 build_dir="$root_dir/tmp/deepin"
 package_name="io.github.msojocs.wechat-devtools"
 base_dir="$build_dir/opt/apps/$package_name"
-DEVTOOLS_VERSION=$( cat "$root_dir/package.nw/package.json" | grep -m 1 -Eo "\"[0-9]{1}\.[0-9]{2}\.[0-9]+" )
-DEVTOOLS_VERSION="${DEVTOOLS_VERSION//\"/}"
 
 # Remove any previous build
 rm -rf $build_dir
@@ -34,14 +37,10 @@ mkdir -p $base_dir/files/{bin/bin,doc,lib}
 
 notice "COPY Files"
 cp -r "$root_dir/res/deepin"/* $build_dir
+sed -i "s/BUILD_VERSION/${BUILD_VERSION//v/}/" "$build_dir/DEBIAN/control"
+sed -i "s/BUILD_VERSION/${BUILD_VERSION//v/}/" "$base_dir/info"
 \cp -rf "$root_dir/bin/wechat-devtools" "$base_dir/files/bin/bin/wechat-devtools"
-if [[ ! $BUILD_VERSION -eq 'continuous' ]];then
-    sed -i "s/BUILD_VERSION/${DEVTOOLS_VERSION}-${BUILD_VERSION//v/}/" "$build_dir/DEBIAN/control"
-    sed -i "s/BUILD_VERSION/${DEVTOOLS_VERSION}-${BUILD_VERSION//v/}/" "$base_dir/info"
-else
-    sed -i "s/BUILD_VERSION/${DEVTOOLS_VERSION}-0/" "$build_dir/DEBIAN/control"
-    sed -i "s/BUILD_VERSION/${DEVTOOLS_VERSION}-0/" "$base_dir/info"
-fi
+
 # desktop
 \cp -rf "$root_dir/res/template.desktop" "$base_dir/entries/applications/wechat-devtools.desktop"
 sed -i 's#Icon=dir/res/icons/wechat-devtools.svg#Icon=io.github.msojocs.wechat-devtools#' "$base_dir/entries/applications/wechat-devtools.desktop"
@@ -59,4 +58,4 @@ notice "BUILD DEB Package"
 cd "$build_dir"
 ls -l "$build_dir"
 mkdir -p "$root_dir/tmp/build"
-dpkg-deb -b . "$root_dir/tmp/build/WeChat_Dev_Tools_${DEVTOOLS_VERSION}_${BUILD_VERSION}_deepin_amd64.deb"
+dpkg-deb -b . "$root_dir/tmp/build/WeChat_Dev_Tools_${BUILD_VERSION}_deepin_amd64.deb"
