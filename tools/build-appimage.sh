@@ -12,11 +12,10 @@ fail() {
     echo -e "\033[41;37m 失败 \033[0m $1"
 }
 
-
-if [ -z $VERSION ];then
+if [ -n "$1" ];then
   export VERSION=$1
 fi
-if [ -z $ARCH ];then
+if [ -n "$2" ];then
   export ARCH=$2
 fi
 

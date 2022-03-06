@@ -16,7 +16,7 @@ root_dir=$(cd `dirname $0`/.. && pwd -P)
 DEVTOOLS_VERSION=$( cat "$root_dir/package.nw/package.json" | grep -m 1 -Eo "\"[0-9]{1}\.[0-9]{2}\.[0-9]+" )
 DEVTOOLS_VERSION="${DEVTOOLS_VERSION//\"/}"
 echo $BUILD_VERSION
-if [ -z "$BUILD_VERSION" ];then
+if [ -n "$1" ];then
   export BUILD_VERSION=$1
 fi
 if [ -z "$BUILD_VERSION" ];then
