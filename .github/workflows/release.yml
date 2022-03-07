@@ -211,6 +211,8 @@ jobs:
          
       - name: Build ArchLinux Package
         uses: countstarlight/arch-makepkg-action@master
+        env:
+          BUILD_VERSION: ${{ steps.tag.outputs.tag }}
         with:
           repos: >
             archlinuxcn=https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch

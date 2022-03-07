@@ -16,13 +16,14 @@ VERSION_DATA=(${VERSION_DATA//,/ })
 TARGET_VERSION=${VERSION_DATA[0]}
 TARGET_VERSION_MD5=${VERSION_DATA[1]}
 
+echo "BUILD_VERSION: $BUILD_VERSION"
 if [ -n "$1" ];then
   export BUILD_VERSION=$1
 fi
 if [ -z "$BUILD_VERSION" ];then
   export BUILD_VERSION='continuous'
 fi
-echo "BUILD_VERSION: $BUILD_VERSION"
+
 # 及时构建修订版本号为0
 if [ "$BUILD_VERSION" == "continuous" ];then
   pkgrel='0'
