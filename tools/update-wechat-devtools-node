@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { execSync, exec, spawn } = require("child_process");
+const { execSync, spawn } = require("child_process");
 const https = require("https");
 const fs = require("fs");
 const path = require("path");
@@ -36,6 +36,7 @@ const url = urls[branch];
 // https://dldir1.qq.com/WechatWebDev/nightly/p-7aa88fbb60d64e4a96fac38999591e31/wechat_devtools_1.02.2001202_x64.exe
 
 let version = args.version;
+let md5;
 
 const packageDir = "code/package.nw";
 
@@ -118,6 +119,8 @@ const download = function (url) {
             __dirname,
             util.format("../cache/wechat_devtools_%s_x64.exe", version)
         );
+        let headers = execSync(`curl -IL "${url}"`).toString()
+        md5 = headers.match(/X-COS-META-MD5: (.*?)\r/)[1]
 
         if (fs.existsSync(localPath)) {
             resolve(localPath);
@@ -339,7 +342,7 @@ const start = async () => {
         // 写入版本
         fs.writeFileSync(
             path.resolve(__dirname, "../conf/devtools_v"),
-            version
+            `${version},${md5}`
         )
         console.log(
             `Succeeded upgrading wechat-devtools to version ${version}`

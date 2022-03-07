@@ -68,7 +68,9 @@ if [[ $@ == *version* ]];then
 else
   # 参数没有版本号，获取
   echo "参数没有版本号"
-  TARGET_VERSION="version="$( cat "$root_dir/conf/devtools_v")
+  VERSION_DATA=$( cat "$root_dir/conf/devtools_v" )
+  VERSION_DATA=(${VERSION_DATA//,/ })
+  TARGET_VERSION=${VERSION_DATA[0]}
 fi
 echo "TARGET_VERSION: $TARGET_VERSION"
 if [ ! -f "$root_dir/package.nw/package.json" ];then
