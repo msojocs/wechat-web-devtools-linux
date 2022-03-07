@@ -145,3 +145,6 @@ git clone https://github.com/msojocs/wechat-devtools-linux.git
   如果这个仓库让你感到舒适，可以点个Star或者请我喝杯咖啡：
 
   ![赞赏码](https://user-images.githubusercontent.com/20937135/154661198-93854dc1-c8ba-4c97-a7ab-9f8de26c0226.png)
+
+# 感谢支持
+  1. *喆
