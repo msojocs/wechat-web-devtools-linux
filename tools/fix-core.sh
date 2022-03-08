@@ -55,6 +55,14 @@ if [[ $NO_WINE == 'true' ]];then
     sed -i 's#return I("wcc")#return I("wcc.bin"),I("wcc")#g' "$find_result"
     sed -i 's#return I("wcsc")#return I("wcsc.bin"),I("wcsc")#g' "$find_result"
   fi
+  # 处理报错时控制台显示的环境
+  find_result=$( grep -lr '(env:' "$tmp_dir/core.wxvpkg" )
+  if [[ ! -z $find_result ]];then
+    echo "env: $find_result"
+    for file in $find_result; do
+      sed -i 's#"Windows"#"Linux"#g' "$file"
+    done
+  fi
 
   current=`date "+%Y-%m-%d %H:%M:%S"`
   timeStamp=`date -d "$current" +%s`
