@@ -172,7 +172,10 @@ if (args.includes("-llw")) {
                 return "\\u" + c.charCodeAt(0).toString(16).padStart(4, "0")
             })
             process.stdout.write(result)
+        }else{
+            process.stderr.write(Buffer.concat(errData).toString());
         }
+        process.exit(n)
     });
 
 } else if (args.includes("-lla")) {
@@ -233,12 +236,18 @@ if (args.includes("-llw")) {
                 return "\\u" + c.charCodeAt(0).toString(16).padStart(4, "0")
             })
             process.stdout.write(result)
+        }else{
+            process.stderr.write(Buffer.concat(errData).toString());
         }
+        process.exit(n)
     });
 
 } else {
-    spawn(wccPath, args, {
+    const wcc = spawn(wccPath, args, {
         cwd: process.cwd(),
         stdio: "inherit",
-    });
+    })
+    wcc.on('close', code=>{
+        process.exit(code)
+    })
 }

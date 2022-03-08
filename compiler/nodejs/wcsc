@@ -64,12 +64,18 @@ if (args.includes("-ll")) {
                 return "\\u" + c.charCodeAt(0).toString(16).padStart(4, "0")
             })
             process.stdout.write(result);
+        }else{
+            process.stderr.write(Buffer.concat(errData).toString());
         }
+        process.exit(n)
     });
 
 } else {
-    spawn(wcscPath, args, {
+    const wcsc = spawn(wcscPath, args, {
         cwd: process.cwd(),
         stdio: "inherit",
     });
+    wcsc.on('close', code=>{
+        process.exit(code)
+    })
 }
