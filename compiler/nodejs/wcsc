@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// wcsc.exe md5 = "3999c590c57c764b152bc6db3b3288c4"
 const { spawn } = require("child_process");
 const path = require("path");
 const version = "20220222"
