@@ -80,7 +80,6 @@ rm -fr "${package_dir}/node_modules_tmp/node_modules/spdlog-node"
     vscode-oniguruma \
     vscode-ripgrep \
     nodegit \
-    --registry=https://registry.npm.taobao.org \
     --nodegit_binary_host_mirror=https://npm.taobao.org/mirrors/nodegit/v0.27.0/) # reinstall modules
 
 # rebuild
