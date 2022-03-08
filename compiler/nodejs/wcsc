@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // wcsc.exe md5 = "3999c590c57c764b152bc6db3b3288c4"
+const version = "20220308"
 const { spawn } = require("child_process");
 const path = require("path");
-const version = "20220222"
 const args = process.argv.slice(2);
 const wcscPath = path.resolve(__dirname, "./wcsc.bin")
 
@@ -67,8 +67,8 @@ if (args.includes("-ll")) {
             process.stdout.write(result);
         }else{
             process.stderr.write(Buffer.concat(errData).toString());
+            process.exitCode = n
         }
-        process.exit(n)
     });
 
 } else {
@@ -77,6 +77,6 @@ if (args.includes("-ll")) {
         stdio: "inherit",
     });
     wcsc.on('close', code=>{
-        process.exit(code)
+        process.exitCode = code
     })
 }

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // wcc.exe md5 = "dbb9ed8bdee6654460dafc618f9622f3"
+const version = "20220308"
 const { spawn } = require("child_process");
-const version = "20220222"
 const path = require("path");
 const args = process.argv.slice(2);
 const funcName = args[args.indexOf('-gn') + 1]
@@ -175,8 +175,8 @@ if (args.includes("-llw")) {
             process.stdout.write(result)
         }else{
             process.stderr.write(Buffer.concat(errData).toString());
+            process.exitCode = n
         }
-        process.exit(n)
     });
 
 } else if (args.includes("-lla")) {
@@ -239,8 +239,8 @@ if (args.includes("-llw")) {
             process.stdout.write(result)
         }else{
             process.stderr.write(Buffer.concat(errData).toString());
+            process.exitCode = n
         }
-        process.exit(n)
     });
 
 } else {
@@ -249,6 +249,6 @@ if (args.includes("-llw")) {
         stdio: "inherit",
     })
     wcc.on('close', code=>{
-        process.exit(code)
+        process.exitCode = code
     })
 }
