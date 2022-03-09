@@ -110,16 +110,6 @@ const test_wine = () => {
 };
 const test_node = () => {
     
-    // const node_exec1 = spawnSync(
-    //     path.resolve(__dirname, "../../compiler/nodejs/wcc"),
-    //     config,
-    //     {
-    //         cwd: projectPath,
-    //         // stdio: 'inherit'
-    //     }
-    // );
-    // console.log(node_exec1.stdout.toString())
-    // return
     const node_exec = spawn(
         path.resolve(__dirname, "../../compiler/nodejs/wcc"),
         config,
@@ -155,44 +145,13 @@ const test_node = () => {
     });
 };
 
-
-// const node_exec = spawn(
-//     path.resolve(__dirname, "../../compiler/nodejs/wcc"),
-//     config,
-//     {
-//         cwd: projectPath,
-//         // stdio: 'inherit'
-//     }
-// );
-// const spwanData = [],
-//     errData = [];
-// node_exec.stdout.on("data", (e) => {
-//     spwanData.push(e);
-//     console.log(e.toString())
-// });
-// node_exec.stderr.on("data", (e) => {
-//     errData.push(e);
-//     console.log(e.toString())
-// });
-// node_exec.on("close", (n) => {
-//     console.log("n: ", n);
-//     if (0 === n) {
-//         const result = Buffer.concat(spwanData).toString();
-//         require('fs').writeFileSync(path.resolve(__dirname, '../../tmp/llw2.json'), result)
-//         // process.stdout.write(result);
-//     } else {
-//         process.stderr.write(Buffer.concat(errData).toString());
-//         // process.stderr.write(Buffer.concat(spwanData).toString());
-//     }
-// });
-
-
 const test = async () => {
     try {
-        // const wine_result = await test_wine();
+        const wine_result = await test_wine();
         const node_result = await test_node();
+        console.log(wine_result === node_result)
     } catch (err) {
-        console.error(err);
+        console.error('错误：', err);
     }
 };
 test();
