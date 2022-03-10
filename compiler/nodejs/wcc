@@ -6,6 +6,7 @@ const path = require("path");
 const args = process.argv.slice(2);
 const funcName = args[args.indexOf('-gn') + 1]
 const debugWXS = args.includes('-ds')
+let hasDeps = false
 const wccPath = path.resolve(__dirname, './wcc.bin')
 const DEBUG_OUTPUT = process.env['WX_DEBUG_COMPILER_OUTPUT']
 const fs = require('fs')
@@ -61,17 +62,18 @@ function genCommonContent_LLW(source, pageConfig, x){
         common += "var cs = cs || [];" + cs[1]
 
     // 插入引用信息
-    let dep_x = `var x=[`
+    let dep_x = `var x=['`
     let dep_gz = ''
     let dep_d_ = ''
     let i = 1;
+    let t_x = []
     for(let key in pageConfig){
         if(pageConfig[key].deps.length > 0){
             for(let dep of pageConfig[key].deps){
                 let name = dep.substring(2, dep.length - 5)
                 // common += JSON.stringify(pageConfig[name])
                 // x
-                dep_x += `'${dep}',`
+                t_x.push(dep)
                 // gz
                 let index = x.indexOf(dep)
                 // gz函数2
@@ -86,7 +88,8 @@ function genCommonContent_LLW(source, pageConfig, x){
             }
         }
     }
-    dep_x += '];'
+    dep_x += `${t_x.join("','")}'];`
+    delete t_x
     common += dep_gz
         // nv_require
         const nv_require = source.match(new RegExp(`(__WXML_GLOBAL__\\.ops_set\\.\\${funcName}=[\\s\\S]*)var x=\\[`))
@@ -105,6 +108,7 @@ function genCommonContent_LLW(source, pageConfig, x){
     return common
 }
 function genFunctionContent_LLA(wxmlName, config={}, source, x) {
+    // process.stderr.write(wxmlName + '=====' + JSON.stringify(config, null, 4) + '\n')
     // 起始
     let content = `var cs = cs || [];\u000a${config.funcName}=function(_,_v,_n,_p,_s,_wp,_wl,$gwn,$gwl,$gwh,wh,$gstack,$gwrt,gra,grb,TestTest,wfor,_ca,_da,_r,_rz,_o,_oz,_1,_1z,_2,_2z,_m,_mz,nv_getDate,nv_getRegExp,nv_console,nv_parseInt,nv_parseFloat,nv_isNaN,nv_isFinite,nv_decodeURI,nv_decodeURIComponent,nv_encodeURI,nv_encodeURIComponent,$gdc,nv_JSON,_af,_gv,_ai,_grp,_gd,_gapi,$ixc,_ic,_w,_ev,_tsd){return function(path,global){\u000aif(typeof global==='undefined'){if (typeof __GWX_GLOBAL__==='undefined')global={};else global=__GWX_GLOBAL__;}if(typeof __WXML_GLOBAL__ === 'undefined') {__WXML_GLOBAL__={};\u000a}__WXML_GLOBAL__.modules = __WXML_GLOBAL__.modules || {};\u000avar e_={}\u000aif(typeof(global.entrys)==='undefined')global.entrys={};e_=global.entrys;\u000avar d_={}\u000aif(typeof(global.defines)==='undefined')global.defines={};d_=global.defines;\u000avar f_={}\u000aif(typeof(global.modules)==='undefined')global.modules={};f_=global.modules || {};\u000avar p_={}\u000a`
     // cs
@@ -113,7 +117,7 @@ function genFunctionContent_LLA(wxmlName, config={}, source, x) {
     content += "var cs = cs || [];" + cs[1].replace(new RegExp(`\\${funcName}`, 'g'), config.funcName)
     
     // gz函数
-    if(!debugWXS){
+    if(!debugWXS && !hasDeps){
         const exp = `function gz\\${funcName}_${config.num+1}\\(\\)\\{[\\s\\S]*?\\)\\}`
         const gz = source.match(new RegExp(exp))
         content += gz[0].replace(new RegExp(`\\${funcName}\\_\\d+`, 'g'), `${config.funcName}_1`) + `\u000a})(__WXML_GLOBAL__.ops_cached.${config.funcName}_1);return __WXML_GLOBAL__.ops_cached.${config.funcName}_1\u000a}`
@@ -132,23 +136,27 @@ function genFunctionContent_LLA(wxmlName, config={}, source, x) {
     content += `var x=['./${wxmlName}.wxml'`
 
     // m0 --- m{num}
-    if(!debugWXS){
+    if(!debugWXS && !hasDeps){
         content += `];d_[x[0]]={}\u000a`
         content += `var m0=function(e,s,r,gg){\u000avar z=gz${config.funcName}_1()\u000areturn r\u000a}\u000ae_[x[0]]={f:m0,j:[],i:[],ti:[],ic:[]}`
     }else{
         // m0 --- m{num}
-        const m0Exp = `var m${config.num}=function\\(e,s,r,gg\\){[\\s\\S]*{f:m${config.num},j:\\[.*?\\],i:\\[.*?\\],ti:\\[(.*?)\\],ic:\\[.*?\\]}`
+        const m0Exp = `var m${config.num}=function\\(e,s,r,gg\\){[\\s\\S]*e_\\[x\\[(\\d+)\\]\\]={f:m${config.num},j:\\[.*?\\],i:\\[.*?\\],ti:\\[(.*?)\\],ic:\\[.*?\\]}`
         let m0 = source.match(new RegExp(m0Exp))
-
-        const depIndex = m0[1].match(/\d+/g)
-        if(depIndex)
+        let m0_str = m0[0].replace(new RegExp(`m${config.num}`, 'g'), 'm0')
+        const cur_x = m0[1]
+        m0_str = m0_str.replace(new RegExp(`x\\[${cur_x}\\]`, 'g'), 'x[0]')
+        const depIndex = m0[2].match(/\d+/g)
+        if(depIndex){
+            let i = 1;
             for(let index of depIndex){
                 content += `,'${x[index]}'`
+                m0_str = m0_str.replace(new RegExp(`x\\[${index}\\]`, 'g'), `x[${i++}]`)
             }
+        }
         content += `];d_[x[0]]={}\u000a`
-    
-        m0 = m0[0].replace(new RegExp(`m${config.num}`, 'g'), 'm0').replace(new RegExp(`x\\[\\d+\\]`, 'g'), 'x[0]')
-        content += m0.replace(new RegExp(`\\${funcName}\\_\\d+`, 'g'), `${config.funcName}_1`)
+        m0_str = m0_str.replace(new RegExp(`x\\[${config.num}\\]`, 'g'), 'x[0]')
+        content += m0_str.replace(new RegExp(`\\${funcName}\\_\\d+`, 'g'), `${config.funcName}_1`)
     }
         
     content += `\u000aif(path&&e_[path]){\u000areturn function(env,dd,global){$gwxc=0;var root={\u0022tag\u0022:\u0022wx-page\u0022};root.children=[]\u000a;g=\u0022${config.funcName}\u0022;var main=e_[path].f\u000acs=[]\u000aif (typeof global===\u0022undefined\u0022)global={};global.f=$gdc(f_[path],\u0022\u0022,1);\u000atry{\u000amain(env,{},root,global);\u000a_tsd(root)\u000a}catch(err){\u000aconsole.log(cs, env);\u000aconsole.log(err)\u000athrow err\u000a}\u000a;g=\u0022\u0022;\u000areturn root;\u000a}\u000a}\u000a}\u000a}(__g.a,__g.b,__g.c,__g.d,__g.e,__g.f,__g.g,__g.h,__g.i,__g.j,__g.k,__g.l,__g.m,__g.n,__g.o,__g.p,__g.q,__g.r,__g.s,__g.t,__g.u,__g.v,__g.w,__g.x,__g.y,__g.z,__g.A,__g.B,__g.C,__g.D,__g.E,__g.F,__g.G,__g.H,__g.I,__g.J,__g.K,__g.L,__g.M,__g.N,__g.O,__g.P,__g.Q,__g.R,__g.S,__g.T,__g.U,__g.V,__g.W,__g.X,__g.Y,__g.Z,__g.aa);if(__vd_version_info__.delayedGwx||false)${config.funcName}();`
@@ -163,17 +171,18 @@ function genCommonContent_LLA(source, pageConfig, x){
         const cs = source.match(/var cs([\s\S]*?)function gz/)
         common += "var cs = cs || [];" + cs[1]
     // 插入引用信息
-    let dep_x = `var x=[`
+    let dep_x = `var x=['`
     let dep_gz = ''
     let dep_d_ = ''
     let i = 1;
+    let t_x = []
     for(let key in pageConfig){
         if(pageConfig[key].deps.length > 0){
             for(let dep of pageConfig[key].deps){
                 let name = dep.substring(2, dep.length - 5)
                 // common += JSON.stringify(pageConfig[name])
                 // x
-                dep_x += `'${dep}',`
+                t_x.push(dep)
                 // gz
                 let index = x.indexOf(dep)
                 // gz函数2
@@ -183,25 +192,26 @@ function genCommonContent_LLA(source, pageConfig, x){
                 // d_
                 const d_Exp = `d_\\[x\\[${index}\\]\\]={}\n[\\s\\S]*?e_\\[x\\[${index}\\]\\]={f:m\\d+,j:\\[.*?\\],i:\\[.*?\\],ti:\\[.*?\\],ic:\\[.*?\\]}`
                 let t = source.match(new RegExp(d_Exp))
-                dep_d_ += t[0].replace(new RegExp(`x\\[\\d+\\]`, 'g'), `x[${i-1}]`).replace(new RegExp(`\\${funcName}\\_\\d+`, 'g'), `${funcName}_${i}`).replace(/m\d+/g, `m${i-1}`)
+                dep_d_ += t[0].replace(new RegExp(`x\\[\\d+\\]`, 'g'), `x[${i-1}]`).replace(new RegExp(`\\${funcName}\\_\\d+`, 'g'), `${funcName}_${i}`).replace(/m\d+/g, `m${i-1}`) + '\n'
                 i++
             }
         }
     }
-    dep_x += '];'
+    dep_x += `${t_x.join("','")}'];`
+    delete t_x
     common += dep_gz
         // nv_require
         const nv_require = source.match(new RegExp(`(__WXML_GLOBAL__\\.ops_set\\.\\${funcName}=[\\s\\S]*)var x=\\[`))
         common += nv_require[1]
 
-    common += dep_x + dep_d_ + '\n';
+    common += dep_x + dep_d_;
         common += "if(path&&e_[path]){\u000areturn function(env,dd,global){$gwxc=0;var root={\u0022tag\u0022:\u0022wx-page\u0022};root.children=[]\u000a;g=\u0022"
         + funcName + "\u0022;var main=e_[path].f\u000acs=[]\u000aif (typeof global===\u0022undefined\u0022)global={};global.f=$gdc(f_[path],\u0022\u0022,1);\u000atry{\u000amain(env,{},root,global);\u000a_tsd(root)\u000a}catch(err){\u000aconsole.log(cs, env);\u000aconsole.log(err)\u000athrow err\u000a}\u000a;g=\u0022\u0022;\u000areturn root;\u000a}\u000a}\u000a}\u000a}(__g.a,__g.b,__g.c,__g.d,__g.e,__g.f,__g.g,__g.h,__g.i,__g.j,__g.k,__g.l,__g.m,__g.n,__g.o,__g.p,__g.q,__g.r,__g.s,__g.t,__g.u,__g.v,__g.w,__g.x,__g.y,__g.z,__g.A,__g.B,__g.C,__g.D,__g.E,__g.F,__g.G,__g.H,__g.I,__g.J,__g.K,__g.L,__g.M,__g.N,__g.O,__g.P,__g.Q,__g.R,__g.S,__g.T,__g.U,__g.V,__g.W,__g.X,__g.Y,__g.Z,__g.aa);if(__vd_version_info__.delayedGwx||true)"
         + funcName + "();;var __WXML_DEP__=__WXML_DEP__||{};"
     // 追加引用
     for(let key in pageConfig){
         if(pageConfig[key].deps.length > 0){
-            common += `__WXML_DEP__["./${key}.wxml"]=["${pageConfig[key].deps.join('","')}"];`
+            common += `__WXML_DEP__["./${key}.wxml"]=["${pageConfig[key].deps.join('","')}",];`
         }
     }
     return common
@@ -301,7 +311,8 @@ if (args.includes("-llw")) {
     });
 
 } else if (args.includes("-lla")) {
-    
+    // process.stdout.write(fs.readFileSync('/mnt/disk2/wechat-web-devtools-linux/compiler/test/wcc/lla/3/node_output.json'))
+    // TODO: 控制台一处报错
     const argss = args.filter(e=>e!='-lla')
     const wcc = spawn(wccPath, argss, {
         cwd: process.cwd(),
@@ -348,6 +359,7 @@ if (args.includes("-llw")) {
             // 引入解析
             const deps = str.matchAll(/_ai\(.*?,x\[(\d+)\],.*?,x\[(\d+)\],\d+,\d+\)/g)
             for(let dep of deps){
+                hasDeps = true
                 // console.log(dep[1]) // 被引用文件下标
                 // console.log(dep[2]) // 引用文件下标
                 const target = indexArr[dep[2]]

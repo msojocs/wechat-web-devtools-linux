@@ -112,6 +112,10 @@ const test_node = () => {
                     path.resolve(__dirname, "./3/node_output.json"),
                     result
                 );
+                fs.writeFileSync(
+                    path.resolve(__dirname, "./3/node_stderr.json"),
+                    Buffer.concat(errData)
+                );
                 resolve(result);
             } else {
                 process.stderr.write(Buffer.concat(errData).toString());
