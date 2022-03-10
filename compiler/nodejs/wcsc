@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 // wcsc.exe md5 = "3999c590c57c764b152bc6db3b3288c4"
-const version = "20220308"
+const version = "20220308";
 const { spawn } = require("child_process");
 const path = require("path");
 const args = process.argv.slice(2);
-const wcscPath = path.resolve(__dirname, "./wcsc.bin")
+const wcscPath = path.resolve(__dirname, "./wcsc.bin");
 
 function encode1(s) {
     return encodeURI(s).replace(
@@ -28,7 +28,9 @@ if (args.includes("-ll")) {
     });
     wcsc.on("close", (n) => {
         if (0 === n) {
-            const str = Buffer.concat(spwanData).toString().replace(/\\\\/g, '\\\\u005c');
+            const str = Buffer.concat(spwanData)
+                .toString()
+                .replace(/\\\\/g, "\\\\u005c");
             const resultSplit = encode1(str).split("=");
             const tempObj = {};
             for (
@@ -62,21 +64,20 @@ if (args.includes("-ll")) {
             result = result.replace(/\\\\/g, "\\");
             result = result.replace(/\\[\s\S]{1}/gi, function ($0, $1, $2) {
                 const c = $0 === "\\n" ? "\n" : $0[1];
-                return "\\u" + c.charCodeAt(0).toString(16).padStart(4, "0")
-            })
+                return "\\u" + c.charCodeAt(0).toString(16).padStart(4, "0");
+            });
             process.stdout.write(result);
-        }else{
+        } else {
             process.stderr.write(Buffer.concat(errData).toString());
-            process.exitCode = n
+            process.exitCode = n;
         }
     });
-
 } else {
     const wcsc = spawn(wcscPath, args, {
         cwd: process.cwd(),
         stdio: "inherit",
     });
-    wcsc.on('close', code=>{
-        process.exitCode = code
-    })
+    wcsc.on("close", (code) => {
+        process.exitCode = code;
+    });
 }
