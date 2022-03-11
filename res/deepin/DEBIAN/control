@@ -1,6 +1,7 @@
 Package: io.github.msojocs.wechat-devtools
-Version: BUILD_VERSION
-Maintainer: msojocs
-Architecture: amd64
-Description: WeChat Devtools For Linux. 
+Version: 1.05.2203070-3
+Section: utils
 Priority: optional
+Architecture: amd64
+Maintainer: msojocs
+Description: WeChat Devtools For Linux. 

@@ -1,5 +1,6 @@
 Package: wechat-devtools
 Version: BUILD_VERSION
+Section: utils
 Maintainer: msojocs
 Architecture: amd64
 Description: WeChat Devtools For Linux. 
