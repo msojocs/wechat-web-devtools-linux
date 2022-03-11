@@ -60,11 +60,19 @@ cp "$root_dir/res/icons/wechat-devtools.svg" "$app_dir/usr/share/icons/wechat-de
 cp -r "$root_dir/package.nw" "$app_dir/opt/wechat-devtools/package.nw"
 cp -r "$root_dir/nwjs" "$app_dir/opt/wechat-devtools/nwjs"
 rm -rf "$app_dir/opt/wechat-devtools/nwjs"/{node,node.exe}
-cp "$root_dir/node/bin/node" "$app_dir/opt/wechat-devtools/nwjs/node"
-cd "$app_dir/opt/wechat-devtools/nwjs/" && ln -s "node" "node.exe"
+if [ -f "$root_dir/node/bin/node" ];then
+  cd "$app_dir/opt/wechat-devtools/nwjs" && rm -rf node node.exe
+  cp "$root_dir/node/bin/node" "$app_dir/opt/wechat-devtools/nwjs/node"
+  cd "$app_dir/opt/wechat-devtools/nwjs/" && ln -s "node" "node.exe"
+fi
 
 notice "BUILD DEB Package"
 cd "$root_dir/tmp/deb"
 ls -l "$root_dir/tmp/deb"
 mkdir -p "$root_dir/tmp/build"
-dpkg-deb -b . "$root_dir/tmp/build/WeChat_Dev_Tools_${BUILD_VERSION}_amd64.deb"
+if [[ $NO_WINE == 'true' ]];then
+  BUILD_MARK='no_wine'
+else
+  BUILD_MARK='wine'
+fi
+dpkg-deb -b . "$root_dir/tmp/build/WeChat_Dev_Tools_${BUILD_VERSION}_amd64_${BUILD_MARK}.deb"

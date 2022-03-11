@@ -58,8 +58,11 @@ notice "COPY bin"
 notice "COPY nwjs"
 \cp -drf "$root_dir/nwjs" "$build_dir/nwjs"
 notice "COPY node"
-rm -rf "$build_dir/nwjs/node"
-\cp -rf "$root_dir/node/bin/node" "$build_dir/nwjs/node"
+if [ -f "$root_dir/node/bin/node" ];then
+  cd $build_dir/nwjs && rm -rf node node.exe
+  \cp -rf "$root_dir/node/bin/node" "$build_dir/nwjs/node"
+  cd "$build_dir/nwjs" && ln -s node.exe node
+fi
 notice "COPY package.nw"
 \cp -rf "$root_dir/package.nw" "$build_dir/package.nw"
 

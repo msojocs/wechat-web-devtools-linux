@@ -81,9 +81,11 @@ chmod +x "$app_dir/AppRun"
 
 cp -r "$root_dir/package.nw" "$app_dir/package.nw"
 cp -r "$root_dir/nwjs" "$app_dir/nwjs"
-rm -rf "$app_dir/nwjs/node" "$app_dir/nwjs/node.exe"
-cp -r "$root_dir/node/bin/node" "$app_dir/nwjs/node"
-cd "$app_dir/nwjs/" && ln -s "node" "node.exe"
+if [ -f $root_dir/node/bin/node ];then
+  rm -rf "$app_dir/nwjs/node" "$app_dir/nwjs/node.exe"
+  cp "$root_dir/node/bin/node" "$app_dir/nwjs/node"
+  cd "$app_dir/nwjs/" && ln -s "node" "node.exe"
+fi
 cd "$app_dir"
 
 # appimagetool $app_dir

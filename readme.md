@@ -13,6 +13,7 @@
 [![wechat-tools](https://img.shields.io/badge/wechat--devtools-1.05.2203070-yellow)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 [![nwjs](https://img.shields.io/badge/nwjs-0.53.1-green)](https://nwjs.io/downloads/)
 [![node](https://img.shields.io/badge/node-16.1.0-orange)](https://nodejs.org/en/)
+[![node](https://img.shields.io/badge/aur-1.05.2203070-blue)](https://aur.archlinux.org/packages/wechat-devtools)
 
   这是微信开发者工具 Linux版
   

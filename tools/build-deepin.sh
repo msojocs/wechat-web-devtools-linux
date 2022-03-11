@@ -61,12 +61,20 @@ sed -i "s#dir#/opt/apps/$package_name/files/bin#" "$base_dir/entries/application
 
 cp -r "$root_dir/package.nw" "$base_dir/files/bin/package.nw"
 cp -r "$root_dir/nwjs" "$base_dir/files/bin/nwjs"
-rm -rf "$base_dir/files/bin/nwjs"/{node,node.exe}
-cp "$root_dir/node/bin/node" "$base_dir/files/bin/nwjs/node"
-cd "$base_dir/files/bin/nwjs/" && ln -s "node" "node.exe"
+if [ -f "$root_dir/node/bin/node" ];then
+  rm -rf "$base_dir/files/bin/nwjs"/{node,node.exe}
+  cp "$root_dir/node/bin/node" "$base_dir/files/bin/nwjs/node"
+  cd "$base_dir/files/bin/nwjs/" && ln -s "node" "node.exe"
+fi
 
 notice "BUILD DEB Package"
 cd "$build_dir"
 ls -l "$build_dir"
 mkdir -p "$root_dir/tmp/build"
-dpkg-deb -b . "$root_dir/tmp/build/WeChat_Dev_Tools_${BUILD_VERSION}_deepin_amd64.deb"
+
+if [[ $NO_WINE == 'true' ]];then
+  BUILD_MARK='no_wine'
+else
+  BUILD_MARK='wine'
+fi
+dpkg-deb -b . "$root_dir/tmp/build/WeChat_Dev_Tools_${BUILD_VERSION}_amd64_${BUILD_MARK}_deepin.deb"

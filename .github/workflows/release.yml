@@ -16,8 +16,8 @@ on:
   # workflow_dispatch:
 
 jobs:
-  build:
-    name: Build tar.gz AppImage
+  build-src:
+    name: Build Base Packages
     runs-on: ubuntu-latest
 
     strategy:
@@ -53,24 +53,89 @@ jobs:
           export NO_WINE=false
           export DOCKER_UID=$UID
           export DOCKER_GID=$GID
-          # tar.gz AppImage
           ls -l
+          export NO_WINE=false
           docker-compose up
-          mkdir -p tmp/build
-          tools/build-release.sh ${{ matrix.ARCH }} ${{ steps.tag.outputs.tag }}
+  
+      - name: Compress Resources
+        run: |
+          ls -l
+          mkdir -p tmp/src
+          cp node/bin/node package.nw/node
+          cd package.nw && rm -rf node.exe node && ln -s node.exe node
+          cd ..
+          tar -zcf tmp/src/src-wine.tar.gz bin nwjs package.nw tools
+          export NO_WINE=true
+          "tools/fix-core.sh"
+          "tools/fix-other.sh"
+          tar -zcf tmp/src/src-no-wine.tar.gz bin nwjs package.nw tools
 
       - name: Compress nodegit compiler
         run: |
           ls -l
-          cp -r package.nw/node_modules/nodegit tmp/build/nodegit
-          cp -r compiler tmp/build/compiler
-          cd tmp/build
-          ls -l
+          mkdir -p tmp/build
+          cp -r package.nw/node_modules/nodegit .
           sudo rm -rf compiler/test
           tar -zcf compiler.tar.gz compiler
           tar -zcf nodegit.tar.gz nodegit
-          rm -rf compiler nodegit
+          mv nodegit.tar.gz tmp/build
+          mv compiler.tar.gz tmp/build
+          cd tmp/build
           ls -l
+
+      - name: View Directory
+        run: |
+          ls -l
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          # Artifact name
+          name: wechat-devtools-${{ matrix.ARCH }}.src
+          path: tmp/src
+
+  build-tar:
+    name: Build tar.gz AppImage
+    needs:
+      - build-src
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ARCH: ['x86_64']
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+
+      - name: Test
+        run: |
+          echo "$UID, $GID"
+
+      - name: Generate TAG
+        id: Tag
+        run: |
+          tag='continuous'
+          name='Continuous Build'
+          if [ 'true' == ${{ startsWith(github.ref, 'refs/tags/') }} ];then
+            tag='${{ github.ref_name }}'
+            name='${{ github.ref_name }}'
+          fi
+          echo "tag result: $tag - $name"
+          echo "::set-output name=tag::$tag"
+          echo "::set-output name=name::$name"
+         
+      - name: Build
+        run: |
+          export NO_WINE=false
+          export ACTION_MODE=true
+          # tar.gz AppImage
+          ls -l
+          mkdir -p tmp/build
+          tools/build-prepare.sh
+          tools/build-release.sh ${{ matrix.ARCH }} ${{ steps.tag.outputs.tag }}
 
       - name: View Directory
         run: |
@@ -85,6 +150,8 @@ jobs:
 
   build-deb:
     name: Build Deb Package
+    needs:
+      - build-src
     runs-on: ubuntu-18.04
 
     strategy:
@@ -94,8 +161,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
 
       - name: Generate TAG
         id: Tag
@@ -113,12 +180,12 @@ jobs:
       - name: Build Deb Package
         run: |
           export BUILD_VERSION=${{ steps.tag.outputs.tag }}
-          export DOCKER_UID=$UID
-          export DOCKER_GID=$GID
-          export ACTION_MODE=true
-          docker-compose up
           ls -l
           mkdir -p tmp/build
+          tools/build-prepare.sh
+          tools/build-deb.sh ${{ steps.tag.outputs.tag }}
+          export NO_WINE=true
+          tools/build-prepare.sh
           tools/build-deb.sh ${{ steps.tag.outputs.tag }}
 
       - name: Upload artifact
@@ -130,6 +197,8 @@ jobs:
 
   build-deepin:
     name: Build Deepin Package
+    needs:
+      - build-src
     runs-on: ubuntu-18.04
 
     strategy:
@@ -139,8 +208,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
 
       - name: Generate TAG
         id: Tag
@@ -158,12 +227,12 @@ jobs:
       - name: Build Deepin Package
         run: |
           export BUILD_VERSION=${{ steps.tag.outputs.tag }}
-          export DOCKER_UID=$UID
-          export DOCKER_GID=$GID
-          export ACTION_MODE=true
-          docker-compose up
           ls -l
           mkdir -p tmp/build
+          tools/build-prepare.sh
+          tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
+          export NO_WINE=true
+          tools/build-prepare.sh
           tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
 
       - name: Upload artifact
@@ -249,7 +318,7 @@ jobs:
   upload:
     name: Create release and upload artifacts
     needs:
-      - build
+      - build-tar
       - build-deb
       - build-deepin
       - build-arch
