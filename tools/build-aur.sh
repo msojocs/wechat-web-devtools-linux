@@ -10,7 +10,9 @@ fail() {
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 tmp_dir="$root_dir/tmp"
 build_dir="$root_dir/tmp/AUR"
+mkdir -p "$tmp_dir"
 
+# 获取开发工具版本号与MD5
 VERSION_DATA=$( cat "$root_dir/conf/devtools_v" )
 VERSION_DATA=(${VERSION_DATA//,/ })
 TARGET_VERSION=${VERSION_DATA[0]}
@@ -45,13 +47,21 @@ if [ "$BUILD_VERSION" != "continuous" ];then
   fi
 fi
 
+# 处理编译器
+rm -rf "$root_dir/compiler/test" # 删除测试文件夹
+cd "$root_dir"
+tar -zcf tmp/compiler.tar.gz compiler # 打包
+COMPILER_MD5=$( md5sum tmp/compiler.tar.gz | cut -d ' ' -f1 )
+
 rm -rf $build_dir
 mkdir -p $build_dir
 cp "$root_dir/tools"/*.sh "$build_dir"
 cp "$root_dir/tools"/*.js "$build_dir"
 cp "$root_dir/res/aur"/* "$build_dir"
-sed -i 's/download.fastgit.org/github.com/' "$build_dir/PKGBUILD"
-sed -i "s/pkgrel=[0-9]\+/pkgrel=${pkgrel}/" "$build_dir/PKGBUILD"
+cp "$tmp_dir/compiler.tar.gz" "$build_dir" # 复制编译器
+sed -i 's/download.fastgit.org/github.com/' "$build_dir/PKGBUILD" # 修改下载服务器
+sed -i "s/pkgrel=[0-9]\+/pkgrel=${pkgrel}/" "$build_dir/PKGBUILD" # 修改版本号
+sed -i "s/[0-9a-z]\+   # compiler/${COMPILER_MD5}   # compiler/" "$build_dir/PKGBUILD" # 修改编译器MD5
 sed -i "s/_wechat_devtools_ver=\"[0-9]\+\.[0-9]\+\.[0-9]\+\"/_wechat_devtools_ver=\"${TARGET_VERSION}\"/" "$build_dir/PKGBUILD"
 sed -i "s/_wechat_devtools_md5=\".*\+\"/_wechat_devtools_md5=\"${TARGET_VERSION_MD5}\"/" "$build_dir/PKGBUILD"
 
