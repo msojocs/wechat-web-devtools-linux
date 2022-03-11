@@ -1,6 +1,6 @@
 ---
 name: 报告Bug
-about: 创建一个问题报告帮助我们做得更好
+about: 如果阁下提交的`issue`属于bug，但没有按模板提交，那么将会被忽略或删除
 title: ''
 labels: bug
 assignees: ''

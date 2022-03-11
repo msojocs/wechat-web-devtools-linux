@@ -66,6 +66,7 @@ jobs:
           cp -r compiler tmp/build/compiler
           cd tmp/build
           ls -l
+          sudo rm -rf compiler/test
           tar -zcf compiler.tar.gz compiler
           tar -zcf nodegit.tar.gz nodegit
           rm -rf compiler nodegit
