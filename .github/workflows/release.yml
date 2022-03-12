@@ -95,6 +95,13 @@ jobs:
           name: wechat-devtools-${{ matrix.ARCH }}.src
           path: tmp/src
 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          # Artifact name
+          name: wechat-devtools-${{ matrix.ARCH }}.build
+          path: tmp/build
+
   build-tar:
     name: Build tar.gz AppImage
     needs:
@@ -350,7 +357,7 @@ jobs:
         run: |
           wget -q https://github.com/TheAssassin/pyuploadtool/releases/download/continuous/pyuploadtool-x86_64.AppImage
           chmod +x pyuploadtool-x86_64.AppImage
-          ./pyuploadtool-x86_64.AppImage **/WeChat*.AppImage **/*.tar.gz **/*.deb **/*.pkg.*
+          ./pyuploadtool-x86_64.AppImage **build/WeChat*.AppImage **build/*.tar.gz **build/*.deb **build/*.pkg.*
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -361,7 +368,7 @@ jobs:
           name: ${{ steps.tag.outputs.name }}
           tag_name: ${{ steps.tag.outputs.tag }}
           files: |
-            **/WeChat*.AppImage
-            **/*.tar.gz
-            **/*.deb
-            **/*.pkg.*
+            **build/WeChat*.AppImage
+            **build/*.tar.gz
+            **build/*.deb
+            **build/*.pkg.*
