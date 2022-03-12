@@ -61,8 +61,9 @@ jobs:
         run: |
           ls -l
           mkdir -p tmp/src
-          cp node/bin/node package.nw/node
-          cd package.nw && rm -rf node.exe node && ln -s node.exe node
+          rm -rf nwjs/node nwjs/node.exe
+          cp  node/bin/node nwjs/node
+          cd nwjs && ln -s node node.exe
           cd ..
           tar -zcf tmp/src/src-wine.tar.gz bin nwjs package.nw tools
           export NO_WINE=true
