@@ -27,7 +27,7 @@ echo "==========Initializing node=========="
 if [ -f "$root_dir/node/bin/node" ]; then
   success "node安装完毕"
 else
-  node "$root_dir/tools/update-node-node"
+  "$root_dir/tools/update-node.sh"
   success "node ok"
 fi
 

@@ -15,7 +15,7 @@
 
 3. 为什么自己构筑或更新后的运行时编辑器和调试器是一片空白？
 
-    检查一下`conf/node.json`和`conf/nwjs.json`里面定义的版本是否与最新微信官方开发者工具的一致。如果有修改版本号的情况，则在更新完这两个JSON文件后，执行`tools/update-node`和`tools/update-nwjs`命令。然后删除`package.nw`目录重新执行`tools/setup-wechat-devtools`命令（感谢ReggieCai31的issue和解决方案）
+    检查一下`conf/node_info`和`conf/nwjs.json`里面定义的版本是否与最新微信官方开发者工具的一致。如果有修改版本号的情况，则在更新完这两个JSON文件后，执行`tools/update-node`和`tools/update-nwjs`命令。然后删除`package.nw`目录重新执行`tools/setup-wechat-devtools`命令（感谢ReggieCai31的issue和解决方案）
 
 4. 为什么自己构筑的运行时加载项目时会卡住？
 

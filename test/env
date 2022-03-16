@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-console.log(process.env['action']==='true')
+console.log(process.version)

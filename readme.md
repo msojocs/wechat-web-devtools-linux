@@ -95,8 +95,7 @@ docker-compose up
 
 1. 如果构建`wine`版本，请先在Linux环境中自行安装`wine` `wine-binfmt`；
 2. 安装编译`nodegit`所需的依赖：`python2.7 python3.6及以上 libkrb5-dev gcc openssl libssh2-1-dev g++ make pkg-config`
-3. 请安装nodejs，并配置到PATH环境变量中，版本不限;
-4. 克隆本项目：
+3. 克隆本项目：
 ```
 git clone https://github.com/msojocs/wechat-devtools-linux.git
 ```
@@ -147,5 +146,6 @@ git clone https://github.com/msojocs/wechat-devtools-linux.git
 
   ![赞赏码](https://user-images.githubusercontent.com/20937135/154661198-93854dc1-c8ba-4c97-a7ab-9f8de26c0226.png)
 
-# 感谢支持
+# 感谢赞赏支持
   1. *喆
+  2. @shaoxp

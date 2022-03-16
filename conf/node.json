@@ -1,6 +1,0 @@
-{
-    "description": "此处版本应与nwjs使用的node版本一致",
-    "version": "16.1.0",
-    "url": "https://npm.taobao.org/mirrors/node/v${version}/node-v${version}-linux-x64.tar.gz",
-    "url-global": "https://nodejs.org/download/release/v${version}/node-v${version}-linux-x64.tar.gz"
-}
