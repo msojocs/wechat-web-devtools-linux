@@ -30,9 +30,9 @@ if (args.includes("-ll")) {
     });
     wcsc.on("close", (n) => {
         if (0 === n) {
-            let str = Buffer.concat(spwanData)
-                .toString()
-            DEBUG_OUTPUT && fs.writeFileSync(`${DEBUG_OUTPUT}/linux_output.js`, str)
+            let str = Buffer.concat(spwanData).toString();
+            DEBUG_OUTPUT &&
+                fs.writeFileSync(`${DEBUG_OUTPUT}/linux_output.js`, str);
             const resultSplit = str.split("=");
             const tempObj = {};
             for (
@@ -43,8 +43,7 @@ if (args.includes("-ll")) {
                 // a=b ---> a: b
                 const key = resultSplit[i];
                 if (key === "version") continue;
-                tempObj[key] = resultSplit[i + 1]
-                .replace(
+                tempObj[key] = resultSplit[i + 1].replace(
                     /[^\\]((\\x[\da-f]{2}|\\u[\da-f]{4})){1,}/g,
                     function ($0, $1, $2) {
                         return eval('"' + $0 + '"');
@@ -62,28 +61,9 @@ if (args.includes("-ll")) {
             }
             let result = JSON.stringify(resultObj);
             result = result.replace(/\\\\/g, "\\");
-            // result = result.replace(/\\[\s\S]{1}/g, function ($0, $1, $2) {
-            //     let c;
-            //     process.stderr.write($0 + "\n=====\n")
-            //     switch ($0) {
-            //         case "\\n":
-            //             c = "\n";
-            //             break;
-            //         case "\\t":
-            //             c = "\t";
-            //             break;
-
-            //         default:
-            //             c = $0[1];
-            //             break;
-            //     }
-            //     process.stderr.write("\\u" + c.charCodeAt(0).toString(16).padStart(4, "0") + "\n=====\n")
-            //     return "\\u" + c.charCodeAt(0).toString(16).padStart(4, "0");
-            // });
             process.stdout.write(result);
-            // process.stderr.write(result);
         } else {
-            const err = Buffer.concat(errData).toString()
+            const err = Buffer.concat(errData).toString();
             DEBUG_OUTPUT &&
                 fs.writeFileSync(`${DEBUG_OUTPUT}/linux_err.js`, err);
             process.stderr.write(err);
