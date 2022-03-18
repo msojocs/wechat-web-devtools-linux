@@ -238,10 +238,10 @@ jobs:
           ls -l
           mkdir -p tmp/build
           tools/build-prepare.sh
-          tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
+          sudo tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
           export NO_WINE=true
           tools/build-prepare.sh
-          tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
+          sudo tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2.3.1
