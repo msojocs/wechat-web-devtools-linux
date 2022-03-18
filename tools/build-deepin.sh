@@ -30,12 +30,21 @@ if [[ "$INPUT_VERSION" != "$DEVTOOLS_VERSION" ]];then
   exit 1
 fi
 
-############ 构建deb包 ################
+############ 准备构建deb包所需的文件及结构 ################
+package_name="io.github.msojocs.wechat-devtools"
+if [[ $NO_WINE == 'true' ]];then
+  BUILD_MARK='no_wine'
+  package_name="${package_name}-no-wine"
+else
+  BUILD_MARK='wine'
+  NAME_SUFFIX=" (wine)"
+  package_name="${package_name}-wine"
+fi
+
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 echo "root_dir: $root_dir"
 tmp_dir="$root_dir/tmp"
 build_dir="$root_dir/tmp/deepin"
-package_name="io.github.msojocs.wechat-devtools"
 base_dir="$build_dir/opt/apps/$package_name"
 
 # Remove any previous build
@@ -48,17 +57,22 @@ mkdir -p $base_dir/files/{bin/bin,doc,lib}
 
 notice "COPY Files"
 cp -r "$root_dir/res/deepin"/* $build_dir
-sed -i "s/BUILD_VERSION/${BUILD_VERSION//v/}/" "$build_dir/DEBIAN/control"
-sed -i "s/BUILD_VERSION/${BUILD_VERSION//v/}/" "$base_dir/info"
+mv "$build_dir/opt/apps/io.github.msojocs.wechat-devtools"/* $base_dir
+rm -r "$build_dir/opt/apps/io.github.msojocs.wechat-devtools"
+sed -i "s/BUILD_VERSION/${BUILD_VERSION//v/}/" "$build_dir/DEBIAN/control" "$base_dir/info"
+sed -i "s/io.github.msojocs.wechat-devtools/$package_name/g" "$base_dir/info" "$build_dir/DEBIAN/control"
 \cp -rf "$root_dir/bin/wechat-devtools" "$base_dir/files/bin/bin/wechat-devtools"
 
 # desktop
-\cp -rf "$root_dir/res/template.desktop" "$base_dir/entries/applications/wechat-devtools.desktop"
-sed -i 's#Icon=dir/res/icons/wechat-devtools.svg#Icon=io.github.msojocs.wechat-devtools#' "$base_dir/entries/applications/wechat-devtools.desktop"
-sed -i "s#dir#/opt/apps/$package_name/files/bin#" "$base_dir/entries/applications/wechat-devtools.desktop"
+\cp -rf "$root_dir/res/template.desktop" "$base_dir/entries/applications/$package_name.desktop"
+sed -i "s#Icon=dir/res/icons/wechat-devtools.svg#Icon=$package_name#" "$base_dir/entries/applications/$package_name.desktop"
+sed -i "s#dir#/opt/apps/$package_name/files/bin#" "$base_dir/entries/applications/$package_name.desktop"
+sed -i "s/WeChat Dev Tools/WeChat Dev Tools$NAME_SUFFIX/g" "$base_dir/info" "$base_dir/entries/applications/$package_name.desktop"
+sed -i "s/微信开发者工具/微信开发者工具$NAME_SUFFIX/g" "$base_dir/entries/applications/$package_name.desktop"
 
-\cp -rf "$root_dir/res/icons/wechat-devtools.svg" "$base_dir/entries/icons/hicolor/scalable/apps/io.github.msojocs.wechat-devtools.svg"
+\cp -rf "$root_dir/res/icons/wechat-devtools.svg" "$base_dir/entries/icons/hicolor/scalable/apps/$package_name.svg"
 
+# 主体文件
 cp -r "$root_dir/package.nw" "$base_dir/files/bin/package.nw"
 cp -r "$root_dir/nwjs" "$base_dir/files/bin/nwjs"
 if [ -f "$root_dir/node/bin/node" ];then
@@ -66,15 +80,15 @@ if [ -f "$root_dir/node/bin/node" ];then
   cp "$root_dir/node/bin/node" "$base_dir/files/bin/nwjs/node"
   cd "$base_dir/files/bin/nwjs/" && ln -s "node" "node.exe"
 fi
+chown -R root:root "$base_dir"
 
 notice "BUILD DEB Package"
 cd "$build_dir"
 ls -l "$build_dir"
 mkdir -p "$root_dir/tmp/build"
 
-if [[ $NO_WINE == 'true' ]];then
-  BUILD_MARK='no_wine'
-else
-  BUILD_MARK='wine'
+if [[ ! $NO_WINE -eq 'true' ]];then
+  echo "Depends: wine, wine-binfmt" >> "$build_dir/DEBIAN/control"
 fi
+
 dpkg-deb -b . "$root_dir/tmp/build/WeChat_Dev_Tools_${BUILD_VERSION}_amd64_${BUILD_MARK}_deepin.deb"
