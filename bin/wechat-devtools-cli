@@ -15,3 +15,18 @@ export APPDATA="$DIR/../nwjs"
 export PATH="$DIR/../wine:$DIR/../node/bin:$DIR/../nwjs:$PATH"
 
 $DIR/../tools/wechat-devtools-cli "$@"
+
+# #!/bin/bash
+# root_dir=$(cd `dirname $0`/.. && pwd -P)
+
+# echo "cli"
+
+# export WECHAT_DEVTOOLS_DIR="$root_dir/nwjs"
+# export APPDATA="$HOME/.config"
+# export USERPROFILE="$root"
+# export PATH="$root_dir/wine:$root_dir/node/bin:$root_dir/nwjs:$PATH"
+# export CALLING_DIR=$root_dir
+
+# node $root_dir/bin/cli.js "$@"
+
+# cd $root_dir

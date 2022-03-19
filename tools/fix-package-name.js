@@ -10,7 +10,7 @@ const parseFile = function (path) {
     }
     let content = JSON.parse(fs.readFileSync(path, "utf8"));
 
-    content.name = "wechat_devtools";
+    content.name = "wechat-devtools";
     // 开启调试，更新参数
     content['chromium-args'] = content['chromium-args'].replace('--disable-devtools', '--mixed-context').replace('--ignore-gpu-blacklist', '--ignore-gpu-blocklist')
     content.window.height = content.window.width = 1000
