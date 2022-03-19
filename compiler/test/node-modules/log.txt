@@ -1,0 +1,7 @@
+1 wcc  node
+2 wcc  node
+3 wcc  node
+4 wcsc node
+5 wcc  node
+6 wcsc node
+7 wcc  node

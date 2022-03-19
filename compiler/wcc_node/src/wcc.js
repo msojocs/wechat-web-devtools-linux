@@ -176,7 +176,7 @@ function wxmlToJS(options={}) {
   // const componentArgs = getComponentArgs(files), componentArgs.join(' ')
   let args = ['-d', '--split', options.wxmlCompileConfigSplit, type, options.wxmlCompileConfig]
     .concat(files)
-    .concat(['-gn', '$gwx'])
+    .concat(['-gn', options.genfuncname || '$gwx'])
 
   // wxs调试
   if(options.debugWXS)args.unshift('-ds')

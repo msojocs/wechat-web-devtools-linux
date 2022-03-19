@@ -8,20 +8,20 @@
       "type": "nwjs",
       "request": "launch",
       "name": "Launch NWjs",
-      "nwjsVersion": "0.47.0",
-      "webRoot": "${workspaceFolder}/package.nw",
+      "nwjsVersion": "0.49.3",
+      "webRoot": "${workspaceFolder}/compiler/test/package.nw",
       "reloadAfterAttached": true,
       "runtimeArgs": [
-        "--load-extension=${workspaceFolder}/tmp/data/WeappPlugin",
+        // "--load-extension=${workspaceFolder}/tmp/data/WeappPlugin",
         // "--custom-devtools-frontend=file://${workspaceFolder}/tmp/data/WeappPlugin/inspector/",
-        "--user-data-dir=${workspaceFolder}/tmp/data",
+        // "--user-data-dir=${workspaceFolder}/tmp/data",
         // "--remote-debugging-port=9999"
       ],
       "env": {
         "LANG": "zh_CN.UTF-8"
       },
       "userDataDir": false,
-      "runtimeExecutable": "${workspaceFolder}/nwjs/nw"
+      "runtimeExecutable": "${workspaceFolder}/cache/wechat_devtools_1.05.2203070_x64/wechatdevtools.exe"
     }
   ]
 }

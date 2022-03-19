@@ -81,7 +81,7 @@ async function wxssToJS(options) {
   // files = getAllFiles(rootPath, files)
 
   const args = ['-db', '-pc', String(options.pageCount)].concat(files)
-
+  options.subPackage && (args.push("--subpackage"), args.push(options.subPackage.replace(/\/$/, "")));
   const wxssParserPath = getWXSSParsePath()
   // console.warn('wcsc args: ', args)
   // const wcsc = spawnSync(wxssParserPath, args, { cwd: rootPath })
