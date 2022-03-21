@@ -142,10 +142,11 @@ git clone https://github.com/msojocs/wechat-devtools-linux.git
 微信开发者工具版权归腾讯公司所有，本项目旨在交流学习之用。如有不当之处，请联系本人，邮箱：jiyecafe@gmail.com
 
 # 赞赏
-  如果这个仓库让你感到舒适，可以点个Star或者请我喝杯咖啡：
+  如果这个仓库让你感到舒适，可以点个Star或者请我喝杯咖啡（请尽量带上github昵称）：
 
   ![赞赏码](https://user-images.githubusercontent.com/20937135/154661198-93854dc1-c8ba-4c97-a7ab-9f8de26c0226.png)
 
 # 感谢赞赏支持
   1. *喆
   2. @shaoxp
+  3. .
