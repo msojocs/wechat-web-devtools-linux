@@ -1,0 +1,57 @@
+app-id: io.github.msojocs.wechat-devtools
+runtime: org.freedesktop.Platform
+runtime-version: '21.08'
+sdk: org.freedesktop.Sdk
+command: startup
+finish-args:
+  # X11 + XShm access
+  - --share=ipc
+  - --socket=x11
+  # Wayland access
+  - --socket=wayland
+  # Needs to talk to the network:
+  - --share=network
+  # Needs to save files locally
+  - --filesystem=host
+  - --metadata=X-DConf=migrate-path=/org/gnome/dictionary/
+modules:
+  - name: nwjs
+    buildsystem: simple
+    sources:
+      - type: dir
+        # url: https://npm.taobao.org/mirrors/nwjs/v0.53.1/nwjs-sdk-v0.53.1-linux-x64.tar.gz
+        # md5: b6f49803c51d0abacca2d1e566c7fe19
+        path: nwjs
+    build-commands: 
+      - ls -l
+      - rm package.nw
+      - mkdir -p /app/opt/nwjs
+      - cp -r . /app/opt/nwjs
+  - name: package.nw
+    buildsystem: simple
+    sources:
+      - type: dir
+        # url: https://npm.taobao.org/mirrors/nwjs/v0.53.1/nwjs-sdk-v0.53.1-linux-x64.tar.gz
+        # md5: b6f49803c51d0abacca2d1e566c7fe19
+        path: package.nw
+    build-commands: 
+      - ls -l
+      - mkdir -p /app/opt/package.nw
+      - cp -r . /app/opt/package.nw
+  - name: wechat-devtools
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 wechat-devtools /app/opt/bin/wechat-devtools
+      - install -Dm755 startup.sh /app/bin/startup
+      - install -Dm644 io.github.msojocs.wechat_devtools.desktop /app/share/applications/io.github.msojocs.wechat-devtools.desktop
+      - install -Dm644 io.github.msojocs.wechat_devtools.svg /app/share/icons/hicolor/scalable/apps/io.github.msojocs.wechat-devtools.svg
+    sources:
+      - type: file
+        path: bin/wechat-devtools
+      - type: file
+        path: startup.sh
+      - type: file
+        path: io.github.msojocs.wechat_devtools.desktop
+      - type: file
+        path: io.github.msojocs.wechat_devtools.svg
+

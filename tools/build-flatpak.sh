@@ -19,20 +19,6 @@ if [ -n "$2" ];then
   export ARCH=$2
 fi
 
-if [[ $VERSION == '' ]];then
-  fail "请指定版本"
-  exit 1
-elif [[ $ARCH == '' ]];then
-  fail "请指定架构"
-  exit 1
-fi
-
-if [[ $NO_WINE == 'true' ]];then
-  TYPE='no_wine'
-else
-  TYPE='wine'
-fi
-
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 tmp_dir="$root_dir/tmp"
 app_dir="$tmp_dir/Flatpak"
@@ -43,24 +29,23 @@ notice "检查版本号"
 DEVTOOLS_VERSION=$( cat "$root_dir/package.nw/package.json" | grep -m 1 -Eo "\"[0-9]{1}\.[0-9]{2}\.[0-9]+" )
 DEVTOOLS_VERSION="${DEVTOOLS_VERSION//\"/}"
 INPUT_VERSION=$( echo $VERSION | sed 's/v//' | sed 's/-.*//' )
-if [[ "$INPUT_VERSION" != "$DEVTOOLS_VERSION" ]];then
-  fail "传入版本号与实际版本号不一致！"
-  exit 1
-fi
+# if [[ "$INPUT_VERSION" != "$DEVTOOLS_VERSION" ]];then
+#   fail "传入版本号与实际版本号不一致！"
+#   exit 1
+# fi
 
 # Remove any previous build
 rm -rf $app_dir
 # Make usr and icons dirs
 mkdir -p $app_dir/bin
-mkdir -p $app_dir/usr/{src,bin}
-mkdir -p $app_dir/usr/share/{metainfo,icons,applications}
 
 notice "COPY FILES"
 cp "$root_dir/bin/wechat-devtools" "$app_dir/bin/wechat-devtools"
-cp "$root_dir/res/icons/wechat-devtools.png" "$app_dir/wechat-devtools.png"
+cp "$root_dir/res/icons/wechat-devtools.svg" "$app_dir/io.github.msojocs.wechat_devtools.svg"
 \cp -rf "$root_dir/res/flatpak"/* "$app_dir"
-cp $root_dir/res/template.desktop "$app_dir/github.msojocs.wechat_devtools.desktop"
-
+cp $root_dir/res/template.desktop "$app_dir/io.github.msojocs.wechat_devtools.desktop"
+sed -i 's/Icon=dir\/res\/icons\/wechat-devtools.svg/Icon=io.github.msojocs.wechat_devtools/' "$app_dir/io.github.msojocs.wechat_devtools.desktop"
+sed -i 's/Exec=dir\/bin\/wechat-devtools/Exec=startup/' "$app_dir/io.github.msojocs.wechat_devtools.desktop"
 cp -r "$root_dir/package.nw" "$app_dir/package.nw"
 cp -r "$root_dir/nwjs" "$app_dir/nwjs"
 if [ -f $root_dir/node/bin/node ];then
@@ -68,8 +53,20 @@ if [ -f $root_dir/node/bin/node ];then
   cp "$root_dir/node/bin/node" "$app_dir/nwjs/node"
   cd "$app_dir/nwjs/" && ln -s "node" "node.exe"
 fi
-cd "$app_dir"
 
-# appimagetool $app_dir
 notice "MAKE FLATPAK"
 
+cd $app_dir
+
+# 此处关键参照 https://unix.stackexchange.com/questions/412869/how-to-allow-gui-application-in-flatpak-to-run-cli-tool
+cat > startup.sh <<- 'EOF'
+#!/bin/sh 
+export PATH="/var/run/host/usr/bin:$PATH" 
+exec /app/opt/bin/wechat-devtools
+EOF
+
+# flatpak-builder build-dir io.github.msojocs.wechat-devtools.yml --force-clean
+
+flatpak-builder build-dir io.github.msojocs.wechat-devtools.yml --install --force-clean --user
+
+flatpak run io.github.msojocs.wechat-devtools
