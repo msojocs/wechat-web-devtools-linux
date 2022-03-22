@@ -1,7 +1,7 @@
 version: "3"
 services:
   wechat_devtools:
-    image: jiyecafe/wechat-devtools-build:latest 
+    image: jiyecafe/wechat-devtools-build:v3 
     # build:
     #   context: ./docker
     #   dockerfile: Dockerfile

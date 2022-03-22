@@ -1,4 +1,4 @@
-FROM debian:9.13-slim
+FROM ubuntu:16.04
 
 WORKDIR /workspace
 
@@ -30,3 +30,12 @@ RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
     apt install -y gosu && \
     gosu nobody true && \
     useradd -s /bin/bash -m user
+
+RUN apt remove -y p7zip p7zip-full p7zip-rar &&\
+    rm -rf /opt/7z && \
+    mkdir -p /opt/7z && \
+    cd /opt/7z && \
+    wget https://www.7-zip.org/a/7z2107-linux-x64.tar.xz && \
+    tar -xJf 7z2107-linux-x64.tar.xz && \
+    ln -s 7zz 7z
+ENV PATH=/opt/7z:$PATH
