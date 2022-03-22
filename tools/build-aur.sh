@@ -59,7 +59,7 @@ cp "$root_dir/tools"/*.sh "$build_dir"
 cp "$root_dir/tools"/*.js "$build_dir"
 cp "$root_dir/res/aur"/* "$build_dir"
 cp "$tmp_dir/compiler.tar.gz" "$build_dir" # 复制编译器
-sed -i 's/download.fastgit.org/github.com/' "$build_dir/PKGBUILD" # 修改下载服务器
+# sed -i 's/download.fastgit.org/github.com/' "$build_dir/PKGBUILD" # 修改下载服务器
 sed -i "s/pkgrel=[0-9]\+/pkgrel=${pkgrel}/" "$build_dir/PKGBUILD" # 修改版本号
 sed -i "s/[0-9a-z]\+   # compiler/${COMPILER_MD5}   # compiler/" "$build_dir/PKGBUILD" # 修改编译器MD5
 sed -i "s/_wechat_devtools_ver=\"[0-9]\+\.[0-9]\+\.[0-9]\+\"/_wechat_devtools_ver=\"${TARGET_VERSION}\"/" "$build_dir/PKGBUILD"

@@ -2,9 +2,11 @@
 // wcsc.exe md5 = "3999c590c57c764b152bc6db3b3288c4"
 const version = "20220308";
 const { spawn } = require("child_process");
+const fs = require("fs");
 const path = require("path");
 const args = process.argv.slice(2);
 const wcscPath = path.resolve(__dirname, "./wcsc.bin");
+const DEBUG_OUTPUT = process.env["WX_DEBUG_COMPILER_OUTPUT"];
 
 function encode1(s) {
     return encodeURI(s).replace(
@@ -28,10 +30,10 @@ if (args.includes("-ll")) {
     });
     wcsc.on("close", (n) => {
         if (0 === n) {
-            const str = Buffer.concat(spwanData)
-                .toString()
-                .replace(/\\\\/g, "\\\\u005c");
-            const resultSplit = encode1(str).split("=");
+            let str = Buffer.concat(spwanData).toString();
+            DEBUG_OUTPUT &&
+                fs.writeFileSync(`${DEBUG_OUTPUT}/linux_output.js`, str);
+            const resultSplit = str.split("=");
             const tempObj = {};
             for (
                 let i = 0, total = resultSplit.length;
@@ -42,7 +44,7 @@ if (args.includes("-ll")) {
                 const key = resultSplit[i];
                 if (key === "version") continue;
                 tempObj[key] = resultSplit[i + 1].replace(
-                    /((\\x[\da-f]{2}|\\u[\da-f]{4})){1,}/gi,
+                    /[^\\]((\\x[\da-f]{2}|\\u[\da-f]{4})){1,}/g,
                     function ($0, $1, $2) {
                         return eval('"' + $0 + '"');
                     }
@@ -58,17 +60,13 @@ if (args.includes("-ll")) {
                 }
             }
             let result = JSON.stringify(resultObj);
-            String.prototype.splice = function (start, newStr) {
-                return this.slice(0, start) + newStr + this.slice(start + 1);
-            };
             result = result.replace(/\\\\/g, "\\");
-            result = result.replace(/\\[\s\S]{1}/gi, function ($0, $1, $2) {
-                const c = $0 === "\\n" ? "\n" : $0[1];
-                return "\\u" + c.charCodeAt(0).toString(16).padStart(4, "0");
-            });
             process.stdout.write(result);
         } else {
-            process.stderr.write(Buffer.concat(errData).toString());
+            const err = Buffer.concat(errData).toString();
+            DEBUG_OUTPUT &&
+                fs.writeFileSync(`${DEBUG_OUTPUT}/linux_err.js`, err);
+            process.stderr.write(err);
             process.exitCode = n;
         }
     });

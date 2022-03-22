@@ -33,7 +33,7 @@
 
 # 进度
 
-当前工具可以在Linux上构筑最新版1.05.2203070，支持CLI模式，现已经有Docker支持（仅用于测试）。
+当前工具可以在Linux上构筑最新版1.05.2203070，支持CLI模式。
 另现在已经可以直接在设置界面里面修改字体，手工输入字体名称就可以。
 
 # 功能测试记录
@@ -56,7 +56,7 @@
 # 系统要求
 
 * 基于Linux的桌面系统，首选GNOME（其他的桌面环境可能会有问题，未测试）
-* 非兼容版对glibc和libstdc++有一定的版本要求，glibc的版本要求2.24，libstdc++的版本要求3.4.22，发布包里已经预编译了的Linux原生Node模块有这个依赖。兼容版本对这两个系统库的要求则较低，如果发现非兼容版本运行有问题可以考虑尝试切换到兼容版本
+* CI自动构建的包对glibc和libstdc++有一定的版本要求，glibc的版本要求2.23，libstdc++的版本要求3.4.21
 * 如果你下载的是`wine`版本，那么你需要安装有`wine` `wine-binfmt`支持，建议版本在5.0以上，低版本可能会存在有问题
 
 # CLI支持
@@ -94,9 +94,8 @@ docker-compose up
 由于使用到`node-gyp` `nw-gyp`，此方法会受`python`、`node`版本影响出现一些难以预料的异常（比如使用`node15.0.1`时，大部分模块构建会被忽略，但没有任何报错信息）。但是，`Docker`构建方式会帮你处理好这些问题。
 
 1. 如果构建`wine`版本，请先在Linux环境中自行安装`wine` `wine-binfmt`；
-2. 安装编译`nodegit`所需的依赖：`python2.7 python3.6及以上 libkrb5-dev gcc openssl libssh2-1-dev g++ make pkg-config`
-3. 请安装nodejs，并配置到PATH环境变量中，版本不限;
-4. 克隆本项目：
+2. 安装编译`nodegit`所需的依赖：`python2.7 python3.6及以上 libkrb5-dev gcc openssl libssh2-1-dev g++ make pkg-config`  `7z`旧版解压可能存在问题（未测试最低版本号，比如：ubuntu16.04自带的不行），请参考`Dockerfile`
+3. 克隆本项目：
 ```
 git clone https://github.com/msojocs/wechat-devtools-linux.git
 ```
@@ -143,9 +142,11 @@ git clone https://github.com/msojocs/wechat-devtools-linux.git
 微信开发者工具版权归腾讯公司所有，本项目旨在交流学习之用。如有不当之处，请联系本人，邮箱：jiyecafe@gmail.com
 
 # 赞赏
-  如果这个仓库让你感到舒适，可以点个Star或者请我喝杯咖啡：
+  如果这个仓库让你感到舒适，可以点个Star或者请我喝杯咖啡（请尽量带上github昵称）：
 
   ![赞赏码](https://user-images.githubusercontent.com/20937135/154661198-93854dc1-c8ba-4c97-a7ab-9f8de26c0226.png)
 
-# 感谢支持
+# 感谢赞赏支持
   1. *喆
+  2. @shaoxp
+  3. .

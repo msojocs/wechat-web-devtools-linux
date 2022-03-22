@@ -50,7 +50,6 @@ jobs:
       - name: Build
         run: |
           export ACTION_MODE=true
-          export NO_WINE=false
           export DOCKER_UID=$UID
           export DOCKER_GID=$GID
           ls -l
@@ -61,8 +60,9 @@ jobs:
         run: |
           ls -l
           mkdir -p tmp/src
-          cp node/bin/node package.nw/node
-          cd package.nw && rm -rf node.exe node && ln -s node.exe node
+          rm -rf nwjs/node nwjs/node.exe
+          cp  node/bin/node nwjs/node
+          cd nwjs && ln -s node node.exe
           cd ..
           tar -zcf tmp/src/src-wine.tar.gz bin nwjs package.nw tools
           export NO_WINE=true
@@ -93,6 +93,13 @@ jobs:
           # Artifact name
           name: wechat-devtools-${{ matrix.ARCH }}.src
           path: tmp/src
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          # Artifact name
+          name: wechat-devtools-${{ matrix.ARCH }}.build
+          path: tmp/build
 
   build-tar:
     name: Build tar.gz AppImage
@@ -230,10 +237,10 @@ jobs:
           ls -l
           mkdir -p tmp/build
           tools/build-prepare.sh
-          tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
+          sudo env NO_WINE=false tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
           export NO_WINE=true
           tools/build-prepare.sh
-          tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
+          sudo env NO_WINE=true tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2.3.1
@@ -349,7 +356,7 @@ jobs:
         run: |
           wget -q https://github.com/TheAssassin/pyuploadtool/releases/download/continuous/pyuploadtool-x86_64.AppImage
           chmod +x pyuploadtool-x86_64.AppImage
-          ./pyuploadtool-x86_64.AppImage **/WeChat*.AppImage **/*.tar.gz **/*.deb **/*.pkg.*
+          ./pyuploadtool-x86_64.AppImage **build/WeChat*.AppImage **build/*.tar.gz **build/*.deb **build/*.pkg.*
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -360,7 +367,7 @@ jobs:
           name: ${{ steps.tag.outputs.name }}
           tag_name: ${{ steps.tag.outputs.tag }}
           files: |
-            **/WeChat*.AppImage
-            **/*.tar.gz
-            **/*.deb
-            **/*.pkg.*
+            **build/WeChat*.AppImage
+            **build/*.tar.gz
+            **build/*.deb
+            **build/*.pkg.*

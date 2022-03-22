@@ -9,8 +9,13 @@ else
   DATA_DIR=$XDG_CONFIG_HOME
 fi
 
+# 获取App名称
+APP_NAME=$( cat "$root_dir/package.nw/package.json" | grep -Eo 'name":".*","main' )
+APP_NAME=${APP_NAME//name\":\"/}
+APP_NAME=${APP_NAME//\",\"main/}
+
 export WECHAT_DEVTOOLS_DIR="$root_dir/nwjs"
-export APPDATA="$DATA_DIR/wechat_devtools"
+export APPDATA="$DATA_DIR/$APP_NAME"
 export PATH="$root_dir/wine:$root_dir/node/bin:$root_dir/nwjs:$PATH"
 export USERPROFILE=$DATA_DIR
 
