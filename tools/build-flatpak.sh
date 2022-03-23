@@ -61,7 +61,8 @@ cd $app_dir
 # 此处关键参照 https://unix.stackexchange.com/questions/412869/how-to-allow-gui-application-in-flatpak-to-run-cli-tool
 cat > startup.sh <<- 'EOF'
 #!/bin/sh 
-export PATH="/var/run/host/usr/bin:$PATH" 
+export PATH="/var/run/host/usr/bin:$PATH"
+export LD_LIBRARY_PATH="/app/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"
 exec /app/opt/bin/wechat-devtools
 EOF
 

@@ -45,6 +45,17 @@ modules:
       - install -Dm755 startup.sh /app/bin/startup
       - install -Dm644 io.github.msojocs.wechat_devtools.desktop /app/share/applications/io.github.msojocs.wechat-devtools.desktop
       - install -Dm644 io.github.msojocs.wechat_devtools.svg /app/share/icons/hicolor/scalable/apps/io.github.msojocs.wechat-devtools.svg
+      - ar p libgssapi-krb5-2_1.18.3-6+deb11u1_amd64.deb data.tar.xz | tar -xJ
+      - ar p libkrb5-3_1.18.3-6+deb11u1_amd64.deb data.tar.xz | tar -xJ
+      - ar p libk5crypto3_1.18.3-6+deb11u1_amd64.deb data.tar.xz | tar -xJ
+      - ar p libkrb5support0_1.18.3-6+deb11u1_amd64.deb data.tar.xz | tar -xJ
+      - ar p libkeyutils1_1.6.1-2_amd64.deb data.tar.xz | tar -xJ
+      - ls -l
+    post-install:
+      - rm -rf usr/share/{doc,man}
+      - cp -dr usr/* $FLATPAK_DEST/
+      - cp -dr lib/* $FLATPAK_DEST/lib
+      # - cp -dr opt/* $FLATPAK_DEST/
     sources:
       - type: file
         path: bin/wechat-devtools
@@ -54,4 +65,19 @@ modules:
         path: io.github.msojocs.wechat_devtools.desktop
       - type: file
         path: io.github.msojocs.wechat_devtools.svg
-
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/krb5/libgssapi-krb5-2_1.18.3-6+deb11u1_amd64.deb
+        sha256: 2ab853cbd0494c06fa694906c6eeea4df79720f461c76d080eb21a3e98f44115
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/krb5/libkrb5-3_1.18.3-6+deb11u1_amd64.deb
+        sha256: afb9dced3fcbdbc439a166eaa217dbfd485585842f12ce4587123009618e8bfe
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/krb5/libk5crypto3_1.18.3-6+deb11u1_amd64.deb
+        sha256: 4a010fc69322b6be9e141a76593f46e6588c968ee3b7cf79a3b8b7efda9aeeba
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/krb5/libkrb5support0_1.18.3-6+deb11u1_amd64.deb
+        sha256: 1f19908dbd37bd2ba9b3b3c9eb6ab8bee9a72f72745e6887f5366bb5fece654b
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/keyutils/libkeyutils1_1.6.1-2_amd64.deb
+        sha256: f01060b434d8cad3c58d5811d2082389f11b3db8152657d6c22c1d298953f2a5
+        
