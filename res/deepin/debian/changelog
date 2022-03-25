@@ -1,0 +1,8 @@
+io.github.msojocs.wechat-devtools-no-wine (1.05.2203070-7) unstable; urgency=medium
+ 
+  * fix:
+    - cli
+  * 兼容
+    - ubuntu16.04
+
+ -- msojocs <jiyecafe@gmail.com>  Wed, 23 Mar 2022 14:56:04 +0800

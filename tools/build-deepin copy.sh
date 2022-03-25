@@ -70,11 +70,6 @@ sed -i "s/微信开发者工具/微信开发者工具$NAME_SUFFIX/g" "$base_dir/
 
 \cp -rf "$root_dir/res/icons/wechat-devtools.svg" "$base_dir/entries/icons/hicolor/scalable/apps/$package_name.svg"
 
-# 兼容普通deb
-mkdir -p "$build_dir/usr/share/applications" "$build_dir/usr/share/icons/hicolor/scalable/apps"
-\cp -rf "$base_dir/entries/applications/$package_name.desktop" "$build_dir/usr/share/applications/$package_name.desktop"
-\cp -rf "$base_dir/entries/icons/hicolor/scalable/apps/$package_name.svg" "$build_dir/usr/share/icons/hicolor/scalable/apps/$package_name.svg"
-
 # 主体文件
 cp -r "$root_dir/package.nw" "$base_dir/files/bin/package.nw"
 cp -r "$root_dir/nwjs" "$base_dir/files/bin/nwjs"
@@ -94,7 +89,5 @@ if [[ ! $NO_WINE -eq 'true' ]];then
   echo "Depends: wine, wine-binfmt" >> "$build_dir/debian/control"
 fi
 
-# cd "$tmp_dir"
-# tar -zcf "$tmp_dir/${package_name}_${BUILD_VERSION//v/}.orig.tar.gz" "$package_name"
 # dpkg-deb -b . "$root_dir/tmp/build/WeChat_Dev_Tools_${BUILD_VERSION}_amd64_${BUILD_MARK}_deepin.deb"
-echo 'y' | debuild
+debuild

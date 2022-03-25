@@ -1,0 +1,13 @@
+Source: io.github.msojocs.wechat-devtools
+Maintainer: msojocs
+Standards-Version: BUILD_VERSION
+Priority: optional
+Section: application
+
+Package: io.github.msojocs.wechat-devtools
+Architecture: amd64
+Description: WeChat Devtools For Linux.
+  To help developers develop and debug Weixin Mini Programs more simply and efficiently,
+  Tencent have launched the new Weixin DevTools based on the original Official Account
+  web debugging tools. Therefore, we now have two developer modes (Official Account web
+  debugging) and (Mini Program debugging). This version is unofficial. 
