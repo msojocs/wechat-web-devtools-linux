@@ -58,7 +58,7 @@ cp -r "$root_dir/res/deepin"/* $build_dir
 mv "$build_dir/opt/apps/io.github.msojocs.wechat-devtools"/* $base_dir
 rm -r "$build_dir/opt/apps/io.github.msojocs.wechat-devtools"
 sed -i "s/BUILD_VERSION/${BUILD_VERSION//v/}/" "$build_dir/debian/control" "$base_dir/info"
-sed -i "s/io.github.msojocs.wechat-devtools/$package_name/g" "$base_dir/info" "$build_dir/debian/control"
+sed -i "s/io.github.msojocs.wechat-devtools/$package_name/g" "$base_dir/info" "$build_dir/debian/control" "$build_dir/debian/changelog"
 \cp -rf "$root_dir/bin/wechat-devtools" "$base_dir/files/bin/bin/wechat-devtools"
 
 # desktop
@@ -90,11 +90,10 @@ cd "$build_dir"
 ls -l "$build_dir"
 mkdir -p "$root_dir/tmp/build"
 
-if [[ ! $NO_WINE -eq 'true' ]];then
+if [[ $NO_WINE != 'true' ]];then
+  echo "添加wine依赖 - $NO_WINE"
   echo "Depends: wine, wine-binfmt" >> "$build_dir/debian/control"
 fi
 
-# cd "$tmp_dir"
-# tar -zcf "$tmp_dir/${package_name}_${BUILD_VERSION//v/}.orig.tar.gz" "$package_name"
-# dpkg-deb -b . "$root_dir/tmp/build/WeChat_Dev_Tools_${BUILD_VERSION}_amd64_${BUILD_MARK}_deepin.deb"
 echo 'y' | debuild
+mv $tmp_dir/*.deb $tmp_dir/build
