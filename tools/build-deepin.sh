@@ -96,4 +96,4 @@ if [[ $NO_WINE != 'true' ]];then
 fi
 
 debuild --no-tgz-check -i -I -b -us -uc
-# mv $tmp_dir/*.deb $tmp_dir/build
+mv $tmp_dir/*.deb $tmp_dir/build
