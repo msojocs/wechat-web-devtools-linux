@@ -9,7 +9,7 @@ on:
   push:
     tags:        
       - v*
-    branches: [ master, build]
+    branches: [ master, dev]
   pull_request:
     branches: [ master ]
   # # Allows you to run this workflow manually from the Actions tab
@@ -155,55 +155,55 @@ jobs:
           name: wechat-devtools-${{ matrix.ARCH }}.build
           path: tmp/build
 
-  build-deb:
-    name: Build Deb Package
-    needs:
-      - build-src
-    runs-on: ubuntu-18.04
+  # build-deb:
+  #   name: Build Deb Package
+  #   needs:
+  #     - build-src
+  #   runs-on: ubuntu-18.04
 
-    strategy:
-      matrix:
-        ARCH: ['x86_64']
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+  #   strategy:
+  #     matrix:
+  #       ARCH: ['x86_64']
+  #       # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Download artifacts
-        uses: actions/download-artifact@v2
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Download artifacts
+  #       uses: actions/download-artifact@v2
 
-      - name: Generate TAG
-        id: Tag
-        run: |
-          tag='continuous'
-          name='Continuous Build'
-          if [ 'true' == ${{ startsWith(github.ref, 'refs/tags/') }} ];then
-            tag='${{ github.ref_name }}'
-            name='${{ github.ref_name }}'
-          fi
-          echo "tag result: $tag - $name"
-          echo "::set-output name=tag::$tag"
-          echo "::set-output name=name::$name"
+  #     - name: Generate TAG
+  #       id: Tag
+  #       run: |
+  #         tag='continuous'
+  #         name='Continuous Build'
+  #         if [ 'true' == ${{ startsWith(github.ref, 'refs/tags/') }} ];then
+  #           tag='${{ github.ref_name }}'
+  #           name='${{ github.ref_name }}'
+  #         fi
+  #         echo "tag result: $tag - $name"
+  #         echo "::set-output name=tag::$tag"
+  #         echo "::set-output name=name::$name"
          
-      - name: Build Deb Package
-        run: |
-          export BUILD_VERSION=${{ steps.tag.outputs.tag }}
-          ls -l
-          mkdir -p tmp/build
-          tools/build-prepare.sh
-          tools/build-deb.sh ${{ steps.tag.outputs.tag }}
-          export NO_WINE=true
-          tools/build-prepare.sh
-          tools/build-deb.sh ${{ steps.tag.outputs.tag }}
+  #     - name: Build Deb Package
+  #       run: |
+  #         export BUILD_VERSION=${{ steps.tag.outputs.tag }}
+  #         ls -l
+  #         mkdir -p tmp/build
+  #         tools/build-prepare.sh
+  #         tools/build-deb.sh ${{ steps.tag.outputs.tag }}
+  #         export NO_WINE=true
+  #         tools/build-prepare.sh
+  #         tools/build-deb.sh ${{ steps.tag.outputs.tag }}
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2.3.1
-        with:
-          # Artifact name
-          name: wechat-devtools-${{ matrix.ARCH }}.build
-          path: tmp/build
+  #     - name: Upload artifact
+  #       uses: actions/upload-artifact@v2.3.1
+  #       with:
+  #         # Artifact name
+  #         name: wechat-devtools-${{ matrix.ARCH }}.build
+  #         path: tmp/build
 
-  build-deepin:
-    name: Build Deepin Package
+  build-deb:
+    name: Build DEB Package
     needs:
       - build-src
     runs-on: ubuntu-18.04
@@ -233,14 +233,15 @@ jobs:
          
       - name: Build Deepin Package
         run: |
+          sudo apt-get install -y build-essential fakeroot devscripts git git-buildpackage debhelper debmake lintian pbuilder
           export BUILD_VERSION=${{ steps.tag.outputs.tag }}
           ls -l
           mkdir -p tmp/build
           tools/build-prepare.sh
-          sudo env NO_WINE=false tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
+          env NO_WINE=false tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
           export NO_WINE=true
           tools/build-prepare.sh
-          sudo env NO_WINE=true tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
+          env NO_WINE=true tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2.3.1
@@ -327,7 +328,7 @@ jobs:
     needs:
       - build-tar
       - build-deb
-      - build-deepin
+      # - build-deepin
       - build-arch
     runs-on: ubuntu-latest
     steps:

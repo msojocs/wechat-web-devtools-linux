@@ -1,0 +1,83 @@
+app-id: io.github.msojocs.wechat-devtools
+runtime: org.freedesktop.Platform
+runtime-version: '21.08'
+sdk: org.freedesktop.Sdk
+command: startup
+finish-args:
+  # X11 + XShm access
+  - --share=ipc
+  - --socket=x11
+  # Wayland access
+  - --socket=wayland
+  # Needs to talk to the network:
+  - --share=network
+  # Needs to save files locally
+  - --filesystem=host
+  - --metadata=X-DConf=migrate-path=/org/gnome/dictionary/
+modules:
+  - name: nwjs
+    buildsystem: simple
+    sources:
+      - type: dir
+        # url: https://npm.taobao.org/mirrors/nwjs/v0.53.1/nwjs-sdk-v0.53.1-linux-x64.tar.gz
+        # md5: b6f49803c51d0abacca2d1e566c7fe19
+        path: nwjs
+    build-commands: 
+      - ls -l
+      - rm package.nw
+      - mkdir -p /app/opt/nwjs
+      - cp -r . /app/opt/nwjs
+  - name: package.nw
+    buildsystem: simple
+    sources:
+      - type: dir
+        # url: https://npm.taobao.org/mirrors/nwjs/v0.53.1/nwjs-sdk-v0.53.1-linux-x64.tar.gz
+        # md5: b6f49803c51d0abacca2d1e566c7fe19
+        path: package.nw
+    build-commands: 
+      - ls -l
+      - mkdir -p /app/opt/package.nw
+      - cp -r . /app/opt/package.nw
+  - name: wechat-devtools
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 wechat-devtools /app/opt/bin/wechat-devtools
+      - install -Dm755 startup.sh /app/bin/startup
+      - install -Dm644 io.github.msojocs.wechat_devtools.desktop /app/share/applications/io.github.msojocs.wechat-devtools.desktop
+      - install -Dm644 io.github.msojocs.wechat_devtools.svg /app/share/icons/hicolor/scalable/apps/io.github.msojocs.wechat-devtools.svg
+      - ar p libgssapi-krb5-2_1.18.3-6+deb11u1_amd64.deb data.tar.xz | tar -xJ
+      - ar p libkrb5-3_1.18.3-6+deb11u1_amd64.deb data.tar.xz | tar -xJ
+      - ar p libk5crypto3_1.18.3-6+deb11u1_amd64.deb data.tar.xz | tar -xJ
+      - ar p libkrb5support0_1.18.3-6+deb11u1_amd64.deb data.tar.xz | tar -xJ
+      - ar p libkeyutils1_1.6.1-2_amd64.deb data.tar.xz | tar -xJ
+      - ls -l
+    post-install:
+      - rm -rf usr/share/{doc,man}
+      - cp -dr usr/* $FLATPAK_DEST/
+      - cp -dr lib/* $FLATPAK_DEST/lib
+      # - cp -dr opt/* $FLATPAK_DEST/
+    sources:
+      - type: file
+        path: bin/wechat-devtools
+      - type: file
+        path: startup.sh
+      - type: file
+        path: io.github.msojocs.wechat_devtools.desktop
+      - type: file
+        path: io.github.msojocs.wechat_devtools.svg
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/krb5/libgssapi-krb5-2_1.18.3-6+deb11u1_amd64.deb
+        sha256: 2ab853cbd0494c06fa694906c6eeea4df79720f461c76d080eb21a3e98f44115
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/krb5/libkrb5-3_1.18.3-6+deb11u1_amd64.deb
+        sha256: afb9dced3fcbdbc439a166eaa217dbfd485585842f12ce4587123009618e8bfe
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/krb5/libk5crypto3_1.18.3-6+deb11u1_amd64.deb
+        sha256: 4a010fc69322b6be9e141a76593f46e6588c968ee3b7cf79a3b8b7efda9aeeba
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/krb5/libkrb5support0_1.18.3-6+deb11u1_amd64.deb
+        sha256: 1f19908dbd37bd2ba9b3b3c9eb6ab8bee9a72f72745e6887f5366bb5fece654b
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/keyutils/libkeyutils1_1.6.1-2_amd64.deb
+        sha256: f01060b434d8cad3c58d5811d2082389f11b3db8152657d6c22c1d298953f2a5
+        

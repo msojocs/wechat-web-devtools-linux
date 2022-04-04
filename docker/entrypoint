@@ -29,5 +29,5 @@ rm -rf node nwjs package.nw
 # exec ./tools/rebuild-node-modules 0.53.1
 ./tools/setup-wechat-devtools-bash
 
-chmod -R 777 tmp node nwjs package.nw
-ls -l package.nw
+# chmod -R 777 tmp node nwjs package.nw
+# ls -l package.nw

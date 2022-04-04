@@ -58,7 +58,7 @@ cp -r "$root_dir/res/deepin"/* $build_dir
 mv "$build_dir/opt/apps/io.github.msojocs.wechat-devtools"/* $base_dir
 rm -r "$build_dir/opt/apps/io.github.msojocs.wechat-devtools"
 sed -i "s/BUILD_VERSION/${BUILD_VERSION//v/}/" "$build_dir/debian/control" "$base_dir/info"
-sed -i "s/io.github.msojocs.wechat-devtools/$package_name/g" "$base_dir/info" "$build_dir/debian/control" "$build_dir/debian/changelog"
+sed -i "s/io.github.msojocs.wechat-devtools/$package_name/g" "$base_dir/info" "$build_dir/debian/control"
 \cp -rf "$root_dir/bin/wechat-devtools" "$base_dir/files/bin/bin/wechat-devtools"
 
 # desktop
@@ -69,11 +69,6 @@ sed -i "s/WeChat Dev Tools/WeChat Dev Tools$NAME_SUFFIX/g" "$base_dir/info" "$ba
 sed -i "s/微信开发者工具/微信开发者工具$NAME_SUFFIX/g" "$base_dir/entries/applications/$package_name.desktop"
 
 \cp -rf "$root_dir/res/icons/wechat-devtools.svg" "$base_dir/entries/icons/hicolor/scalable/apps/$package_name.svg"
-
-# 兼容普通deb
-mkdir -p "$build_dir/usr/share/applications" "$build_dir/usr/share/icons/hicolor/scalable/apps"
-\cp -rf "$base_dir/entries/applications/$package_name.desktop" "$build_dir/usr/share/applications/$package_name.desktop"
-\cp -rf "$base_dir/entries/icons/hicolor/scalable/apps/$package_name.svg" "$build_dir/usr/share/icons/hicolor/scalable/apps/$package_name.svg"
 
 # 主体文件
 cp -r "$root_dir/package.nw" "$base_dir/files/bin/package.nw"
@@ -90,10 +85,9 @@ cd "$build_dir"
 ls -l "$build_dir"
 mkdir -p "$root_dir/tmp/build"
 
-if [[ $NO_WINE != 'true' ]];then
-  echo "添加wine依赖 - $NO_WINE"
+if [[ ! $NO_WINE -eq 'true' ]];then
   echo "Depends: wine, wine-binfmt" >> "$build_dir/debian/control"
 fi
 
-debuild --no-tgz-check -i -I -b -us -uc
-mv $tmp_dir/*.deb $tmp_dir/build
+# dpkg-deb -b . "$root_dir/tmp/build/WeChat_Dev_Tools_${BUILD_VERSION}_amd64_${BUILD_MARK}_deepin.deb"
+debuild
