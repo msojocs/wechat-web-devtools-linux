@@ -14,7 +14,7 @@ RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
     apt-get install -y aptitude &&\
     aptitude -y install gcc make zlib1g-dev libffi-dev libssl-dev &&\
     mkdir -p test && cd test &&\
-    wget http://npm.taobao.org/mirrors/python/3.6.5/Python-3.6.5.tgz &&\
+    wget http://npmmirror.com/mirrors/python/3.6.5/Python-3.6.5.tgz &&\
     tar -xvf Python-3.6.5.tgz &&\
     chmod -R +x Python-3.6.5 &&\
     cd Python-3.6.5/ &&\

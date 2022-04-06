@@ -23,7 +23,7 @@ apt update
 apt-get install -y python2 python3 libkrb5-dev gcc openssl libssh2-1-dev g++ make
 
 echo "start"
-npm install nodegit --registry=https://registry.npm.taobao.org
+npm install nodegit --registry=http://registry.npmmirror.com/
 
 npm uninstall nodegit
 ```

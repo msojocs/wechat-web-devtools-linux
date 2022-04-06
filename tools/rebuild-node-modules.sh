@@ -80,7 +80,7 @@ rm -fr "${package_dir}/node_modules_tmp/node_modules/spdlog-node"
     vscode-oniguruma \
     vscode-ripgrep \
     nodegit \
-    --nodegit_binary_host_mirror=https://npm.taobao.org/mirrors/nodegit/v0.27.0/) # reinstall modules
+    --nodegit_binary_host_mirror=http://npmmirror.com/mirrors/nodegit/v0.27.0/) # reinstall modules
 
 # rebuild
 cd "$package_dir/node_modules_tmp/node_modules/node-pty" && nw-gyp rebuild --arch=x64 "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
