@@ -69,6 +69,8 @@ rm -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep"
 rm -fr "${package_dir}/node_modules_tmp/node_modules/spdlog"
 rm -fr "${package_dir}/node_modules_tmp/node_modules/spdlog-node"
 
+max_thread=$(cat /proc/cpuinfo| grep "processor"| wc -l)
+export JOBS=$max_thread
 (cd "${package_dir}/node_modules_tmp" && npm install \
     extract-file-icon \
     native-keymap \
@@ -80,6 +82,7 @@ rm -fr "${package_dir}/node_modules_tmp/node_modules/spdlog-node"
     vscode-oniguruma \
     vscode-ripgrep \
     nodegit \
+    --registry=http://registry.npmmirror.com
     --nodegit_binary_host_mirror=http://npmmirror.com/mirrors/nodegit/v0.27.0/) # reinstall modules
 
 # rebuild
@@ -106,6 +109,3 @@ mkdir -p "${package_dir}/node_modules/vscode-ripgrep/bin"
 
 (cd "${package_dir}/node_modules" && find -name ".deps" | xargs -I{} rm -rf {} && find -name "obj.target" | xargs -I{} rm -rf {} && find -name "*.a" -delete && find -name "*.lib" -delete && find -name "*.mk" -delete && find -name "*Makefile" -delete && find -name "*gyp*" -delete)
 rm -rf "${package_dir}/node_modules_tmp"
-
-# 移除旧配置
-# rm -fr ~/.config/wechat_devtools
