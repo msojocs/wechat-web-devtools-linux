@@ -68,6 +68,6 @@ EOF
 
 # flatpak-builder build-dir io.github.msojocs.wechat-devtools.yml --force-clean
 
-flatpak-builder build-dir io.github.msojocs.wechat-devtools.yml --install --force-clean --user
+flatpak-builder build-dir io.github.msojocs.wechat-devtools.yml --force-clean --install --user
 
 flatpak run io.github.msojocs.wechat-devtools

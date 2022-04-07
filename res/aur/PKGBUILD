@@ -29,9 +29,9 @@ license=('unknown')
 depends=('gconf' 'libxkbfile')
 makedepends=('p7zip' 'python2' 'openssl' 'gcc' 'make' 'libssh2' 'krb5')
 # compiler 用于可视化,以及编译
-source=("nwjs-v${_nwjs_ver}.tar.gz::https://npm.taobao.org/mirrors/nwjs/v${_nwjs_ver}/nwjs-sdk-v${_nwjs_ver}-linux-x64.tar.gz"
+source=("nwjs-v${_nwjs_ver}.tar.gz::http://npmmirror.com/mirrors/nwjs/v${_nwjs_ver}/nwjs-sdk-v${_nwjs_ver}-linux-x64.tar.gz"
         "${_wechat_devtools_exe}::${_wechat_devtools_url}"
-        "node-v${_node_version}.tar.gz::https://npm.taobao.org/mirrors/node/v${_node_version}/node-v${_node_version}-linux-x64.tar.gz"
+        "node-v${_node_version}.tar.gz::http://npmmirror.com/mirrors/node/v${_node_version}/node-v${_node_version}-linux-x64.tar.gz"
         "compiler.tar.gz::https://github.rc1844.workers.dev/msojocs/wechat-web-devtools-linux/releases/download/v1.05.2203070-3/compiler.tar.gz"
         "wechat-devtools.desktop"
         "logo.svg"

@@ -1,0 +1,183 @@
+app-id: io.github.msojocs.wechat-devtools
+runtime: org.freedesktop.Platform
+runtime-version: '21.08'
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.node12
+command: startup
+finish-args:
+  # X11 + XShm access
+  - --share=ipc
+  - --socket=x11
+  # Wayland access
+  - --socket=wayland
+  # Needs to talk to the network:
+  - --share=network
+  # Needs to save files locally
+  - --filesystem=host
+  - --metadata=X-DConf=migrate-path=/io/github/msojocs/wechat-devtools
+modules:
+  - name: nwjs
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: http://npmmirror.com/mirrors/nwjs/v0.53.1/nwjs-sdk-v0.53.1-linux-x64.tar.gz
+        md5: b6f49803c51d0abacca2d1e566c7fe19
+    build-commands: 
+      - ls -l
+      - mkdir -p /app/opt/nwjs
+      - mv * /app/opt/nwjs
+
+  - name: package.nw
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=1052203070&version_type=1
+        md5: 2785d569b88d72a8e238d438d92faf44
+        archive-type: 7z
+        path: code
+        strip-components: 0
+        dest-filename: wechat_devtools.7z
+    build-commands:
+      - ls -l
+      - mv code/package.nw /app/opt/package.nw
+
+  - name: nodejs
+    buildsystem: simple
+    build-options:
+      prepend-path: /app/opt/nodejs/bin
+      build-args:
+        - --share=network
+    sources:
+      - type: archive
+        url: https://npmmirror.com/mirrors/node/v16.1.0/node-v16.1.0-linux-x64.tar.gz
+        md5: 2280bfbbf29981fd5adce334f40146ff
+    build-commands: 
+      - ls -l
+      - mkdir -p /app/opt/nodejs
+      - mv * /app/opt/nodejs
+      - npm config set registry https://registry.npmmirror.com # 注册模块镜像
+      - npm config set disturl https://npmmirror.com/dist # node-gyp 编译依赖的 node 源码镜像
+      - npm install -g npm@8.6.0
+      - npm --version
+      - npm -g install nw-gyp node-gyp
+
+  - name: library
+    buildsystem: simple
+    build-commands:
+      - for file in *.deb; do ar p $file data.tar.xz | tar -xJ; done;
+    post-install:
+      - rm -rf usr/share/{doc,man}
+      - cp -dr usr/* $FLATPAK_DEST/
+      # - cp -dr lib/* $FLATPAK_DEST/lib
+      # - cp -dr opt/* $FLATPAK_DEST/
+    sources:
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/krb5/libkrb5-dev_1.18.3-6+deb11u1_amd64.deb
+        sha256: d3a4a4705329c51d7a9843a72f87421938eeeef8548b3f2d46ce83f0862f9311
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/krb5/krb5-multidev_1.18.3-6+deb11u1_amd64.deb
+        sha256: b8bbee0879e6041ebbf58f62e1a526cc25225d67c140d5593b1341cc31388351
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/krb5/libkrb5-3_1.18.3-6+deb11u1_amd64.deb
+        sha256: afb9dced3fcbdbc439a166eaa217dbfd485585842f12ce4587123009618e8bfe
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/krb5/libk5crypto3_1.18.3-6+deb11u1_amd64.deb
+        sha256: 4a010fc69322b6be9e141a76593f46e6588c968ee3b7cf79a3b8b7efda9aeeba
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/krb5/libgssapi-krb5-2_1.18.3-6+deb11u1_amd64.deb
+        sha256: 2ab853cbd0494c06fa694906c6eeea4df79720f461c76d080eb21a3e98f44115
+
+  - name: build
+    buildsystem: simple
+    build-options:
+      ldflags: -L/app/lib/x86_64-linux-gnu
+      prepend-path: /app/opt/nodejs/bin:/usr/lib/sdk/node12/bin
+      build-args:
+        - --share=network
+      prepend-ld-library-path: /app/lib/x86_64-linux-gnu
+      env:
+        - NO_WINE=true
+    sources:
+      # - type: git
+      #   branch: dev
+      #   url: https://github.com/msojocs/wechat-web-devtools-linux.git
+      - type: dir
+        path: tools
+        dest: tools
+      - type: dir
+        path: compiler
+        dest: compiler
+    build-commands:
+      # - ln -s /app/opt/package.nw package.nw
+      - cp -r /app/opt/package.nw .
+      - cd package.nw && ls -l
+      - python --version
+      - python3 --version
+      - python2 --version
+      - node --version
+      - tools/fix-package-name.js
+      - tools/fix-selection-copy-node
+      - tools/fix-cli.sh
+      - tools/fix-core.sh
+      - tools/fix-menu.sh
+      - tools/fix-other.sh
+      - tools/rebuild-node-modules.sh 0.53.1
+      # - ls -l
+    post-install:
+      - rm -rf /app/opt/package.nw
+      - cp -r package.nw /app/opt
+
+  - name: library
+    buildsystem: simple
+    build-commands:
+      - for file in *.deb; do ar p $file data.tar.xz | tar -xJ; done;
+    post-install:
+      - rm -rf usr/share/{doc,man}
+      - cp -dr usr/* $FLATPAK_DEST/
+      - cp -dr lib/* $FLATPAK_DEST/lib
+      # - cp -dr opt/* $FLATPAK_DEST/
+    sources:
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/krb5/libgssapi-krb5-2_1.18.3-6+deb11u1_amd64.deb
+        sha256: 2ab853cbd0494c06fa694906c6eeea4df79720f461c76d080eb21a3e98f44115
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/krb5/libkrb5-3_1.18.3-6+deb11u1_amd64.deb
+        sha256: afb9dced3fcbdbc439a166eaa217dbfd485585842f12ce4587123009618e8bfe
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/krb5/libk5crypto3_1.18.3-6+deb11u1_amd64.deb
+        sha256: 4a010fc69322b6be9e141a76593f46e6588c968ee3b7cf79a3b8b7efda9aeeba
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/krb5/libkrb5support0_1.18.3-6+deb11u1_amd64.deb
+        sha256: 1f19908dbd37bd2ba9b3b3c9eb6ab8bee9a72f72745e6887f5366bb5fece654b
+      - type: file
+        url: http://ftp.cn.debian.org/debian/pool/main/k/keyutils/libkeyutils1_1.6.1-2_amd64.deb
+        sha256: f01060b434d8cad3c58d5811d2082389f11b3db8152657d6c22c1d298953f2a5
+
+  - name: clean
+    buildsystem: simple
+    build-commands:
+      - cp /app/opt/nodejs/bin/node /app/opt/nwjs
+      - cd /app/opt/nwjs && ln -s node node.exe
+      - rm -rf /app/opt/nodejs
+
+  - name: startup
+    buildsystem: simple
+    build-commands:
+      - sed -i 's/Icon=dir\/res\/icons\/wechat-devtools.svg/Icon=io.github.msojocs.wechat_devtools/' template.desktop
+      - sed -i 's/Exec=dir\/bin\/wechat-devtools/Exec=startup/' template.desktop
+    post-install:
+      - install -Dm755 wechat-devtools /app/opt/bin/wechat-devtools
+      - install -Dm755 startup.sh /app/bin/startup
+      - install -Dm644 template.desktop /app/share/applications/io.github.msojocs.wechat-devtools.desktop
+      - install -Dm644 wechat-devtools.svg /app/share/icons/hicolor/scalable/apps/io.github.msojocs.wechat-devtools.svg
+    sources:
+      - type: file
+        path: bin/wechat-devtools
+      - type: file
+        path: res/flatpak/startup.sh
+      - type: file
+        path: res/template.desktop
+      - type: file
+        path: res/icons/wechat-devtools.svg
+        
