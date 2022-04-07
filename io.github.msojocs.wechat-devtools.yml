@@ -111,7 +111,8 @@ modules:
     build-commands:
       - env
       - echo $PATH
-      - ln -s /app/opt/package.nw package.nw
+      # - ln -s /app/opt/package.nw package.nw
+      - cp -r /app/opt/package.nw .
       - cd package.nw && ls -l
       - python --version
       - python3 --version
@@ -125,6 +126,9 @@ modules:
       - tools/fix-other.sh
       - tools/rebuild-node-modules.sh 0.53.1
       # - ls -l
+    post-install:
+      - rm -rf /app/opt/package.nw
+      - cp -r package.nw /app/opt
 
   - name: library
     buildsystem: simple
