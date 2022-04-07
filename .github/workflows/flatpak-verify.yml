@@ -29,6 +29,9 @@ jobs:
       fail-fast: false
     steps:
     - uses: actions/checkout@v2
+    - name: Test
+      run: |
+        7z
     # Docker is required by the docker/setup-qemu-action which enables emulation
     - name: Install deps
       run: |

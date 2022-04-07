@@ -15,7 +15,7 @@ finish-args:
   - --share=network
   # Needs to save files locally
   - --filesystem=host
-  - --metadata=X-DConf=migrate-path=/org/gnome/dictionary/
+  - --metadata=X-DConf=migrate-path=/io/github/msojocs/wechat-devtools
 modules:
   - name: nwjs
     buildsystem: simple
@@ -97,7 +97,7 @@ modules:
         - --share=network
       prepend-ld-library-path: /app/lib/x86_64-linux-gnu
       env:
-        NO_WINE: true
+        - NO_WINE=true
     sources:
       # - type: git
       #   branch: dev
@@ -109,8 +109,6 @@ modules:
         path: compiler
         dest: compiler
     build-commands:
-      - env
-      - echo $PATH
       # - ln -s /app/opt/package.nw package.nw
       - cp -r /app/opt/package.nw .
       - cd package.nw && ls -l
