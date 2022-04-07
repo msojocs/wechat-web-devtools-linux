@@ -82,7 +82,7 @@ export JOBS=$max_thread
     vscode-oniguruma \
     vscode-ripgrep \
     nodegit \
-    --registry=http://registry.npmmirror.com
+    --registry=http://registry.npmmirror.com \
     --nodegit_binary_host_mirror=http://npmmirror.com/mirrors/nodegit/v0.27.0/) # reinstall modules
 
 # rebuild
@@ -104,6 +104,7 @@ cp -fr "${package_dir}/node_modules_tmp/node_modules/nodegit" "${package_dir}/no
 (cd "${package_dir}/node_modules_tmp/node_modules" && find -name ".deps" | xargs -I{} rm -rf {} && find -name "obj.target" | xargs -I{} rm -rf {} && find -name "*.a" -delete && find -name "*.lib" -delete && find -name "*.mk" -delete)
 (cd "${package_dir}/node_modules_tmp/node_modules" && find -name "*.node" | xargs -I{} \cp -rf {} ${package_dir}/node_modules/{})
 
+cd "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep" && npm run postinstall
 mkdir -p "${package_dir}/node_modules/vscode-ripgrep/bin"
 \cp -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep/bin/rg" "${package_dir}/node_modules/vscode-ripgrep/bin/rg"
 
