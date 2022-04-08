@@ -151,3 +151,4 @@ git clone https://github.com/msojocs/wechat-devtools-linux.git
   2. @shaoxp
   3. .
   4. IvesSSa
+  5. icepie

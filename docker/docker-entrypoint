@@ -7,6 +7,8 @@ notice() {
     echo -e "\033[36m $1 \033[0m "
 }
 
+rm -rf /tmp/vscode-ripgrep-cache-1.13.2/ripgrep-v13.0.0-4-x86_64-unknown-linux-musl.tar.gz
+
 if [ "$(id -u)" -eq '0' ];then
     USER_ID=${LOCAL_USER_ID:-1000}
     GROUP_ID=${LOCAL_GROUP_ID:-1000}

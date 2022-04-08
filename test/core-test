@@ -7,7 +7,7 @@ if [ "$a" == '1' ];then
   node tools/wxvpkg_unpack.js "$root_dir/package.nw/core.wxvpkg" "$root_dir/package.nw/core.wxvpkg.ext"
 else
   node tools/wxvpkg_pack.js package.nw/core.wxvpkg.ext package.nw/core.wxvpkg
-  rm -rf ~/.config/wechat_devtools/WeappCache
-  rm -rf ~/.config/wechat_devtools/WeappVendor
+  rm -rf ~/.config/wechat-devtools/WeappCache
+  rm -rf ~/.config/wechat-devtools/WeappVendor
   bin/wechat-devtools
 fi
