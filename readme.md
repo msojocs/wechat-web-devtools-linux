@@ -148,6 +148,7 @@ git clone https://github.com/msojocs/wechat-devtools-linux.git
 
 # 感谢赞赏支持
   1. *喆
-  2. @shaoxp
+  2. shaoxp
   3. .
   4. IvesSSa
+  5. icepie
