@@ -24,6 +24,9 @@ class CheckDark {
                 break;
 
             default:
+                console.warn(
+                    `NOT SUPPORTED !!! DESKTOP_SESSION: ${DESKTOP_SESSION}`
+                );
                 break;
         }
         monitor &&
@@ -32,8 +35,13 @@ class CheckDark {
             });
         monitor &&
             monitor.stdout.on("data", (chunk) => {
+				// TODO: 防抖动包装
                 const data = chunk.toString();
+                const t = data.includes("dark");
                 console.log(data);
+                console.log("dark", t);
+                // (this._theme = t ? i.Dark : i.Light),
+                //         this._onDidThemeChange.fire(this._theme);
             });
     }
     get isDark() {
@@ -80,6 +88,7 @@ function original() {
         exports.OSThemeController = class {
             constructor() {
                 (this._onDidThemeChange = new t.EasyEmitter()),
+                    // debounce, 防抖动， 该函数会从上一次被调用后，延迟 400 毫秒后调用 func 方法
                     (this.onMediaQueryChange = e.debounce((e) => {
                         console.warn("onMediaQueryChange", e);
                         const t = e.matches;
@@ -134,6 +143,7 @@ function original() {
             }
             tryGetCurrentTheme() {
                 if (this.isEnabled()) {
+					// return this.isDark ? i.Dark : i.Light;
                     return this.mediaQuery.matches ? i.Dark : i.Light;
                 }
                 return i.Unknown;
@@ -159,6 +169,28 @@ function original() {
                     this._mediaQuery2
                 );
             }
+			get isDark() {
+				const { DESKTOP_SESSION } = process.env;
+				console.log(DESKTOP_SESSION);
+				let theme = "";
+				switch (DESKTOP_SESSION) {
+					case "deepin":
+						theme = execSync(
+							`gsettings get com.deepin.dde.appearance gtk-theme`
+						);
+						break;
+					case "gnome":
+					case "gnome-classic":
+						theme = execSync(
+							`gsettings get org.gnome.desktop.interface gtk-theme`
+						);
+						break;
+		
+					default:
+						break;
+				}
+				return theme.includes("dark");
+			}
             getDefaultTheme() {
                 return i.Dark;
             }
