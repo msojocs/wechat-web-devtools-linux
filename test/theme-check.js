@@ -35,7 +35,7 @@ class CheckDark {
             });
         monitor &&
             monitor.stdout.on("data", (chunk) => {
-				// TODO: 防抖动包装
+                // TODO: 防抖动包装
                 const data = chunk.toString();
                 const t = data.includes("dark");
                 console.log(data);
@@ -68,12 +68,13 @@ class CheckDark {
     }
 }
 const cd = new CheckDark();
-console.log(cd.isDark);
 cd.monitorTheme();
+console.log(cd.isDark);
 
 function original() {
     !(function (require, directRequire) {
         "use strict";
+        const { execSync, spawn } = require("child_process");
         Object.defineProperty(exports, "__esModule", { value: !0 }),
             (exports.OSThemeController = exports.OSTheme = void 0);
         const e = require("lodash"),
@@ -98,7 +99,7 @@ function original() {
                     (this._theme = void 0),
                     (this._isEnabled = void 0),
                     (this._mediaQuery2 = void 0),
-                    this.registerListeners();
+                    this.monitorTheme();
             }
             static get shared() {
                 return (
@@ -107,6 +108,47 @@ function original() {
             }
             get onDidThemeChange() {
                 return this._onDidThemeChange.event;
+            }
+            monitorTheme() {
+                let monitor = null;
+                const { DESKTOP_SESSION } = process.env;
+                switch (DESKTOP_SESSION) {
+                    case "deepin":
+                        monitor = spawn("gsettings", [
+                            "monitor",
+                            "com.deepin.dde.appearance",
+                            "gtk-theme",
+                        ]);
+                        break;
+                    case "gnome":
+                    case "gnome-classic":
+                        monitor = spawn("gsettings", [
+                            "monitor",
+                            "org.gnome.desktop.interface",
+                            "gtk-theme",
+                        ]);
+                        break;
+        
+                    default:
+                        console.warn(
+                            `NOT SUPPORTED !!! DESKTOP_SESSION: ${DESKTOP_SESSION}`
+                        );
+                        break;
+                }
+                monitor &&
+                    monitor.on("error", (err) => {
+                        console.error("monitorTheme", err);
+                    });
+                monitor &&
+                    monitor.stdout.on("data", e.debounce((chunk) => {
+                        // 防抖动包装 防抖动， 该函数会从上一次被调用后，延迟 400 毫秒后调用 本方法
+                        const data = chunk.toString();
+                        const t = data.includes("dark");
+                        console.warn(data);
+                        console.warn("dark", t);
+                        (this._theme = t ? i.Dark : i.Light),
+                                this._onDidThemeChange.fire(this._theme);
+                    }, 400));
             }
             registerListeners() {
                 var e, t;
@@ -143,8 +185,8 @@ function original() {
             }
             tryGetCurrentTheme() {
                 if (this.isEnabled()) {
-					// return this.isDark ? i.Dark : i.Light;
-                    return this.mediaQuery.matches ? i.Dark : i.Light;
+                    return this.isDark ? i.Dark : i.Light;
+                    // return this.mediaQuery.matches ? i.Dark : i.Light;
                 }
                 return i.Unknown;
             }
@@ -169,28 +211,28 @@ function original() {
                     this._mediaQuery2
                 );
             }
-			get isDark() {
-				const { DESKTOP_SESSION } = process.env;
-				console.log(DESKTOP_SESSION);
-				let theme = "";
-				switch (DESKTOP_SESSION) {
-					case "deepin":
-						theme = execSync(
-							`gsettings get com.deepin.dde.appearance gtk-theme`
-						);
-						break;
-					case "gnome":
-					case "gnome-classic":
-						theme = execSync(
-							`gsettings get org.gnome.desktop.interface gtk-theme`
-						);
-						break;
-		
-					default:
-						break;
-				}
-				return theme.includes("dark");
-			}
+            get isDark() {
+                const { DESKTOP_SESSION } = process.env;
+                console.log(DESKTOP_SESSION);
+                let theme = "";
+                switch (DESKTOP_SESSION) {
+                    case "deepin":
+                        theme = execSync(
+                            `gsettings get com.deepin.dde.appearance gtk-theme`
+                        );
+                        break;
+                    case "gnome":
+                    case "gnome-classic":
+                        theme = execSync(
+                            `gsettings get org.gnome.desktop.interface gtk-theme`
+                        );
+                        break;
+    
+                    default:
+                        break;
+                }
+                return theme.includes("dark");
+            }
             getDefaultTheme() {
                 return i.Dark;
             }
