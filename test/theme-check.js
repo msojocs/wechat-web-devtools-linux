@@ -17,7 +17,7 @@ class CheckDark {
             case "gnome":
             case "gnome-classic":
                 const gnomeVersion = execSync(`gnome-shell --version`).toString().replace(/[\r\n]/g, "").split(" ")
-                const gnomeVersionNum = gnomeVersion.length ? Number(gnomeVersion[2]) : 0
+                const gnomeVersionNum = gnomeVersion.length == 3 ? Number(gnomeVersion[2]) : 0
                 if (gnomeVersionNum >= 42) {
                     monitor = spawn("gsettings", [
                         "monitor",
@@ -67,7 +67,7 @@ class CheckDark {
             case "gnome-classic":
                 // 判断 Gnome-Shell 版本
                 const gnomeVersion = execSync(`gnome-shell --version`).toString().replace(/[\r\n]/g, "").split(" ")
-                const gnomeVersionNum = gnomeVersion.length ? Number(gnomeVersion[2]) : 0
+                const gnomeVersionNum = gnomeVersion.length == 3 ? Number(gnomeVersion[2]) : 0
                 if (gnomeVersionNum >= 42) {
                     theme = execSync(
                         `gsettings get org.gnome.desktop.interface color-scheme`
