@@ -1,4 +1,5 @@
 #!/bin/bash
+# 此脚本用于使修改 core.wxvpkg 内的代码及时生效
 set -e
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 a=$1

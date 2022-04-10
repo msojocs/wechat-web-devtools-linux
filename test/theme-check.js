@@ -16,21 +16,11 @@ class CheckDark {
                 break;
             case "gnome":
             case "gnome-classic":
-                const gnomeVersion = execSync(`gnome-shell --version`).toString().replace(/[\r\n]/g, "").split(" ")
-                const gnomeVersionNum = gnomeVersion.length == 3 ? Number(gnomeVersion[2]) : 0
-                if (gnomeVersionNum >= 42) {
-                    monitor = spawn("gsettings", [
-                        "monitor",
-                        "org.gnome.desktop.interface",
-                        "color-scheme",
-                    ]);
-                } else {
-                    monitor = spawn("gsettings", [
-                        "monitor",
-                        "org.gnome.desktop.interface",
-                        "gtk-theme",
-                    ]);
-                }
+                monitor = spawn("gsettings", [
+                    "monitor",
+                    "org.gnome.desktop.interface",
+                    this.gnomeScheme,
+                ]);
                 break;
             default:
                 console.warn(
@@ -46,7 +36,7 @@ class CheckDark {
             monitor.stdout.on("data", (chunk) => {
                 // TODO: 防抖动包装
                 const data = chunk.toString();
-                const t = data.includes("dark") || data.includes("Dark");
+                const t = data.toLowerCase().includes("dark");
                 console.log(data);
                 console.log("dark", t);
                 // (this._theme = t ? i.Dark : i.Light),
@@ -65,24 +55,29 @@ class CheckDark {
                 break;
             case "gnome":
             case "gnome-classic":
-                // 判断 Gnome-Shell 版本
-                const gnomeVersion = execSync(`gnome-shell --version`).toString().replace(/[\r\n]/g, "").split(" ")
-                const gnomeVersionNum = gnomeVersion.length == 3 ? Number(gnomeVersion[2]) : 0
-                if (gnomeVersionNum >= 42) {
-                    theme = execSync(
-                        `gsettings get org.gnome.desktop.interface color-scheme`
-                    );
-                } else {
-                    theme = execSync(
-                        `gsettings get org.gnome.desktop.interface gtk-theme`
-                    );
-                }
+                theme = execSync(
+                    `gsettings get org.gnome.desktop.interface ${this.gnomeScheme}`
+                );
                 break;
 
             default:
+                console.warn(
+                    `NOT SUPPORTED !!! DESKTOP_SESSION: ${DESKTOP_SESSION}`
+                );
                 break;
         }
-        return theme.includes("dark") || theme.includes("Dark");
+        console.log(theme.toString());
+        return theme.toString().toLowerCase().includes("dark");
+    }
+    get gnomeScheme() {
+        // 判断 Gnome-Shell 版本
+        const gnomeVersion = execSync(`gnome-shell --version`)
+            .toString()
+            .replace(/[\r\n]/g, "")
+            .split(" ");
+        const gnomeVersionNum =
+            gnomeVersion.length == 3 ? Number(gnomeVersion[2]) : 0;
+        return gnomeVersionNum >= 42 ? "color-scheme" : "gtk-theme";
     }
 }
 const cd = new CheckDark();
@@ -127,54 +122,13 @@ function original() {
             get onDidThemeChange() {
                 return this._onDidThemeChange.event;
             }
-            monitorTheme() {
-                let monitor = null;
-                const { DESKTOP_SESSION } = process.env;
-                switch (DESKTOP_SESSION) {
-                    case "deepin":
-                        monitor = spawn("gsettings", [
-                            "monitor",
-                            "com.deepin.dde.appearance",
-                            "gtk-theme",
-                        ]);
-                        break;
-                    case "gnome":
-                    case "gnome-classic":
-                        monitor = spawn("gsettings", [
-                            "monitor",
-                            "org.gnome.desktop.interface",
-                            "gtk-theme",
-                        ]);
-                        break;
-
-                    default:
-                        console.warn(
-                            `NOT SUPPORTED !!! DESKTOP_SESSION: ${DESKTOP_SESSION}`
-                        );
-                        break;
-                }
-                monitor &&
-                    monitor.on("error", (err) => {
-                        console.error("monitorTheme", err);
-                    });
-                monitor &&
-                    monitor.stdout.on("data", e.debounce((chunk) => {
-                        // 防抖动包装 防抖动， 该函数会从上一次被调用后，延迟 400 毫秒后调用 本方法
-                        const data = chunk.toString();
-                        const t = data.includes("dark");
-                        console.warn(data);
-                        console.warn("dark", t);
-                        (this._theme = t ? i.Dark : i.Light),
-                            this._onDidThemeChange.fire(this._theme);
-                    }, 400));
-            }
             registerListeners() {
                 var e, t;
                 this.isEnabled() &&
                     (null === (e = this.mediaQuery) ||
                         void 0 === e ||
                         e.addEventListener("change", this.onMediaQueryChange),
-                        null === (t = this.mediaQuery2) ||
+                    null === (t = this.mediaQuery2) ||
                         void 0 === t ||
                         t.addEventListener("change", this.onMediaQueryChange));
             }
@@ -211,24 +165,25 @@ function original() {
             get mediaQuery() {
                 return (
                     this._mediaQuery ||
-                    (this._mediaQuery = window.matchMedia(
-                        "(prefers-color-scheme: dark)"
-                    )),
+                        (this._mediaQuery = window.matchMedia(
+                            "(prefers-color-scheme: dark)"
+                        )),
                     this._mediaQuery
                 );
             }
             get mediaQuery2() {
                 return (
                     void 0 === this._mediaQuery2 &&
-                    (global.contentWindow && global.contentWindow !== window
-                        ? (this._mediaQuery2 =
-                            global.contentWindow.matchMedia(
-                                "(prefers-color-scheme: dark)"
-                            ))
-                        : (this._mediaQuery2 = null)),
+                        (global.contentWindow && global.contentWindow !== window
+                            ? (this._mediaQuery2 =
+                                  global.contentWindow.matchMedia(
+                                      "(prefers-color-scheme: dark)"
+                                  ))
+                            : (this._mediaQuery2 = null)),
                     this._mediaQuery2
                 );
             }
+            // 额外添加功能 start
             get isDark() {
                 const { DESKTOP_SESSION } = process.env;
                 console.log(DESKTOP_SESSION);
@@ -242,7 +197,7 @@ function original() {
                     case "gnome":
                     case "gnome-classic":
                         theme = execSync(
-                            `gsettings get org.gnome.desktop.interface gtk-theme`
+                            `gsettings get org.gnome.desktop.interface ${this.gnomeScheme}`
                         );
                         break;
 
@@ -251,6 +206,59 @@ function original() {
                 }
                 return theme.includes("dark");
             }
+            get gnomeScheme() {
+                // 判断 Gnome-Shell 版本
+                const gnomeVersion = execSync(`gnome-shell --version`)
+                    .toString()
+                    .replace(/[\r\n]/g, "")
+                    .split(" ");
+                const gnomeVersionNum =
+                    gnomeVersion.length == 3 ? Number(gnomeVersion[2]) : 0;
+                return gnomeVersionNum >= 42 ? "color-scheme" : "gtk-theme";
+            }
+            monitorTheme() {
+                let monitor = null;
+                const { DESKTOP_SESSION } = process.env;
+                switch (DESKTOP_SESSION) {
+                    case "deepin":
+                        monitor = spawn("gsettings", [
+                            "monitor",
+                            "com.deepin.dde.appearance",
+                            "gtk-theme",
+                        ]);
+                        break;
+                    case "gnome":
+                    case "gnome-classic":
+                        monitor = spawn("gsettings", [
+                            "monitor",
+                            "org.gnome.desktop.interface",
+                            this.gnomeScheme,
+                        ]);
+                        break;
+
+                    default:
+                        console.warn(
+                            `NOT SUPPORTED !!! DESKTOP_SESSION: ${DESKTOP_SESSION}`
+                        );
+                        break;
+                }
+                monitor &&
+                    monitor.on("error", (err) => {
+                        console.error("monitorTheme", err);
+                    });
+                monitor &&
+                    monitor.stdout.on(
+                        "data",
+                        e.debounce((chunk) => {
+                            // 防抖动包装 防抖动， 该函数会从上一次被调用后，延迟 400 毫秒后调用 本方法
+                            const data = chunk.toString();
+                            const t = data.toLowerCase().includes("dark");
+                            (this._theme = t ? i.Dark : i.Light),
+                                this._onDidThemeChange.fire(this._theme);
+                        }, 400)
+                    );
+            }
+            // 额外添加功能 end
             getDefaultTheme() {
                 return i.Dark;
             }
