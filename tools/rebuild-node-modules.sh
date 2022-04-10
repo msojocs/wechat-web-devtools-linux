@@ -104,7 +104,9 @@ cp -fr "${package_dir}/node_modules_tmp/node_modules/nodegit" "${package_dir}/no
 (cd "${package_dir}/node_modules_tmp/node_modules" && find -name ".deps" | xargs -I{} rm -rf {} && find -name "obj.target" | xargs -I{} rm -rf {} && find -name "*.a" -delete && find -name "*.lib" -delete && find -name "*.mk" -delete)
 (cd "${package_dir}/node_modules_tmp/node_modules" && find -name "*.node" | xargs -I{} \cp -rf {} ${package_dir}/node_modules/{})
 
-cd "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep" && npm run postinstall
+cd "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep" && \
+sed -i 's/response.headers.location,/response.headers.location.replace("objects.githubusercontent.com", "objects.jiyecafe.workers.dev"),/' lib/download.js && \
+npm run postinstall
 mkdir -p "${package_dir}/node_modules/vscode-ripgrep/bin"
 \cp -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep/bin/rg" "${package_dir}/node_modules/vscode-ripgrep/bin/rg"
 

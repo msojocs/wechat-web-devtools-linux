@@ -1,0 +1,11 @@
+#!/bin/bash
+
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+export PATH="$root_dir/node/bin:$PATH"
+
+cd "$root_dir/tmp"
+mkdir -p node_test/node_modules
+cd node_test
+npm install spdlog --save
+rm -rf "$root_dir/package.nw/node_modules/spdlog"
+cp -rf "$root_dir/tmp/node_test/node_modules/spdlog" "$root_dir/package.nw/node_modules"
