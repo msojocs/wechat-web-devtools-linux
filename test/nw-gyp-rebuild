@@ -1,0 +1,9 @@
+#!/bin/bash
+
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+export PATH="$root_dir/node/bin:$PATH"
+ln -s "$( which python2 )" "$root_dir/node/bin/python"
+
+cd "$root_dir/tmp/node_test/node_modules/spdlog"
+# node-gyp rebuild
+nw-gyp rebuild --arch=x64 "--target=0.55.0" --dist-url=https://registry.npmmirror.com/-/binary/nwjs

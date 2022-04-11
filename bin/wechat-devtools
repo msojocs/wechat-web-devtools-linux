@@ -16,7 +16,7 @@ APP_NAME=${APP_NAME//\",\"main/}
 
 export WECHAT_DEVTOOLS_DIR="$root_dir/nwjs"
 export APPDATA="$DATA_DIR/$APP_NAME"
-export PATH="$root_dir/wine:$root_dir/node/bin:$root_dir/nwjs:$PATH"
+export PATH="$root_dir/node/bin:$root_dir/nwjs:$PATH"
 export USERPROFILE=$DATA_DIR
 
 clean_cache() {

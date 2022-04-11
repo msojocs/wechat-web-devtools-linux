@@ -100,6 +100,7 @@ cp -fr "${package_dir}/node_modules_tmp/node_modules/nodegit" "${package_dir}/no
 
 (cp -fr "${package_dir}/node_modules_tmp/node_modules/oniguruma" "${package_dir}/node_modules_tmp/node_modules/oniguruma-node")
 (cp -fr "${package_dir}/node_modules_tmp/node_modules/spdlog" "${package_dir}/node_modules_tmp/node_modules/spdlog-node")
+cd "$package_dir/node_modules_tmp/node_modules/spdlog" && nw-gyp rebuild --arch=x64 "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
 
 (cd "${package_dir}/node_modules_tmp/node_modules" && find -name ".deps" | xargs -I{} rm -rf {} && find -name "obj.target" | xargs -I{} rm -rf {} && find -name "*.a" -delete && find -name "*.lib" -delete && find -name "*.mk" -delete)
 (cd "${package_dir}/node_modules_tmp/node_modules" && find -name "*.node" | xargs -I{} \cp -rf {} ${package_dir}/node_modules/{})
