@@ -106,7 +106,10 @@ cd "$package_dir/node_modules_tmp/node_modules/spdlog" && nw-gyp rebuild --arch=
 (cd "${package_dir}/node_modules_tmp/node_modules" && find -name "*.node" | xargs -I{} \cp -rf {} ${package_dir}/node_modules/{})
 
 cd "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep" && \
-sed -i 's/response.headers.location,/response.headers.location.replace("objects.githubusercontent.com", "objects.jiyecafe.workers.dev"),/' lib/download.js && \
+sed -i 's/api.github.com/wechat-devtools.jiyecafe.workers.dev/' lib/download.js && \
+sed -i "s/ const release/ downloadOpts.headers.upstream = 'api.github.com';const release/" lib/download.js && \
+sed -i "s/ return download/ opts.headers.upstream = 'objects.githubusercontent.com';return download/" lib/download.js && \
+sed -i 's/response.headers.location,/response.headers.location.replace("objects.githubusercontent.com", "wechat-devtools.jiyecafe.workers.dev"),/' lib/download.js && \
 npm run postinstall
 mkdir -p "${package_dir}/node_modules/vscode-ripgrep/bin"
 \cp -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep/bin/rg" "${package_dir}/node_modules/vscode-ripgrep/bin/rg"
