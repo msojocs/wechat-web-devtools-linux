@@ -57,9 +57,12 @@ notice "COPY Files"
 cp -r "$root_dir/res/deepin"/* $build_dir
 mv "$build_dir/opt/apps/io.github.msojocs.wechat-devtools"/* $base_dir
 rm -r "$build_dir/opt/apps/io.github.msojocs.wechat-devtools"
-sed -i "s/BUILD_VERSION/${BUILD_VERSION//v/}/" "$build_dir/debian/control" "$base_dir/info"
+sed -i "s/BUILD_VERSION/${BUILD_VERSION//v/}/" "$build_dir/debian/control" "$build_dir/debian/changelog" "$base_dir/info"
 sed -i "s/io.github.msojocs.wechat-devtools/$package_name/g" "$base_dir/info" "$build_dir/debian/control" "$build_dir/debian/changelog"
 \cp -rf "$root_dir/bin/wechat-devtools" "$base_dir/files/bin/bin/wechat-devtools"
+# 时间
+build_time=$(LANG=en_US date '+%a, %d %b %Y %H:%M:%S %z')
+sed -i "s#[A-Za-z]\+, [0-9]\+ [A-Za-z]\+ [0-9]\+ [0-9]\+:[0-9]\+:[0-9]\+ +[0-9]\+#${build_time}#" "$build_dir/debian/changelog"
 
 # desktop
 \cp -rf "$root_dir/res/template.desktop" "$base_dir/entries/applications/$package_name.desktop"

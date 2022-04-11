@@ -1,8 +1,12 @@
-io.github.msojocs.wechat-devtools (1.05.2203070-7) unstable; urgency=medium
+io.github.msojocs.wechat-devtools (BUILD_VERSION) unstable; urgency=medium
  
   * fix:
-    - cli
-  * 兼容
-    - ubuntu16.04
+    - 国内网络vscode-ripgrep安装失败的问题
+    - 内部的更新检查界面无法正常使用
+    - 修复可能出现扩展宿主意外终止的问题
+  * feat:
+    - 主题深浅跟随系统变化, 感谢icepie的参与
+  * update:
+    - 更新nwjs与nodejs
 
- -- msojocs <jiyecafe@gmail.com>  Wed, 23 Mar 2022 14:56:04 +0800
+ -- msojocs <jiyecafe@gmail.com>  Mon, 11 Mar 2022 14:56:04 +0800
