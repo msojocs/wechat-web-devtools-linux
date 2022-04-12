@@ -98,5 +98,5 @@ if [[ $NO_WINE != 'true' ]];then
   echo "Depends: wine, wine-binfmt" >> "$build_dir/debian/control"
 fi
 
-debuild --no-tgz-check
+debuild --no-tgz-check -i -I
 mv $tmp_dir/*.deb $tmp_dir/build

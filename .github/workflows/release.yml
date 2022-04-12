@@ -230,6 +230,7 @@ jobs:
           echo "tag result: $tag - $name"
           echo "::set-output name=tag::$tag"
           echo "::set-output name=name::$name"
+      # https://stackoverflow.com/questions/61096521/how-to-use-gpg-key-in-github-actions
       - name: Configure GPG Key
         run: |
           echo -n "$GPG_SIGNING_KEY" | base64 --decode | gpg --import
