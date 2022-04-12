@@ -6,27 +6,12 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
   SOURCE="$(readlink "$SOURCE")"
   [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
 done
-DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+root_dir="$( cd -P "$( dirname "$SOURCE" )"/.. >/dev/null 2>&1 && pwd )"
 
-cd $DIR/..
+cd $root_dir
 
-export WECHAT_DEVTOOLS_DIR="$DIR/../nwjs"
-export APPDATA="$DIR/../nwjs"
-export PATH="$DIR/../wine:$DIR/../node/bin:$DIR/../nwjs:$PATH"
+export WECHAT_DEVTOOLS_DIR="$root_dir/nwjs"
+export APPDATA="$root_dir/nwjs"
+export PATH="$root_dir/wine:$root_dir/node/bin:$root_dir/nwjs:$PATH"
 
-$DIR/../tools/wechat-devtools-cli "$@"
-
-# #!/bin/bash
-# root_dir=$(cd `dirname $0`/.. && pwd -P)
-
-# echo "cli"
-
-# export WECHAT_DEVTOOLS_DIR="$root_dir/nwjs"
-# export APPDATA="$HOME/.config"
-# export USERPROFILE="$root"
-# export PATH="$root_dir/wine:$root_dir/node/bin:$root_dir/nwjs:$PATH"
-# export CALLING_DIR=$root_dir
-
-# node $root_dir/bin/cli.js "$@"
-
-# cd $root_dir
+node $root_dir/package.nw/js/common/cli/index.js "$@"
