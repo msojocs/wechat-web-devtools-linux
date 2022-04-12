@@ -56,6 +56,7 @@ COMPILER_MD5=$( md5sum tmp/compiler.tar.gz | cut -d ' ' -f1 )
 rm -rf $build_dir
 mkdir -p $build_dir
 cp "$root_dir/bin/wechat-devtools" "$build_dir"
+cp "$root_dir/bin/wechat-devtools-cli" "$build_dir"
 cp "$root_dir/tools"/*.sh "$build_dir"
 cp "$root_dir/tools"/*.js "$build_dir"
 cp "$root_dir/res/aur"/* "$build_dir"
