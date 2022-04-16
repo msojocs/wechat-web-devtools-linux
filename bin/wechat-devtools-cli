@@ -14,4 +14,6 @@ export WECHAT_DEVTOOLS_DIR="$root_dir/nwjs"
 export APPDATA="$root_dir/nwjs"
 export PATH="$root_dir/wine:$root_dir/node/bin:$root_dir/nwjs:$PATH"
 
-node $root_dir/package.nw/js/common/cli/index.js "$@"
+# node $root_dir/package.nw/js/common/cli/index.js "$@"
+# const t=e.customScriptName?e.$0:o.basename(e.$0),
+echo "process.argv[1]='$root_dir/bin/wechat-devtools-cli';require('$root_dir/package.nw/js/common/cli/index.js')" | node - "$@"

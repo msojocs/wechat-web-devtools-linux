@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 构建AppImage
+
 # 参数：
 # $1 - 版本 v1.05.2203030-2
 # $2 - 平台 x86_64
@@ -52,7 +54,7 @@ notice "下载AppImage构建工具 ACTION_MODE:$ACTION_MODE"
 if [[ $ACTION_MODE == 'true' ]]; then
   appimagetool_host="github.com"
 else
-  appimagetool_host="download.fastgit.org"
+  appimagetool_host="github.rc1844.workers.dev"
 fi
 if [ ! -f "$tmp_dir/appimagetool-x86_64.AppImage" ];then
   wget "https://$appimagetool_host/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" \
@@ -69,13 +71,18 @@ mkdir -p $app_dir/usr/share/{metainfo,icons}
 
 notice "COPY FILES"
 cp "$root_dir/bin/wechat-devtools" "$app_dir/bin/wechat-devtools"
+cp "$root_dir/bin/wechat-devtools-cli" "$app_dir/bin/wechat-devtools-cli"
 cp "$root_dir/res/icons/wechat-devtools.png" "$app_dir/wechat-devtools.png"
 \cp -rf "$root_dir/res/appimage"/* "$app_dir"
 cp $app_dir/usr/share/applications/*.desktop "$app_dir/io.github.msojocs.wechat_devtools.desktop"
 
-cat > "$app_dir/AppRun" <<- EOF
+cat > "$app_dir/AppRun" <<- 'EOF'
 #!/bin/bash
-exec \$APPDIR/bin/wechat-devtools
+if [[ $1 == 'cli' ]];then
+    exec $APPDIR/bin/wechat-devtools-cli ${@:2}
+else
+    exec $APPDIR/bin/wechat-devtools
+fi
 EOF
 chmod +x "$app_dir/AppRun"
 

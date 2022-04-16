@@ -18,3 +18,4 @@ temp.sh
 # flatpak
 .flatpak-builder
 build-dir
+__pycache__

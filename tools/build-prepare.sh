@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# 用于github actions构建
+# 解压初步构建后的文件
+
 # 脚本执行前提，已完成支持wine的基本构建
 set -e
 success() {
