@@ -21,10 +21,10 @@ exit
 echo "$@ $0 $1 $2"
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
-export PATH="$root_dir/node/bin:$PATH"
-
-PY_VERSION=`python -V 2>&1|awk '{print $2}'|awk -F '.' '{print $1}'`
-echo $PY_VERSION
-if [ "$PY_VERSION" == "Python 3.10.1" ]; then
-  echo ok
-fi
+cd $root_dir/tmp
+export HTTPS_PROXY="http://127.0.0.1:7890"
+# npm uninstall vscode-ripgrep
+# npm install vscode-ripgrep
+cd $root_dir/tmp/node_modules/vscode-ripgrep
+rm -rf bin /tmp/vscode-ripgrep-cache-1.13.2/ripgrep-v13.0.0-4-x86_64-unknown-linux-musl.tar.gz
+npm run postinstall

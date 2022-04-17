@@ -1,0 +1,27 @@
+#!/bin/bash
+echo "SNAP 启动"
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+echo "root_dir: $root_dir"
+ls -l "$root_dir"
+
+export WECHAT_DEVTOOLS_DIR="$root_dir/nwjs"
+export APPDATA="$SNAP_USER_DATA/.config/wechat_devtools"
+export PATH="$root_dir/wine:$root_dir/node/bin:$root_dir/nwjs:$PATH"
+export USERPROFILE=$SNAP_USER_DATA
+
+ls -l /usr/lib/x86_64-linux-gnu
+ls -l /usr/lib
+
+echo -e "\033[46;37m环境变量: \033[0m"
+env
+# LANG=zh_CN.UTF-8 exec "$DIR"/../nwjs/nw --load-extension="$DIR"/../nwjs/package.nw/js/ideplugin "$@"
+
+EXTENSION1="--load-extension=$SNAP/package.nw/js/ideplugin"
+EXTENSION2="--load-extension=$SNAP_USER_DATA/.config/wechat_devtools/WeappPlugin" 
+INSPECTOR1="--custom-devtools-frontend=file://$SNAP/package.nw/js/ideplugin/inspector" # 要加file://指明为本地文件路径
+INSPECTOR2="--custom-devtools-frontend=file://$SNAP_USER_DATA/.config/wechat_devtools/WeappPlugin/inspector/"
+USERDATADIR="$SNAP_USER_DATA/.config/wechat_devtools"
+
+# "$@"参数
+LANG=zh_CN.UTF-8
+"$SNAP/nw" $EXTENSION2 $INSPECTOR1 "$@"

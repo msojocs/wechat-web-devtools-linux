@@ -27,15 +27,15 @@ hash nw-gyp 2>/dev/null || {
 }
 
 # 代理处理
-echo "尝试取消所有代理"
-unset http_proxy
-unset HTTP_PROXY
-unset https_proxy
-unset HTTPS_PROXY
-unset socket_proxy
-unset SOCKET_PROXY
-unset all_proxy
-unset ALL_PROXY
+# echo "尝试取消所有代理"
+# unset http_proxy
+# unset HTTP_PROXY
+# unset https_proxy
+# unset HTTPS_PROXY
+# unset socket_proxy
+# unset SOCKET_PROXY
+# unset all_proxy
+# unset ALL_PROXY
 
 echo -e "\033[42;37m ######## 版本信息 $(date '+%Y-%m-%d %H:%M:%S') ########\033[0m"
 echo "NW VERSION: $NW_VERSION"
@@ -80,10 +80,10 @@ export JOBS=$max_thread
     spdlog@0.11.1 \
     trash \
     vscode-oniguruma \
-    vscode-ripgrep \
+    @vscode/ripgrep \
     nodegit \
-    --registry=http://registry.npmmirror.com \
-    --nodegit_binary_host_mirror=http://npmmirror.com/mirrors/nodegit/v0.27.0/) # reinstall modules
+    --registry=https://registry.npmmirror.com \
+    --nodegit_binary_host_mirror=https://npmmirror.com/mirrors/nodegit/v0.27.0/ ) # reinstall modules
 
 # rebuild
 cd "$package_dir/node_modules_tmp/node_modules/node-pty" && nw-gyp rebuild --arch=x64 "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
@@ -105,14 +105,14 @@ cd "$package_dir/node_modules_tmp/node_modules/spdlog" && nw-gyp rebuild --arch=
 (cd "${package_dir}/node_modules_tmp/node_modules" && find -name ".deps" | xargs -I{} rm -rf {} && find -name "obj.target" | xargs -I{} rm -rf {} && find -name "*.a" -delete && find -name "*.lib" -delete && find -name "*.mk" -delete)
 (cd "${package_dir}/node_modules_tmp/node_modules" && find -name "*.node" | xargs -I{} \cp -rf {} ${package_dir}/node_modules/{})
 
-cd "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep" && \
+cd "${package_dir}/node_modules_tmp/node_modules/@vscode/ripgrep" && \
 sed -i 's/api.github.com/wechat-devtools.jiyecafe.workers.dev/' lib/download.js && \
 sed -i "s/ const release/ downloadOpts.headers.upstream = 'api.github.com';const release/" lib/download.js && \
 sed -i "s/ return download/ opts.headers.upstream = 'objects.githubusercontent.com';return download/" lib/download.js && \
 sed -i 's/response.headers.location,/response.headers.location.replace("objects.githubusercontent.com", "wechat-devtools.jiyecafe.workers.dev"),/' lib/download.js && \
 npm run postinstall
 mkdir -p "${package_dir}/node_modules/vscode-ripgrep/bin"
-\cp -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep/bin/rg" "${package_dir}/node_modules/vscode-ripgrep/bin/rg"
+\cp -fr "${package_dir}/node_modules_tmp/node_modules/@vscode/ripgrep/bin/rg" "${package_dir}/node_modules/vscode-ripgrep/bin/rg"
 
 (cd "${package_dir}/node_modules" && find -name ".deps" | xargs -I{} rm -rf {} && find -name "obj.target" | xargs -I{} rm -rf {} && find -name "*.a" -delete && find -name "*.lib" -delete && find -name "*.mk" -delete && find -name "*Makefile" -delete && find -name "*gyp*" -delete)
 rm -rf "${package_dir}/node_modules_tmp"

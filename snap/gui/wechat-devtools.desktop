@@ -1,0 +1,3 @@
+[Desktop Entry]
+Name=WeChat Dev Tools
+Exec=env APPDATA=${SNAP_USER_DATA} USERPROFILE=~ ${SNAP}/nw --load-extension=${SNAP}/package.nw/js/ideplugin --custom-devtools-frontend=file://${SNAP}/package.nw/js/ideplugin/inspector %U

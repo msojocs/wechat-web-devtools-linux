@@ -19,3 +19,4 @@ temp.sh
 .flatpak-builder
 build-dir
 __pycache__
+*.txt
