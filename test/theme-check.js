@@ -79,14 +79,19 @@ class CheckDark {
         }
     }
     get gnomeScheme() {
-        // 判断 Gnome-Shell 版本
-        const gnomeVersion = execSync(`gnome-shell --version`)
-            .toString()
-            .replace(/[\r\n]/g, "")
-            .split(" ");
-        const gnomeVersionNum =
-            gnomeVersion.length == 3 ? Number(gnomeVersion[2]) : 0;
-        return gnomeVersionNum >= 42 ? "color-scheme" : "gtk-theme";
+        try {
+            // 判断 Gnome-Shell 版本
+            const gnomeVersion = execSync(`gnome-shell --version`)
+                .toString()
+                .replace(/[\r\n]/g, "")
+                .split(" ");
+            const gnomeVersionNum =
+                gnomeVersion.length == 3 ? Number(gnomeVersion[2]) : 0;
+            return gnomeVersionNum >= 42 ? "color-scheme" : "gtk-theme";
+        } catch (err) {
+            console.error("检查gnome版本失败, 使用gtk-theme", err);
+            return "gtk-theme";
+        }
     }
 }
 const cd = new CheckDark();
@@ -221,14 +226,19 @@ function original() {
                 }
             }
             get gnomeScheme() {
-                // 判断 Gnome-Shell 版本
-                const gnomeVersion = execSync(`gnome-shell --version`)
-                    .toString()
-                    .replace(/[\r\n]/g, "")
-                    .split(" ");
-                const gnomeVersionNum =
-                    gnomeVersion.length == 3 ? Number(gnomeVersion[2]) : 0;
-                return gnomeVersionNum >= 42 ? "color-scheme" : "gtk-theme";
+                try {
+                    // 判断 Gnome-Shell 版本
+                    const gnomeVersion = execSync(`gnome-shell --version`)
+                        .toString()
+                        .replace(/[\r\n]/g, "")
+                        .split(" ");
+                    const gnomeVersionNum =
+                        gnomeVersion.length == 3 ? Number(gnomeVersion[2]) : 0;
+                    return gnomeVersionNum >= 42 ? "color-scheme" : "gtk-theme";
+                } catch (err) {
+                    console.error("检查gnome版本失败, 使用gtk-theme", err);
+                    return "gtk-theme";
+                }
             }
             monitorTheme() {
                 try {
