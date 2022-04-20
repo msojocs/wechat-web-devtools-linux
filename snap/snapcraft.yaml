@@ -179,7 +179,7 @@ apps:
       - browser-support
       - home
       - system-observe
-      - block-devices
+      - raw-volume
 
 plugs:
   gtk-3-themes:
