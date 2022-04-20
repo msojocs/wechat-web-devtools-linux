@@ -180,7 +180,8 @@ apps:
       - browser-support
       - home
       - system-observe
-      - raw-volume
+      - removable-media
+      - udisks2
 
 plugs:
   gtk-3-themes:
