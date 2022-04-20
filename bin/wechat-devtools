@@ -23,7 +23,15 @@ APP_NAME=${APP_NAME//\",\"main/}
 export WECHAT_DEVTOOLS_DIR="$root_dir/nwjs"
 export APPDATA="$DATA_DIR/$APP_NAME"
 export PATH="$root_dir/node/bin:$root_dir/nwjs:$PATH"
-export USERPROFILE=$DATA_DIR
+export USERPROFILE=$APPDATA
+
+# SNAP
+# if [ -n $SNAP ];then
+#   if [ ! -f $DATA_DIR/nacl_irt_x86_64.nexe ];then
+#     # 解压
+#     tar -zxf $root_dir/nwjs/nacl_irt_x86_64.nexe.tar.gz -C $APPDATA/nacl_irt_x86_64.nexe
+#   fi
+# fi
 
 clean_cache() {
   echo "清理缓存";

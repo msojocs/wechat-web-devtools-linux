@@ -118,7 +118,10 @@ parts:
       ls -l
       ls -l $SNAPCRAFT_PART_SRC
       ls -l $SNAPCRAFT_PART_BUILD
-      chmod 644 nacl_irt_x86_64.nexe
+      rm -rf nacl_irt_x86_64.nexe
+      # chmod 644 nacl_irt_x86_64.nexe
+      # tar -zcf nacl_irt_x86_64.nexe.tar.gz nacl_irt_x86_64.nexe
+      # ln -s $SNAP/nacl_irt_x86_64.nexe nacl_irt_x86_64.nexe
       ls -l
       ls -l $SNAPCRAFT_PART_SRC
       ls -l $SNAPCRAFT_PART_BUILD
@@ -176,6 +179,7 @@ apps:
       - browser-support
       - home
       - system-observe
+      - block-devices
 
 plugs:
   gtk-3-themes:
@@ -190,7 +194,3 @@ plugs:
     interface: content
     target: $SNAP/data-dir/sounds
     default-provider: gtk-common-themes
-  # platform_snap:
-  #   interface: content
-  #   target: $SNAP/gnome-platform
-  #   default-provider: gnome-3-34-1804
