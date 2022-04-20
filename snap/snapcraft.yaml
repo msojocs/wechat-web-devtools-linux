@@ -95,6 +95,7 @@ parts:
     stage-packages:
       - libxkbfile1
       - git-core
+      - libssh2-1-dev
 
     after: 
       - node-js
