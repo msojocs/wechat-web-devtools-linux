@@ -1,6 +1,6 @@
 name: wechat-devtools # you probably want to 'snapcraft register <name>'
 base: core18 # the base snap is the execution environment for this snap
-version: '0.1' # just for humans, typically '1.2+git' or '1.3.2'
+version: '1.05.2203070-9' # just for humans, typically '1.2+git' or '1.3.2'
 summary: WeChat Devtools for Linux  # 79 char long summary
 description: |
   WeChat Devtools for Linux.
@@ -19,28 +19,34 @@ architectures:
 # snap
 # /root/parts/my-part/src/nw
 parts:
-  # compiler:
-  #   plugin: nil
-  #   source: https://download.fastgit.org/msojocs/wechat-devtools-linux/releases/download/v0.6/compiler.tar.xz
-    
   node-js:
     plugin: dump
     source: https://npmmirror.com/mirrors/node/v16.4.2/node-v16.4.2-linux-x64.tar.gz
-    # source: './cache/node-v16.4.2-linux-x64.tar.gz'
+    # source: cache/node-v16.4.2-linux-x64.tar.gz
     organize:
-      "*": nodejs/
-    stage:
-      - nodejs/* 
-
-  devtools:
+      "*": node/
+    override-build: |
+      mkdir -p $SNAPCRAFT_STAGE/node
+      cp -r * $SNAPCRAFT_STAGE/node
+      ls -l
+      ls -l $SNAPCRAFT_PART_INSTALL
+  package-nw:
     plugin: dump
     source: https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=1052203070&version_type=1
-    # source: ./cache/wechat_devtools_1.05.2201240_x64.exe
+    # source: cache/wechat_devtools_1.05.2203070_x64.exe
     source-type: 7z
-    source-subdir: ./code
+    source-subdir: code
+    override-build: |
+      chmod -R 755 code/package.nw
+      cp -r code/package.nw $SNAPCRAFT_STAGE
+  # after 会执行到stage
+  
+  build-node:
+    plugin: nil
     build-environment: 
-        - PATH: "$SNAPCRAFT_STAGE/nodejs/bin:$PATH"
+        - PATH: "$SNAPCRAFT_STAGE/node/bin:$PATH"
         - NW_VERSION: 0.55.0
+        - NO_WINE: 'true'
         # - NW_PACKAGE_DIR: "$SNAPCRAFT_PART_BUILD/code/package.nw"
         # - srcdir: "$SNAPCRAFT_PROJECT_DIR"
     build-packages: 
@@ -53,71 +59,100 @@ parts:
         - make
         - openssl
         - libssh2-1-dev
+    override-pull: |
+        ls -l
     override-build: |
         env
-        echo "3"
-        ls -l $SNAPCRAFT_STAGE
+        echo "=============3============"
+        ls -l $SNAPCRAFT_PART_SRC
+        ls -l $SNAPCRAFT_PART_BUILD
+        ls -l $SNAPCRAFT_PART_INSTALL
+        ls -l $SNAPCRAFT_PRIME
         ls -l $SNAPCRAFT_PROJECT_DIR
+        ls -l $SNAPCRAFT_STAGE
+        ls -l
+
+        # 准备文件
+        cp -r $SNAPCRAFT_STAGE/package.nw package.nw
+        chmod -R 755 package.nw
+        cp -r "${SNAPCRAFT_PROJECT_DIR}/tools" tools
+        cp -r "${SNAPCRAFT_PROJECT_DIR}/compiler" compiler
 
         # 执行构建脚本
-        chmod -R 755 $SNAPCRAFT_PART_BUILD/code/package.nw
         npm install node-gyp nw-gyp -g --registry=https://registry.npm.taobao.org
         node-gyp install --registry=https://registry.npm.taobao.org
 
-        cp -r "${SNAPCRAFT_PROJECT_DIR}/tools" "$SNAPCRAFT_PART_BUILD/code/tools"
-        cp -r "${SNAPCRAFT_PROJECT_DIR}/compiler" "$SNAPCRAFT_PART_BUILD/code/compiler"
         for script in fix-package-name.js fix-cli.sh fix-core.sh fix-other.sh; do
             echo -e "\e[1;34mrun ${script}\e[0m"
-            "${SNAPCRAFT_PART_BUILD}/code/tools/${script}"
+            tools/${script}
         done
         # 构建模块
-        "${SNAPCRAFT_PART_BUILD}/code/tools/rebuild-node-modules.sh" $NW_VERSION
-        rm -rf "${SNAPCRAFT_PART_BUILD}/code/tools"
-
-        snapcraftctl build
+        tools/rebuild-node-modules.sh $NW_VERSION
+        rm -rf tools
+        cp -r package.nw $SNAPCRAFT_PART_INSTALL
+        chmod -R 755 $SNAPCRAFT_PART_INSTALL/package.nw
 
     stage-packages:
       - libxkbfile1
       - git-core
-    override-prime: |
-      snapcraftctl prime
-      rm -rf node node.exe
-      cp "$SNAPCRAFT_PRIME/nodejs/bin/node" "$SNAPCRAFT_PRIME/node"
-      ln -s "node" "node.exe"
 
     after: 
       - node-js
-      # - compiler
+      - package-nw
       # - desktop-gnome-platform
 
   nw-js:
     plugin: dump
     source: https://npmmirror.com/mirrors/nwjs/v0.55.0/nwjs-sdk-v0.55.0-linux-x64.tar.gz
     # source: ./cache/nwjs-sdk-v0.55.0-linux-x64.tar.gz
+    organize:
+      "*": nwjs/
     stage-packages: 
         - libnss3
         - libnspr4
+    override-pull: |
+      ls -l
+      ls -l $SNAPCRAFT_PART_SRC
+      ls -l $SNAPCRAFT_PART_BUILD
+      snapcraftctl pull
+      ls -l
+      ls -l $SNAPCRAFT_PART_SRC
+      ls -l $SNAPCRAFT_PART_BUILD
+      chmod 644 nacl_irt_x86_64.nexe
+      ls -l
+      ls -l $SNAPCRAFT_PART_SRC
+      ls -l $SNAPCRAFT_PART_BUILD
+      ls -l $SNAPCRAFT_PART_INSTALL
+      ls -l $SNAPCRAFT_STAGE
+      
+    override-build: |
+      ls -l
+      rm -rf $SNAPCRAFT_PART_INSTALL/nwjs/node $SNAPCRAFT_PART_INSTALL/nwjs/node.exe
+      install -Dm755 $SNAPCRAFT_STAGE/node/bin/node $SNAPCRAFT_PART_INSTALL/nwjs/node
+      cd $SNAPCRAFT_PART_INSTALL/nwjs && ln -s node node.exe
+      ls -l $SNAPCRAFT_PART_INSTALL/nwjs
+      snapcraftctl build
+      ls -l $SNAPCRAFT_PART_INSTALL/nwjs
+    after:
+      - build-node
 
   run-script:
     plugin: nil
     override-build: |
         snapcraftctl build
-        cp "${SNAPCRAFT_PROJECT_DIR}/bin/wechat-devtools-snap" "$SNAPCRAFT_PART_INSTALL/wechat-devtools-snap"
+        ls
+        install -Dm755 "${SNAPCRAFT_PROJECT_DIR}/bin/wechat-devtools" "$SNAPCRAFT_PART_INSTALL/bin/wechat-devtools"
+        install -Dm755 "${SNAPCRAFT_PROJECT_DIR}/bin/wechat-devtools-cli" "$SNAPCRAFT_PART_INSTALL/bin/wechat-devtools-cli"
+        
     stage:
-      - wechat-devtools-snap
-
-  zzz:
-    plugin: nil
-    # source: https://npmmirror.com/mirrors/nwjs/v0.53.1/nwjs-sdk-v0.53.1-linux-x64.tar.gz
-    override-stage: |
-        echo "6"
-        env
-        ls -l $SNAPCRAFT_STAGE
+      - bin/wechat-devtools
+      - bin/wechat-devtools-cli
+      - usr/*
 
 apps:
   wechat-devtools:
     # autostart: wechat-devtools.desktop
-    command: desktop-launch $SNAP/wechat-devtools-snap
+    command: bin/wechat-devtools
     environment:
       WECHAT_DEVTOOLS_DIR: $SNAP/nwjs
       APPDATA: "$SNAP_USER_DATA/wechat_devtools"
@@ -132,13 +167,15 @@ apps:
       - desktop-legacy
       - opengl
       - mount-observe
+      - adb-support
       - x11
       - wayland
       - network
       - network-bind
       - gsettings
       - browser-support
-      - password-manager-service
+      - home
+      - system-observe
 
 plugs:
   gtk-3-themes:

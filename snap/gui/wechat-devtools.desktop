@@ -1,3 +1,11 @@
 [Desktop Entry]
 Name=WeChat Dev Tools
-Exec=env APPDATA=${SNAP_USER_DATA} USERPROFILE=~ ${SNAP}/nw --load-extension=${SNAP}/package.nw/js/ideplugin --custom-devtools-frontend=file://${SNAP}/package.nw/js/ideplugin/inspector %U
+Name[zh_CN]=微信开发者工具
+Comment=The development tools for wechat projects
+Comment[zh_CN]=提供微信开发相关项目的开发IDE支持
+Categories=Development;WebDevelopment;IDE;
+Exec=wechat-devtools %U
+Icon=${SNAP}/meta/gui/wechat-devtools.png
+Type=Application
+Terminal=false
+MimeType=x-scheme-handler/wechatide
