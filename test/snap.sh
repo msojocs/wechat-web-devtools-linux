@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
-cd "/mnt/disk1/GitHub/wechat-devtools-linux"
-snapcraft #--http-proxy="http://192.168.249.236:7890" --https-proxy="http://192.168.249.236:7890"
-snap install wechat-devtools_0.1_amd64.snap --devmode
-wechat-devtools
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+cd $root_dir
+snapcraft #--http-proxy="http://192.168.1.232:7890" --https-proxy="http://192.168.1.232:7890"
+snap install wechat-devtools_*_amd64.snap --devmode
+# snap run wechat-devtools
