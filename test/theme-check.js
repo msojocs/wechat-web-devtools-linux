@@ -43,6 +43,9 @@ class CheckDark {
                     // (this._theme = t ? i.Dark : i.Light),
                     //         this._onDidThemeChange.fire(this._theme);
                 });
+            process.on("SIGTERM", (signal) => {
+                monitor.kill(signal);
+            });
         } catch (err) {
             console.error("尝试监听主题失败！", err);
         }
@@ -282,6 +285,9 @@ function original() {
                                     this._onDidThemeChange.fire(this._theme);
                             }, 400)
                         );
+                    process.on("SIGTERM", (signal) => {
+                        monitor.kill(signal);
+                    });
                 } catch (err) {
                     console.error("尝试监听主题失败！", err);
                 }

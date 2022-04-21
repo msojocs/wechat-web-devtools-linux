@@ -6,6 +6,7 @@ a=$1
 if [ "$a" == '1' ];then
   rm -rf "$root_dir/package.nw/core.wxvpkg.ext"
   node tools/wxvpkg_unpack.js "$root_dir/package.nw/core.wxvpkg" "$root_dir/package.nw/core.wxvpkg.ext"
+  mv "$root_dir/package.nw/core.wxvpkg" "$root_dir/package.nw/core.wxvpkg.orgi"
 else
   node tools/wxvpkg_pack.js package.nw/core.wxvpkg.ext package.nw/core.wxvpkg
   rm -rf ~/.config/wechat-devtools/WeappCache
