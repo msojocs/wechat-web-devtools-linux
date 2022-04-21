@@ -182,6 +182,7 @@ apps:
       - system-observe
       - removable-media
       - udisks2
+      - unity7
 
 plugs:
   gtk-3-themes:
