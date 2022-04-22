@@ -1,5 +1,10 @@
 #!/bin/bash
-
+#
+# 指定版本：
+# 格式：version=xxxx
+# version: latest - 最新
+#          x.xx.xxxxx - 指定版本号
+# 
 set -e # 命令出错就退出
 trap 'catchError $LINENO $BASH_COMMAND' SIGHUP SIGINT SIGQUIT EXIT # 捕获错误情况
 
