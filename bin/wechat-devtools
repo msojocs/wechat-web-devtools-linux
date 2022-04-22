@@ -37,6 +37,7 @@ clean_cache() {
   echo "清理缓存";
   rm -rf "$APPDATA/WeappCache";
   rm -rf "$APPDATA/WeappVendor";
+  rm -rf "$DATA_DIR/wechat_devtools"
 }
 
 # 检测是否有清除缓存的必要
