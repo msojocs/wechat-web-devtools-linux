@@ -154,3 +154,4 @@ git clone https://github.com/msojocs/wechat-devtools-linux.git
   5. icepie
   6. zyk-miao
   7. Starrah
+  8. CoryByte

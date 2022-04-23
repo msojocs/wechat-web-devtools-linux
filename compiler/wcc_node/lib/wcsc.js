@@ -60,7 +60,7 @@ exports = async function (options) {
 
   let wccResult
   try {
-    wccResult = wcsc(options)
+    wccResult = await wcsc(options)
   } catch (errmsg) {
     throw new Error(errmsg)
   }

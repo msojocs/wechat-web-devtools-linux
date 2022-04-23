@@ -36,8 +36,8 @@ fi
 
 # open -a Terminal "`pwd`" --> gnome-terminal
 find_result=$( grep -lr 'open -a Terminal "`pwd`"' "$tmp_dir/core.wxvpkg" )
+echo "Terminal启动位置: $find_result"
 if [[ ! -z $find_result ]];then
-  echo "Terminal启动位置: $find_result"
   new_str="gnome-terminal"
   sed -i "s#open -a Terminal \"\`pwd\`\"#$new_str#g" "$find_result"
 fi
@@ -45,20 +45,21 @@ fi
 # wcc、wcsc处理，设置NO_WINE=true环境变量生效
 if [[ $NO_WINE == 'true' ]];then
   # "wcc.exe":!0,"wcsc.exe":!0
-  find_result=$( grep -lr '{wcc:!0,wcsc:!0,DevToolProtector:!0}' "$tmp_dir/core.wxvpkg" )
+  find_result=$( grep -lr '{wcc:!0,wcsc:!0}' "$tmp_dir/core.wxvpkg" )
+  echo "wcc: $find_result"
   if [[ ! -z $find_result ]];then
-    echo "wcc: $find_result"
-    new_str='{"wcc.bin":!0,"wcsc.bin":!0,wcc:!0,wcsc:!0,DevToolProtector:!0}'
-    sed -i "s#{wcc:!0,wcsc:!0,DevToolProtector:!0}#$new_str#g" "$find_result"
+    new_str='{"wcc.bin":!0,"wcsc.bin":!0,wcc:!0,wcsc:!0}'
+    sed -i "s#{wcc:!0,wcsc:!0}#$new_str#g" "$find_result"
     new_str='"linux"===process.platform'
     sed -i "s#\"darwin\"===process.platform#$new_str#g" "$find_result"
-    sed -i 's#return I("wcc")#return I("wcc.bin"),I("wcc")#g' "$find_result"
-    sed -i 's#return I("wcsc")#return I("wcsc.bin"),I("wcsc")#g' "$find_result"
+    # TODO: 看能不能动态识别函数名j,因为不同版本会发生变化
+    sed -i 's#return j("wcc")#return j("wcc.bin"),j("wcc")#g' "$find_result"
+    sed -i 's#return j("wcsc")#return j("wcsc.bin"),j("wcsc")#g' "$find_result"
   fi
   # 处理报错时控制台显示的环境
   find_result=$( grep -lr '(env:' "$tmp_dir/core.wxvpkg" )
+  echo "env: $find_result"
   if [[ ! -z $find_result ]];then
-    echo "env: $find_result"
     for file in $find_result; do
       sed -i 's#"Windows"#"Linux"#g' "$file"
     done
@@ -72,14 +73,16 @@ fi
 # fix theme
 find_result=$( grep -lr "OSThemeController=" "$tmp_dir/core.wxvpkg" )
 echo "theme: $find_result"
-# require of child_process
-sed -i 's/"use strict";O/"use strict";const {execSync,spawn}=require("child_process");O/' $find_result
-# replace listener to monitor
-sed -i 's/this.registerListeners()/this.monitorTheme()/' $find_result
-# replace check func
-sed -i 's/mediaQuery.matches/isDark/' $find_result
-# add functions
-sed -i 's#}getDefaultTheme#}get isDark(){try{const{DESKTOP_SESSION}=process.env;console.log(DESKTOP_SESSION);let theme="";switch(DESKTOP_SESSION){case"deepin":theme=execSync(`gsettings get com.deepin.dde.appearance gtk-theme`);break;case"gnome":case"gnome-classic":theme=execSync(`gsettings get org.gnome.desktop.interface ${this.gnomeScheme}`);break;default:break}return theme.includes("dark");}catch(err){console.error("尝试获取主题信息失败，使用默认暗色",err);return true;}}get gnomeScheme(){try{const gnomeVersion=execSync(`gnome-shell --version`).toString().replace(/[\\r\\n]/g,"").split(" ");const gnomeVersionNum=gnomeVersion.length==3?Number(gnomeVersion[2]):0;return gnomeVersionNum>=42?"color-scheme":"gtk-theme";}catch(err){console.error("检查gnome版本失败, 使用gtk-theme", err);return "gtk-theme";}}monitorTheme(){try{let monitor=null;const{DESKTOP_SESSION}=process.env;switch(DESKTOP_SESSION){case"deepin":monitor=spawn("gsettings",["monitor","com.deepin.dde.appearance","gtk-theme",]);break;case"gnome":case"gnome-classic":monitor=spawn("gsettings",["monitor","org.gnome.desktop.interface",this.gnomeScheme,]);break;default:console.warn(`NOT SUPPORTED!!!DESKTOP_SESSION:${DESKTOP_SESSION}`);break}monitor\&\&monitor.on("error",(err)=>{console.error("monitorTheme",err)});monitor\&\&monitor.stdout.on("data",e.debounce((chunk)=>{const data=chunk.toString();const t=data.toLowerCase().includes("dark");(this._theme=t?i.Dark:i.Light),this._onDidThemeChange.fire(this._theme)},400));process.on("SIGTERM",(signal)=>{monitor.kill(signal);});}catch(err){console.error("尝试监听主题失败！", err);}}getDefaultTheme#' $find_result
+if [[ -n $find_result ]];then
+  # require of child_process
+  sed -i 's/"use strict";O/"use strict";const {execSync,spawn}=require("child_process");O/' $find_result
+  # replace listener to monitor
+  sed -i 's/this.registerListeners()/this.monitorTheme()/' $find_result
+  # replace check func
+  sed -i 's/mediaQuery.matches/isDark/' $find_result
+  # add functions
+  sed -i 's#}getDefaultTheme#}get isDark(){try{const{DESKTOP_SESSION}=process.env;console.log(DESKTOP_SESSION);let theme="";switch(DESKTOP_SESSION){case"deepin":theme=execSync(`gsettings get com.deepin.dde.appearance gtk-theme`);break;case"gnome":case"gnome-classic":theme=execSync(`gsettings get org.gnome.desktop.interface ${this.gnomeScheme}`);break;default:break}return theme.includes("dark");}catch(err){console.error("尝试获取主题信息失败，使用默认暗色",err);return true;}}get gnomeScheme(){try{const gnomeVersion=execSync(`gnome-shell --version`).toString().replace(/[\\r\\n]/g,"").split(" ");const gnomeVersionNum=gnomeVersion.length==3?Number(gnomeVersion[2]):0;return gnomeVersionNum>=42?"color-scheme":"gtk-theme";}catch(err){console.error("检查gnome版本失败, 使用gtk-theme", err);return "gtk-theme";}}monitorTheme(){try{let monitor=null;const{DESKTOP_SESSION}=process.env;switch(DESKTOP_SESSION){case"deepin":monitor=spawn("gsettings",["monitor","com.deepin.dde.appearance","gtk-theme",]);break;case"gnome":case"gnome-classic":monitor=spawn("gsettings",["monitor","org.gnome.desktop.interface",this.gnomeScheme,]);break;default:console.warn(`NOT SUPPORTED!!!DESKTOP_SESSION:${DESKTOP_SESSION}`);break}monitor\&\&monitor.on("error",(err)=>{console.error("monitorTheme",err)});monitor\&\&monitor.stdout.on("data",e.debounce((chunk)=>{const data=chunk.toString();const t=data.toLowerCase().includes("dark");(this._theme=t?i.Dark:i.Light),this._onDidThemeChange.fire(this._theme)},400));process.on("SIGTERM",(signal)=>{monitor.kill(signal);});}catch(err){console.error("尝试监听主题失败！", err);}}getDefaultTheme#' $find_result
+fi
 
 # fix update check
 find_result=$( grep -lr "whatsnew.html" "$tmp_dir/core.wxvpkg" )
