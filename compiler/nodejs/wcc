@@ -75,7 +75,9 @@ function parseDeps(source, x, pageConfig){
                     new RegExp(`\\${funcName}\\_\\d+`, "g"),
                     `${funcName}_${i}`
                 )
-                .replace(/m\d+/g, `m${i - 1}`) + "\n";
+                .replace(/m\d+/g, `m${i - 1}`).replace('={f', `=e_[x[${t_x.indexOf(dep)}]]||{f`) + "\n";
+        DEBUG_OUTPUT &&
+            process.stderr.write("dep_d_: " + dep_d_ + "\n");
         let gz_name = m0_str.match(/var z=gz(.*?)\(\)/)[1];
         // process.stderr.write("get funcName - " + t[0].match(/var z=gz(.*?)\(\)/)[1] + "\n")
         // gz
@@ -154,7 +156,7 @@ function genFunctionContent_LLW(wxmlName, config = {}, source, x) {
     content += m0_str.replace(
         new RegExp(`\\${funcName}\\_\\d+`, "g"),
         `${config.funcName}_1`
-    );
+    ).replace('={f', `=e_[x[0]]||{f`);
 
     // path
     content += `\u000aif(path&&e_[path]){\u000aouterGlobal.__wxml_comp_version__=0.02\u000areturn function(env,dd,global){$gwxc=0;var root={\u0022tag\u0022:\u0022wx-page\u0022};root.children=[]\u000a;g=\u0022${config.funcName}\u0022;var main=e_[path].f\u000acs=[]\u000aif (typeof global===\u0022undefined\u0022)global={};global.f=$gdc(f_[path],\u0022\u0022,1);\u000aif(typeof(outerGlobal.__webview_engine_version__)!='undefined'&&outerGlobal.__webview_engine_version__+1e-6>=0.02+1e-6&&outerGlobal.__mergeData__)\u000a{\u000aenv=outerGlobal.__mergeData__(env,dd);\u000a}\u000atry{\u000amain(env,{},root,global);\u000a_tsd(root)\u000aif(typeof(outerGlobal.__webview_engine_version__)=='undefined'|| outerGlobal.__webview_engine_version__+1e-6<0.01+1e-6){return _ev(root);}\u000a}catch(err){\u000aconsole.log(cs, env);\u000aconsole.log(err)\u000athrow err\u000a}\u000a;g=\u0022\u0022;\u000areturn root;\u000a}\u000a}\u000a}\u000a}`;
@@ -262,7 +264,7 @@ function genFunctionContent_LLA(wxmlName, config = {}, source, x) {
     content += `var x=['./${wxmlName}.wxml'`;
     if (!debugWXS && !hasDeps) {
         content += `];d_[x[0]]={}\u000a`;
-        content += `var m0=function(e,s,r,gg){\u000avar z=gz${config.funcName}_1()\u000areturn r\u000a}\u000ae_[x[0]]={f:m0,j:[],i:[],ti:[],ic:[]}`;
+        content += `var m0=function(e,s,r,gg){\u000avar z=gz${config.funcName}_1()\u000areturn r\u000a}\u000ae_[x[0]]=e_[x[0]]||{f:m0,j:[],i:[],ti:[],ic:[]}`;
     } else {
         // m0 --- m{num}
         const m0Exp = `var m${config.num}=function\\(e,s,r,gg\\){[\\s\\S]*e_\\[x\\[(\\d+)\\]\\]={f:m${config.num},j:\\[.*?\\],i:\\[.*?\\],ti:\\[(.*?)\\],ic:\\[.*?\\]}`;

@@ -96,6 +96,7 @@ const test_node = () => {
     return new Promise((resolve, reject) => {
         node_exec.on("close", (n) => {
             console.log("node n: ", n);
+            process.stderr.write(Buffer.concat(errData).toString());
             if (0 === n) {
                 let result = Buffer.concat(spwanData).toString();
                 // require('fs').writeFileSync('/mnt/disk2/wechat-web-devtools-linux/tmp/llw2.json', result)

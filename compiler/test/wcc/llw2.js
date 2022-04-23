@@ -79,7 +79,7 @@ const config = [
 
 const test_wine = () => {
     const wine = spawn(
-        path.resolve(__dirname, "../../package.nw/js/vendor/wcc.exe"),
+        path.resolve(__dirname, "../../../package.nw/js/vendor/wcc.exe"),
         config,
         {
             cwd: projectPath,
@@ -111,7 +111,7 @@ const test_wine = () => {
 const test_node = () => {
     
     const node_exec = spawn(
-        path.resolve(__dirname, "../../compiler/nodejs/wcc"),
+        path.resolve(__dirname, "../../../compiler/nodejs/wcc"),
         config,
         {
             cwd: projectPath,

@@ -1,86 +1,5087 @@
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
-./packageComponent/common/foot.wxmlindex 搜索失败
-./packageComponent/common/head.wxmlindex 搜索失败
+dep_d_: d_[x[0]]={}
+var m0=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_1()
+var oB=_v()
+_(r,oB)
+if(_oz(z,0,e,s,gg)){oB.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+var xC=_mz(z,'view',['class',1,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:canvas:2:4")
+var oD=_mz(z,'canvas',['id',3,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xC,oD)
+cs.pop()
+_(oB,xC)
+cs.pop()
+}
+else{oB.wxVkey=2
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+var fE=_mz(z,'view',['class',6,'style',1],[],e,s,gg)
+var cF=_v()
+_(fE,cF)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+var hG=function(cI,oH,oJ,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:7:6")
+var aL=_mz(z,'view',['class',12,'style',1],[],cI,oH,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:8:8")
+var tM=_mz(z,'view',['class',14,'hidden',1],[],cI,oH,gg)
+var eN=_oz(z,16,cI,oH,gg)
+_(tM,eN)
+cs.pop()
+_(aL,tM)
+var bO=_v()
+_(aL,bO)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+var oP=function(oR,xQ,fS,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:10:10")
+var hU=_mz(z,'view',['bindanimationend',21,'bindtap',1,'class',2,'data-bulletid',3,'data-tunnelid',4,'style',5],[],oR,xQ,gg)
+var oV=_v()
+_(hU,oV)
+if(_oz(z,27,oR,xQ,gg)){oV.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+var oX=_mz(z,'image',['class',28,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(oV,oX)
+cs.pop()
+}
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:25:12")
+var lY=_mz(z,'view',['class',32,'style',1],[],oR,xQ,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:text:26:14")
+var aZ=_n('text')
+var t1=_oz(z,34,oR,xQ,gg)
+_(aZ,t1)
+cs.pop()
+_(lY,aZ)
+cs.pop()
+_(hU,lY)
+var cW=_v()
+_(hU,cW)
+if(_oz(z,35,oR,xQ,gg)){cW.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+var e2=_mz(z,'image',['class',36,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(cW,e2)
+cs.pop()
+}
+oV.wxXCkey=1
+cW.wxXCkey=1
+cs.pop()
+_(fS,hU)
+cs.pop()
+return fS
+}
+bO.wxXCkey=2
+_2z(z,19,oP,cI,oH,gg,bO,'bullet','bulletId','bulletId')
+cs.pop()
+cs.pop()
+_(oJ,aL)
+cs.pop()
+return oJ
+}
+cF.wxXCkey=2
+_2z(z,10,hG,e,s,gg,cF,'tunnel','tunnelId','tunnelId')
+cs.pop()
+cs.pop()
+_(oB,fE)
+cs.pop()
+}
+oB.wxXCkey=1
+return r
+}
+e_[x[0]]=e_[x[0]]||{f:m0,j:[],i:[],ti:[],ic:[]}
+
 COMMON=====./miniprogram_npm/miniprogram-barrage/index.wxml----function gz\$7061636b616765436f6d706f6e656e742f_1\(\)\{[\s\S]*?__WXML_GLOBAL__\.ops_cached\.\$7061636b616765436f6d706f6e656e742f_1
 }
+dep_d_: d_[x[0]]={}
+var m0=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_1()
+var oB=_v()
+_(r,oB)
+if(_oz(z,0,e,s,gg)){oB.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+var xC=_mz(z,'view',['class',1,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:canvas:2:4")
+var oD=_mz(z,'canvas',['id',3,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xC,oD)
+cs.pop()
+_(oB,xC)
+cs.pop()
+}
+else{oB.wxVkey=2
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+var fE=_mz(z,'view',['class',6,'style',1],[],e,s,gg)
+var cF=_v()
+_(fE,cF)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+var hG=function(cI,oH,oJ,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:7:6")
+var aL=_mz(z,'view',['class',12,'style',1],[],cI,oH,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:8:8")
+var tM=_mz(z,'view',['class',14,'hidden',1],[],cI,oH,gg)
+var eN=_oz(z,16,cI,oH,gg)
+_(tM,eN)
+cs.pop()
+_(aL,tM)
+var bO=_v()
+_(aL,bO)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+var oP=function(oR,xQ,fS,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:10:10")
+var hU=_mz(z,'view',['bindanimationend',21,'bindtap',1,'class',2,'data-bulletid',3,'data-tunnelid',4,'style',5],[],oR,xQ,gg)
+var oV=_v()
+_(hU,oV)
+if(_oz(z,27,oR,xQ,gg)){oV.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+var oX=_mz(z,'image',['class',28,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(oV,oX)
+cs.pop()
+}
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:25:12")
+var lY=_mz(z,'view',['class',32,'style',1],[],oR,xQ,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:text:26:14")
+var aZ=_n('text')
+var t1=_oz(z,34,oR,xQ,gg)
+_(aZ,t1)
+cs.pop()
+_(lY,aZ)
+cs.pop()
+_(hU,lY)
+var cW=_v()
+_(hU,cW)
+if(_oz(z,35,oR,xQ,gg)){cW.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+var e2=_mz(z,'image',['class',36,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(cW,e2)
+cs.pop()
+}
+oV.wxXCkey=1
+cW.wxXCkey=1
+cs.pop()
+_(fS,hU)
+cs.pop()
+return fS
+}
+bO.wxXCkey=2
+_2z(z,19,oP,cI,oH,gg,bO,'bullet','bulletId','bulletId')
+cs.pop()
+cs.pop()
+_(oJ,aL)
+cs.pop()
+return oJ
+}
+cF.wxXCkey=2
+_2z(z,10,hG,e,s,gg,cF,'tunnel','tunnelId','tunnelId')
+cs.pop()
+cs.pop()
+_(oB,fE)
+cs.pop()
+}
+oB.wxXCkey=1
+return r
+}
+e_[x[0]]=e_[x[0]]||{f:m0,j:[],i:[],ti:[],ic:[]}
+d_[x[1]]={}
+var m1=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_2()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:view:2:2")
+var o4=_n('view')
+_rz(z,o4,'class',0,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:slot:3:4")
+var x5=_n('slot')
+cs.pop()
+_(o4,x5)
+cs.pop()
+_(r,o4)
+return r
+}
+e_[x[1]]=e_[x[1]]||{f:m1,j:[],i:[],ti:[],ic:[]}
+
 COMMON=====./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml----function gz\$7061636b616765436f6d706f6e656e742f_2\(\)\{[\s\S]*?__WXML_GLOBAL__\.ops_cached\.\$7061636b616765436f6d706f6e656e742f_2
 }
+dep_d_: d_[x[0]]={}
+var m0=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_1()
+var oB=_v()
+_(r,oB)
+if(_oz(z,0,e,s,gg)){oB.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+var xC=_mz(z,'view',['class',1,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:canvas:2:4")
+var oD=_mz(z,'canvas',['id',3,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xC,oD)
+cs.pop()
+_(oB,xC)
+cs.pop()
+}
+else{oB.wxVkey=2
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+var fE=_mz(z,'view',['class',6,'style',1],[],e,s,gg)
+var cF=_v()
+_(fE,cF)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+var hG=function(cI,oH,oJ,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:7:6")
+var aL=_mz(z,'view',['class',12,'style',1],[],cI,oH,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:8:8")
+var tM=_mz(z,'view',['class',14,'hidden',1],[],cI,oH,gg)
+var eN=_oz(z,16,cI,oH,gg)
+_(tM,eN)
+cs.pop()
+_(aL,tM)
+var bO=_v()
+_(aL,bO)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+var oP=function(oR,xQ,fS,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:10:10")
+var hU=_mz(z,'view',['bindanimationend',21,'bindtap',1,'class',2,'data-bulletid',3,'data-tunnelid',4,'style',5],[],oR,xQ,gg)
+var oV=_v()
+_(hU,oV)
+if(_oz(z,27,oR,xQ,gg)){oV.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+var oX=_mz(z,'image',['class',28,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(oV,oX)
+cs.pop()
+}
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:25:12")
+var lY=_mz(z,'view',['class',32,'style',1],[],oR,xQ,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:text:26:14")
+var aZ=_n('text')
+var t1=_oz(z,34,oR,xQ,gg)
+_(aZ,t1)
+cs.pop()
+_(lY,aZ)
+cs.pop()
+_(hU,lY)
+var cW=_v()
+_(hU,cW)
+if(_oz(z,35,oR,xQ,gg)){cW.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+var e2=_mz(z,'image',['class',36,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(cW,e2)
+cs.pop()
+}
+oV.wxXCkey=1
+cW.wxXCkey=1
+cs.pop()
+_(fS,hU)
+cs.pop()
+return fS
+}
+bO.wxXCkey=2
+_2z(z,19,oP,cI,oH,gg,bO,'bullet','bulletId','bulletId')
+cs.pop()
+cs.pop()
+_(oJ,aL)
+cs.pop()
+return oJ
+}
+cF.wxXCkey=2
+_2z(z,10,hG,e,s,gg,cF,'tunnel','tunnelId','tunnelId')
+cs.pop()
+cs.pop()
+_(oB,fE)
+cs.pop()
+}
+oB.wxXCkey=1
+return r
+}
+e_[x[0]]=e_[x[0]]||{f:m0,j:[],i:[],ti:[],ic:[]}
+d_[x[1]]={}
+var m1=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_2()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:view:2:2")
+var o4=_n('view')
+_rz(z,o4,'class',0,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:slot:3:4")
+var x5=_n('slot')
+cs.pop()
+_(o4,x5)
+cs.pop()
+_(r,o4)
+return r
+}
+e_[x[1]]=e_[x[1]]||{f:m1,j:[],i:[],ti:[],ic:[]}
+d_[x[2]]={}
+var m2=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_3()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:2:2")
+var f7=_mz(z,'view',['bindtouchstart',0,'class',1,'id',1,'style',2],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:scroll-view:3:4")
+var c8=_mz(z,'scroll-view',['scrollAnchoring',-1,'bindscroll',4,'bindscrolltolower',1,'bindscrolltoupper',2,'class',3,'enableBackToTop',4,'lowerThreshold',5,'scrollIntoView',6,'scrollTop',7,'scrollWithAnimation',8,'scrollX',9,'scrollY',10,'style',11,'throttle',12,'upperThreshold',13],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:4:6")
+var h9=_n('view')
+_rz(z,h9,'style',18,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:5:8")
+var o0=_n('slot')
+_rz(z,o0,'name',19,e,s,gg)
+cs.pop()
+_(h9,o0)
+cs.pop()
+_(c8,h9)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:7:6")
+var cAB=_mz(z,'view',['class',20,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:8:8")
+var oBB=_n('slot')
+_rz(z,oBB,'name',22,e,s,gg)
+cs.pop()
+_(cAB,oBB)
+cs.pop()
+_(c8,cAB)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:10:6")
+var lCB=_n('view')
+_rz(z,lCB,'style',23,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:12:8")
+var aDB=_n('view')
+_rz(z,aDB,'style',24,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:13:10")
+var tEB=_n('slot')
+cs.pop()
+_(aDB,tEB)
+cs.pop()
+_(lCB,aDB)
+cs.pop()
+_(c8,lCB)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:17:6")
+var eFB=_mz(z,'view',['class',25,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:18:8")
+var bGB=_n('slot')
+_rz(z,bGB,'name',27,e,s,gg)
+cs.pop()
+_(eFB,bGB)
+cs.pop()
+_(c8,eFB)
+cs.pop()
+_(f7,c8)
+cs.pop()
+_(r,f7)
+return r
+}
+e_[x[2]]=e_[x[2]]||{f:m2,j:[],i:[],ti:[],ic:[]}
+
 COMMON=====./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml----function gz\$7061636b616765436f6d706f6e656e742f_3\(\)\{[\s\S]*?__WXML_GLOBAL__\.ops_cached\.\$7061636b616765436f6d706f6e656e742f_3
 }
+dep_d_: d_[x[0]]={}
+var m0=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_1()
+var oB=_v()
+_(r,oB)
+if(_oz(z,0,e,s,gg)){oB.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+var xC=_mz(z,'view',['class',1,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:canvas:2:4")
+var oD=_mz(z,'canvas',['id',3,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xC,oD)
+cs.pop()
+_(oB,xC)
+cs.pop()
+}
+else{oB.wxVkey=2
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+var fE=_mz(z,'view',['class',6,'style',1],[],e,s,gg)
+var cF=_v()
+_(fE,cF)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+var hG=function(cI,oH,oJ,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:7:6")
+var aL=_mz(z,'view',['class',12,'style',1],[],cI,oH,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:8:8")
+var tM=_mz(z,'view',['class',14,'hidden',1],[],cI,oH,gg)
+var eN=_oz(z,16,cI,oH,gg)
+_(tM,eN)
+cs.pop()
+_(aL,tM)
+var bO=_v()
+_(aL,bO)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+var oP=function(oR,xQ,fS,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:10:10")
+var hU=_mz(z,'view',['bindanimationend',21,'bindtap',1,'class',2,'data-bulletid',3,'data-tunnelid',4,'style',5],[],oR,xQ,gg)
+var oV=_v()
+_(hU,oV)
+if(_oz(z,27,oR,xQ,gg)){oV.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+var oX=_mz(z,'image',['class',28,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(oV,oX)
+cs.pop()
+}
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:25:12")
+var lY=_mz(z,'view',['class',32,'style',1],[],oR,xQ,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:text:26:14")
+var aZ=_n('text')
+var t1=_oz(z,34,oR,xQ,gg)
+_(aZ,t1)
+cs.pop()
+_(lY,aZ)
+cs.pop()
+_(hU,lY)
+var cW=_v()
+_(hU,cW)
+if(_oz(z,35,oR,xQ,gg)){cW.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+var e2=_mz(z,'image',['class',36,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(cW,e2)
+cs.pop()
+}
+oV.wxXCkey=1
+cW.wxXCkey=1
+cs.pop()
+_(fS,hU)
+cs.pop()
+return fS
+}
+bO.wxXCkey=2
+_2z(z,19,oP,cI,oH,gg,bO,'bullet','bulletId','bulletId')
+cs.pop()
+cs.pop()
+_(oJ,aL)
+cs.pop()
+return oJ
+}
+cF.wxXCkey=2
+_2z(z,10,hG,e,s,gg,cF,'tunnel','tunnelId','tunnelId')
+cs.pop()
+cs.pop()
+_(oB,fE)
+cs.pop()
+}
+oB.wxXCkey=1
+return r
+}
+e_[x[0]]=e_[x[0]]||{f:m0,j:[],i:[],ti:[],ic:[]}
+d_[x[1]]={}
+var m1=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_2()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:view:2:2")
+var o4=_n('view')
+_rz(z,o4,'class',0,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:slot:3:4")
+var x5=_n('slot')
+cs.pop()
+_(o4,x5)
+cs.pop()
+_(r,o4)
+return r
+}
+e_[x[1]]=e_[x[1]]||{f:m1,j:[],i:[],ti:[],ic:[]}
+d_[x[2]]={}
+var m2=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_3()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:2:2")
+var f7=_mz(z,'view',['bindtouchstart',0,'class',1,'id',1,'style',2],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:scroll-view:3:4")
+var c8=_mz(z,'scroll-view',['scrollAnchoring',-1,'bindscroll',4,'bindscrolltolower',1,'bindscrolltoupper',2,'class',3,'enableBackToTop',4,'lowerThreshold',5,'scrollIntoView',6,'scrollTop',7,'scrollWithAnimation',8,'scrollX',9,'scrollY',10,'style',11,'throttle',12,'upperThreshold',13],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:4:6")
+var h9=_n('view')
+_rz(z,h9,'style',18,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:5:8")
+var o0=_n('slot')
+_rz(z,o0,'name',19,e,s,gg)
+cs.pop()
+_(h9,o0)
+cs.pop()
+_(c8,h9)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:7:6")
+var cAB=_mz(z,'view',['class',20,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:8:8")
+var oBB=_n('slot')
+_rz(z,oBB,'name',22,e,s,gg)
+cs.pop()
+_(cAB,oBB)
+cs.pop()
+_(c8,cAB)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:10:6")
+var lCB=_n('view')
+_rz(z,lCB,'style',23,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:12:8")
+var aDB=_n('view')
+_rz(z,aDB,'style',24,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:13:10")
+var tEB=_n('slot')
+cs.pop()
+_(aDB,tEB)
+cs.pop()
+_(lCB,aDB)
+cs.pop()
+_(c8,lCB)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:17:6")
+var eFB=_mz(z,'view',['class',25,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:18:8")
+var bGB=_n('slot')
+_rz(z,bGB,'name',27,e,s,gg)
+cs.pop()
+_(eFB,bGB)
+cs.pop()
+_(c8,eFB)
+cs.pop()
+_(f7,c8)
+cs.pop()
+_(r,f7)
+return r
+}
+e_[x[2]]=e_[x[2]]||{f:m2,j:[],i:[],ti:[],ic:[]}
+d_[x[3]]={}
+var m3=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_4()
+var xIB=_v()
+_(r,xIB)
+if(_oz(z,0,e,s,gg)){xIB.wxVkey=1
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:1:1")
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:1:1")
+var oJB=_mz(z,'canvas',['id',1,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xIB,oJB)
+cs.pop()
+}
+else{xIB.wxVkey=2
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:2:2")
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:2:2")
+var fKB=_mz(z,'canvas',['canvasId',4,'style',1],[],e,s,gg)
+cs.pop()
+_(xIB,fKB)
+cs.pop()
+}
+xIB.wxXCkey=1
+return r
+}
+e_[x[3]]=e_[x[3]]||{f:m3,j:[],i:[],ti:[],ic:[]}
+
 COMMON=====./miniprogram_npm/wxml-to-canvas/index.wxml----function gz\$7061636b616765436f6d706f6e656e742f_4\(\)\{[\s\S]*?__WXML_GLOBAL__\.ops_cached\.\$7061636b616765436f6d706f6e656e742f_4
 }
+dep_d_: d_[x[0]]={}
+var m0=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_1()
+var oB=_v()
+_(r,oB)
+if(_oz(z,0,e,s,gg)){oB.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+var xC=_mz(z,'view',['class',1,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:canvas:2:4")
+var oD=_mz(z,'canvas',['id',3,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xC,oD)
+cs.pop()
+_(oB,xC)
+cs.pop()
+}
+else{oB.wxVkey=2
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+var fE=_mz(z,'view',['class',6,'style',1],[],e,s,gg)
+var cF=_v()
+_(fE,cF)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+var hG=function(cI,oH,oJ,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:7:6")
+var aL=_mz(z,'view',['class',12,'style',1],[],cI,oH,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:8:8")
+var tM=_mz(z,'view',['class',14,'hidden',1],[],cI,oH,gg)
+var eN=_oz(z,16,cI,oH,gg)
+_(tM,eN)
+cs.pop()
+_(aL,tM)
+var bO=_v()
+_(aL,bO)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+var oP=function(oR,xQ,fS,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:10:10")
+var hU=_mz(z,'view',['bindanimationend',21,'bindtap',1,'class',2,'data-bulletid',3,'data-tunnelid',4,'style',5],[],oR,xQ,gg)
+var oV=_v()
+_(hU,oV)
+if(_oz(z,27,oR,xQ,gg)){oV.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+var oX=_mz(z,'image',['class',28,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(oV,oX)
+cs.pop()
+}
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:25:12")
+var lY=_mz(z,'view',['class',32,'style',1],[],oR,xQ,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:text:26:14")
+var aZ=_n('text')
+var t1=_oz(z,34,oR,xQ,gg)
+_(aZ,t1)
+cs.pop()
+_(lY,aZ)
+cs.pop()
+_(hU,lY)
+var cW=_v()
+_(hU,cW)
+if(_oz(z,35,oR,xQ,gg)){cW.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+var e2=_mz(z,'image',['class',36,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(cW,e2)
+cs.pop()
+}
+oV.wxXCkey=1
+cW.wxXCkey=1
+cs.pop()
+_(fS,hU)
+cs.pop()
+return fS
+}
+bO.wxXCkey=2
+_2z(z,19,oP,cI,oH,gg,bO,'bullet','bulletId','bulletId')
+cs.pop()
+cs.pop()
+_(oJ,aL)
+cs.pop()
+return oJ
+}
+cF.wxXCkey=2
+_2z(z,10,hG,e,s,gg,cF,'tunnel','tunnelId','tunnelId')
+cs.pop()
+cs.pop()
+_(oB,fE)
+cs.pop()
+}
+oB.wxXCkey=1
+return r
+}
+e_[x[0]]=e_[x[0]]||{f:m0,j:[],i:[],ti:[],ic:[]}
+d_[x[1]]={}
+var m1=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_2()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:view:2:2")
+var o4=_n('view')
+_rz(z,o4,'class',0,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:slot:3:4")
+var x5=_n('slot')
+cs.pop()
+_(o4,x5)
+cs.pop()
+_(r,o4)
+return r
+}
+e_[x[1]]=e_[x[1]]||{f:m1,j:[],i:[],ti:[],ic:[]}
+d_[x[2]]={}
+var m2=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_3()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:2:2")
+var f7=_mz(z,'view',['bindtouchstart',0,'class',1,'id',1,'style',2],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:scroll-view:3:4")
+var c8=_mz(z,'scroll-view',['scrollAnchoring',-1,'bindscroll',4,'bindscrolltolower',1,'bindscrolltoupper',2,'class',3,'enableBackToTop',4,'lowerThreshold',5,'scrollIntoView',6,'scrollTop',7,'scrollWithAnimation',8,'scrollX',9,'scrollY',10,'style',11,'throttle',12,'upperThreshold',13],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:4:6")
+var h9=_n('view')
+_rz(z,h9,'style',18,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:5:8")
+var o0=_n('slot')
+_rz(z,o0,'name',19,e,s,gg)
+cs.pop()
+_(h9,o0)
+cs.pop()
+_(c8,h9)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:7:6")
+var cAB=_mz(z,'view',['class',20,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:8:8")
+var oBB=_n('slot')
+_rz(z,oBB,'name',22,e,s,gg)
+cs.pop()
+_(cAB,oBB)
+cs.pop()
+_(c8,cAB)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:10:6")
+var lCB=_n('view')
+_rz(z,lCB,'style',23,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:12:8")
+var aDB=_n('view')
+_rz(z,aDB,'style',24,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:13:10")
+var tEB=_n('slot')
+cs.pop()
+_(aDB,tEB)
+cs.pop()
+_(lCB,aDB)
+cs.pop()
+_(c8,lCB)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:17:6")
+var eFB=_mz(z,'view',['class',25,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:18:8")
+var bGB=_n('slot')
+_rz(z,bGB,'name',27,e,s,gg)
+cs.pop()
+_(eFB,bGB)
+cs.pop()
+_(c8,eFB)
+cs.pop()
+_(f7,c8)
+cs.pop()
+_(r,f7)
+return r
+}
+e_[x[2]]=e_[x[2]]||{f:m2,j:[],i:[],ti:[],ic:[]}
+d_[x[3]]={}
+var m3=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_4()
+var xIB=_v()
+_(r,xIB)
+if(_oz(z,0,e,s,gg)){xIB.wxVkey=1
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:1:1")
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:1:1")
+var oJB=_mz(z,'canvas',['id',1,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xIB,oJB)
+cs.pop()
+}
+else{xIB.wxVkey=2
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:2:2")
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:2:2")
+var fKB=_mz(z,'canvas',['canvasId',4,'style',1],[],e,s,gg)
+cs.pop()
+_(xIB,fKB)
+cs.pop()
+}
+xIB.wxXCkey=1
+return r
+}
+e_[x[3]]=e_[x[3]]||{f:m3,j:[],i:[],ti:[],ic:[]}
+d_[x[6]]={}
+var m4=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_5()
+var oBBB=e_[x[6]].i
+_ai(oBBB,x[4],e_,x[6],1,1)
+_ai(oBBB,x[5],e_,x[6],2,2)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:4:2")
+var fCBB=_mz(z,'view',['class',0,'data-weui-theme',1],[],e,s,gg)
+var cDBB=_v()
+_(fCBB,cDBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:template:5:4")
+var hEBB=_oz(z,3,e,s,gg)
+var oFBB=_gd(x[6],hEBB,e_,d_)
+if(oFBB){
+var cGBB=_1z(z,2,e,s,gg) || {}
+var cur_globalf=gg.f
+cDBB.wxXCkey=3
+oFBB(cGBB,cGBB,cDBB,gg)
+gg.f=cur_globalf
+}
+else _w(hEBB,x[6],5,16)
+cs.pop()
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:7:4")
+var oHBB=_n('view')
+_rz(z,oHBB,'class',4,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:8:6")
+var lIBB=_n('view')
+_rz(z,lIBB,'class',5,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:9:8")
+var aJBB=_n('button')
+_rz(z,aJBB,'bindtap',6,e,s,gg)
+var tKBB=_oz(z,7,e,s,gg)
+_(aJBB,tKBB)
+cs.pop()
+_(lIBB,aJBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:12:8")
+var eLBB=_n('button')
+_rz(z,eLBB,'bindtap',8,e,s,gg)
+var bMBB=_oz(z,9,e,s,gg)
+_(eLBB,bMBB)
+cs.pop()
+_(lIBB,eLBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:15:8")
+var oNBB=_n('button')
+_rz(z,oNBB,'bindtap',10,e,s,gg)
+var xOBB=_oz(z,11,e,s,gg)
+_(oNBB,xOBB)
+cs.pop()
+_(lIBB,oNBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:18:8")
+var oPBB=_n('button')
+_rz(z,oPBB,'bindtap',12,e,s,gg)
+var fQBB=_oz(z,13,e,s,gg)
+_(oPBB,fQBB)
+cs.pop()
+_(lIBB,oPBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:21:8")
+var cRBB=_n('button')
+_rz(z,cRBB,'bindtap',14,e,s,gg)
+var hSBB=_oz(z,15,e,s,gg)
+_(cRBB,hSBB)
+cs.pop()
+_(lIBB,cRBB)
+cs.pop()
+_(oHBB,lIBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:26:6")
+var oTBB=_n('view')
+_rz(z,oTBB,'class',16,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:27:8")
+var cUBB=_mz(z,'button',['bindtap',17,'type',1],[],e,s,gg)
+var oVBB=_oz(z,19,e,s,gg)
+_(cUBB,oVBB)
+cs.pop()
+_(oTBB,cUBB)
+cs.pop()
+_(oHBB,oTBB)
+cs.pop()
+_(fCBB,oHBB)
+var lWBB=_v()
+_(fCBB,lWBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:template:31:4")
+var aXBB=_oz(z,20,e,s,gg)
+var tYBB=_gd(x[6],aXBB,e_,d_)
+if(tYBB){
+var eZBB={}
+var cur_globalf=gg.f
+lWBB.wxXCkey=3
+tYBB(eZBB,eZBB,lWBB,gg)
+gg.f=cur_globalf
+}
+else _w(aXBB,x[6],31,16)
+cs.pop()
+cs.pop()
+_(r,fCBB)
+oBBB.pop()
+oBBB.pop()
+return r
+}
+e_[x[6]]=e_[x[6]]||{f:m4,j:[],i:[],ti:[x[4],x[5]],ic:[]}
+
 COMMON=====./page/API/components/set-tab-bar/set-tab-bar.wxml----function gz\$7061636b616765436f6d706f6e656e742f_39\(\)\{[\s\S]*?__WXML_GLOBAL__\.ops_cached\.\$7061636b616765436f6d706f6e656e742f_39
 }
+dep_d_: d_[x[0]]={}
+var m0=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_1()
+var oB=_v()
+_(r,oB)
+if(_oz(z,0,e,s,gg)){oB.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+var xC=_mz(z,'view',['class',1,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:canvas:2:4")
+var oD=_mz(z,'canvas',['id',3,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xC,oD)
+cs.pop()
+_(oB,xC)
+cs.pop()
+}
+else{oB.wxVkey=2
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+var fE=_mz(z,'view',['class',6,'style',1],[],e,s,gg)
+var cF=_v()
+_(fE,cF)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+var hG=function(cI,oH,oJ,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:7:6")
+var aL=_mz(z,'view',['class',12,'style',1],[],cI,oH,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:8:8")
+var tM=_mz(z,'view',['class',14,'hidden',1],[],cI,oH,gg)
+var eN=_oz(z,16,cI,oH,gg)
+_(tM,eN)
+cs.pop()
+_(aL,tM)
+var bO=_v()
+_(aL,bO)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+var oP=function(oR,xQ,fS,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:10:10")
+var hU=_mz(z,'view',['bindanimationend',21,'bindtap',1,'class',2,'data-bulletid',3,'data-tunnelid',4,'style',5],[],oR,xQ,gg)
+var oV=_v()
+_(hU,oV)
+if(_oz(z,27,oR,xQ,gg)){oV.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+var oX=_mz(z,'image',['class',28,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(oV,oX)
+cs.pop()
+}
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:25:12")
+var lY=_mz(z,'view',['class',32,'style',1],[],oR,xQ,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:text:26:14")
+var aZ=_n('text')
+var t1=_oz(z,34,oR,xQ,gg)
+_(aZ,t1)
+cs.pop()
+_(lY,aZ)
+cs.pop()
+_(hU,lY)
+var cW=_v()
+_(hU,cW)
+if(_oz(z,35,oR,xQ,gg)){cW.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+var e2=_mz(z,'image',['class',36,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(cW,e2)
+cs.pop()
+}
+oV.wxXCkey=1
+cW.wxXCkey=1
+cs.pop()
+_(fS,hU)
+cs.pop()
+return fS
+}
+bO.wxXCkey=2
+_2z(z,19,oP,cI,oH,gg,bO,'bullet','bulletId','bulletId')
+cs.pop()
+cs.pop()
+_(oJ,aL)
+cs.pop()
+return oJ
+}
+cF.wxXCkey=2
+_2z(z,10,hG,e,s,gg,cF,'tunnel','tunnelId','tunnelId')
+cs.pop()
+cs.pop()
+_(oB,fE)
+cs.pop()
+}
+oB.wxXCkey=1
+return r
+}
+e_[x[0]]=e_[x[0]]||{f:m0,j:[],i:[],ti:[],ic:[]}
+d_[x[1]]={}
+var m1=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_2()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:view:2:2")
+var o4=_n('view')
+_rz(z,o4,'class',0,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:slot:3:4")
+var x5=_n('slot')
+cs.pop()
+_(o4,x5)
+cs.pop()
+_(r,o4)
+return r
+}
+e_[x[1]]=e_[x[1]]||{f:m1,j:[],i:[],ti:[],ic:[]}
+d_[x[2]]={}
+var m2=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_3()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:2:2")
+var f7=_mz(z,'view',['bindtouchstart',0,'class',1,'id',1,'style',2],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:scroll-view:3:4")
+var c8=_mz(z,'scroll-view',['scrollAnchoring',-1,'bindscroll',4,'bindscrolltolower',1,'bindscrolltoupper',2,'class',3,'enableBackToTop',4,'lowerThreshold',5,'scrollIntoView',6,'scrollTop',7,'scrollWithAnimation',8,'scrollX',9,'scrollY',10,'style',11,'throttle',12,'upperThreshold',13],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:4:6")
+var h9=_n('view')
+_rz(z,h9,'style',18,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:5:8")
+var o0=_n('slot')
+_rz(z,o0,'name',19,e,s,gg)
+cs.pop()
+_(h9,o0)
+cs.pop()
+_(c8,h9)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:7:6")
+var cAB=_mz(z,'view',['class',20,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:8:8")
+var oBB=_n('slot')
+_rz(z,oBB,'name',22,e,s,gg)
+cs.pop()
+_(cAB,oBB)
+cs.pop()
+_(c8,cAB)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:10:6")
+var lCB=_n('view')
+_rz(z,lCB,'style',23,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:12:8")
+var aDB=_n('view')
+_rz(z,aDB,'style',24,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:13:10")
+var tEB=_n('slot')
+cs.pop()
+_(aDB,tEB)
+cs.pop()
+_(lCB,aDB)
+cs.pop()
+_(c8,lCB)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:17:6")
+var eFB=_mz(z,'view',['class',25,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:18:8")
+var bGB=_n('slot')
+_rz(z,bGB,'name',27,e,s,gg)
+cs.pop()
+_(eFB,bGB)
+cs.pop()
+_(c8,eFB)
+cs.pop()
+_(f7,c8)
+cs.pop()
+_(r,f7)
+return r
+}
+e_[x[2]]=e_[x[2]]||{f:m2,j:[],i:[],ti:[],ic:[]}
+d_[x[3]]={}
+var m3=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_4()
+var xIB=_v()
+_(r,xIB)
+if(_oz(z,0,e,s,gg)){xIB.wxVkey=1
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:1:1")
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:1:1")
+var oJB=_mz(z,'canvas',['id',1,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xIB,oJB)
+cs.pop()
+}
+else{xIB.wxVkey=2
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:2:2")
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:2:2")
+var fKB=_mz(z,'canvas',['canvasId',4,'style',1],[],e,s,gg)
+cs.pop()
+_(xIB,fKB)
+cs.pop()
+}
+xIB.wxXCkey=1
+return r
+}
+e_[x[3]]=e_[x[3]]||{f:m3,j:[],i:[],ti:[],ic:[]}
+d_[x[6]]={}
+var m4=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_5()
+var oBBB=e_[x[6]].i
+_ai(oBBB,x[4],e_,x[6],1,1)
+_ai(oBBB,x[5],e_,x[6],2,2)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:4:2")
+var fCBB=_mz(z,'view',['class',0,'data-weui-theme',1],[],e,s,gg)
+var cDBB=_v()
+_(fCBB,cDBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:template:5:4")
+var hEBB=_oz(z,3,e,s,gg)
+var oFBB=_gd(x[6],hEBB,e_,d_)
+if(oFBB){
+var cGBB=_1z(z,2,e,s,gg) || {}
+var cur_globalf=gg.f
+cDBB.wxXCkey=3
+oFBB(cGBB,cGBB,cDBB,gg)
+gg.f=cur_globalf
+}
+else _w(hEBB,x[6],5,16)
+cs.pop()
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:7:4")
+var oHBB=_n('view')
+_rz(z,oHBB,'class',4,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:8:6")
+var lIBB=_n('view')
+_rz(z,lIBB,'class',5,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:9:8")
+var aJBB=_n('button')
+_rz(z,aJBB,'bindtap',6,e,s,gg)
+var tKBB=_oz(z,7,e,s,gg)
+_(aJBB,tKBB)
+cs.pop()
+_(lIBB,aJBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:12:8")
+var eLBB=_n('button')
+_rz(z,eLBB,'bindtap',8,e,s,gg)
+var bMBB=_oz(z,9,e,s,gg)
+_(eLBB,bMBB)
+cs.pop()
+_(lIBB,eLBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:15:8")
+var oNBB=_n('button')
+_rz(z,oNBB,'bindtap',10,e,s,gg)
+var xOBB=_oz(z,11,e,s,gg)
+_(oNBB,xOBB)
+cs.pop()
+_(lIBB,oNBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:18:8")
+var oPBB=_n('button')
+_rz(z,oPBB,'bindtap',12,e,s,gg)
+var fQBB=_oz(z,13,e,s,gg)
+_(oPBB,fQBB)
+cs.pop()
+_(lIBB,oPBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:21:8")
+var cRBB=_n('button')
+_rz(z,cRBB,'bindtap',14,e,s,gg)
+var hSBB=_oz(z,15,e,s,gg)
+_(cRBB,hSBB)
+cs.pop()
+_(lIBB,cRBB)
+cs.pop()
+_(oHBB,lIBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:26:6")
+var oTBB=_n('view')
+_rz(z,oTBB,'class',16,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:27:8")
+var cUBB=_mz(z,'button',['bindtap',17,'type',1],[],e,s,gg)
+var oVBB=_oz(z,19,e,s,gg)
+_(cUBB,oVBB)
+cs.pop()
+_(oTBB,cUBB)
+cs.pop()
+_(oHBB,oTBB)
+cs.pop()
+_(fCBB,oHBB)
+var lWBB=_v()
+_(fCBB,lWBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:template:31:4")
+var aXBB=_oz(z,20,e,s,gg)
+var tYBB=_gd(x[6],aXBB,e_,d_)
+if(tYBB){
+var eZBB={}
+var cur_globalf=gg.f
+lWBB.wxXCkey=3
+tYBB(eZBB,eZBB,lWBB,gg)
+gg.f=cur_globalf
+}
+else _w(aXBB,x[6],31,16)
+cs.pop()
+cs.pop()
+_(r,fCBB)
+oBBB.pop()
+oBBB.pop()
+return r
+}
+e_[x[6]]=e_[x[6]]||{f:m4,j:[],i:[],ti:[x[4],x[5]],ic:[]}
+d_[x[7]]={}
+var m5=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_6()
+var o2BB=_v()
+_(r,o2BB)
+if(_oz(z,0,e,s,gg)){o2BB.wxVkey=1
+cs.push("./page/API/index.wxml:set-tab-bar:1:1")
+cs.push("./page/API/index.wxml:set-tab-bar:1:1")
+var x3BB=_n('set-tab-bar')
+_rz(z,x3BB,'bindunmount',1,e,s,gg)
+cs.pop()
+_(o2BB,x3BB)
+cs.pop()
+}
+else{o2BB.wxVkey=2
+cs.push("./page/API/index.wxml:view:2:2")
+cs.push("./page/API/index.wxml:view:2:2")
+var o4BB=_mz(z,'view',['class',2,'data-weui-theme',1],[],e,s,gg)
+cs.push("./page/API/index.wxml:view:3:4")
+var f5BB=_n('view')
+_rz(z,f5BB,'class',4,e,s,gg)
+cs.push("./page/API/index.wxml:image:4:6")
+var c6BB=_mz(z,'image',['class',5,'src',1],[],e,s,gg)
+cs.pop()
+_(f5BB,c6BB)
+cs.push("./page/API/index.wxml:view:5:6")
+var h7BB=_n('view')
+_rz(z,h7BB,'class',7,e,s,gg)
+var o8BB=_oz(z,8,e,s,gg)
+_(h7BB,o8BB)
+cs.push("./page/API/index.wxml:navigator:5:95")
+var c9BB=_mz(z,'navigator',['class',9,'url',1],[],e,s,gg)
+var o0BB=_oz(z,11,e,s,gg)
+_(c9BB,o0BB)
+cs.pop()
+_(h7BB,c9BB)
+var lACB=_oz(z,12,e,s,gg)
+_(h7BB,lACB)
+cs.pop()
+_(f5BB,h7BB)
+cs.pop()
+_(o4BB,f5BB)
+cs.push("./page/API/index.wxml:view:7:4")
+var aBCB=_n('view')
+_rz(z,aBCB,'class',13,e,s,gg)
+cs.push("./page/API/index.wxml:view:8:6")
+var tCCB=_n('view')
+_rz(z,tCCB,'class',14,e,s,gg)
+var eDCB=_v()
+_(tCCB,eDCB)
+cs.push("./page/API/index.wxml:block:9:8")
+var bECB=function(xGCB,oFCB,oHCB,gg){
+cs.push("./page/API/index.wxml:block:9:8")
+cs.push("./page/API/index.wxml:view:10:10")
+var cJCB=_n('view')
+_rz(z,cJCB,'class',17,xGCB,oFCB,gg)
+cs.push("./page/API/index.wxml:view:11:12")
+var hKCB=_mz(z,'view',['bindtap',18,'class',1,'id',2],[],xGCB,oFCB,gg)
+cs.push("./page/API/index.wxml:view:12:14")
+var cMCB=_n('view')
+_rz(z,cMCB,'class',21,xGCB,oFCB,gg)
+var oNCB=_oz(z,22,xGCB,oFCB,gg)
+_(cMCB,oNCB)
+cs.pop()
+_(hKCB,cMCB)
+var oLCB=_v()
+_(hKCB,oLCB)
+if(_oz(z,23,xGCB,oFCB,gg)){oLCB.wxVkey=1
+cs.push("./page/API/index.wxml:image:13:14")
+cs.push("./page/API/index.wxml:image:13:14")
+var lOCB=_mz(z,'image',['class',24,'src',1],[],xGCB,oFCB,gg)
+cs.pop()
+_(oLCB,lOCB)
+cs.pop()
+}
+else{oLCB.wxVkey=2
+cs.push("./page/API/index.wxml:image:14:14")
+cs.push("./page/API/index.wxml:image:14:14")
+var aPCB=_mz(z,'image',['class',26,'src',1],[],xGCB,oFCB,gg)
+cs.pop()
+_(oLCB,aPCB)
+cs.pop()
+}
+oLCB.wxXCkey=1
+cs.pop()
+_(cJCB,hKCB)
+cs.push("./page/API/index.wxml:view:16:12")
+var tQCB=_n('view')
+_rz(z,tQCB,'class',28,xGCB,oFCB,gg)
+cs.push("./page/API/index.wxml:view:17:14")
+var eRCB=_n('view')
+_rz(z,eRCB,'class',29,xGCB,oFCB,gg)
+var bSCB=_v()
+_(eRCB,bSCB)
+cs.push("./page/API/index.wxml:block:18:16")
+var oTCB=function(oVCB,xUCB,fWCB,gg){
+cs.push("./page/API/index.wxml:block:18:16")
+var hYCB=_v()
+_(fWCB,hYCB)
+if(_oz(z,33,oVCB,xUCB,gg)){hYCB.wxVkey=1
+cs.push("./page/API/index.wxml:navigator:19:18")
+cs.push("./page/API/index.wxml:navigator:19:18")
+var oZCB=_mz(z,'navigator',['class',34,'url',1],[],oVCB,xUCB,gg)
+cs.push("./page/API/index.wxml:view:20:20")
+var c1CB=_n('view')
+_rz(z,c1CB,'class',36,oVCB,xUCB,gg)
+var o2CB=_oz(z,37,oVCB,xUCB,gg)
+_(c1CB,o2CB)
+cs.pop()
+_(oZCB,c1CB)
+cs.push("./page/API/index.wxml:view:21:20")
+var l3CB=_n('view')
+_rz(z,l3CB,'class',38,oVCB,xUCB,gg)
+cs.pop()
+_(oZCB,l3CB)
+cs.pop()
+_(hYCB,oZCB)
+cs.pop()
+}
+else{hYCB.wxVkey=2
+cs.push("./page/API/index.wxml:view:23:18")
+cs.push("./page/API/index.wxml:view:23:18")
+var a4CB=_mz(z,'view',['bindtap',39,'class',1],[],oVCB,xUCB,gg)
+cs.push("./page/API/index.wxml:view:24:20")
+var t5CB=_n('view')
+_rz(z,t5CB,'class',41,oVCB,xUCB,gg)
+var e6CB=_oz(z,42,oVCB,xUCB,gg)
+_(t5CB,e6CB)
+cs.pop()
+_(a4CB,t5CB)
+cs.push("./page/API/index.wxml:view:25:20")
+var b7CB=_n('view')
+_rz(z,b7CB,'class',43,oVCB,xUCB,gg)
+cs.pop()
+_(a4CB,b7CB)
+cs.pop()
+_(hYCB,a4CB)
+cs.pop()
+}
+hYCB.wxXCkey=1
+cs.pop()
+return fWCB
+}
+_wp('./page/API/index.wxml:block:18:16: wx:key="*item" does not look like a valid key name.')
+bSCB.wxXCkey=2
+_2z(z,31,oTCB,xGCB,oFCB,gg,bSCB,'page','index','*item')
+cs.pop()
+cs.pop()
+_(tQCB,eRCB)
+cs.pop()
+_(cJCB,tQCB)
+cs.pop()
+_(oHCB,cJCB)
+cs.pop()
+return oHCB
+}
+_wp('./page/API/index.wxml:block:9:8: wx:key="{{item.id}}" does not look like a valid key name (did you mean wx:key="id" ?)')
+eDCB.wxXCkey=2
+_2z(z,15,bECB,e,s,gg,eDCB,'item','index','{{item.id}}')
+cs.pop()
+cs.pop()
+_(aBCB,tCCB)
+cs.pop()
+_(o4BB,aBCB)
+cs.pop()
+_(o2BB,o4BB)
+cs.pop()
+}
+o2BB.wxXCkey=1
+return r
+}
+e_[x[7]]=e_[x[7]]||{f:m5,j:[],i:[],ti:[],ic:[]}
+
 COMMON=====./page/API/index.wxml----function gz\$7061636b616765436f6d706f6e656e742f_40\(\)\{[\s\S]*?__WXML_GLOBAL__\.ops_cached\.\$7061636b616765436f6d706f6e656e742f_40
 }
+dep_d_: d_[x[0]]={}
+var m0=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_1()
+var oB=_v()
+_(r,oB)
+if(_oz(z,0,e,s,gg)){oB.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+var xC=_mz(z,'view',['class',1,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:canvas:2:4")
+var oD=_mz(z,'canvas',['id',3,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xC,oD)
+cs.pop()
+_(oB,xC)
+cs.pop()
+}
+else{oB.wxVkey=2
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+var fE=_mz(z,'view',['class',6,'style',1],[],e,s,gg)
+var cF=_v()
+_(fE,cF)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+var hG=function(cI,oH,oJ,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:7:6")
+var aL=_mz(z,'view',['class',12,'style',1],[],cI,oH,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:8:8")
+var tM=_mz(z,'view',['class',14,'hidden',1],[],cI,oH,gg)
+var eN=_oz(z,16,cI,oH,gg)
+_(tM,eN)
+cs.pop()
+_(aL,tM)
+var bO=_v()
+_(aL,bO)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+var oP=function(oR,xQ,fS,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:10:10")
+var hU=_mz(z,'view',['bindanimationend',21,'bindtap',1,'class',2,'data-bulletid',3,'data-tunnelid',4,'style',5],[],oR,xQ,gg)
+var oV=_v()
+_(hU,oV)
+if(_oz(z,27,oR,xQ,gg)){oV.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+var oX=_mz(z,'image',['class',28,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(oV,oX)
+cs.pop()
+}
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:25:12")
+var lY=_mz(z,'view',['class',32,'style',1],[],oR,xQ,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:text:26:14")
+var aZ=_n('text')
+var t1=_oz(z,34,oR,xQ,gg)
+_(aZ,t1)
+cs.pop()
+_(lY,aZ)
+cs.pop()
+_(hU,lY)
+var cW=_v()
+_(hU,cW)
+if(_oz(z,35,oR,xQ,gg)){cW.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+var e2=_mz(z,'image',['class',36,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(cW,e2)
+cs.pop()
+}
+oV.wxXCkey=1
+cW.wxXCkey=1
+cs.pop()
+_(fS,hU)
+cs.pop()
+return fS
+}
+bO.wxXCkey=2
+_2z(z,19,oP,cI,oH,gg,bO,'bullet','bulletId','bulletId')
+cs.pop()
+cs.pop()
+_(oJ,aL)
+cs.pop()
+return oJ
+}
+cF.wxXCkey=2
+_2z(z,10,hG,e,s,gg,cF,'tunnel','tunnelId','tunnelId')
+cs.pop()
+cs.pop()
+_(oB,fE)
+cs.pop()
+}
+oB.wxXCkey=1
+return r
+}
+e_[x[0]]=e_[x[0]]||{f:m0,j:[],i:[],ti:[],ic:[]}
+d_[x[1]]={}
+var m1=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_2()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:view:2:2")
+var o4=_n('view')
+_rz(z,o4,'class',0,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:slot:3:4")
+var x5=_n('slot')
+cs.pop()
+_(o4,x5)
+cs.pop()
+_(r,o4)
+return r
+}
+e_[x[1]]=e_[x[1]]||{f:m1,j:[],i:[],ti:[],ic:[]}
+d_[x[2]]={}
+var m2=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_3()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:2:2")
+var f7=_mz(z,'view',['bindtouchstart',0,'class',1,'id',1,'style',2],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:scroll-view:3:4")
+var c8=_mz(z,'scroll-view',['scrollAnchoring',-1,'bindscroll',4,'bindscrolltolower',1,'bindscrolltoupper',2,'class',3,'enableBackToTop',4,'lowerThreshold',5,'scrollIntoView',6,'scrollTop',7,'scrollWithAnimation',8,'scrollX',9,'scrollY',10,'style',11,'throttle',12,'upperThreshold',13],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:4:6")
+var h9=_n('view')
+_rz(z,h9,'style',18,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:5:8")
+var o0=_n('slot')
+_rz(z,o0,'name',19,e,s,gg)
+cs.pop()
+_(h9,o0)
+cs.pop()
+_(c8,h9)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:7:6")
+var cAB=_mz(z,'view',['class',20,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:8:8")
+var oBB=_n('slot')
+_rz(z,oBB,'name',22,e,s,gg)
+cs.pop()
+_(cAB,oBB)
+cs.pop()
+_(c8,cAB)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:10:6")
+var lCB=_n('view')
+_rz(z,lCB,'style',23,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:12:8")
+var aDB=_n('view')
+_rz(z,aDB,'style',24,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:13:10")
+var tEB=_n('slot')
+cs.pop()
+_(aDB,tEB)
+cs.pop()
+_(lCB,aDB)
+cs.pop()
+_(c8,lCB)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:17:6")
+var eFB=_mz(z,'view',['class',25,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:18:8")
+var bGB=_n('slot')
+_rz(z,bGB,'name',27,e,s,gg)
+cs.pop()
+_(eFB,bGB)
+cs.pop()
+_(c8,eFB)
+cs.pop()
+_(f7,c8)
+cs.pop()
+_(r,f7)
+return r
+}
+e_[x[2]]=e_[x[2]]||{f:m2,j:[],i:[],ti:[],ic:[]}
+d_[x[3]]={}
+var m3=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_4()
+var xIB=_v()
+_(r,xIB)
+if(_oz(z,0,e,s,gg)){xIB.wxVkey=1
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:1:1")
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:1:1")
+var oJB=_mz(z,'canvas',['id',1,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xIB,oJB)
+cs.pop()
+}
+else{xIB.wxVkey=2
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:2:2")
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:2:2")
+var fKB=_mz(z,'canvas',['canvasId',4,'style',1],[],e,s,gg)
+cs.pop()
+_(xIB,fKB)
+cs.pop()
+}
+xIB.wxXCkey=1
+return r
+}
+e_[x[3]]=e_[x[3]]||{f:m3,j:[],i:[],ti:[],ic:[]}
+d_[x[6]]={}
+var m4=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_5()
+var oBBB=e_[x[6]].i
+_ai(oBBB,x[4],e_,x[6],1,1)
+_ai(oBBB,x[5],e_,x[6],2,2)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:4:2")
+var fCBB=_mz(z,'view',['class',0,'data-weui-theme',1],[],e,s,gg)
+var cDBB=_v()
+_(fCBB,cDBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:template:5:4")
+var hEBB=_oz(z,3,e,s,gg)
+var oFBB=_gd(x[6],hEBB,e_,d_)
+if(oFBB){
+var cGBB=_1z(z,2,e,s,gg) || {}
+var cur_globalf=gg.f
+cDBB.wxXCkey=3
+oFBB(cGBB,cGBB,cDBB,gg)
+gg.f=cur_globalf
+}
+else _w(hEBB,x[6],5,16)
+cs.pop()
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:7:4")
+var oHBB=_n('view')
+_rz(z,oHBB,'class',4,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:8:6")
+var lIBB=_n('view')
+_rz(z,lIBB,'class',5,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:9:8")
+var aJBB=_n('button')
+_rz(z,aJBB,'bindtap',6,e,s,gg)
+var tKBB=_oz(z,7,e,s,gg)
+_(aJBB,tKBB)
+cs.pop()
+_(lIBB,aJBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:12:8")
+var eLBB=_n('button')
+_rz(z,eLBB,'bindtap',8,e,s,gg)
+var bMBB=_oz(z,9,e,s,gg)
+_(eLBB,bMBB)
+cs.pop()
+_(lIBB,eLBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:15:8")
+var oNBB=_n('button')
+_rz(z,oNBB,'bindtap',10,e,s,gg)
+var xOBB=_oz(z,11,e,s,gg)
+_(oNBB,xOBB)
+cs.pop()
+_(lIBB,oNBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:18:8")
+var oPBB=_n('button')
+_rz(z,oPBB,'bindtap',12,e,s,gg)
+var fQBB=_oz(z,13,e,s,gg)
+_(oPBB,fQBB)
+cs.pop()
+_(lIBB,oPBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:21:8")
+var cRBB=_n('button')
+_rz(z,cRBB,'bindtap',14,e,s,gg)
+var hSBB=_oz(z,15,e,s,gg)
+_(cRBB,hSBB)
+cs.pop()
+_(lIBB,cRBB)
+cs.pop()
+_(oHBB,lIBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:26:6")
+var oTBB=_n('view')
+_rz(z,oTBB,'class',16,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:27:8")
+var cUBB=_mz(z,'button',['bindtap',17,'type',1],[],e,s,gg)
+var oVBB=_oz(z,19,e,s,gg)
+_(cUBB,oVBB)
+cs.pop()
+_(oTBB,cUBB)
+cs.pop()
+_(oHBB,oTBB)
+cs.pop()
+_(fCBB,oHBB)
+var lWBB=_v()
+_(fCBB,lWBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:template:31:4")
+var aXBB=_oz(z,20,e,s,gg)
+var tYBB=_gd(x[6],aXBB,e_,d_)
+if(tYBB){
+var eZBB={}
+var cur_globalf=gg.f
+lWBB.wxXCkey=3
+tYBB(eZBB,eZBB,lWBB,gg)
+gg.f=cur_globalf
+}
+else _w(aXBB,x[6],31,16)
+cs.pop()
+cs.pop()
+_(r,fCBB)
+oBBB.pop()
+oBBB.pop()
+return r
+}
+e_[x[6]]=e_[x[6]]||{f:m4,j:[],i:[],ti:[x[4],x[5]],ic:[]}
+d_[x[7]]={}
+var m5=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_6()
+var o2BB=_v()
+_(r,o2BB)
+if(_oz(z,0,e,s,gg)){o2BB.wxVkey=1
+cs.push("./page/API/index.wxml:set-tab-bar:1:1")
+cs.push("./page/API/index.wxml:set-tab-bar:1:1")
+var x3BB=_n('set-tab-bar')
+_rz(z,x3BB,'bindunmount',1,e,s,gg)
+cs.pop()
+_(o2BB,x3BB)
+cs.pop()
+}
+else{o2BB.wxVkey=2
+cs.push("./page/API/index.wxml:view:2:2")
+cs.push("./page/API/index.wxml:view:2:2")
+var o4BB=_mz(z,'view',['class',2,'data-weui-theme',1],[],e,s,gg)
+cs.push("./page/API/index.wxml:view:3:4")
+var f5BB=_n('view')
+_rz(z,f5BB,'class',4,e,s,gg)
+cs.push("./page/API/index.wxml:image:4:6")
+var c6BB=_mz(z,'image',['class',5,'src',1],[],e,s,gg)
+cs.pop()
+_(f5BB,c6BB)
+cs.push("./page/API/index.wxml:view:5:6")
+var h7BB=_n('view')
+_rz(z,h7BB,'class',7,e,s,gg)
+var o8BB=_oz(z,8,e,s,gg)
+_(h7BB,o8BB)
+cs.push("./page/API/index.wxml:navigator:5:95")
+var c9BB=_mz(z,'navigator',['class',9,'url',1],[],e,s,gg)
+var o0BB=_oz(z,11,e,s,gg)
+_(c9BB,o0BB)
+cs.pop()
+_(h7BB,c9BB)
+var lACB=_oz(z,12,e,s,gg)
+_(h7BB,lACB)
+cs.pop()
+_(f5BB,h7BB)
+cs.pop()
+_(o4BB,f5BB)
+cs.push("./page/API/index.wxml:view:7:4")
+var aBCB=_n('view')
+_rz(z,aBCB,'class',13,e,s,gg)
+cs.push("./page/API/index.wxml:view:8:6")
+var tCCB=_n('view')
+_rz(z,tCCB,'class',14,e,s,gg)
+var eDCB=_v()
+_(tCCB,eDCB)
+cs.push("./page/API/index.wxml:block:9:8")
+var bECB=function(xGCB,oFCB,oHCB,gg){
+cs.push("./page/API/index.wxml:block:9:8")
+cs.push("./page/API/index.wxml:view:10:10")
+var cJCB=_n('view')
+_rz(z,cJCB,'class',17,xGCB,oFCB,gg)
+cs.push("./page/API/index.wxml:view:11:12")
+var hKCB=_mz(z,'view',['bindtap',18,'class',1,'id',2],[],xGCB,oFCB,gg)
+cs.push("./page/API/index.wxml:view:12:14")
+var cMCB=_n('view')
+_rz(z,cMCB,'class',21,xGCB,oFCB,gg)
+var oNCB=_oz(z,22,xGCB,oFCB,gg)
+_(cMCB,oNCB)
+cs.pop()
+_(hKCB,cMCB)
+var oLCB=_v()
+_(hKCB,oLCB)
+if(_oz(z,23,xGCB,oFCB,gg)){oLCB.wxVkey=1
+cs.push("./page/API/index.wxml:image:13:14")
+cs.push("./page/API/index.wxml:image:13:14")
+var lOCB=_mz(z,'image',['class',24,'src',1],[],xGCB,oFCB,gg)
+cs.pop()
+_(oLCB,lOCB)
+cs.pop()
+}
+else{oLCB.wxVkey=2
+cs.push("./page/API/index.wxml:image:14:14")
+cs.push("./page/API/index.wxml:image:14:14")
+var aPCB=_mz(z,'image',['class',26,'src',1],[],xGCB,oFCB,gg)
+cs.pop()
+_(oLCB,aPCB)
+cs.pop()
+}
+oLCB.wxXCkey=1
+cs.pop()
+_(cJCB,hKCB)
+cs.push("./page/API/index.wxml:view:16:12")
+var tQCB=_n('view')
+_rz(z,tQCB,'class',28,xGCB,oFCB,gg)
+cs.push("./page/API/index.wxml:view:17:14")
+var eRCB=_n('view')
+_rz(z,eRCB,'class',29,xGCB,oFCB,gg)
+var bSCB=_v()
+_(eRCB,bSCB)
+cs.push("./page/API/index.wxml:block:18:16")
+var oTCB=function(oVCB,xUCB,fWCB,gg){
+cs.push("./page/API/index.wxml:block:18:16")
+var hYCB=_v()
+_(fWCB,hYCB)
+if(_oz(z,33,oVCB,xUCB,gg)){hYCB.wxVkey=1
+cs.push("./page/API/index.wxml:navigator:19:18")
+cs.push("./page/API/index.wxml:navigator:19:18")
+var oZCB=_mz(z,'navigator',['class',34,'url',1],[],oVCB,xUCB,gg)
+cs.push("./page/API/index.wxml:view:20:20")
+var c1CB=_n('view')
+_rz(z,c1CB,'class',36,oVCB,xUCB,gg)
+var o2CB=_oz(z,37,oVCB,xUCB,gg)
+_(c1CB,o2CB)
+cs.pop()
+_(oZCB,c1CB)
+cs.push("./page/API/index.wxml:view:21:20")
+var l3CB=_n('view')
+_rz(z,l3CB,'class',38,oVCB,xUCB,gg)
+cs.pop()
+_(oZCB,l3CB)
+cs.pop()
+_(hYCB,oZCB)
+cs.pop()
+}
+else{hYCB.wxVkey=2
+cs.push("./page/API/index.wxml:view:23:18")
+cs.push("./page/API/index.wxml:view:23:18")
+var a4CB=_mz(z,'view',['bindtap',39,'class',1],[],oVCB,xUCB,gg)
+cs.push("./page/API/index.wxml:view:24:20")
+var t5CB=_n('view')
+_rz(z,t5CB,'class',41,oVCB,xUCB,gg)
+var e6CB=_oz(z,42,oVCB,xUCB,gg)
+_(t5CB,e6CB)
+cs.pop()
+_(a4CB,t5CB)
+cs.push("./page/API/index.wxml:view:25:20")
+var b7CB=_n('view')
+_rz(z,b7CB,'class',43,oVCB,xUCB,gg)
+cs.pop()
+_(a4CB,b7CB)
+cs.pop()
+_(hYCB,a4CB)
+cs.pop()
+}
+hYCB.wxXCkey=1
+cs.pop()
+return fWCB
+}
+_wp('./page/API/index.wxml:block:18:16: wx:key="*item" does not look like a valid key name.')
+bSCB.wxXCkey=2
+_2z(z,31,oTCB,xGCB,oFCB,gg,bSCB,'page','index','*item')
+cs.pop()
+cs.pop()
+_(tQCB,eRCB)
+cs.pop()
+_(cJCB,tQCB)
+cs.pop()
+_(oHCB,cJCB)
+cs.pop()
+return oHCB
+}
+_wp('./page/API/index.wxml:block:9:8: wx:key="{{item.id}}" does not look like a valid key name (did you mean wx:key="id" ?)')
+eDCB.wxXCkey=2
+_2z(z,15,bECB,e,s,gg,eDCB,'item','index','{{item.id}}')
+cs.pop()
+cs.pop()
+_(aBCB,tCCB)
+cs.pop()
+_(o4BB,aBCB)
+cs.pop()
+_(o2BB,o4BB)
+cs.pop()
+}
+o2BB.wxXCkey=1
+return r
+}
+e_[x[7]]=e_[x[7]]||{f:m5,j:[],i:[],ti:[],ic:[]}
+d_[x[8]]={}
+var m6=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_7()
+cs.push("./page/cloud/index.wxml:view:1:1")
+var x9CB=_mz(z,'view',['class',0,'data-weui-theme',1],[],e,s,gg)
+cs.push("./page/cloud/index.wxml:view:2:4")
+var o0CB=_n('view')
+_rz(z,o0CB,'class',2,e,s,gg)
+cs.push("./page/cloud/index.wxml:view:3:6")
+var fADB=_n('view')
+_rz(z,fADB,'class',3,e,s,gg)
+cs.push("./page/cloud/index.wxml:image:4:8")
+var cBDB=_mz(z,'image',['class',4,'src',1],[],e,s,gg)
+cs.pop()
+_(fADB,cBDB)
+cs.push("./page/cloud/index.wxml:view:5:8")
+var hCDB=_n('view')
+_rz(z,hCDB,'class',6,e,s,gg)
+var oDDB=_oz(z,7,e,s,gg)
+_(hCDB,oDDB)
+cs.push("./page/cloud/index.wxml:navigator:5:100")
+var cEDB=_mz(z,'navigator',['class',8,'url',1],[],e,s,gg)
+var oFDB=_oz(z,10,e,s,gg)
+_(cEDB,oFDB)
+cs.pop()
+_(hCDB,cEDB)
+var lGDB=_oz(z,11,e,s,gg)
+_(hCDB,lGDB)
+cs.pop()
+_(fADB,hCDB)
+cs.pop()
+_(o0CB,fADB)
+cs.push("./page/cloud/index.wxml:view:7:6")
+var aHDB=_n('view')
+_rz(z,aHDB,'class',12,e,s,gg)
+cs.push("./page/cloud/index.wxml:view:8:8")
+var tIDB=_n('view')
+_rz(z,tIDB,'class',13,e,s,gg)
+var eJDB=_v()
+_(tIDB,eJDB)
+cs.push("./page/cloud/index.wxml:block:9:10")
+var bKDB=function(xMDB,oLDB,oNDB,gg){
+cs.push("./page/cloud/index.wxml:block:9:10")
+cs.push("./page/cloud/index.wxml:view:10:12")
+var cPDB=_n('view')
+_rz(z,cPDB,'class',16,xMDB,oLDB,gg)
+cs.push("./page/cloud/index.wxml:view:11:14")
+var hQDB=_mz(z,'view',['bindtap',17,'class',1,'id',2],[],xMDB,oLDB,gg)
+cs.push("./page/cloud/index.wxml:view:12:16")
+var cSDB=_n('view')
+_rz(z,cSDB,'class',20,xMDB,oLDB,gg)
+var oTDB=_oz(z,21,xMDB,oLDB,gg)
+_(cSDB,oTDB)
+cs.pop()
+_(hQDB,cSDB)
+var oRDB=_v()
+_(hQDB,oRDB)
+if(_oz(z,22,xMDB,oLDB,gg)){oRDB.wxVkey=1
+cs.push("./page/cloud/index.wxml:image:13:16")
+cs.push("./page/cloud/index.wxml:image:13:16")
+var lUDB=_mz(z,'image',['class',23,'src',1],[],xMDB,oLDB,gg)
+cs.pop()
+_(oRDB,lUDB)
+cs.pop()
+}
+else{oRDB.wxVkey=2
+cs.push("./page/cloud/index.wxml:image:14:16")
+cs.push("./page/cloud/index.wxml:image:14:16")
+var aVDB=_mz(z,'image',['class',25,'src',1],[],xMDB,oLDB,gg)
+cs.pop()
+_(oRDB,aVDB)
+cs.pop()
+}
+oRDB.wxXCkey=1
+cs.pop()
+_(cPDB,hQDB)
+cs.push("./page/cloud/index.wxml:view:16:14")
+var tWDB=_n('view')
+_rz(z,tWDB,'class',27,xMDB,oLDB,gg)
+cs.push("./page/cloud/index.wxml:view:17:16")
+var eXDB=_n('view')
+_rz(z,eXDB,'class',28,xMDB,oLDB,gg)
+var bYDB=_v()
+_(eXDB,bYDB)
+cs.push("./page/cloud/index.wxml:block:18:18")
+var oZDB=function(o2DB,x1DB,f3DB,gg){
+cs.push("./page/cloud/index.wxml:block:18:18")
+cs.push("./page/cloud/index.wxml:navigator:19:20")
+var h5DB=_mz(z,'navigator',['class',32,'url',1],[],o2DB,x1DB,gg)
+cs.push("./page/cloud/index.wxml:view:20:22")
+var o6DB=_n('view')
+_rz(z,o6DB,'class',34,o2DB,x1DB,gg)
+var c7DB=_oz(z,35,o2DB,x1DB,gg)
+_(o6DB,c7DB)
+cs.pop()
+_(h5DB,o6DB)
+cs.push("./page/cloud/index.wxml:view:21:22")
+var o8DB=_n('view')
+_rz(z,o8DB,'class',36,o2DB,x1DB,gg)
+cs.pop()
+_(h5DB,o8DB)
+cs.pop()
+_(f3DB,h5DB)
+cs.pop()
+return f3DB
+}
+_wp('./page/cloud/index.wxml:block:18:18: wx:key="*item" does not look like a valid key name.')
+bYDB.wxXCkey=2
+_2z(z,30,oZDB,xMDB,oLDB,gg,bYDB,'page','index','*item')
+cs.pop()
+cs.pop()
+_(tWDB,eXDB)
+cs.pop()
+_(cPDB,tWDB)
+cs.pop()
+_(oNDB,cPDB)
+cs.pop()
+return oNDB
+}
+_wp('./page/cloud/index.wxml:block:9:10: wx:key="{{item.id}}" does not look like a valid key name (did you mean wx:key="id" ?)')
+eJDB.wxXCkey=2
+_2z(z,14,bKDB,e,s,gg,eJDB,'item','index','{{item.id}}')
+cs.pop()
+cs.pop()
+_(aHDB,tIDB)
+cs.pop()
+_(o0CB,aHDB)
+cs.pop()
+_(x9CB,o0CB)
+cs.pop()
+_(r,x9CB)
+return r
+}
+e_[x[8]]=e_[x[8]]||{f:m6,j:[],i:[],ti:[],ic:[]}
+
 COMMON=====./page/cloud/index.wxml----function gz\$7061636b616765436f6d706f6e656e742f_41\(\)\{[\s\S]*?__WXML_GLOBAL__\.ops_cached\.\$7061636b616765436f6d706f6e656e742f_41
 }
+dep_d_: d_[x[0]]={}
+var m0=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_1()
+var oB=_v()
+_(r,oB)
+if(_oz(z,0,e,s,gg)){oB.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+var xC=_mz(z,'view',['class',1,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:canvas:2:4")
+var oD=_mz(z,'canvas',['id',3,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xC,oD)
+cs.pop()
+_(oB,xC)
+cs.pop()
+}
+else{oB.wxVkey=2
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+var fE=_mz(z,'view',['class',6,'style',1],[],e,s,gg)
+var cF=_v()
+_(fE,cF)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+var hG=function(cI,oH,oJ,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:7:6")
+var aL=_mz(z,'view',['class',12,'style',1],[],cI,oH,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:8:8")
+var tM=_mz(z,'view',['class',14,'hidden',1],[],cI,oH,gg)
+var eN=_oz(z,16,cI,oH,gg)
+_(tM,eN)
+cs.pop()
+_(aL,tM)
+var bO=_v()
+_(aL,bO)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+var oP=function(oR,xQ,fS,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:10:10")
+var hU=_mz(z,'view',['bindanimationend',21,'bindtap',1,'class',2,'data-bulletid',3,'data-tunnelid',4,'style',5],[],oR,xQ,gg)
+var oV=_v()
+_(hU,oV)
+if(_oz(z,27,oR,xQ,gg)){oV.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+var oX=_mz(z,'image',['class',28,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(oV,oX)
+cs.pop()
+}
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:25:12")
+var lY=_mz(z,'view',['class',32,'style',1],[],oR,xQ,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:text:26:14")
+var aZ=_n('text')
+var t1=_oz(z,34,oR,xQ,gg)
+_(aZ,t1)
+cs.pop()
+_(lY,aZ)
+cs.pop()
+_(hU,lY)
+var cW=_v()
+_(hU,cW)
+if(_oz(z,35,oR,xQ,gg)){cW.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+var e2=_mz(z,'image',['class',36,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(cW,e2)
+cs.pop()
+}
+oV.wxXCkey=1
+cW.wxXCkey=1
+cs.pop()
+_(fS,hU)
+cs.pop()
+return fS
+}
+bO.wxXCkey=2
+_2z(z,19,oP,cI,oH,gg,bO,'bullet','bulletId','bulletId')
+cs.pop()
+cs.pop()
+_(oJ,aL)
+cs.pop()
+return oJ
+}
+cF.wxXCkey=2
+_2z(z,10,hG,e,s,gg,cF,'tunnel','tunnelId','tunnelId')
+cs.pop()
+cs.pop()
+_(oB,fE)
+cs.pop()
+}
+oB.wxXCkey=1
+return r
+}
+e_[x[0]]=e_[x[0]]||{f:m0,j:[],i:[],ti:[],ic:[]}
+d_[x[1]]={}
+var m1=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_2()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:view:2:2")
+var o4=_n('view')
+_rz(z,o4,'class',0,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:slot:3:4")
+var x5=_n('slot')
+cs.pop()
+_(o4,x5)
+cs.pop()
+_(r,o4)
+return r
+}
+e_[x[1]]=e_[x[1]]||{f:m1,j:[],i:[],ti:[],ic:[]}
+d_[x[2]]={}
+var m2=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_3()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:2:2")
+var f7=_mz(z,'view',['bindtouchstart',0,'class',1,'id',1,'style',2],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:scroll-view:3:4")
+var c8=_mz(z,'scroll-view',['scrollAnchoring',-1,'bindscroll',4,'bindscrolltolower',1,'bindscrolltoupper',2,'class',3,'enableBackToTop',4,'lowerThreshold',5,'scrollIntoView',6,'scrollTop',7,'scrollWithAnimation',8,'scrollX',9,'scrollY',10,'style',11,'throttle',12,'upperThreshold',13],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:4:6")
+var h9=_n('view')
+_rz(z,h9,'style',18,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:5:8")
+var o0=_n('slot')
+_rz(z,o0,'name',19,e,s,gg)
+cs.pop()
+_(h9,o0)
+cs.pop()
+_(c8,h9)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:7:6")
+var cAB=_mz(z,'view',['class',20,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:8:8")
+var oBB=_n('slot')
+_rz(z,oBB,'name',22,e,s,gg)
+cs.pop()
+_(cAB,oBB)
+cs.pop()
+_(c8,cAB)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:10:6")
+var lCB=_n('view')
+_rz(z,lCB,'style',23,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:12:8")
+var aDB=_n('view')
+_rz(z,aDB,'style',24,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:13:10")
+var tEB=_n('slot')
+cs.pop()
+_(aDB,tEB)
+cs.pop()
+_(lCB,aDB)
+cs.pop()
+_(c8,lCB)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:17:6")
+var eFB=_mz(z,'view',['class',25,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:18:8")
+var bGB=_n('slot')
+_rz(z,bGB,'name',27,e,s,gg)
+cs.pop()
+_(eFB,bGB)
+cs.pop()
+_(c8,eFB)
+cs.pop()
+_(f7,c8)
+cs.pop()
+_(r,f7)
+return r
+}
+e_[x[2]]=e_[x[2]]||{f:m2,j:[],i:[],ti:[],ic:[]}
+d_[x[3]]={}
+var m3=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_4()
+var xIB=_v()
+_(r,xIB)
+if(_oz(z,0,e,s,gg)){xIB.wxVkey=1
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:1:1")
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:1:1")
+var oJB=_mz(z,'canvas',['id',1,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xIB,oJB)
+cs.pop()
+}
+else{xIB.wxVkey=2
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:2:2")
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:2:2")
+var fKB=_mz(z,'canvas',['canvasId',4,'style',1],[],e,s,gg)
+cs.pop()
+_(xIB,fKB)
+cs.pop()
+}
+xIB.wxXCkey=1
+return r
+}
+e_[x[3]]=e_[x[3]]||{f:m3,j:[],i:[],ti:[],ic:[]}
+d_[x[6]]={}
+var m4=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_5()
+var oBBB=e_[x[6]].i
+_ai(oBBB,x[4],e_,x[6],1,1)
+_ai(oBBB,x[5],e_,x[6],2,2)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:4:2")
+var fCBB=_mz(z,'view',['class',0,'data-weui-theme',1],[],e,s,gg)
+var cDBB=_v()
+_(fCBB,cDBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:template:5:4")
+var hEBB=_oz(z,3,e,s,gg)
+var oFBB=_gd(x[6],hEBB,e_,d_)
+if(oFBB){
+var cGBB=_1z(z,2,e,s,gg) || {}
+var cur_globalf=gg.f
+cDBB.wxXCkey=3
+oFBB(cGBB,cGBB,cDBB,gg)
+gg.f=cur_globalf
+}
+else _w(hEBB,x[6],5,16)
+cs.pop()
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:7:4")
+var oHBB=_n('view')
+_rz(z,oHBB,'class',4,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:8:6")
+var lIBB=_n('view')
+_rz(z,lIBB,'class',5,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:9:8")
+var aJBB=_n('button')
+_rz(z,aJBB,'bindtap',6,e,s,gg)
+var tKBB=_oz(z,7,e,s,gg)
+_(aJBB,tKBB)
+cs.pop()
+_(lIBB,aJBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:12:8")
+var eLBB=_n('button')
+_rz(z,eLBB,'bindtap',8,e,s,gg)
+var bMBB=_oz(z,9,e,s,gg)
+_(eLBB,bMBB)
+cs.pop()
+_(lIBB,eLBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:15:8")
+var oNBB=_n('button')
+_rz(z,oNBB,'bindtap',10,e,s,gg)
+var xOBB=_oz(z,11,e,s,gg)
+_(oNBB,xOBB)
+cs.pop()
+_(lIBB,oNBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:18:8")
+var oPBB=_n('button')
+_rz(z,oPBB,'bindtap',12,e,s,gg)
+var fQBB=_oz(z,13,e,s,gg)
+_(oPBB,fQBB)
+cs.pop()
+_(lIBB,oPBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:21:8")
+var cRBB=_n('button')
+_rz(z,cRBB,'bindtap',14,e,s,gg)
+var hSBB=_oz(z,15,e,s,gg)
+_(cRBB,hSBB)
+cs.pop()
+_(lIBB,cRBB)
+cs.pop()
+_(oHBB,lIBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:26:6")
+var oTBB=_n('view')
+_rz(z,oTBB,'class',16,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:27:8")
+var cUBB=_mz(z,'button',['bindtap',17,'type',1],[],e,s,gg)
+var oVBB=_oz(z,19,e,s,gg)
+_(cUBB,oVBB)
+cs.pop()
+_(oTBB,cUBB)
+cs.pop()
+_(oHBB,oTBB)
+cs.pop()
+_(fCBB,oHBB)
+var lWBB=_v()
+_(fCBB,lWBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:template:31:4")
+var aXBB=_oz(z,20,e,s,gg)
+var tYBB=_gd(x[6],aXBB,e_,d_)
+if(tYBB){
+var eZBB={}
+var cur_globalf=gg.f
+lWBB.wxXCkey=3
+tYBB(eZBB,eZBB,lWBB,gg)
+gg.f=cur_globalf
+}
+else _w(aXBB,x[6],31,16)
+cs.pop()
+cs.pop()
+_(r,fCBB)
+oBBB.pop()
+oBBB.pop()
+return r
+}
+e_[x[6]]=e_[x[6]]||{f:m4,j:[],i:[],ti:[x[4],x[5]],ic:[]}
+d_[x[7]]={}
+var m5=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_6()
+var o2BB=_v()
+_(r,o2BB)
+if(_oz(z,0,e,s,gg)){o2BB.wxVkey=1
+cs.push("./page/API/index.wxml:set-tab-bar:1:1")
+cs.push("./page/API/index.wxml:set-tab-bar:1:1")
+var x3BB=_n('set-tab-bar')
+_rz(z,x3BB,'bindunmount',1,e,s,gg)
+cs.pop()
+_(o2BB,x3BB)
+cs.pop()
+}
+else{o2BB.wxVkey=2
+cs.push("./page/API/index.wxml:view:2:2")
+cs.push("./page/API/index.wxml:view:2:2")
+var o4BB=_mz(z,'view',['class',2,'data-weui-theme',1],[],e,s,gg)
+cs.push("./page/API/index.wxml:view:3:4")
+var f5BB=_n('view')
+_rz(z,f5BB,'class',4,e,s,gg)
+cs.push("./page/API/index.wxml:image:4:6")
+var c6BB=_mz(z,'image',['class',5,'src',1],[],e,s,gg)
+cs.pop()
+_(f5BB,c6BB)
+cs.push("./page/API/index.wxml:view:5:6")
+var h7BB=_n('view')
+_rz(z,h7BB,'class',7,e,s,gg)
+var o8BB=_oz(z,8,e,s,gg)
+_(h7BB,o8BB)
+cs.push("./page/API/index.wxml:navigator:5:95")
+var c9BB=_mz(z,'navigator',['class',9,'url',1],[],e,s,gg)
+var o0BB=_oz(z,11,e,s,gg)
+_(c9BB,o0BB)
+cs.pop()
+_(h7BB,c9BB)
+var lACB=_oz(z,12,e,s,gg)
+_(h7BB,lACB)
+cs.pop()
+_(f5BB,h7BB)
+cs.pop()
+_(o4BB,f5BB)
+cs.push("./page/API/index.wxml:view:7:4")
+var aBCB=_n('view')
+_rz(z,aBCB,'class',13,e,s,gg)
+cs.push("./page/API/index.wxml:view:8:6")
+var tCCB=_n('view')
+_rz(z,tCCB,'class',14,e,s,gg)
+var eDCB=_v()
+_(tCCB,eDCB)
+cs.push("./page/API/index.wxml:block:9:8")
+var bECB=function(xGCB,oFCB,oHCB,gg){
+cs.push("./page/API/index.wxml:block:9:8")
+cs.push("./page/API/index.wxml:view:10:10")
+var cJCB=_n('view')
+_rz(z,cJCB,'class',17,xGCB,oFCB,gg)
+cs.push("./page/API/index.wxml:view:11:12")
+var hKCB=_mz(z,'view',['bindtap',18,'class',1,'id',2],[],xGCB,oFCB,gg)
+cs.push("./page/API/index.wxml:view:12:14")
+var cMCB=_n('view')
+_rz(z,cMCB,'class',21,xGCB,oFCB,gg)
+var oNCB=_oz(z,22,xGCB,oFCB,gg)
+_(cMCB,oNCB)
+cs.pop()
+_(hKCB,cMCB)
+var oLCB=_v()
+_(hKCB,oLCB)
+if(_oz(z,23,xGCB,oFCB,gg)){oLCB.wxVkey=1
+cs.push("./page/API/index.wxml:image:13:14")
+cs.push("./page/API/index.wxml:image:13:14")
+var lOCB=_mz(z,'image',['class',24,'src',1],[],xGCB,oFCB,gg)
+cs.pop()
+_(oLCB,lOCB)
+cs.pop()
+}
+else{oLCB.wxVkey=2
+cs.push("./page/API/index.wxml:image:14:14")
+cs.push("./page/API/index.wxml:image:14:14")
+var aPCB=_mz(z,'image',['class',26,'src',1],[],xGCB,oFCB,gg)
+cs.pop()
+_(oLCB,aPCB)
+cs.pop()
+}
+oLCB.wxXCkey=1
+cs.pop()
+_(cJCB,hKCB)
+cs.push("./page/API/index.wxml:view:16:12")
+var tQCB=_n('view')
+_rz(z,tQCB,'class',28,xGCB,oFCB,gg)
+cs.push("./page/API/index.wxml:view:17:14")
+var eRCB=_n('view')
+_rz(z,eRCB,'class',29,xGCB,oFCB,gg)
+var bSCB=_v()
+_(eRCB,bSCB)
+cs.push("./page/API/index.wxml:block:18:16")
+var oTCB=function(oVCB,xUCB,fWCB,gg){
+cs.push("./page/API/index.wxml:block:18:16")
+var hYCB=_v()
+_(fWCB,hYCB)
+if(_oz(z,33,oVCB,xUCB,gg)){hYCB.wxVkey=1
+cs.push("./page/API/index.wxml:navigator:19:18")
+cs.push("./page/API/index.wxml:navigator:19:18")
+var oZCB=_mz(z,'navigator',['class',34,'url',1],[],oVCB,xUCB,gg)
+cs.push("./page/API/index.wxml:view:20:20")
+var c1CB=_n('view')
+_rz(z,c1CB,'class',36,oVCB,xUCB,gg)
+var o2CB=_oz(z,37,oVCB,xUCB,gg)
+_(c1CB,o2CB)
+cs.pop()
+_(oZCB,c1CB)
+cs.push("./page/API/index.wxml:view:21:20")
+var l3CB=_n('view')
+_rz(z,l3CB,'class',38,oVCB,xUCB,gg)
+cs.pop()
+_(oZCB,l3CB)
+cs.pop()
+_(hYCB,oZCB)
+cs.pop()
+}
+else{hYCB.wxVkey=2
+cs.push("./page/API/index.wxml:view:23:18")
+cs.push("./page/API/index.wxml:view:23:18")
+var a4CB=_mz(z,'view',['bindtap',39,'class',1],[],oVCB,xUCB,gg)
+cs.push("./page/API/index.wxml:view:24:20")
+var t5CB=_n('view')
+_rz(z,t5CB,'class',41,oVCB,xUCB,gg)
+var e6CB=_oz(z,42,oVCB,xUCB,gg)
+_(t5CB,e6CB)
+cs.pop()
+_(a4CB,t5CB)
+cs.push("./page/API/index.wxml:view:25:20")
+var b7CB=_n('view')
+_rz(z,b7CB,'class',43,oVCB,xUCB,gg)
+cs.pop()
+_(a4CB,b7CB)
+cs.pop()
+_(hYCB,a4CB)
+cs.pop()
+}
+hYCB.wxXCkey=1
+cs.pop()
+return fWCB
+}
+_wp('./page/API/index.wxml:block:18:16: wx:key="*item" does not look like a valid key name.')
+bSCB.wxXCkey=2
+_2z(z,31,oTCB,xGCB,oFCB,gg,bSCB,'page','index','*item')
+cs.pop()
+cs.pop()
+_(tQCB,eRCB)
+cs.pop()
+_(cJCB,tQCB)
+cs.pop()
+_(oHCB,cJCB)
+cs.pop()
+return oHCB
+}
+_wp('./page/API/index.wxml:block:9:8: wx:key="{{item.id}}" does not look like a valid key name (did you mean wx:key="id" ?)')
+eDCB.wxXCkey=2
+_2z(z,15,bECB,e,s,gg,eDCB,'item','index','{{item.id}}')
+cs.pop()
+cs.pop()
+_(aBCB,tCCB)
+cs.pop()
+_(o4BB,aBCB)
+cs.pop()
+_(o2BB,o4BB)
+cs.pop()
+}
+o2BB.wxXCkey=1
+return r
+}
+e_[x[7]]=e_[x[7]]||{f:m5,j:[],i:[],ti:[],ic:[]}
+d_[x[8]]={}
+var m6=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_7()
+cs.push("./page/cloud/index.wxml:view:1:1")
+var x9CB=_mz(z,'view',['class',0,'data-weui-theme',1],[],e,s,gg)
+cs.push("./page/cloud/index.wxml:view:2:4")
+var o0CB=_n('view')
+_rz(z,o0CB,'class',2,e,s,gg)
+cs.push("./page/cloud/index.wxml:view:3:6")
+var fADB=_n('view')
+_rz(z,fADB,'class',3,e,s,gg)
+cs.push("./page/cloud/index.wxml:image:4:8")
+var cBDB=_mz(z,'image',['class',4,'src',1],[],e,s,gg)
+cs.pop()
+_(fADB,cBDB)
+cs.push("./page/cloud/index.wxml:view:5:8")
+var hCDB=_n('view')
+_rz(z,hCDB,'class',6,e,s,gg)
+var oDDB=_oz(z,7,e,s,gg)
+_(hCDB,oDDB)
+cs.push("./page/cloud/index.wxml:navigator:5:100")
+var cEDB=_mz(z,'navigator',['class',8,'url',1],[],e,s,gg)
+var oFDB=_oz(z,10,e,s,gg)
+_(cEDB,oFDB)
+cs.pop()
+_(hCDB,cEDB)
+var lGDB=_oz(z,11,e,s,gg)
+_(hCDB,lGDB)
+cs.pop()
+_(fADB,hCDB)
+cs.pop()
+_(o0CB,fADB)
+cs.push("./page/cloud/index.wxml:view:7:6")
+var aHDB=_n('view')
+_rz(z,aHDB,'class',12,e,s,gg)
+cs.push("./page/cloud/index.wxml:view:8:8")
+var tIDB=_n('view')
+_rz(z,tIDB,'class',13,e,s,gg)
+var eJDB=_v()
+_(tIDB,eJDB)
+cs.push("./page/cloud/index.wxml:block:9:10")
+var bKDB=function(xMDB,oLDB,oNDB,gg){
+cs.push("./page/cloud/index.wxml:block:9:10")
+cs.push("./page/cloud/index.wxml:view:10:12")
+var cPDB=_n('view')
+_rz(z,cPDB,'class',16,xMDB,oLDB,gg)
+cs.push("./page/cloud/index.wxml:view:11:14")
+var hQDB=_mz(z,'view',['bindtap',17,'class',1,'id',2],[],xMDB,oLDB,gg)
+cs.push("./page/cloud/index.wxml:view:12:16")
+var cSDB=_n('view')
+_rz(z,cSDB,'class',20,xMDB,oLDB,gg)
+var oTDB=_oz(z,21,xMDB,oLDB,gg)
+_(cSDB,oTDB)
+cs.pop()
+_(hQDB,cSDB)
+var oRDB=_v()
+_(hQDB,oRDB)
+if(_oz(z,22,xMDB,oLDB,gg)){oRDB.wxVkey=1
+cs.push("./page/cloud/index.wxml:image:13:16")
+cs.push("./page/cloud/index.wxml:image:13:16")
+var lUDB=_mz(z,'image',['class',23,'src',1],[],xMDB,oLDB,gg)
+cs.pop()
+_(oRDB,lUDB)
+cs.pop()
+}
+else{oRDB.wxVkey=2
+cs.push("./page/cloud/index.wxml:image:14:16")
+cs.push("./page/cloud/index.wxml:image:14:16")
+var aVDB=_mz(z,'image',['class',25,'src',1],[],xMDB,oLDB,gg)
+cs.pop()
+_(oRDB,aVDB)
+cs.pop()
+}
+oRDB.wxXCkey=1
+cs.pop()
+_(cPDB,hQDB)
+cs.push("./page/cloud/index.wxml:view:16:14")
+var tWDB=_n('view')
+_rz(z,tWDB,'class',27,xMDB,oLDB,gg)
+cs.push("./page/cloud/index.wxml:view:17:16")
+var eXDB=_n('view')
+_rz(z,eXDB,'class',28,xMDB,oLDB,gg)
+var bYDB=_v()
+_(eXDB,bYDB)
+cs.push("./page/cloud/index.wxml:block:18:18")
+var oZDB=function(o2DB,x1DB,f3DB,gg){
+cs.push("./page/cloud/index.wxml:block:18:18")
+cs.push("./page/cloud/index.wxml:navigator:19:20")
+var h5DB=_mz(z,'navigator',['class',32,'url',1],[],o2DB,x1DB,gg)
+cs.push("./page/cloud/index.wxml:view:20:22")
+var o6DB=_n('view')
+_rz(z,o6DB,'class',34,o2DB,x1DB,gg)
+var c7DB=_oz(z,35,o2DB,x1DB,gg)
+_(o6DB,c7DB)
+cs.pop()
+_(h5DB,o6DB)
+cs.push("./page/cloud/index.wxml:view:21:22")
+var o8DB=_n('view')
+_rz(z,o8DB,'class',36,o2DB,x1DB,gg)
+cs.pop()
+_(h5DB,o8DB)
+cs.pop()
+_(f3DB,h5DB)
+cs.pop()
+return f3DB
+}
+_wp('./page/cloud/index.wxml:block:18:18: wx:key="*item" does not look like a valid key name.')
+bYDB.wxXCkey=2
+_2z(z,30,oZDB,xMDB,oLDB,gg,bYDB,'page','index','*item')
+cs.pop()
+cs.pop()
+_(tWDB,eXDB)
+cs.pop()
+_(cPDB,tWDB)
+cs.pop()
+_(oNDB,cPDB)
+cs.pop()
+return oNDB
+}
+_wp('./page/cloud/index.wxml:block:9:10: wx:key="{{item.id}}" does not look like a valid key name (did you mean wx:key="id" ?)')
+eJDB.wxXCkey=2
+_2z(z,14,bKDB,e,s,gg,eJDB,'item','index','{{item.id}}')
+cs.pop()
+cs.pop()
+_(aHDB,tIDB)
+cs.pop()
+_(o0CB,aHDB)
+cs.pop()
+_(x9CB,o0CB)
+cs.pop()
+_(r,x9CB)
+return r
+}
+e_[x[8]]=e_[x[8]]||{f:m6,j:[],i:[],ti:[],ic:[]}
+d_[x[9]]={}
+d_[x[9]]["foot"]=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_8()
+var b=x[9]+':foot'
+r.wxVkey=b
+gg.f=$gdc(f_["./page/common/foot.wxml"],"",1)
+if(p_[b]){_wl(b,x[9]);return}
+p_[b]=true
+try{
+cs.push("./page/common/foot.wxml:navigator:2:4")
+var oB=_mz(z,'navigator',['class',1,'hoverClass',1,'openType',2,'url',3],[],e,s,gg)
+cs.push("./page/common/foot.wxml:image:3:6")
+var xC=_mz(z,'image',['class',5,'src',1],[],e,s,gg)
+cs.pop()
+_(oB,xC)
+cs.pop()
+_(r,oB)
+}catch(err){
+p_[b]=false
+throw err
+}
+p_[b]=false
+return r
+}
+var m7=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_8()
+return r
+}
+e_[x[9]]=e_[x[9]]||{f:m7,j:[],i:[],ti:[],ic:[]}
+
 COMMON=====./page/common/foot.wxml----function gz\$7061636b616765436f6d706f6e656e742f_42\(\)\{[\s\S]*?__WXML_GLOBAL__\.ops_cached\.\$7061636b616765436f6d706f6e656e742f_42
 }
+dep_d_: d_[x[0]]={}
+var m0=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_1()
+var oB=_v()
+_(r,oB)
+if(_oz(z,0,e,s,gg)){oB.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+var xC=_mz(z,'view',['class',1,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:canvas:2:4")
+var oD=_mz(z,'canvas',['id',3,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xC,oD)
+cs.pop()
+_(oB,xC)
+cs.pop()
+}
+else{oB.wxVkey=2
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+var fE=_mz(z,'view',['class',6,'style',1],[],e,s,gg)
+var cF=_v()
+_(fE,cF)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+var hG=function(cI,oH,oJ,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:7:6")
+var aL=_mz(z,'view',['class',12,'style',1],[],cI,oH,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:8:8")
+var tM=_mz(z,'view',['class',14,'hidden',1],[],cI,oH,gg)
+var eN=_oz(z,16,cI,oH,gg)
+_(tM,eN)
+cs.pop()
+_(aL,tM)
+var bO=_v()
+_(aL,bO)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+var oP=function(oR,xQ,fS,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:10:10")
+var hU=_mz(z,'view',['bindanimationend',21,'bindtap',1,'class',2,'data-bulletid',3,'data-tunnelid',4,'style',5],[],oR,xQ,gg)
+var oV=_v()
+_(hU,oV)
+if(_oz(z,27,oR,xQ,gg)){oV.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+var oX=_mz(z,'image',['class',28,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(oV,oX)
+cs.pop()
+}
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:25:12")
+var lY=_mz(z,'view',['class',32,'style',1],[],oR,xQ,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:text:26:14")
+var aZ=_n('text')
+var t1=_oz(z,34,oR,xQ,gg)
+_(aZ,t1)
+cs.pop()
+_(lY,aZ)
+cs.pop()
+_(hU,lY)
+var cW=_v()
+_(hU,cW)
+if(_oz(z,35,oR,xQ,gg)){cW.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+var e2=_mz(z,'image',['class',36,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(cW,e2)
+cs.pop()
+}
+oV.wxXCkey=1
+cW.wxXCkey=1
+cs.pop()
+_(fS,hU)
+cs.pop()
+return fS
+}
+bO.wxXCkey=2
+_2z(z,19,oP,cI,oH,gg,bO,'bullet','bulletId','bulletId')
+cs.pop()
+cs.pop()
+_(oJ,aL)
+cs.pop()
+return oJ
+}
+cF.wxXCkey=2
+_2z(z,10,hG,e,s,gg,cF,'tunnel','tunnelId','tunnelId')
+cs.pop()
+cs.pop()
+_(oB,fE)
+cs.pop()
+}
+oB.wxXCkey=1
+return r
+}
+e_[x[0]]=e_[x[0]]||{f:m0,j:[],i:[],ti:[],ic:[]}
+d_[x[1]]={}
+var m1=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_2()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:view:2:2")
+var o4=_n('view')
+_rz(z,o4,'class',0,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:slot:3:4")
+var x5=_n('slot')
+cs.pop()
+_(o4,x5)
+cs.pop()
+_(r,o4)
+return r
+}
+e_[x[1]]=e_[x[1]]||{f:m1,j:[],i:[],ti:[],ic:[]}
+d_[x[2]]={}
+var m2=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_3()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:2:2")
+var f7=_mz(z,'view',['bindtouchstart',0,'class',1,'id',1,'style',2],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:scroll-view:3:4")
+var c8=_mz(z,'scroll-view',['scrollAnchoring',-1,'bindscroll',4,'bindscrolltolower',1,'bindscrolltoupper',2,'class',3,'enableBackToTop',4,'lowerThreshold',5,'scrollIntoView',6,'scrollTop',7,'scrollWithAnimation',8,'scrollX',9,'scrollY',10,'style',11,'throttle',12,'upperThreshold',13],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:4:6")
+var h9=_n('view')
+_rz(z,h9,'style',18,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:5:8")
+var o0=_n('slot')
+_rz(z,o0,'name',19,e,s,gg)
+cs.pop()
+_(h9,o0)
+cs.pop()
+_(c8,h9)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:7:6")
+var cAB=_mz(z,'view',['class',20,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:8:8")
+var oBB=_n('slot')
+_rz(z,oBB,'name',22,e,s,gg)
+cs.pop()
+_(cAB,oBB)
+cs.pop()
+_(c8,cAB)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:10:6")
+var lCB=_n('view')
+_rz(z,lCB,'style',23,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:12:8")
+var aDB=_n('view')
+_rz(z,aDB,'style',24,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:13:10")
+var tEB=_n('slot')
+cs.pop()
+_(aDB,tEB)
+cs.pop()
+_(lCB,aDB)
+cs.pop()
+_(c8,lCB)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:17:6")
+var eFB=_mz(z,'view',['class',25,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:18:8")
+var bGB=_n('slot')
+_rz(z,bGB,'name',27,e,s,gg)
+cs.pop()
+_(eFB,bGB)
+cs.pop()
+_(c8,eFB)
+cs.pop()
+_(f7,c8)
+cs.pop()
+_(r,f7)
+return r
+}
+e_[x[2]]=e_[x[2]]||{f:m2,j:[],i:[],ti:[],ic:[]}
+d_[x[3]]={}
+var m3=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_4()
+var xIB=_v()
+_(r,xIB)
+if(_oz(z,0,e,s,gg)){xIB.wxVkey=1
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:1:1")
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:1:1")
+var oJB=_mz(z,'canvas',['id',1,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xIB,oJB)
+cs.pop()
+}
+else{xIB.wxVkey=2
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:2:2")
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:2:2")
+var fKB=_mz(z,'canvas',['canvasId',4,'style',1],[],e,s,gg)
+cs.pop()
+_(xIB,fKB)
+cs.pop()
+}
+xIB.wxXCkey=1
+return r
+}
+e_[x[3]]=e_[x[3]]||{f:m3,j:[],i:[],ti:[],ic:[]}
+d_[x[6]]={}
+var m4=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_5()
+var oBBB=e_[x[6]].i
+_ai(oBBB,x[4],e_,x[6],1,1)
+_ai(oBBB,x[5],e_,x[6],2,2)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:4:2")
+var fCBB=_mz(z,'view',['class',0,'data-weui-theme',1],[],e,s,gg)
+var cDBB=_v()
+_(fCBB,cDBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:template:5:4")
+var hEBB=_oz(z,3,e,s,gg)
+var oFBB=_gd(x[6],hEBB,e_,d_)
+if(oFBB){
+var cGBB=_1z(z,2,e,s,gg) || {}
+var cur_globalf=gg.f
+cDBB.wxXCkey=3
+oFBB(cGBB,cGBB,cDBB,gg)
+gg.f=cur_globalf
+}
+else _w(hEBB,x[6],5,16)
+cs.pop()
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:7:4")
+var oHBB=_n('view')
+_rz(z,oHBB,'class',4,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:8:6")
+var lIBB=_n('view')
+_rz(z,lIBB,'class',5,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:9:8")
+var aJBB=_n('button')
+_rz(z,aJBB,'bindtap',6,e,s,gg)
+var tKBB=_oz(z,7,e,s,gg)
+_(aJBB,tKBB)
+cs.pop()
+_(lIBB,aJBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:12:8")
+var eLBB=_n('button')
+_rz(z,eLBB,'bindtap',8,e,s,gg)
+var bMBB=_oz(z,9,e,s,gg)
+_(eLBB,bMBB)
+cs.pop()
+_(lIBB,eLBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:15:8")
+var oNBB=_n('button')
+_rz(z,oNBB,'bindtap',10,e,s,gg)
+var xOBB=_oz(z,11,e,s,gg)
+_(oNBB,xOBB)
+cs.pop()
+_(lIBB,oNBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:18:8")
+var oPBB=_n('button')
+_rz(z,oPBB,'bindtap',12,e,s,gg)
+var fQBB=_oz(z,13,e,s,gg)
+_(oPBB,fQBB)
+cs.pop()
+_(lIBB,oPBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:21:8")
+var cRBB=_n('button')
+_rz(z,cRBB,'bindtap',14,e,s,gg)
+var hSBB=_oz(z,15,e,s,gg)
+_(cRBB,hSBB)
+cs.pop()
+_(lIBB,cRBB)
+cs.pop()
+_(oHBB,lIBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:26:6")
+var oTBB=_n('view')
+_rz(z,oTBB,'class',16,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:27:8")
+var cUBB=_mz(z,'button',['bindtap',17,'type',1],[],e,s,gg)
+var oVBB=_oz(z,19,e,s,gg)
+_(cUBB,oVBB)
+cs.pop()
+_(oTBB,cUBB)
+cs.pop()
+_(oHBB,oTBB)
+cs.pop()
+_(fCBB,oHBB)
+var lWBB=_v()
+_(fCBB,lWBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:template:31:4")
+var aXBB=_oz(z,20,e,s,gg)
+var tYBB=_gd(x[6],aXBB,e_,d_)
+if(tYBB){
+var eZBB={}
+var cur_globalf=gg.f
+lWBB.wxXCkey=3
+tYBB(eZBB,eZBB,lWBB,gg)
+gg.f=cur_globalf
+}
+else _w(aXBB,x[6],31,16)
+cs.pop()
+cs.pop()
+_(r,fCBB)
+oBBB.pop()
+oBBB.pop()
+return r
+}
+e_[x[6]]=e_[x[6]]||{f:m4,j:[],i:[],ti:[x[4],x[5]],ic:[]}
+d_[x[7]]={}
+var m5=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_6()
+var o2BB=_v()
+_(r,o2BB)
+if(_oz(z,0,e,s,gg)){o2BB.wxVkey=1
+cs.push("./page/API/index.wxml:set-tab-bar:1:1")
+cs.push("./page/API/index.wxml:set-tab-bar:1:1")
+var x3BB=_n('set-tab-bar')
+_rz(z,x3BB,'bindunmount',1,e,s,gg)
+cs.pop()
+_(o2BB,x3BB)
+cs.pop()
+}
+else{o2BB.wxVkey=2
+cs.push("./page/API/index.wxml:view:2:2")
+cs.push("./page/API/index.wxml:view:2:2")
+var o4BB=_mz(z,'view',['class',2,'data-weui-theme',1],[],e,s,gg)
+cs.push("./page/API/index.wxml:view:3:4")
+var f5BB=_n('view')
+_rz(z,f5BB,'class',4,e,s,gg)
+cs.push("./page/API/index.wxml:image:4:6")
+var c6BB=_mz(z,'image',['class',5,'src',1],[],e,s,gg)
+cs.pop()
+_(f5BB,c6BB)
+cs.push("./page/API/index.wxml:view:5:6")
+var h7BB=_n('view')
+_rz(z,h7BB,'class',7,e,s,gg)
+var o8BB=_oz(z,8,e,s,gg)
+_(h7BB,o8BB)
+cs.push("./page/API/index.wxml:navigator:5:95")
+var c9BB=_mz(z,'navigator',['class',9,'url',1],[],e,s,gg)
+var o0BB=_oz(z,11,e,s,gg)
+_(c9BB,o0BB)
+cs.pop()
+_(h7BB,c9BB)
+var lACB=_oz(z,12,e,s,gg)
+_(h7BB,lACB)
+cs.pop()
+_(f5BB,h7BB)
+cs.pop()
+_(o4BB,f5BB)
+cs.push("./page/API/index.wxml:view:7:4")
+var aBCB=_n('view')
+_rz(z,aBCB,'class',13,e,s,gg)
+cs.push("./page/API/index.wxml:view:8:6")
+var tCCB=_n('view')
+_rz(z,tCCB,'class',14,e,s,gg)
+var eDCB=_v()
+_(tCCB,eDCB)
+cs.push("./page/API/index.wxml:block:9:8")
+var bECB=function(xGCB,oFCB,oHCB,gg){
+cs.push("./page/API/index.wxml:block:9:8")
+cs.push("./page/API/index.wxml:view:10:10")
+var cJCB=_n('view')
+_rz(z,cJCB,'class',17,xGCB,oFCB,gg)
+cs.push("./page/API/index.wxml:view:11:12")
+var hKCB=_mz(z,'view',['bindtap',18,'class',1,'id',2],[],xGCB,oFCB,gg)
+cs.push("./page/API/index.wxml:view:12:14")
+var cMCB=_n('view')
+_rz(z,cMCB,'class',21,xGCB,oFCB,gg)
+var oNCB=_oz(z,22,xGCB,oFCB,gg)
+_(cMCB,oNCB)
+cs.pop()
+_(hKCB,cMCB)
+var oLCB=_v()
+_(hKCB,oLCB)
+if(_oz(z,23,xGCB,oFCB,gg)){oLCB.wxVkey=1
+cs.push("./page/API/index.wxml:image:13:14")
+cs.push("./page/API/index.wxml:image:13:14")
+var lOCB=_mz(z,'image',['class',24,'src',1],[],xGCB,oFCB,gg)
+cs.pop()
+_(oLCB,lOCB)
+cs.pop()
+}
+else{oLCB.wxVkey=2
+cs.push("./page/API/index.wxml:image:14:14")
+cs.push("./page/API/index.wxml:image:14:14")
+var aPCB=_mz(z,'image',['class',26,'src',1],[],xGCB,oFCB,gg)
+cs.pop()
+_(oLCB,aPCB)
+cs.pop()
+}
+oLCB.wxXCkey=1
+cs.pop()
+_(cJCB,hKCB)
+cs.push("./page/API/index.wxml:view:16:12")
+var tQCB=_n('view')
+_rz(z,tQCB,'class',28,xGCB,oFCB,gg)
+cs.push("./page/API/index.wxml:view:17:14")
+var eRCB=_n('view')
+_rz(z,eRCB,'class',29,xGCB,oFCB,gg)
+var bSCB=_v()
+_(eRCB,bSCB)
+cs.push("./page/API/index.wxml:block:18:16")
+var oTCB=function(oVCB,xUCB,fWCB,gg){
+cs.push("./page/API/index.wxml:block:18:16")
+var hYCB=_v()
+_(fWCB,hYCB)
+if(_oz(z,33,oVCB,xUCB,gg)){hYCB.wxVkey=1
+cs.push("./page/API/index.wxml:navigator:19:18")
+cs.push("./page/API/index.wxml:navigator:19:18")
+var oZCB=_mz(z,'navigator',['class',34,'url',1],[],oVCB,xUCB,gg)
+cs.push("./page/API/index.wxml:view:20:20")
+var c1CB=_n('view')
+_rz(z,c1CB,'class',36,oVCB,xUCB,gg)
+var o2CB=_oz(z,37,oVCB,xUCB,gg)
+_(c1CB,o2CB)
+cs.pop()
+_(oZCB,c1CB)
+cs.push("./page/API/index.wxml:view:21:20")
+var l3CB=_n('view')
+_rz(z,l3CB,'class',38,oVCB,xUCB,gg)
+cs.pop()
+_(oZCB,l3CB)
+cs.pop()
+_(hYCB,oZCB)
+cs.pop()
+}
+else{hYCB.wxVkey=2
+cs.push("./page/API/index.wxml:view:23:18")
+cs.push("./page/API/index.wxml:view:23:18")
+var a4CB=_mz(z,'view',['bindtap',39,'class',1],[],oVCB,xUCB,gg)
+cs.push("./page/API/index.wxml:view:24:20")
+var t5CB=_n('view')
+_rz(z,t5CB,'class',41,oVCB,xUCB,gg)
+var e6CB=_oz(z,42,oVCB,xUCB,gg)
+_(t5CB,e6CB)
+cs.pop()
+_(a4CB,t5CB)
+cs.push("./page/API/index.wxml:view:25:20")
+var b7CB=_n('view')
+_rz(z,b7CB,'class',43,oVCB,xUCB,gg)
+cs.pop()
+_(a4CB,b7CB)
+cs.pop()
+_(hYCB,a4CB)
+cs.pop()
+}
+hYCB.wxXCkey=1
+cs.pop()
+return fWCB
+}
+_wp('./page/API/index.wxml:block:18:16: wx:key="*item" does not look like a valid key name.')
+bSCB.wxXCkey=2
+_2z(z,31,oTCB,xGCB,oFCB,gg,bSCB,'page','index','*item')
+cs.pop()
+cs.pop()
+_(tQCB,eRCB)
+cs.pop()
+_(cJCB,tQCB)
+cs.pop()
+_(oHCB,cJCB)
+cs.pop()
+return oHCB
+}
+_wp('./page/API/index.wxml:block:9:8: wx:key="{{item.id}}" does not look like a valid key name (did you mean wx:key="id" ?)')
+eDCB.wxXCkey=2
+_2z(z,15,bECB,e,s,gg,eDCB,'item','index','{{item.id}}')
+cs.pop()
+cs.pop()
+_(aBCB,tCCB)
+cs.pop()
+_(o4BB,aBCB)
+cs.pop()
+_(o2BB,o4BB)
+cs.pop()
+}
+o2BB.wxXCkey=1
+return r
+}
+e_[x[7]]=e_[x[7]]||{f:m5,j:[],i:[],ti:[],ic:[]}
+d_[x[8]]={}
+var m6=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_7()
+cs.push("./page/cloud/index.wxml:view:1:1")
+var x9CB=_mz(z,'view',['class',0,'data-weui-theme',1],[],e,s,gg)
+cs.push("./page/cloud/index.wxml:view:2:4")
+var o0CB=_n('view')
+_rz(z,o0CB,'class',2,e,s,gg)
+cs.push("./page/cloud/index.wxml:view:3:6")
+var fADB=_n('view')
+_rz(z,fADB,'class',3,e,s,gg)
+cs.push("./page/cloud/index.wxml:image:4:8")
+var cBDB=_mz(z,'image',['class',4,'src',1],[],e,s,gg)
+cs.pop()
+_(fADB,cBDB)
+cs.push("./page/cloud/index.wxml:view:5:8")
+var hCDB=_n('view')
+_rz(z,hCDB,'class',6,e,s,gg)
+var oDDB=_oz(z,7,e,s,gg)
+_(hCDB,oDDB)
+cs.push("./page/cloud/index.wxml:navigator:5:100")
+var cEDB=_mz(z,'navigator',['class',8,'url',1],[],e,s,gg)
+var oFDB=_oz(z,10,e,s,gg)
+_(cEDB,oFDB)
+cs.pop()
+_(hCDB,cEDB)
+var lGDB=_oz(z,11,e,s,gg)
+_(hCDB,lGDB)
+cs.pop()
+_(fADB,hCDB)
+cs.pop()
+_(o0CB,fADB)
+cs.push("./page/cloud/index.wxml:view:7:6")
+var aHDB=_n('view')
+_rz(z,aHDB,'class',12,e,s,gg)
+cs.push("./page/cloud/index.wxml:view:8:8")
+var tIDB=_n('view')
+_rz(z,tIDB,'class',13,e,s,gg)
+var eJDB=_v()
+_(tIDB,eJDB)
+cs.push("./page/cloud/index.wxml:block:9:10")
+var bKDB=function(xMDB,oLDB,oNDB,gg){
+cs.push("./page/cloud/index.wxml:block:9:10")
+cs.push("./page/cloud/index.wxml:view:10:12")
+var cPDB=_n('view')
+_rz(z,cPDB,'class',16,xMDB,oLDB,gg)
+cs.push("./page/cloud/index.wxml:view:11:14")
+var hQDB=_mz(z,'view',['bindtap',17,'class',1,'id',2],[],xMDB,oLDB,gg)
+cs.push("./page/cloud/index.wxml:view:12:16")
+var cSDB=_n('view')
+_rz(z,cSDB,'class',20,xMDB,oLDB,gg)
+var oTDB=_oz(z,21,xMDB,oLDB,gg)
+_(cSDB,oTDB)
+cs.pop()
+_(hQDB,cSDB)
+var oRDB=_v()
+_(hQDB,oRDB)
+if(_oz(z,22,xMDB,oLDB,gg)){oRDB.wxVkey=1
+cs.push("./page/cloud/index.wxml:image:13:16")
+cs.push("./page/cloud/index.wxml:image:13:16")
+var lUDB=_mz(z,'image',['class',23,'src',1],[],xMDB,oLDB,gg)
+cs.pop()
+_(oRDB,lUDB)
+cs.pop()
+}
+else{oRDB.wxVkey=2
+cs.push("./page/cloud/index.wxml:image:14:16")
+cs.push("./page/cloud/index.wxml:image:14:16")
+var aVDB=_mz(z,'image',['class',25,'src',1],[],xMDB,oLDB,gg)
+cs.pop()
+_(oRDB,aVDB)
+cs.pop()
+}
+oRDB.wxXCkey=1
+cs.pop()
+_(cPDB,hQDB)
+cs.push("./page/cloud/index.wxml:view:16:14")
+var tWDB=_n('view')
+_rz(z,tWDB,'class',27,xMDB,oLDB,gg)
+cs.push("./page/cloud/index.wxml:view:17:16")
+var eXDB=_n('view')
+_rz(z,eXDB,'class',28,xMDB,oLDB,gg)
+var bYDB=_v()
+_(eXDB,bYDB)
+cs.push("./page/cloud/index.wxml:block:18:18")
+var oZDB=function(o2DB,x1DB,f3DB,gg){
+cs.push("./page/cloud/index.wxml:block:18:18")
+cs.push("./page/cloud/index.wxml:navigator:19:20")
+var h5DB=_mz(z,'navigator',['class',32,'url',1],[],o2DB,x1DB,gg)
+cs.push("./page/cloud/index.wxml:view:20:22")
+var o6DB=_n('view')
+_rz(z,o6DB,'class',34,o2DB,x1DB,gg)
+var c7DB=_oz(z,35,o2DB,x1DB,gg)
+_(o6DB,c7DB)
+cs.pop()
+_(h5DB,o6DB)
+cs.push("./page/cloud/index.wxml:view:21:22")
+var o8DB=_n('view')
+_rz(z,o8DB,'class',36,o2DB,x1DB,gg)
+cs.pop()
+_(h5DB,o8DB)
+cs.pop()
+_(f3DB,h5DB)
+cs.pop()
+return f3DB
+}
+_wp('./page/cloud/index.wxml:block:18:18: wx:key="*item" does not look like a valid key name.')
+bYDB.wxXCkey=2
+_2z(z,30,oZDB,xMDB,oLDB,gg,bYDB,'page','index','*item')
+cs.pop()
+cs.pop()
+_(tWDB,eXDB)
+cs.pop()
+_(cPDB,tWDB)
+cs.pop()
+_(oNDB,cPDB)
+cs.pop()
+return oNDB
+}
+_wp('./page/cloud/index.wxml:block:9:10: wx:key="{{item.id}}" does not look like a valid key name (did you mean wx:key="id" ?)')
+eJDB.wxXCkey=2
+_2z(z,14,bKDB,e,s,gg,eJDB,'item','index','{{item.id}}')
+cs.pop()
+cs.pop()
+_(aHDB,tIDB)
+cs.pop()
+_(o0CB,aHDB)
+cs.pop()
+_(x9CB,o0CB)
+cs.pop()
+_(r,x9CB)
+return r
+}
+e_[x[8]]=e_[x[8]]||{f:m6,j:[],i:[],ti:[],ic:[]}
+d_[x[9]]={}
+d_[x[9]]["foot"]=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_8()
+var b=x[9]+':foot'
+r.wxVkey=b
+gg.f=$gdc(f_["./page/common/foot.wxml"],"",1)
+if(p_[b]){_wl(b,x[9]);return}
+p_[b]=true
+try{
+cs.push("./page/common/foot.wxml:navigator:2:4")
+var oB=_mz(z,'navigator',['class',1,'hoverClass',1,'openType',2,'url',3],[],e,s,gg)
+cs.push("./page/common/foot.wxml:image:3:6")
+var xC=_mz(z,'image',['class',5,'src',1],[],e,s,gg)
+cs.pop()
+_(oB,xC)
+cs.pop()
+_(r,oB)
+}catch(err){
+p_[b]=false
+throw err
+}
+p_[b]=false
+return r
+}
+var m7=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_8()
+return r
+}
+e_[x[9]]=e_[x[9]]||{f:m7,j:[],i:[],ti:[],ic:[]}
+d_[x[10]]={}
+d_[x[10]]["head"]=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_9()
+var b=x[10]+':head'
+r.wxVkey=b
+gg.f=$gdc(f_["./page/common/head.wxml"],"",1)
+if(p_[b]){_wl(b,x[10]);return}
+p_[b]=true
+try{
+cs.push("./page/common/head.wxml:view:2:4")
+var oB=_n('view')
+_rz(z,oB,'class',1,e,s,gg)
+cs.push("./page/common/head.wxml:view:3:6")
+var oD=_n('view')
+_rz(z,oD,'class',2,e,s,gg)
+var fE=_oz(z,3,e,s,gg)
+_(oD,fE)
+cs.pop()
+_(oB,oD)
+cs.push("./page/common/head.wxml:view:4:6")
+var cF=_n('view')
+_rz(z,cF,'class',4,e,s,gg)
+cs.pop()
+_(oB,cF)
+var xC=_v()
+_(oB,xC)
+if(_oz(z,5,e,s,gg)){xC.wxVkey=1
+cs.push("./page/common/head.wxml:view:5:6")
+cs.push("./page/common/head.wxml:view:5:6")
+var hG=_n('view')
+_rz(z,hG,'class',6,e,s,gg)
+var oH=_oz(z,7,e,s,gg)
+_(hG,oH)
+cs.pop()
+_(xC,hG)
+cs.pop()
+}
+xC.wxXCkey=1
+cs.pop()
+_(r,oB)
+}catch(err){
+p_[b]=false
+throw err
+}
+p_[b]=false
+return r
+}
+var m8=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_9()
+return r
+}
+e_[x[10]]=e_[x[10]]||{f:m8,j:[],i:[],ti:[],ic:[]}
+
 COMMON=====./page/common/head.wxml----function gz\$7061636b616765436f6d706f6e656e742f_43\(\)\{[\s\S]*?__WXML_GLOBAL__\.ops_cached\.\$7061636b616765436f6d706f6e656e742f_43
 }
+dep_d_: d_[x[0]]={}
+var m0=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_1()
+var oB=_v()
+_(r,oB)
+if(_oz(z,0,e,s,gg)){oB.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+var xC=_mz(z,'view',['class',1,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:canvas:2:4")
+var oD=_mz(z,'canvas',['id',3,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xC,oD)
+cs.pop()
+_(oB,xC)
+cs.pop()
+}
+else{oB.wxVkey=2
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+var fE=_mz(z,'view',['class',6,'style',1],[],e,s,gg)
+var cF=_v()
+_(fE,cF)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+var hG=function(cI,oH,oJ,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:7:6")
+var aL=_mz(z,'view',['class',12,'style',1],[],cI,oH,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:8:8")
+var tM=_mz(z,'view',['class',14,'hidden',1],[],cI,oH,gg)
+var eN=_oz(z,16,cI,oH,gg)
+_(tM,eN)
+cs.pop()
+_(aL,tM)
+var bO=_v()
+_(aL,bO)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+var oP=function(oR,xQ,fS,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:10:10")
+var hU=_mz(z,'view',['bindanimationend',21,'bindtap',1,'class',2,'data-bulletid',3,'data-tunnelid',4,'style',5],[],oR,xQ,gg)
+var oV=_v()
+_(hU,oV)
+if(_oz(z,27,oR,xQ,gg)){oV.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+var oX=_mz(z,'image',['class',28,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(oV,oX)
+cs.pop()
+}
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:25:12")
+var lY=_mz(z,'view',['class',32,'style',1],[],oR,xQ,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:text:26:14")
+var aZ=_n('text')
+var t1=_oz(z,34,oR,xQ,gg)
+_(aZ,t1)
+cs.pop()
+_(lY,aZ)
+cs.pop()
+_(hU,lY)
+var cW=_v()
+_(hU,cW)
+if(_oz(z,35,oR,xQ,gg)){cW.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+var e2=_mz(z,'image',['class',36,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(cW,e2)
+cs.pop()
+}
+oV.wxXCkey=1
+cW.wxXCkey=1
+cs.pop()
+_(fS,hU)
+cs.pop()
+return fS
+}
+bO.wxXCkey=2
+_2z(z,19,oP,cI,oH,gg,bO,'bullet','bulletId','bulletId')
+cs.pop()
+cs.pop()
+_(oJ,aL)
+cs.pop()
+return oJ
+}
+cF.wxXCkey=2
+_2z(z,10,hG,e,s,gg,cF,'tunnel','tunnelId','tunnelId')
+cs.pop()
+cs.pop()
+_(oB,fE)
+cs.pop()
+}
+oB.wxXCkey=1
+return r
+}
+e_[x[0]]=e_[x[0]]||{f:m0,j:[],i:[],ti:[],ic:[]}
+d_[x[1]]={}
+var m1=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_2()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:view:2:2")
+var o4=_n('view')
+_rz(z,o4,'class',0,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:slot:3:4")
+var x5=_n('slot')
+cs.pop()
+_(o4,x5)
+cs.pop()
+_(r,o4)
+return r
+}
+e_[x[1]]=e_[x[1]]||{f:m1,j:[],i:[],ti:[],ic:[]}
+d_[x[2]]={}
+var m2=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_3()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:2:2")
+var f7=_mz(z,'view',['bindtouchstart',0,'class',1,'id',1,'style',2],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:scroll-view:3:4")
+var c8=_mz(z,'scroll-view',['scrollAnchoring',-1,'bindscroll',4,'bindscrolltolower',1,'bindscrolltoupper',2,'class',3,'enableBackToTop',4,'lowerThreshold',5,'scrollIntoView',6,'scrollTop',7,'scrollWithAnimation',8,'scrollX',9,'scrollY',10,'style',11,'throttle',12,'upperThreshold',13],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:4:6")
+var h9=_n('view')
+_rz(z,h9,'style',18,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:5:8")
+var o0=_n('slot')
+_rz(z,o0,'name',19,e,s,gg)
+cs.pop()
+_(h9,o0)
+cs.pop()
+_(c8,h9)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:7:6")
+var cAB=_mz(z,'view',['class',20,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:8:8")
+var oBB=_n('slot')
+_rz(z,oBB,'name',22,e,s,gg)
+cs.pop()
+_(cAB,oBB)
+cs.pop()
+_(c8,cAB)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:10:6")
+var lCB=_n('view')
+_rz(z,lCB,'style',23,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:12:8")
+var aDB=_n('view')
+_rz(z,aDB,'style',24,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:13:10")
+var tEB=_n('slot')
+cs.pop()
+_(aDB,tEB)
+cs.pop()
+_(lCB,aDB)
+cs.pop()
+_(c8,lCB)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:17:6")
+var eFB=_mz(z,'view',['class',25,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:18:8")
+var bGB=_n('slot')
+_rz(z,bGB,'name',27,e,s,gg)
+cs.pop()
+_(eFB,bGB)
+cs.pop()
+_(c8,eFB)
+cs.pop()
+_(f7,c8)
+cs.pop()
+_(r,f7)
+return r
+}
+e_[x[2]]=e_[x[2]]||{f:m2,j:[],i:[],ti:[],ic:[]}
+d_[x[3]]={}
+var m3=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_4()
+var xIB=_v()
+_(r,xIB)
+if(_oz(z,0,e,s,gg)){xIB.wxVkey=1
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:1:1")
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:1:1")
+var oJB=_mz(z,'canvas',['id',1,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xIB,oJB)
+cs.pop()
+}
+else{xIB.wxVkey=2
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:2:2")
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:2:2")
+var fKB=_mz(z,'canvas',['canvasId',4,'style',1],[],e,s,gg)
+cs.pop()
+_(xIB,fKB)
+cs.pop()
+}
+xIB.wxXCkey=1
+return r
+}
+e_[x[3]]=e_[x[3]]||{f:m3,j:[],i:[],ti:[],ic:[]}
+d_[x[6]]={}
+var m4=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_5()
+var oBBB=e_[x[6]].i
+_ai(oBBB,x[4],e_,x[6],1,1)
+_ai(oBBB,x[5],e_,x[6],2,2)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:4:2")
+var fCBB=_mz(z,'view',['class',0,'data-weui-theme',1],[],e,s,gg)
+var cDBB=_v()
+_(fCBB,cDBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:template:5:4")
+var hEBB=_oz(z,3,e,s,gg)
+var oFBB=_gd(x[6],hEBB,e_,d_)
+if(oFBB){
+var cGBB=_1z(z,2,e,s,gg) || {}
+var cur_globalf=gg.f
+cDBB.wxXCkey=3
+oFBB(cGBB,cGBB,cDBB,gg)
+gg.f=cur_globalf
+}
+else _w(hEBB,x[6],5,16)
+cs.pop()
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:7:4")
+var oHBB=_n('view')
+_rz(z,oHBB,'class',4,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:8:6")
+var lIBB=_n('view')
+_rz(z,lIBB,'class',5,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:9:8")
+var aJBB=_n('button')
+_rz(z,aJBB,'bindtap',6,e,s,gg)
+var tKBB=_oz(z,7,e,s,gg)
+_(aJBB,tKBB)
+cs.pop()
+_(lIBB,aJBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:12:8")
+var eLBB=_n('button')
+_rz(z,eLBB,'bindtap',8,e,s,gg)
+var bMBB=_oz(z,9,e,s,gg)
+_(eLBB,bMBB)
+cs.pop()
+_(lIBB,eLBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:15:8")
+var oNBB=_n('button')
+_rz(z,oNBB,'bindtap',10,e,s,gg)
+var xOBB=_oz(z,11,e,s,gg)
+_(oNBB,xOBB)
+cs.pop()
+_(lIBB,oNBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:18:8")
+var oPBB=_n('button')
+_rz(z,oPBB,'bindtap',12,e,s,gg)
+var fQBB=_oz(z,13,e,s,gg)
+_(oPBB,fQBB)
+cs.pop()
+_(lIBB,oPBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:21:8")
+var cRBB=_n('button')
+_rz(z,cRBB,'bindtap',14,e,s,gg)
+var hSBB=_oz(z,15,e,s,gg)
+_(cRBB,hSBB)
+cs.pop()
+_(lIBB,cRBB)
+cs.pop()
+_(oHBB,lIBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:26:6")
+var oTBB=_n('view')
+_rz(z,oTBB,'class',16,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:27:8")
+var cUBB=_mz(z,'button',['bindtap',17,'type',1],[],e,s,gg)
+var oVBB=_oz(z,19,e,s,gg)
+_(cUBB,oVBB)
+cs.pop()
+_(oTBB,cUBB)
+cs.pop()
+_(oHBB,oTBB)
+cs.pop()
+_(fCBB,oHBB)
+var lWBB=_v()
+_(fCBB,lWBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:template:31:4")
+var aXBB=_oz(z,20,e,s,gg)
+var tYBB=_gd(x[6],aXBB,e_,d_)
+if(tYBB){
+var eZBB={}
+var cur_globalf=gg.f
+lWBB.wxXCkey=3
+tYBB(eZBB,eZBB,lWBB,gg)
+gg.f=cur_globalf
+}
+else _w(aXBB,x[6],31,16)
+cs.pop()
+cs.pop()
+_(r,fCBB)
+oBBB.pop()
+oBBB.pop()
+return r
+}
+e_[x[6]]=e_[x[6]]||{f:m4,j:[],i:[],ti:[x[4],x[5]],ic:[]}
+d_[x[7]]={}
+var m5=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_6()
+var o2BB=_v()
+_(r,o2BB)
+if(_oz(z,0,e,s,gg)){o2BB.wxVkey=1
+cs.push("./page/API/index.wxml:set-tab-bar:1:1")
+cs.push("./page/API/index.wxml:set-tab-bar:1:1")
+var x3BB=_n('set-tab-bar')
+_rz(z,x3BB,'bindunmount',1,e,s,gg)
+cs.pop()
+_(o2BB,x3BB)
+cs.pop()
+}
+else{o2BB.wxVkey=2
+cs.push("./page/API/index.wxml:view:2:2")
+cs.push("./page/API/index.wxml:view:2:2")
+var o4BB=_mz(z,'view',['class',2,'data-weui-theme',1],[],e,s,gg)
+cs.push("./page/API/index.wxml:view:3:4")
+var f5BB=_n('view')
+_rz(z,f5BB,'class',4,e,s,gg)
+cs.push("./page/API/index.wxml:image:4:6")
+var c6BB=_mz(z,'image',['class',5,'src',1],[],e,s,gg)
+cs.pop()
+_(f5BB,c6BB)
+cs.push("./page/API/index.wxml:view:5:6")
+var h7BB=_n('view')
+_rz(z,h7BB,'class',7,e,s,gg)
+var o8BB=_oz(z,8,e,s,gg)
+_(h7BB,o8BB)
+cs.push("./page/API/index.wxml:navigator:5:95")
+var c9BB=_mz(z,'navigator',['class',9,'url',1],[],e,s,gg)
+var o0BB=_oz(z,11,e,s,gg)
+_(c9BB,o0BB)
+cs.pop()
+_(h7BB,c9BB)
+var lACB=_oz(z,12,e,s,gg)
+_(h7BB,lACB)
+cs.pop()
+_(f5BB,h7BB)
+cs.pop()
+_(o4BB,f5BB)
+cs.push("./page/API/index.wxml:view:7:4")
+var aBCB=_n('view')
+_rz(z,aBCB,'class',13,e,s,gg)
+cs.push("./page/API/index.wxml:view:8:6")
+var tCCB=_n('view')
+_rz(z,tCCB,'class',14,e,s,gg)
+var eDCB=_v()
+_(tCCB,eDCB)
+cs.push("./page/API/index.wxml:block:9:8")
+var bECB=function(xGCB,oFCB,oHCB,gg){
+cs.push("./page/API/index.wxml:block:9:8")
+cs.push("./page/API/index.wxml:view:10:10")
+var cJCB=_n('view')
+_rz(z,cJCB,'class',17,xGCB,oFCB,gg)
+cs.push("./page/API/index.wxml:view:11:12")
+var hKCB=_mz(z,'view',['bindtap',18,'class',1,'id',2],[],xGCB,oFCB,gg)
+cs.push("./page/API/index.wxml:view:12:14")
+var cMCB=_n('view')
+_rz(z,cMCB,'class',21,xGCB,oFCB,gg)
+var oNCB=_oz(z,22,xGCB,oFCB,gg)
+_(cMCB,oNCB)
+cs.pop()
+_(hKCB,cMCB)
+var oLCB=_v()
+_(hKCB,oLCB)
+if(_oz(z,23,xGCB,oFCB,gg)){oLCB.wxVkey=1
+cs.push("./page/API/index.wxml:image:13:14")
+cs.push("./page/API/index.wxml:image:13:14")
+var lOCB=_mz(z,'image',['class',24,'src',1],[],xGCB,oFCB,gg)
+cs.pop()
+_(oLCB,lOCB)
+cs.pop()
+}
+else{oLCB.wxVkey=2
+cs.push("./page/API/index.wxml:image:14:14")
+cs.push("./page/API/index.wxml:image:14:14")
+var aPCB=_mz(z,'image',['class',26,'src',1],[],xGCB,oFCB,gg)
+cs.pop()
+_(oLCB,aPCB)
+cs.pop()
+}
+oLCB.wxXCkey=1
+cs.pop()
+_(cJCB,hKCB)
+cs.push("./page/API/index.wxml:view:16:12")
+var tQCB=_n('view')
+_rz(z,tQCB,'class',28,xGCB,oFCB,gg)
+cs.push("./page/API/index.wxml:view:17:14")
+var eRCB=_n('view')
+_rz(z,eRCB,'class',29,xGCB,oFCB,gg)
+var bSCB=_v()
+_(eRCB,bSCB)
+cs.push("./page/API/index.wxml:block:18:16")
+var oTCB=function(oVCB,xUCB,fWCB,gg){
+cs.push("./page/API/index.wxml:block:18:16")
+var hYCB=_v()
+_(fWCB,hYCB)
+if(_oz(z,33,oVCB,xUCB,gg)){hYCB.wxVkey=1
+cs.push("./page/API/index.wxml:navigator:19:18")
+cs.push("./page/API/index.wxml:navigator:19:18")
+var oZCB=_mz(z,'navigator',['class',34,'url',1],[],oVCB,xUCB,gg)
+cs.push("./page/API/index.wxml:view:20:20")
+var c1CB=_n('view')
+_rz(z,c1CB,'class',36,oVCB,xUCB,gg)
+var o2CB=_oz(z,37,oVCB,xUCB,gg)
+_(c1CB,o2CB)
+cs.pop()
+_(oZCB,c1CB)
+cs.push("./page/API/index.wxml:view:21:20")
+var l3CB=_n('view')
+_rz(z,l3CB,'class',38,oVCB,xUCB,gg)
+cs.pop()
+_(oZCB,l3CB)
+cs.pop()
+_(hYCB,oZCB)
+cs.pop()
+}
+else{hYCB.wxVkey=2
+cs.push("./page/API/index.wxml:view:23:18")
+cs.push("./page/API/index.wxml:view:23:18")
+var a4CB=_mz(z,'view',['bindtap',39,'class',1],[],oVCB,xUCB,gg)
+cs.push("./page/API/index.wxml:view:24:20")
+var t5CB=_n('view')
+_rz(z,t5CB,'class',41,oVCB,xUCB,gg)
+var e6CB=_oz(z,42,oVCB,xUCB,gg)
+_(t5CB,e6CB)
+cs.pop()
+_(a4CB,t5CB)
+cs.push("./page/API/index.wxml:view:25:20")
+var b7CB=_n('view')
+_rz(z,b7CB,'class',43,oVCB,xUCB,gg)
+cs.pop()
+_(a4CB,b7CB)
+cs.pop()
+_(hYCB,a4CB)
+cs.pop()
+}
+hYCB.wxXCkey=1
+cs.pop()
+return fWCB
+}
+_wp('./page/API/index.wxml:block:18:16: wx:key="*item" does not look like a valid key name.')
+bSCB.wxXCkey=2
+_2z(z,31,oTCB,xGCB,oFCB,gg,bSCB,'page','index','*item')
+cs.pop()
+cs.pop()
+_(tQCB,eRCB)
+cs.pop()
+_(cJCB,tQCB)
+cs.pop()
+_(oHCB,cJCB)
+cs.pop()
+return oHCB
+}
+_wp('./page/API/index.wxml:block:9:8: wx:key="{{item.id}}" does not look like a valid key name (did you mean wx:key="id" ?)')
+eDCB.wxXCkey=2
+_2z(z,15,bECB,e,s,gg,eDCB,'item','index','{{item.id}}')
+cs.pop()
+cs.pop()
+_(aBCB,tCCB)
+cs.pop()
+_(o4BB,aBCB)
+cs.pop()
+_(o2BB,o4BB)
+cs.pop()
+}
+o2BB.wxXCkey=1
+return r
+}
+e_[x[7]]=e_[x[7]]||{f:m5,j:[],i:[],ti:[],ic:[]}
+d_[x[8]]={}
+var m6=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_7()
+cs.push("./page/cloud/index.wxml:view:1:1")
+var x9CB=_mz(z,'view',['class',0,'data-weui-theme',1],[],e,s,gg)
+cs.push("./page/cloud/index.wxml:view:2:4")
+var o0CB=_n('view')
+_rz(z,o0CB,'class',2,e,s,gg)
+cs.push("./page/cloud/index.wxml:view:3:6")
+var fADB=_n('view')
+_rz(z,fADB,'class',3,e,s,gg)
+cs.push("./page/cloud/index.wxml:image:4:8")
+var cBDB=_mz(z,'image',['class',4,'src',1],[],e,s,gg)
+cs.pop()
+_(fADB,cBDB)
+cs.push("./page/cloud/index.wxml:view:5:8")
+var hCDB=_n('view')
+_rz(z,hCDB,'class',6,e,s,gg)
+var oDDB=_oz(z,7,e,s,gg)
+_(hCDB,oDDB)
+cs.push("./page/cloud/index.wxml:navigator:5:100")
+var cEDB=_mz(z,'navigator',['class',8,'url',1],[],e,s,gg)
+var oFDB=_oz(z,10,e,s,gg)
+_(cEDB,oFDB)
+cs.pop()
+_(hCDB,cEDB)
+var lGDB=_oz(z,11,e,s,gg)
+_(hCDB,lGDB)
+cs.pop()
+_(fADB,hCDB)
+cs.pop()
+_(o0CB,fADB)
+cs.push("./page/cloud/index.wxml:view:7:6")
+var aHDB=_n('view')
+_rz(z,aHDB,'class',12,e,s,gg)
+cs.push("./page/cloud/index.wxml:view:8:8")
+var tIDB=_n('view')
+_rz(z,tIDB,'class',13,e,s,gg)
+var eJDB=_v()
+_(tIDB,eJDB)
+cs.push("./page/cloud/index.wxml:block:9:10")
+var bKDB=function(xMDB,oLDB,oNDB,gg){
+cs.push("./page/cloud/index.wxml:block:9:10")
+cs.push("./page/cloud/index.wxml:view:10:12")
+var cPDB=_n('view')
+_rz(z,cPDB,'class',16,xMDB,oLDB,gg)
+cs.push("./page/cloud/index.wxml:view:11:14")
+var hQDB=_mz(z,'view',['bindtap',17,'class',1,'id',2],[],xMDB,oLDB,gg)
+cs.push("./page/cloud/index.wxml:view:12:16")
+var cSDB=_n('view')
+_rz(z,cSDB,'class',20,xMDB,oLDB,gg)
+var oTDB=_oz(z,21,xMDB,oLDB,gg)
+_(cSDB,oTDB)
+cs.pop()
+_(hQDB,cSDB)
+var oRDB=_v()
+_(hQDB,oRDB)
+if(_oz(z,22,xMDB,oLDB,gg)){oRDB.wxVkey=1
+cs.push("./page/cloud/index.wxml:image:13:16")
+cs.push("./page/cloud/index.wxml:image:13:16")
+var lUDB=_mz(z,'image',['class',23,'src',1],[],xMDB,oLDB,gg)
+cs.pop()
+_(oRDB,lUDB)
+cs.pop()
+}
+else{oRDB.wxVkey=2
+cs.push("./page/cloud/index.wxml:image:14:16")
+cs.push("./page/cloud/index.wxml:image:14:16")
+var aVDB=_mz(z,'image',['class',25,'src',1],[],xMDB,oLDB,gg)
+cs.pop()
+_(oRDB,aVDB)
+cs.pop()
+}
+oRDB.wxXCkey=1
+cs.pop()
+_(cPDB,hQDB)
+cs.push("./page/cloud/index.wxml:view:16:14")
+var tWDB=_n('view')
+_rz(z,tWDB,'class',27,xMDB,oLDB,gg)
+cs.push("./page/cloud/index.wxml:view:17:16")
+var eXDB=_n('view')
+_rz(z,eXDB,'class',28,xMDB,oLDB,gg)
+var bYDB=_v()
+_(eXDB,bYDB)
+cs.push("./page/cloud/index.wxml:block:18:18")
+var oZDB=function(o2DB,x1DB,f3DB,gg){
+cs.push("./page/cloud/index.wxml:block:18:18")
+cs.push("./page/cloud/index.wxml:navigator:19:20")
+var h5DB=_mz(z,'navigator',['class',32,'url',1],[],o2DB,x1DB,gg)
+cs.push("./page/cloud/index.wxml:view:20:22")
+var o6DB=_n('view')
+_rz(z,o6DB,'class',34,o2DB,x1DB,gg)
+var c7DB=_oz(z,35,o2DB,x1DB,gg)
+_(o6DB,c7DB)
+cs.pop()
+_(h5DB,o6DB)
+cs.push("./page/cloud/index.wxml:view:21:22")
+var o8DB=_n('view')
+_rz(z,o8DB,'class',36,o2DB,x1DB,gg)
+cs.pop()
+_(h5DB,o8DB)
+cs.pop()
+_(f3DB,h5DB)
+cs.pop()
+return f3DB
+}
+_wp('./page/cloud/index.wxml:block:18:18: wx:key="*item" does not look like a valid key name.')
+bYDB.wxXCkey=2
+_2z(z,30,oZDB,xMDB,oLDB,gg,bYDB,'page','index','*item')
+cs.pop()
+cs.pop()
+_(tWDB,eXDB)
+cs.pop()
+_(cPDB,tWDB)
+cs.pop()
+_(oNDB,cPDB)
+cs.pop()
+return oNDB
+}
+_wp('./page/cloud/index.wxml:block:9:10: wx:key="{{item.id}}" does not look like a valid key name (did you mean wx:key="id" ?)')
+eJDB.wxXCkey=2
+_2z(z,14,bKDB,e,s,gg,eJDB,'item','index','{{item.id}}')
+cs.pop()
+cs.pop()
+_(aHDB,tIDB)
+cs.pop()
+_(o0CB,aHDB)
+cs.pop()
+_(x9CB,o0CB)
+cs.pop()
+_(r,x9CB)
+return r
+}
+e_[x[8]]=e_[x[8]]||{f:m6,j:[],i:[],ti:[],ic:[]}
+d_[x[9]]={}
+d_[x[9]]["foot"]=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_8()
+var b=x[9]+':foot'
+r.wxVkey=b
+gg.f=$gdc(f_["./page/common/foot.wxml"],"",1)
+if(p_[b]){_wl(b,x[9]);return}
+p_[b]=true
+try{
+cs.push("./page/common/foot.wxml:navigator:2:4")
+var oB=_mz(z,'navigator',['class',1,'hoverClass',1,'openType',2,'url',3],[],e,s,gg)
+cs.push("./page/common/foot.wxml:image:3:6")
+var xC=_mz(z,'image',['class',5,'src',1],[],e,s,gg)
+cs.pop()
+_(oB,xC)
+cs.pop()
+_(r,oB)
+}catch(err){
+p_[b]=false
+throw err
+}
+p_[b]=false
+return r
+}
+var m7=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_8()
+return r
+}
+e_[x[9]]=e_[x[9]]||{f:m7,j:[],i:[],ti:[],ic:[]}
+d_[x[10]]={}
+d_[x[10]]["head"]=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_9()
+var b=x[10]+':head'
+r.wxVkey=b
+gg.f=$gdc(f_["./page/common/head.wxml"],"",1)
+if(p_[b]){_wl(b,x[10]);return}
+p_[b]=true
+try{
+cs.push("./page/common/head.wxml:view:2:4")
+var oB=_n('view')
+_rz(z,oB,'class',1,e,s,gg)
+cs.push("./page/common/head.wxml:view:3:6")
+var oD=_n('view')
+_rz(z,oD,'class',2,e,s,gg)
+var fE=_oz(z,3,e,s,gg)
+_(oD,fE)
+cs.pop()
+_(oB,oD)
+cs.push("./page/common/head.wxml:view:4:6")
+var cF=_n('view')
+_rz(z,cF,'class',4,e,s,gg)
+cs.pop()
+_(oB,cF)
+var xC=_v()
+_(oB,xC)
+if(_oz(z,5,e,s,gg)){xC.wxVkey=1
+cs.push("./page/common/head.wxml:view:5:6")
+cs.push("./page/common/head.wxml:view:5:6")
+var hG=_n('view')
+_rz(z,hG,'class',6,e,s,gg)
+var oH=_oz(z,7,e,s,gg)
+_(hG,oH)
+cs.pop()
+_(xC,hG)
+cs.pop()
+}
+xC.wxXCkey=1
+cs.pop()
+_(r,oB)
+}catch(err){
+p_[b]=false
+throw err
+}
+p_[b]=false
+return r
+}
+var m8=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_9()
+return r
+}
+e_[x[10]]=e_[x[10]]||{f:m8,j:[],i:[],ti:[],ic:[]}
+d_[x[11]]={}
+var m9=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_10()
+cs.push("./page/component/index.wxml:view:1:1")
+var eBEB=_mz(z,'view',['class',0,'data-weui-theme',1],[],e,s,gg)
+cs.push("./page/component/index.wxml:view:2:4")
+var bCEB=_n('view')
+_rz(z,bCEB,'class',2,e,s,gg)
+cs.push("./page/component/index.wxml:view:3:6")
+var oDEB=_n('view')
+_rz(z,oDEB,'class',3,e,s,gg)
+cs.push("./page/component/index.wxml:image:4:8")
+var xEEB=_mz(z,'image',['class',4,'src',1],[],e,s,gg)
+cs.pop()
+_(oDEB,xEEB)
+cs.push("./page/component/index.wxml:view:5:8")
+var oFEB=_n('view')
+_rz(z,oFEB,'class',6,e,s,gg)
+var fGEB=_oz(z,7,e,s,gg)
+_(oFEB,fGEB)
+cs.push("./page/component/index.wxml:navigator:5:184")
+var cHEB=_mz(z,'navigator',['class',8,'url',1],[],e,s,gg)
+var hIEB=_oz(z,10,e,s,gg)
+_(cHEB,hIEB)
+cs.pop()
+_(oFEB,cHEB)
+var oJEB=_oz(z,11,e,s,gg)
+_(oFEB,oJEB)
+cs.pop()
+_(oDEB,oFEB)
+cs.pop()
+_(bCEB,oDEB)
+cs.push("./page/component/index.wxml:view:7:6")
+var cKEB=_n('view')
+_rz(z,cKEB,'class',12,e,s,gg)
+cs.push("./page/component/index.wxml:view:8:8")
+var oLEB=_n('view')
+_rz(z,oLEB,'class',13,e,s,gg)
+var lMEB=_v()
+_(oLEB,lMEB)
+cs.push("./page/component/index.wxml:block:9:10")
+var aNEB=function(ePEB,tOEB,bQEB,gg){
+cs.push("./page/component/index.wxml:block:9:10")
+cs.push("./page/component/index.wxml:view:10:12")
+var xSEB=_n('view')
+_rz(z,xSEB,'class',16,ePEB,tOEB,gg)
+cs.push("./page/component/index.wxml:view:11:14")
+var oTEB=_mz(z,'view',['bindtap',17,'class',1,'id',2],[],ePEB,tOEB,gg)
+cs.push("./page/component/index.wxml:view:12:16")
+var cVEB=_n('view')
+_rz(z,cVEB,'class',20,ePEB,tOEB,gg)
+var hWEB=_oz(z,21,ePEB,tOEB,gg)
+_(cVEB,hWEB)
+cs.pop()
+_(oTEB,cVEB)
+var fUEB=_v()
+_(oTEB,fUEB)
+if(_oz(z,22,ePEB,tOEB,gg)){fUEB.wxVkey=1
+cs.push("./page/component/index.wxml:image:13:16")
+cs.push("./page/component/index.wxml:image:13:16")
+var oXEB=_mz(z,'image',['class',23,'src',1],[],ePEB,tOEB,gg)
+cs.pop()
+_(fUEB,oXEB)
+cs.pop()
+}
+else{fUEB.wxVkey=2
+cs.push("./page/component/index.wxml:image:14:16")
+cs.push("./page/component/index.wxml:image:14:16")
+var cYEB=_mz(z,'image',['class',25,'src',1],[],ePEB,tOEB,gg)
+cs.pop()
+_(fUEB,cYEB)
+cs.pop()
+}
+fUEB.wxXCkey=1
+cs.pop()
+_(xSEB,oTEB)
+cs.push("./page/component/index.wxml:view:16:14")
+var oZEB=_n('view')
+_rz(z,oZEB,'class',27,ePEB,tOEB,gg)
+cs.push("./page/component/index.wxml:view:17:16")
+var l1EB=_n('view')
+_rz(z,l1EB,'class',28,ePEB,tOEB,gg)
+var a2EB=_v()
+_(l1EB,a2EB)
+cs.push("./page/component/index.wxml:block:18:18")
+var t3EB=function(b5EB,e4EB,o6EB,gg){
+cs.push("./page/component/index.wxml:block:18:18")
+var o8EB=_v()
+_(o6EB,o8EB)
+if(_oz(z,32,b5EB,e4EB,gg)){o8EB.wxVkey=1
+cs.push("./page/component/index.wxml:navigator:19:20")
+cs.push("./page/component/index.wxml:navigator:19:20")
+var f9EB=_mz(z,'navigator',['appId',33,'class',1,'extraData',2,'openType',3,'path',4,'target',5,'version',6],[],b5EB,e4EB,gg)
+cs.push("./page/component/index.wxml:view:20:22")
+var c0EB=_n('view')
+_rz(z,c0EB,'class',40,b5EB,e4EB,gg)
+var hAFB=_oz(z,41,b5EB,e4EB,gg)
+_(c0EB,hAFB)
+cs.pop()
+_(f9EB,c0EB)
+cs.push("./page/component/index.wxml:view:21:22")
+var oBFB=_n('view')
+_rz(z,oBFB,'class',42,b5EB,e4EB,gg)
+cs.pop()
+_(f9EB,oBFB)
+cs.pop()
+_(o8EB,f9EB)
+cs.pop()
+}
+else{o8EB.wxVkey=2
+cs.push("./page/component/index.wxml:navigator:23:20")
+cs.push("./page/component/index.wxml:navigator:23:20")
+var cCFB=_mz(z,'navigator',['class',43,'url',1],[],b5EB,e4EB,gg)
+cs.push("./page/component/index.wxml:view:24:22")
+var oDFB=_n('view')
+_rz(z,oDFB,'class',45,b5EB,e4EB,gg)
+var lEFB=_oz(z,46,b5EB,e4EB,gg)
+_(oDFB,lEFB)
+cs.pop()
+_(cCFB,oDFB)
+cs.push("./page/component/index.wxml:view:25:22")
+var aFFB=_n('view')
+_rz(z,aFFB,'class',47,b5EB,e4EB,gg)
+cs.pop()
+_(cCFB,aFFB)
+cs.pop()
+_(o8EB,cCFB)
+cs.pop()
+}
+o8EB.wxXCkey=1
+cs.pop()
+return o6EB
+}
+_wp('./page/component/index.wxml:block:18:18: wx:key="*item" does not look like a valid key name.')
+a2EB.wxXCkey=2
+_2z(z,30,t3EB,ePEB,tOEB,gg,a2EB,'page','index','*item')
+cs.pop()
+cs.pop()
+_(oZEB,l1EB)
+cs.pop()
+_(xSEB,oZEB)
+cs.pop()
+_(bQEB,xSEB)
+cs.pop()
+return bQEB
+}
+_wp('./page/component/index.wxml:block:9:10: wx:key="{{item.id}}" does not look like a valid key name (did you mean wx:key="id" ?)')
+lMEB.wxXCkey=2
+_2z(z,14,aNEB,e,s,gg,lMEB,'item','index','{{item.id}}')
+cs.pop()
+cs.pop()
+_(cKEB,oLEB)
+cs.pop()
+_(bCEB,cKEB)
+cs.pop()
+_(eBEB,bCEB)
+cs.pop()
+_(r,eBEB)
+return r
+}
+e_[x[11]]=e_[x[11]]||{f:m9,j:[],i:[],ti:[],ic:[]}
+
 COMMON=====./page/component/index.wxml----function gz\$7061636b616765436f6d706f6e656e742f_44\(\)\{[\s\S]*?__WXML_GLOBAL__\.ops_cached\.\$7061636b616765436f6d706f6e656e742f_44
 }
+dep_d_: d_[x[0]]={}
+var m0=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_1()
+var oB=_v()
+_(r,oB)
+if(_oz(z,0,e,s,gg)){oB.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:1:1")
+var xC=_mz(z,'view',['class',1,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:canvas:2:4")
+var oD=_mz(z,'canvas',['id',3,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xC,oD)
+cs.pop()
+_(oB,xC)
+cs.pop()
+}
+else{oB.wxVkey=2
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:5:2")
+var fE=_mz(z,'view',['class',6,'style',1],[],e,s,gg)
+var cF=_v()
+_(fE,cF)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+var hG=function(cI,oH,oJ,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:6:4")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:7:6")
+var aL=_mz(z,'view',['class',12,'style',1],[],cI,oH,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:8:8")
+var tM=_mz(z,'view',['class',14,'hidden',1],[],cI,oH,gg)
+var eN=_oz(z,16,cI,oH,gg)
+_(tM,eN)
+cs.pop()
+_(aL,tM)
+var bO=_v()
+_(aL,bO)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+var oP=function(oR,xQ,fS,gg){
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:block:9:8")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:10:10")
+var hU=_mz(z,'view',['bindanimationend',21,'bindtap',1,'class',2,'data-bulletid',3,'data-tunnelid',4,'style',5],[],oR,xQ,gg)
+var oV=_v()
+_(hU,oV)
+if(_oz(z,27,oR,xQ,gg)){oV.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:18:12")
+var oX=_mz(z,'image',['class',28,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(oV,oX)
+cs.pop()
+}
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:view:25:12")
+var lY=_mz(z,'view',['class',32,'style',1],[],oR,xQ,gg)
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:text:26:14")
+var aZ=_n('text')
+var t1=_oz(z,34,oR,xQ,gg)
+_(aZ,t1)
+cs.pop()
+_(lY,aZ)
+cs.pop()
+_(hU,lY)
+var cW=_v()
+_(hU,cW)
+if(_oz(z,35,oR,xQ,gg)){cW.wxVkey=1
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+cs.push("./miniprogram_npm/miniprogram-barrage/index.wxml:image:28:12")
+var e2=_mz(z,'image',['class',36,'mode',1,'src',2,'style',3],[],oR,xQ,gg)
+cs.pop()
+_(cW,e2)
+cs.pop()
+}
+oV.wxXCkey=1
+cW.wxXCkey=1
+cs.pop()
+_(fS,hU)
+cs.pop()
+return fS
+}
+bO.wxXCkey=2
+_2z(z,19,oP,cI,oH,gg,bO,'bullet','bulletId','bulletId')
+cs.pop()
+cs.pop()
+_(oJ,aL)
+cs.pop()
+return oJ
+}
+cF.wxXCkey=2
+_2z(z,10,hG,e,s,gg,cF,'tunnel','tunnelId','tunnelId')
+cs.pop()
+cs.pop()
+_(oB,fE)
+cs.pop()
+}
+oB.wxXCkey=1
+return r
+}
+e_[x[0]]=e_[x[0]]||{f:m0,j:[],i:[],ti:[],ic:[]}
+d_[x[1]]={}
+var m1=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_2()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:view:2:2")
+var o4=_n('view')
+_rz(z,o4,'class',0,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml:slot:3:4")
+var x5=_n('slot')
+cs.pop()
+_(o4,x5)
+cs.pop()
+_(r,o4)
+return r
+}
+e_[x[1]]=e_[x[1]]||{f:m1,j:[],i:[],ti:[],ic:[]}
+d_[x[2]]={}
+var m2=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_3()
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:2:2")
+var f7=_mz(z,'view',['bindtouchstart',0,'class',1,'id',1,'style',2],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:scroll-view:3:4")
+var c8=_mz(z,'scroll-view',['scrollAnchoring',-1,'bindscroll',4,'bindscrolltolower',1,'bindscrolltoupper',2,'class',3,'enableBackToTop',4,'lowerThreshold',5,'scrollIntoView',6,'scrollTop',7,'scrollWithAnimation',8,'scrollX',9,'scrollY',10,'style',11,'throttle',12,'upperThreshold',13],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:4:6")
+var h9=_n('view')
+_rz(z,h9,'style',18,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:5:8")
+var o0=_n('slot')
+_rz(z,o0,'name',19,e,s,gg)
+cs.pop()
+_(h9,o0)
+cs.pop()
+_(c8,h9)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:7:6")
+var cAB=_mz(z,'view',['class',20,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:8:8")
+var oBB=_n('slot')
+_rz(z,oBB,'name',22,e,s,gg)
+cs.pop()
+_(cAB,oBB)
+cs.pop()
+_(c8,cAB)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:10:6")
+var lCB=_n('view')
+_rz(z,lCB,'style',23,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:12:8")
+var aDB=_n('view')
+_rz(z,aDB,'style',24,e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:13:10")
+var tEB=_n('slot')
+cs.pop()
+_(aDB,tEB)
+cs.pop()
+_(lCB,aDB)
+cs.pop()
+_(c8,lCB)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:view:17:6")
+var eFB=_mz(z,'view',['class',25,'style',1],[],e,s,gg)
+cs.push("./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml:slot:18:8")
+var bGB=_n('slot')
+_rz(z,bGB,'name',27,e,s,gg)
+cs.pop()
+_(eFB,bGB)
+cs.pop()
+_(c8,eFB)
+cs.pop()
+_(f7,c8)
+cs.pop()
+_(r,f7)
+return r
+}
+e_[x[2]]=e_[x[2]]||{f:m2,j:[],i:[],ti:[],ic:[]}
+d_[x[3]]={}
+var m3=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_4()
+var xIB=_v()
+_(r,xIB)
+if(_oz(z,0,e,s,gg)){xIB.wxVkey=1
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:1:1")
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:1:1")
+var oJB=_mz(z,'canvas',['id',1,'style',1,'type',2],[],e,s,gg)
+cs.pop()
+_(xIB,oJB)
+cs.pop()
+}
+else{xIB.wxVkey=2
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:2:2")
+cs.push("./miniprogram_npm/wxml-to-canvas/index.wxml:canvas:2:2")
+var fKB=_mz(z,'canvas',['canvasId',4,'style',1],[],e,s,gg)
+cs.pop()
+_(xIB,fKB)
+cs.pop()
+}
+xIB.wxXCkey=1
+return r
+}
+e_[x[3]]=e_[x[3]]||{f:m3,j:[],i:[],ti:[],ic:[]}
+d_[x[6]]={}
+var m4=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_5()
+var oBBB=e_[x[6]].i
+_ai(oBBB,x[4],e_,x[6],1,1)
+_ai(oBBB,x[5],e_,x[6],2,2)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:4:2")
+var fCBB=_mz(z,'view',['class',0,'data-weui-theme',1],[],e,s,gg)
+var cDBB=_v()
+_(fCBB,cDBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:template:5:4")
+var hEBB=_oz(z,3,e,s,gg)
+var oFBB=_gd(x[6],hEBB,e_,d_)
+if(oFBB){
+var cGBB=_1z(z,2,e,s,gg) || {}
+var cur_globalf=gg.f
+cDBB.wxXCkey=3
+oFBB(cGBB,cGBB,cDBB,gg)
+gg.f=cur_globalf
+}
+else _w(hEBB,x[6],5,16)
+cs.pop()
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:7:4")
+var oHBB=_n('view')
+_rz(z,oHBB,'class',4,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:8:6")
+var lIBB=_n('view')
+_rz(z,lIBB,'class',5,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:9:8")
+var aJBB=_n('button')
+_rz(z,aJBB,'bindtap',6,e,s,gg)
+var tKBB=_oz(z,7,e,s,gg)
+_(aJBB,tKBB)
+cs.pop()
+_(lIBB,aJBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:12:8")
+var eLBB=_n('button')
+_rz(z,eLBB,'bindtap',8,e,s,gg)
+var bMBB=_oz(z,9,e,s,gg)
+_(eLBB,bMBB)
+cs.pop()
+_(lIBB,eLBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:15:8")
+var oNBB=_n('button')
+_rz(z,oNBB,'bindtap',10,e,s,gg)
+var xOBB=_oz(z,11,e,s,gg)
+_(oNBB,xOBB)
+cs.pop()
+_(lIBB,oNBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:18:8")
+var oPBB=_n('button')
+_rz(z,oPBB,'bindtap',12,e,s,gg)
+var fQBB=_oz(z,13,e,s,gg)
+_(oPBB,fQBB)
+cs.pop()
+_(lIBB,oPBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:21:8")
+var cRBB=_n('button')
+_rz(z,cRBB,'bindtap',14,e,s,gg)
+var hSBB=_oz(z,15,e,s,gg)
+_(cRBB,hSBB)
+cs.pop()
+_(lIBB,cRBB)
+cs.pop()
+_(oHBB,lIBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:view:26:6")
+var oTBB=_n('view')
+_rz(z,oTBB,'class',16,e,s,gg)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:button:27:8")
+var cUBB=_mz(z,'button',['bindtap',17,'type',1],[],e,s,gg)
+var oVBB=_oz(z,19,e,s,gg)
+_(cUBB,oVBB)
+cs.pop()
+_(oTBB,cUBB)
+cs.pop()
+_(oHBB,oTBB)
+cs.pop()
+_(fCBB,oHBB)
+var lWBB=_v()
+_(fCBB,lWBB)
+cs.push("./page/API/components/set-tab-bar/set-tab-bar.wxml:template:31:4")
+var aXBB=_oz(z,20,e,s,gg)
+var tYBB=_gd(x[6],aXBB,e_,d_)
+if(tYBB){
+var eZBB={}
+var cur_globalf=gg.f
+lWBB.wxXCkey=3
+tYBB(eZBB,eZBB,lWBB,gg)
+gg.f=cur_globalf
+}
+else _w(aXBB,x[6],31,16)
+cs.pop()
+cs.pop()
+_(r,fCBB)
+oBBB.pop()
+oBBB.pop()
+return r
+}
+e_[x[6]]=e_[x[6]]||{f:m4,j:[],i:[],ti:[x[4],x[5]],ic:[]}
+d_[x[7]]={}
+var m5=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_6()
+var o2BB=_v()
+_(r,o2BB)
+if(_oz(z,0,e,s,gg)){o2BB.wxVkey=1
+cs.push("./page/API/index.wxml:set-tab-bar:1:1")
+cs.push("./page/API/index.wxml:set-tab-bar:1:1")
+var x3BB=_n('set-tab-bar')
+_rz(z,x3BB,'bindunmount',1,e,s,gg)
+cs.pop()
+_(o2BB,x3BB)
+cs.pop()
+}
+else{o2BB.wxVkey=2
+cs.push("./page/API/index.wxml:view:2:2")
+cs.push("./page/API/index.wxml:view:2:2")
+var o4BB=_mz(z,'view',['class',2,'data-weui-theme',1],[],e,s,gg)
+cs.push("./page/API/index.wxml:view:3:4")
+var f5BB=_n('view')
+_rz(z,f5BB,'class',4,e,s,gg)
+cs.push("./page/API/index.wxml:image:4:6")
+var c6BB=_mz(z,'image',['class',5,'src',1],[],e,s,gg)
+cs.pop()
+_(f5BB,c6BB)
+cs.push("./page/API/index.wxml:view:5:6")
+var h7BB=_n('view')
+_rz(z,h7BB,'class',7,e,s,gg)
+var o8BB=_oz(z,8,e,s,gg)
+_(h7BB,o8BB)
+cs.push("./page/API/index.wxml:navigator:5:95")
+var c9BB=_mz(z,'navigator',['class',9,'url',1],[],e,s,gg)
+var o0BB=_oz(z,11,e,s,gg)
+_(c9BB,o0BB)
+cs.pop()
+_(h7BB,c9BB)
+var lACB=_oz(z,12,e,s,gg)
+_(h7BB,lACB)
+cs.pop()
+_(f5BB,h7BB)
+cs.pop()
+_(o4BB,f5BB)
+cs.push("./page/API/index.wxml:view:7:4")
+var aBCB=_n('view')
+_rz(z,aBCB,'class',13,e,s,gg)
+cs.push("./page/API/index.wxml:view:8:6")
+var tCCB=_n('view')
+_rz(z,tCCB,'class',14,e,s,gg)
+var eDCB=_v()
+_(tCCB,eDCB)
+cs.push("./page/API/index.wxml:block:9:8")
+var bECB=function(xGCB,oFCB,oHCB,gg){
+cs.push("./page/API/index.wxml:block:9:8")
+cs.push("./page/API/index.wxml:view:10:10")
+var cJCB=_n('view')
+_rz(z,cJCB,'class',17,xGCB,oFCB,gg)
+cs.push("./page/API/index.wxml:view:11:12")
+var hKCB=_mz(z,'view',['bindtap',18,'class',1,'id',2],[],xGCB,oFCB,gg)
+cs.push("./page/API/index.wxml:view:12:14")
+var cMCB=_n('view')
+_rz(z,cMCB,'class',21,xGCB,oFCB,gg)
+var oNCB=_oz(z,22,xGCB,oFCB,gg)
+_(cMCB,oNCB)
+cs.pop()
+_(hKCB,cMCB)
+var oLCB=_v()
+_(hKCB,oLCB)
+if(_oz(z,23,xGCB,oFCB,gg)){oLCB.wxVkey=1
+cs.push("./page/API/index.wxml:image:13:14")
+cs.push("./page/API/index.wxml:image:13:14")
+var lOCB=_mz(z,'image',['class',24,'src',1],[],xGCB,oFCB,gg)
+cs.pop()
+_(oLCB,lOCB)
+cs.pop()
+}
+else{oLCB.wxVkey=2
+cs.push("./page/API/index.wxml:image:14:14")
+cs.push("./page/API/index.wxml:image:14:14")
+var aPCB=_mz(z,'image',['class',26,'src',1],[],xGCB,oFCB,gg)
+cs.pop()
+_(oLCB,aPCB)
+cs.pop()
+}
+oLCB.wxXCkey=1
+cs.pop()
+_(cJCB,hKCB)
+cs.push("./page/API/index.wxml:view:16:12")
+var tQCB=_n('view')
+_rz(z,tQCB,'class',28,xGCB,oFCB,gg)
+cs.push("./page/API/index.wxml:view:17:14")
+var eRCB=_n('view')
+_rz(z,eRCB,'class',29,xGCB,oFCB,gg)
+var bSCB=_v()
+_(eRCB,bSCB)
+cs.push("./page/API/index.wxml:block:18:16")
+var oTCB=function(oVCB,xUCB,fWCB,gg){
+cs.push("./page/API/index.wxml:block:18:16")
+var hYCB=_v()
+_(fWCB,hYCB)
+if(_oz(z,33,oVCB,xUCB,gg)){hYCB.wxVkey=1
+cs.push("./page/API/index.wxml:navigator:19:18")
+cs.push("./page/API/index.wxml:navigator:19:18")
+var oZCB=_mz(z,'navigator',['class',34,'url',1],[],oVCB,xUCB,gg)
+cs.push("./page/API/index.wxml:view:20:20")
+var c1CB=_n('view')
+_rz(z,c1CB,'class',36,oVCB,xUCB,gg)
+var o2CB=_oz(z,37,oVCB,xUCB,gg)
+_(c1CB,o2CB)
+cs.pop()
+_(oZCB,c1CB)
+cs.push("./page/API/index.wxml:view:21:20")
+var l3CB=_n('view')
+_rz(z,l3CB,'class',38,oVCB,xUCB,gg)
+cs.pop()
+_(oZCB,l3CB)
+cs.pop()
+_(hYCB,oZCB)
+cs.pop()
+}
+else{hYCB.wxVkey=2
+cs.push("./page/API/index.wxml:view:23:18")
+cs.push("./page/API/index.wxml:view:23:18")
+var a4CB=_mz(z,'view',['bindtap',39,'class',1],[],oVCB,xUCB,gg)
+cs.push("./page/API/index.wxml:view:24:20")
+var t5CB=_n('view')
+_rz(z,t5CB,'class',41,oVCB,xUCB,gg)
+var e6CB=_oz(z,42,oVCB,xUCB,gg)
+_(t5CB,e6CB)
+cs.pop()
+_(a4CB,t5CB)
+cs.push("./page/API/index.wxml:view:25:20")
+var b7CB=_n('view')
+_rz(z,b7CB,'class',43,oVCB,xUCB,gg)
+cs.pop()
+_(a4CB,b7CB)
+cs.pop()
+_(hYCB,a4CB)
+cs.pop()
+}
+hYCB.wxXCkey=1
+cs.pop()
+return fWCB
+}
+_wp('./page/API/index.wxml:block:18:16: wx:key="*item" does not look like a valid key name.')
+bSCB.wxXCkey=2
+_2z(z,31,oTCB,xGCB,oFCB,gg,bSCB,'page','index','*item')
+cs.pop()
+cs.pop()
+_(tQCB,eRCB)
+cs.pop()
+_(cJCB,tQCB)
+cs.pop()
+_(oHCB,cJCB)
+cs.pop()
+return oHCB
+}
+_wp('./page/API/index.wxml:block:9:8: wx:key="{{item.id}}" does not look like a valid key name (did you mean wx:key="id" ?)')
+eDCB.wxXCkey=2
+_2z(z,15,bECB,e,s,gg,eDCB,'item','index','{{item.id}}')
+cs.pop()
+cs.pop()
+_(aBCB,tCCB)
+cs.pop()
+_(o4BB,aBCB)
+cs.pop()
+_(o2BB,o4BB)
+cs.pop()
+}
+o2BB.wxXCkey=1
+return r
+}
+e_[x[7]]=e_[x[7]]||{f:m5,j:[],i:[],ti:[],ic:[]}
+d_[x[8]]={}
+var m6=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_7()
+cs.push("./page/cloud/index.wxml:view:1:1")
+var x9CB=_mz(z,'view',['class',0,'data-weui-theme',1],[],e,s,gg)
+cs.push("./page/cloud/index.wxml:view:2:4")
+var o0CB=_n('view')
+_rz(z,o0CB,'class',2,e,s,gg)
+cs.push("./page/cloud/index.wxml:view:3:6")
+var fADB=_n('view')
+_rz(z,fADB,'class',3,e,s,gg)
+cs.push("./page/cloud/index.wxml:image:4:8")
+var cBDB=_mz(z,'image',['class',4,'src',1],[],e,s,gg)
+cs.pop()
+_(fADB,cBDB)
+cs.push("./page/cloud/index.wxml:view:5:8")
+var hCDB=_n('view')
+_rz(z,hCDB,'class',6,e,s,gg)
+var oDDB=_oz(z,7,e,s,gg)
+_(hCDB,oDDB)
+cs.push("./page/cloud/index.wxml:navigator:5:100")
+var cEDB=_mz(z,'navigator',['class',8,'url',1],[],e,s,gg)
+var oFDB=_oz(z,10,e,s,gg)
+_(cEDB,oFDB)
+cs.pop()
+_(hCDB,cEDB)
+var lGDB=_oz(z,11,e,s,gg)
+_(hCDB,lGDB)
+cs.pop()
+_(fADB,hCDB)
+cs.pop()
+_(o0CB,fADB)
+cs.push("./page/cloud/index.wxml:view:7:6")
+var aHDB=_n('view')
+_rz(z,aHDB,'class',12,e,s,gg)
+cs.push("./page/cloud/index.wxml:view:8:8")
+var tIDB=_n('view')
+_rz(z,tIDB,'class',13,e,s,gg)
+var eJDB=_v()
+_(tIDB,eJDB)
+cs.push("./page/cloud/index.wxml:block:9:10")
+var bKDB=function(xMDB,oLDB,oNDB,gg){
+cs.push("./page/cloud/index.wxml:block:9:10")
+cs.push("./page/cloud/index.wxml:view:10:12")
+var cPDB=_n('view')
+_rz(z,cPDB,'class',16,xMDB,oLDB,gg)
+cs.push("./page/cloud/index.wxml:view:11:14")
+var hQDB=_mz(z,'view',['bindtap',17,'class',1,'id',2],[],xMDB,oLDB,gg)
+cs.push("./page/cloud/index.wxml:view:12:16")
+var cSDB=_n('view')
+_rz(z,cSDB,'class',20,xMDB,oLDB,gg)
+var oTDB=_oz(z,21,xMDB,oLDB,gg)
+_(cSDB,oTDB)
+cs.pop()
+_(hQDB,cSDB)
+var oRDB=_v()
+_(hQDB,oRDB)
+if(_oz(z,22,xMDB,oLDB,gg)){oRDB.wxVkey=1
+cs.push("./page/cloud/index.wxml:image:13:16")
+cs.push("./page/cloud/index.wxml:image:13:16")
+var lUDB=_mz(z,'image',['class',23,'src',1],[],xMDB,oLDB,gg)
+cs.pop()
+_(oRDB,lUDB)
+cs.pop()
+}
+else{oRDB.wxVkey=2
+cs.push("./page/cloud/index.wxml:image:14:16")
+cs.push("./page/cloud/index.wxml:image:14:16")
+var aVDB=_mz(z,'image',['class',25,'src',1],[],xMDB,oLDB,gg)
+cs.pop()
+_(oRDB,aVDB)
+cs.pop()
+}
+oRDB.wxXCkey=1
+cs.pop()
+_(cPDB,hQDB)
+cs.push("./page/cloud/index.wxml:view:16:14")
+var tWDB=_n('view')
+_rz(z,tWDB,'class',27,xMDB,oLDB,gg)
+cs.push("./page/cloud/index.wxml:view:17:16")
+var eXDB=_n('view')
+_rz(z,eXDB,'class',28,xMDB,oLDB,gg)
+var bYDB=_v()
+_(eXDB,bYDB)
+cs.push("./page/cloud/index.wxml:block:18:18")
+var oZDB=function(o2DB,x1DB,f3DB,gg){
+cs.push("./page/cloud/index.wxml:block:18:18")
+cs.push("./page/cloud/index.wxml:navigator:19:20")
+var h5DB=_mz(z,'navigator',['class',32,'url',1],[],o2DB,x1DB,gg)
+cs.push("./page/cloud/index.wxml:view:20:22")
+var o6DB=_n('view')
+_rz(z,o6DB,'class',34,o2DB,x1DB,gg)
+var c7DB=_oz(z,35,o2DB,x1DB,gg)
+_(o6DB,c7DB)
+cs.pop()
+_(h5DB,o6DB)
+cs.push("./page/cloud/index.wxml:view:21:22")
+var o8DB=_n('view')
+_rz(z,o8DB,'class',36,o2DB,x1DB,gg)
+cs.pop()
+_(h5DB,o8DB)
+cs.pop()
+_(f3DB,h5DB)
+cs.pop()
+return f3DB
+}
+_wp('./page/cloud/index.wxml:block:18:18: wx:key="*item" does not look like a valid key name.')
+bYDB.wxXCkey=2
+_2z(z,30,oZDB,xMDB,oLDB,gg,bYDB,'page','index','*item')
+cs.pop()
+cs.pop()
+_(tWDB,eXDB)
+cs.pop()
+_(cPDB,tWDB)
+cs.pop()
+_(oNDB,cPDB)
+cs.pop()
+return oNDB
+}
+_wp('./page/cloud/index.wxml:block:9:10: wx:key="{{item.id}}" does not look like a valid key name (did you mean wx:key="id" ?)')
+eJDB.wxXCkey=2
+_2z(z,14,bKDB,e,s,gg,eJDB,'item','index','{{item.id}}')
+cs.pop()
+cs.pop()
+_(aHDB,tIDB)
+cs.pop()
+_(o0CB,aHDB)
+cs.pop()
+_(x9CB,o0CB)
+cs.pop()
+_(r,x9CB)
+return r
+}
+e_[x[8]]=e_[x[8]]||{f:m6,j:[],i:[],ti:[],ic:[]}
+d_[x[9]]={}
+d_[x[9]]["foot"]=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_8()
+var b=x[9]+':foot'
+r.wxVkey=b
+gg.f=$gdc(f_["./page/common/foot.wxml"],"",1)
+if(p_[b]){_wl(b,x[9]);return}
+p_[b]=true
+try{
+cs.push("./page/common/foot.wxml:navigator:2:4")
+var oB=_mz(z,'navigator',['class',1,'hoverClass',1,'openType',2,'url',3],[],e,s,gg)
+cs.push("./page/common/foot.wxml:image:3:6")
+var xC=_mz(z,'image',['class',5,'src',1],[],e,s,gg)
+cs.pop()
+_(oB,xC)
+cs.pop()
+_(r,oB)
+}catch(err){
+p_[b]=false
+throw err
+}
+p_[b]=false
+return r
+}
+var m7=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_8()
+return r
+}
+e_[x[9]]=e_[x[9]]||{f:m7,j:[],i:[],ti:[],ic:[]}
+d_[x[10]]={}
+d_[x[10]]["head"]=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_9()
+var b=x[10]+':head'
+r.wxVkey=b
+gg.f=$gdc(f_["./page/common/head.wxml"],"",1)
+if(p_[b]){_wl(b,x[10]);return}
+p_[b]=true
+try{
+cs.push("./page/common/head.wxml:view:2:4")
+var oB=_n('view')
+_rz(z,oB,'class',1,e,s,gg)
+cs.push("./page/common/head.wxml:view:3:6")
+var oD=_n('view')
+_rz(z,oD,'class',2,e,s,gg)
+var fE=_oz(z,3,e,s,gg)
+_(oD,fE)
+cs.pop()
+_(oB,oD)
+cs.push("./page/common/head.wxml:view:4:6")
+var cF=_n('view')
+_rz(z,cF,'class',4,e,s,gg)
+cs.pop()
+_(oB,cF)
+var xC=_v()
+_(oB,xC)
+if(_oz(z,5,e,s,gg)){xC.wxVkey=1
+cs.push("./page/common/head.wxml:view:5:6")
+cs.push("./page/common/head.wxml:view:5:6")
+var hG=_n('view')
+_rz(z,hG,'class',6,e,s,gg)
+var oH=_oz(z,7,e,s,gg)
+_(hG,oH)
+cs.pop()
+_(xC,hG)
+cs.pop()
+}
+xC.wxXCkey=1
+cs.pop()
+_(r,oB)
+}catch(err){
+p_[b]=false
+throw err
+}
+p_[b]=false
+return r
+}
+var m8=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_9()
+return r
+}
+e_[x[10]]=e_[x[10]]||{f:m8,j:[],i:[],ti:[],ic:[]}
+d_[x[11]]={}
+var m9=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_10()
+cs.push("./page/component/index.wxml:view:1:1")
+var eBEB=_mz(z,'view',['class',0,'data-weui-theme',1],[],e,s,gg)
+cs.push("./page/component/index.wxml:view:2:4")
+var bCEB=_n('view')
+_rz(z,bCEB,'class',2,e,s,gg)
+cs.push("./page/component/index.wxml:view:3:6")
+var oDEB=_n('view')
+_rz(z,oDEB,'class',3,e,s,gg)
+cs.push("./page/component/index.wxml:image:4:8")
+var xEEB=_mz(z,'image',['class',4,'src',1],[],e,s,gg)
+cs.pop()
+_(oDEB,xEEB)
+cs.push("./page/component/index.wxml:view:5:8")
+var oFEB=_n('view')
+_rz(z,oFEB,'class',6,e,s,gg)
+var fGEB=_oz(z,7,e,s,gg)
+_(oFEB,fGEB)
+cs.push("./page/component/index.wxml:navigator:5:184")
+var cHEB=_mz(z,'navigator',['class',8,'url',1],[],e,s,gg)
+var hIEB=_oz(z,10,e,s,gg)
+_(cHEB,hIEB)
+cs.pop()
+_(oFEB,cHEB)
+var oJEB=_oz(z,11,e,s,gg)
+_(oFEB,oJEB)
+cs.pop()
+_(oDEB,oFEB)
+cs.pop()
+_(bCEB,oDEB)
+cs.push("./page/component/index.wxml:view:7:6")
+var cKEB=_n('view')
+_rz(z,cKEB,'class',12,e,s,gg)
+cs.push("./page/component/index.wxml:view:8:8")
+var oLEB=_n('view')
+_rz(z,oLEB,'class',13,e,s,gg)
+var lMEB=_v()
+_(oLEB,lMEB)
+cs.push("./page/component/index.wxml:block:9:10")
+var aNEB=function(ePEB,tOEB,bQEB,gg){
+cs.push("./page/component/index.wxml:block:9:10")
+cs.push("./page/component/index.wxml:view:10:12")
+var xSEB=_n('view')
+_rz(z,xSEB,'class',16,ePEB,tOEB,gg)
+cs.push("./page/component/index.wxml:view:11:14")
+var oTEB=_mz(z,'view',['bindtap',17,'class',1,'id',2],[],ePEB,tOEB,gg)
+cs.push("./page/component/index.wxml:view:12:16")
+var cVEB=_n('view')
+_rz(z,cVEB,'class',20,ePEB,tOEB,gg)
+var hWEB=_oz(z,21,ePEB,tOEB,gg)
+_(cVEB,hWEB)
+cs.pop()
+_(oTEB,cVEB)
+var fUEB=_v()
+_(oTEB,fUEB)
+if(_oz(z,22,ePEB,tOEB,gg)){fUEB.wxVkey=1
+cs.push("./page/component/index.wxml:image:13:16")
+cs.push("./page/component/index.wxml:image:13:16")
+var oXEB=_mz(z,'image',['class',23,'src',1],[],ePEB,tOEB,gg)
+cs.pop()
+_(fUEB,oXEB)
+cs.pop()
+}
+else{fUEB.wxVkey=2
+cs.push("./page/component/index.wxml:image:14:16")
+cs.push("./page/component/index.wxml:image:14:16")
+var cYEB=_mz(z,'image',['class',25,'src',1],[],ePEB,tOEB,gg)
+cs.pop()
+_(fUEB,cYEB)
+cs.pop()
+}
+fUEB.wxXCkey=1
+cs.pop()
+_(xSEB,oTEB)
+cs.push("./page/component/index.wxml:view:16:14")
+var oZEB=_n('view')
+_rz(z,oZEB,'class',27,ePEB,tOEB,gg)
+cs.push("./page/component/index.wxml:view:17:16")
+var l1EB=_n('view')
+_rz(z,l1EB,'class',28,ePEB,tOEB,gg)
+var a2EB=_v()
+_(l1EB,a2EB)
+cs.push("./page/component/index.wxml:block:18:18")
+var t3EB=function(b5EB,e4EB,o6EB,gg){
+cs.push("./page/component/index.wxml:block:18:18")
+var o8EB=_v()
+_(o6EB,o8EB)
+if(_oz(z,32,b5EB,e4EB,gg)){o8EB.wxVkey=1
+cs.push("./page/component/index.wxml:navigator:19:20")
+cs.push("./page/component/index.wxml:navigator:19:20")
+var f9EB=_mz(z,'navigator',['appId',33,'class',1,'extraData',2,'openType',3,'path',4,'target',5,'version',6],[],b5EB,e4EB,gg)
+cs.push("./page/component/index.wxml:view:20:22")
+var c0EB=_n('view')
+_rz(z,c0EB,'class',40,b5EB,e4EB,gg)
+var hAFB=_oz(z,41,b5EB,e4EB,gg)
+_(c0EB,hAFB)
+cs.pop()
+_(f9EB,c0EB)
+cs.push("./page/component/index.wxml:view:21:22")
+var oBFB=_n('view')
+_rz(z,oBFB,'class',42,b5EB,e4EB,gg)
+cs.pop()
+_(f9EB,oBFB)
+cs.pop()
+_(o8EB,f9EB)
+cs.pop()
+}
+else{o8EB.wxVkey=2
+cs.push("./page/component/index.wxml:navigator:23:20")
+cs.push("./page/component/index.wxml:navigator:23:20")
+var cCFB=_mz(z,'navigator',['class',43,'url',1],[],b5EB,e4EB,gg)
+cs.push("./page/component/index.wxml:view:24:22")
+var oDFB=_n('view')
+_rz(z,oDFB,'class',45,b5EB,e4EB,gg)
+var lEFB=_oz(z,46,b5EB,e4EB,gg)
+_(oDFB,lEFB)
+cs.pop()
+_(cCFB,oDFB)
+cs.push("./page/component/index.wxml:view:25:22")
+var aFFB=_n('view')
+_rz(z,aFFB,'class',47,b5EB,e4EB,gg)
+cs.pop()
+_(cCFB,aFFB)
+cs.pop()
+_(o8EB,cCFB)
+cs.pop()
+}
+o8EB.wxXCkey=1
+cs.pop()
+return o6EB
+}
+_wp('./page/component/index.wxml:block:18:18: wx:key="*item" does not look like a valid key name.')
+a2EB.wxXCkey=2
+_2z(z,30,t3EB,ePEB,tOEB,gg,a2EB,'page','index','*item')
+cs.pop()
+cs.pop()
+_(oZEB,l1EB)
+cs.pop()
+_(xSEB,oZEB)
+cs.pop()
+_(bQEB,xSEB)
+cs.pop()
+return bQEB
+}
+_wp('./page/component/index.wxml:block:9:10: wx:key="{{item.id}}" does not look like a valid key name (did you mean wx:key="id" ?)')
+lMEB.wxXCkey=2
+_2z(z,14,aNEB,e,s,gg,lMEB,'item','index','{{item.id}}')
+cs.pop()
+cs.pop()
+_(cKEB,oLEB)
+cs.pop()
+_(bCEB,cKEB)
+cs.pop()
+_(eBEB,bCEB)
+cs.pop()
+_(r,eBEB)
+return r
+}
+e_[x[11]]=e_[x[11]]||{f:m9,j:[],i:[],ti:[],ic:[]}
+d_[x[12]]={}
+var m10=function(e,s,r,gg){
+var z=gz$7061636b616765436f6d706f6e656e742f_11()
+cs.push("./page/extend/index.wxml:view:1:1")
+var eHFB=_mz(z,'view',['class',0,'data-weui-theme',1],[],e,s,gg)
+cs.push("./page/extend/index.wxml:view:6:7")
+var bIFB=_n('view')
+_rz(z,bIFB,'class',2,e,s,gg)
+cs.push("./page/extend/index.wxml:image:7:6")
+var oJFB=_mz(z,'image',['class',3,'src',1],[],e,s,gg)
+cs.pop()
+_(bIFB,oJFB)
+cs.push("./page/extend/index.wxml:view:8:6")
+var xKFB=_n('view')
+_rz(z,xKFB,'class',5,e,s,gg)
+var oLFB=_oz(z,6,e,s,gg)
+_(xKFB,oLFB)
+cs.push("./page/extend/index.wxml:navigator:8:161")
+var fMFB=_mz(z,'navigator',['class',7,'url',1],[],e,s,gg)
+var cNFB=_oz(z,9,e,s,gg)
+_(fMFB,cNFB)
+cs.pop()
+_(xKFB,fMFB)
+var hOFB=_oz(z,10,e,s,gg)
+_(xKFB,hOFB)
+cs.pop()
+_(bIFB,xKFB)
+cs.pop()
+_(eHFB,bIFB)
+cs.push("./page/extend/index.wxml:view:13:6")
+var oPFB=_n('view')
+_rz(z,oPFB,'class',11,e,s,gg)
+cs.push("./page/extend/index.wxml:view:14:10")
+var cQFB=_n('view')
+_rz(z,cQFB,'class',12,e,s,gg)
+var oRFB=_v()
+_(cQFB,oRFB)
+cs.push("./page/extend/index.wxml:block:15:14")
+var lSFB=function(tUFB,aTFB,eVFB,gg){
+cs.push("./page/extend/index.wxml:block:15:14")
+cs.push("./page/extend/index.wxml:view:16:18")
+var oXFB=_n('view')
+_rz(z,oXFB,'class',15,tUFB,aTFB,gg)
+cs.push("./page/extend/index.wxml:view:17:22")
+var xYFB=_mz(z,'view',['bindtap',16,'class',1,'id',2],[],tUFB,aTFB,gg)
+cs.push("./page/extend/index.wxml:view:18:26")
+var oZFB=_n('view')
+_rz(z,oZFB,'class',19,tUFB,aTFB,gg)
+var f1FB=_oz(z,20,tUFB,aTFB,gg)
+_(oZFB,f1FB)
+cs.pop()
+_(xYFB,oZFB)
+cs.push("./page/extend/index.wxml:image:19:26")
+var c2FB=_mz(z,'image',['class',21,'src',1],[],tUFB,aTFB,gg)
+cs.pop()
+_(xYFB,c2FB)
+cs.pop()
+_(oXFB,xYFB)
+cs.push("./page/extend/index.wxml:view:21:22")
+var h3FB=_n('view')
+_rz(z,h3FB,'class',23,tUFB,aTFB,gg)
+cs.push("./page/extend/index.wxml:view:22:26")
+var o4FB=_n('view')
+_rz(z,o4FB,'class',24,tUFB,aTFB,gg)
+var c5FB=_v()
+_(o4FB,c5FB)
+cs.push("./page/extend/index.wxml:block:23:30")
+var o6FB=function(a8FB,l7FB,t9FB,gg){
+cs.push("./page/extend/index.wxml:block:23:30")
+var bAGB=_v()
+_(t9FB,bAGB)
+if(_oz(z,28,a8FB,l7FB,gg)){bAGB.wxVkey=1
+cs.push("./page/extend/index.wxml:navigator:24:34")
+cs.push("./page/extend/index.wxml:navigator:24:34")
+var oBGB=_mz(z,'navigator',['class',29,'url',1],[],a8FB,l7FB,gg)
+cs.push("./page/extend/index.wxml:view:25:38")
+var xCGB=_n('view')
+_rz(z,xCGB,'class',31,a8FB,l7FB,gg)
+var oDGB=_oz(z,32,a8FB,l7FB,gg)
+_(xCGB,oDGB)
+cs.pop()
+_(oBGB,xCGB)
+cs.push("./page/extend/index.wxml:view:26:38")
+var fEGB=_n('view')
+_rz(z,fEGB,'class',33,a8FB,l7FB,gg)
+cs.pop()
+_(oBGB,fEGB)
+cs.pop()
+_(bAGB,oBGB)
+cs.pop()
+}
+else{bAGB.wxVkey=2
+cs.push("./page/extend/index.wxml:navigator:28:34")
+cs.push("./page/extend/index.wxml:navigator:28:34")
+var cFGB=_mz(z,'navigator',['class',34,'url',1],[],a8FB,l7FB,gg)
+cs.push("./page/extend/index.wxml:view:29:38")
+var hGGB=_n('view')
+_rz(z,hGGB,'class',36,a8FB,l7FB,gg)
+var oHGB=_oz(z,37,a8FB,l7FB,gg)
+_(hGGB,oHGB)
+cs.pop()
+_(cFGB,hGGB)
+cs.push("./page/extend/index.wxml:view:30:38")
+var cIGB=_n('view')
+_rz(z,cIGB,'class',38,a8FB,l7FB,gg)
+cs.pop()
+_(cFGB,cIGB)
+cs.pop()
+_(bAGB,cFGB)
+cs.pop()
+}
+bAGB.wxXCkey=1
+cs.pop()
+return t9FB
+}
+c5FB.wxXCkey=2
+_2z(z,26,o6FB,tUFB,aTFB,gg,c5FB,'page','index','*this')
+cs.pop()
+cs.pop()
+_(h3FB,o4FB)
+cs.pop()
+_(oXFB,h3FB)
+cs.pop()
+_(eVFB,oXFB)
+cs.pop()
+return eVFB
+}
+oRFB.wxXCkey=2
+_2z(z,13,lSFB,e,s,gg,oRFB,'item','index','id')
+cs.pop()
+cs.pop()
+_(oPFB,cQFB)
+cs.pop()
+_(eHFB,oPFB)
+cs.push("./page/extend/index.wxml:view:39:6")
+var oJGB=_n('view')
+_rz(z,oJGB,'class',39,e,s,gg)
+cs.pop()
+_(eHFB,oJGB)
+cs.pop()
+_(r,eHFB)
+return r
+}
+e_[x[12]]=e_[x[12]]||{f:m10,j:[],i:[],ti:[],ic:[]}
+
 COMMON=====./page/extend/index.wxml----function gz\$7061636b616765436f6d706f6e656e742f_45\(\)\{[\s\S]*?__WXML_GLOBAL__\.ops_cached\.\$7061636b616765436f6d706f6e656e742f_45
 }

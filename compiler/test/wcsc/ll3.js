@@ -10,6 +10,7 @@ const config = [
     "-db",
     "-pc",
     "9",
+    "-ll",
     "./page/component/index.wxss",
     "./page/API/index.wxss",
     "./page/cloud/index.wxss",
