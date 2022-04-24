@@ -8,9 +8,12 @@ const wcsc_options2 = {"pageCount":9,"files":["./page/component/index.wxss","./p
 
 const test = async (options, id) => {
     console.log("============", id)
+    try{
+        fs.mkdirSync(path.resolve(__dirname, `${id}`))
+    }catch(ignore){}
     const wcsc = require("wcc_" + MODE).wcsc;
     const wcsc_result = await wcsc(options);
-    fs.writeFileSync(path.resolve(__dirname, `wcsc_node_${id}${MODE}.txt`), JSON.stringify(wcsc_result, null, 4))
+    fs.writeFileSync(path.resolve(__dirname, `${id}/wcsc_node_${MODE}.txt`), JSON.stringify(wcsc_result, null, 4))
 };
 test(wcsc_options1, 1);
 test(wcsc_options2, 2);
