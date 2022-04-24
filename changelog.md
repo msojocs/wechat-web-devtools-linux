@@ -1,3 +1,7 @@
+# 1.05.2204180-2 / 2022-
+- feat: wcc,wcsc node模块懒加载template解析支持
+- feat: wcc,wcsc node模块懒加载cut参数支持
+
 # 1.05.2204180-1 / 2022-04-24
 - update: devtools 1.05.2204180
 - update: 跟进更新 wcc,wcsc node模块逻辑
