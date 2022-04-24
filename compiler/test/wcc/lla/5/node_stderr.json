@@ -1,0 +1,39 @@
+d_[x[0]]["odd"]=function(e,s,r,gg){
+var z=gz$gwx_1()
+var b=x[0]+':odd'
+r.wxVkey=b
+gg.f=$gdc(f_["./pages/index/index.wxml"],"",1)
+if(p_[b]){_wl(b,x[0]);return}
+p_[b]=true
+try{
+}catch(err){
+p_[b]=false
+throw err
+}
+p_[b]=false
+return r
+}
+d_[x[0]]["even"]=function(e,s,r,gg){
+var z=gz$gwx_1()
+var b=x[0]+':even'
+r.wxVkey=b
+gg.f=$gdc(f_["./pages/index/index.wxml"],"",1)
+if(p_[b]){_wl(b,x[0]);return}
+p_[b]=true
+try{
+}catch(err){
+p_[b]=false
+throw err
+}
+p_[b]=false
+return r
+}
+------
+wxmlName: pages/index/index debugWXS: false, hasDeps: false, templateReg: true
+["./pages/index/index.wxml","./pages/logs/logs.wxml"] {"funcName":"$gwx_XC_0","num":0,"deps":[]}
+
+无匹配
+------
+wxmlName: pages/logs/logs debugWXS: false, hasDeps: false, templateReg: false
+["./pages/index/index.wxml","./pages/logs/logs.wxml"] {"funcName":"$gwx_XC_1","num":1,"deps":[]}
+

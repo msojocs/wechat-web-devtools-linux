@@ -1,5 +1,7 @@
 # 1.05.2204180-1 / 2022-
 - update: devtools 1.05.2204180
+- update: 跟进更新 wcc,wcsc node模块逻辑
+- feat: wcc,wcsc编译器template解析支持
 
 # 1.05.2203070-10 / 2022-04-22
 - fix: 修正命令行入口

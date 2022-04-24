@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// wcc.exe md5 = "dbb9ed8bdee6654460dafc618f9622f3"
-const version = "20220310";
+// wcc.exe md5 = "0634f39da88890439a92351ce102efd9"
+const version = "20220424";
 const { spawn } = require("child_process");
 const path = require("path");
 const fs = require("fs");
@@ -16,7 +16,7 @@ const FUNC_PREFIX = `=function(_,_v,_n,_p,_s,_wp,_wl,$gwn,$gwl,$gwh,wh,$gstack,$
 function parseDeps(source, x, pageConfig){
 
     // 插入引用信息
-    let dep_x = `var x=['`;
+    let dep_x = `var x=[`;
     let dep_gz = "";
     let dep_d_ = "";
     let t_x = [];
@@ -92,7 +92,8 @@ function parseDeps(source, x, pageConfig){
             ) + "\n";
         i++;
     }
-    dep_x += `${t_x.join("','")}'];`;
+    dep_x += t_x.length > 0 ? `'${t_x.join("','")}'` : '';
+    dep_x += `];`;
     return {
         dep_x,
         dep_gz,
@@ -108,6 +109,13 @@ function genFunctionContent_LLW(wxmlName, config = {}, source, x) {
     content +=
         "var cs = cs || [];" +
         cs[1].replace(new RegExp(`\\${funcName}`, "g"), config.funcName);
+
+    // template 检测 模板处理位于二者之间： d_[x[index]]={} ---{template}-- var m0; x[index]中index为wxml在x数组中的索引, m0中数字为当前函数代码
+    const templateReg = source.match(new RegExp(`d_\\[x\\[${x.indexOf(`./${wxmlName}.wxml`)}\\]\\]=\\{\\}\n([\\s\\S]*?)\nvar m${config.num}=`))
+    if(templateReg)
+    DEBUG_OUTPUT && process.stderr.write(templateReg[1] + '\n------\n')
+    else
+    DEBUG_OUTPUT && process.stderr.write('无匹配\n------\n')
 
     // gz函数
     const exp = `function gz\\${funcName}_${
@@ -152,6 +160,10 @@ function genFunctionContent_LLW(wxmlName, config = {}, source, x) {
         }
     }
     content += `];d_[x[0]]={}\u000a`;
+    templateReg && (content += templateReg[1].replace(
+        new RegExp(`\\${funcName}\\_\\d+`, "g"),
+        `${config.funcName}_1`
+    ) + '\n')
     m0_str = m0_str.replace(new RegExp(`x\\[${config.num}\\]`, "g"), "x[0]");
     content += m0_str.replace(
         new RegExp(`\\${funcName}\\_\\d+`, "g"),
@@ -221,9 +233,17 @@ function genFunctionContent_LLA(wxmlName, config = {}, source, x) {
         "var cs = cs || [];" +
         cs[1].replace(new RegExp(`\\${funcName}`, "g"), config.funcName);
 
+    // template 检测 模板处理位于二者之间： d_[x[index]]={} ---{template}-- var m0; x[index]中index为wxml在x数组中的索引, m0中数字为当前函数代码
+    const templateReg = source.match(new RegExp(`d_\\[x\\[${x.indexOf(`./${wxmlName}.wxml`)}\\]\\]=\\{\\}\n([\\s\\S]*?)\nvar m${config.num}=`))
+    if(templateReg)
+    DEBUG_OUTPUT && process.stderr.write(templateReg[1] + '\n------\n')
+    else
+    DEBUG_OUTPUT && process.stderr.write('无匹配\n------\n')
+
+    DEBUG_OUTPUT && process.stderr.write(`wxmlName: ${wxmlName} debugWXS: ${!!debugWXS}, hasDeps: ${!!hasDeps}, templateReg: ${!!templateReg}\n${JSON.stringify(x)} ${JSON.stringify(config)}\n\n`)
     // gz函数
     let gz;
-    if (!debugWXS && !hasDeps) {
+    if (!debugWXS && !hasDeps && !templateReg) {
         const exp = `function gz\\${funcName}_${
             config.num + 1
         }\\(\\)\\{[\\s\\S]*?\\)\\}`;
@@ -262,7 +282,7 @@ function genFunctionContent_LLA(wxmlName, config = {}, source, x) {
 
     // m0 --- m{num}
     content += `var x=['./${wxmlName}.wxml'`;
-    if (!debugWXS && !hasDeps) {
+    if (!debugWXS && !hasDeps && !templateReg) {
         content += `];d_[x[0]]={}\u000a`;
         content += `var m0=function(e,s,r,gg){\u000avar z=gz${config.funcName}_1()\u000areturn r\u000a}\u000ae_[x[0]]=e_[x[0]]||{f:m0,j:[],i:[],ti:[],ic:[]}`;
     } else {
@@ -284,10 +304,14 @@ function genFunctionContent_LLA(wxmlName, config = {}, source, x) {
             }
         }
         content += `];d_[x[0]]={}\u000a`;
+        templateReg && (content += templateReg[1].replace(
+            new RegExp(`\\${funcName}\\_\\d+`, "g"),
+            `${config.funcName}_1`
+        ) + '\n')
         m0_str = m0_str.replace(
             new RegExp(`x\\[${config.num}\\]`, "g"),
             "x[0]"
-        );
+        ).replace('={f', '=e_[x[0]]||{f');
         content += m0_str.replace(
             new RegExp(`\\${funcName}\\_\\d+`, "g"),
             `${config.funcName}_1`
