@@ -1,0 +1,20 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# 检验版本号是否匹配
+
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+
+# 获取开发工具版本号与MD5
+VERSION_DATA=$( cat "$root_dir/conf/devtools_v" )
+VERSION_DATA=(${VERSION_DATA//,/ })
+TARGET_VERSION=${VERSION_DATA[0]}
+TARGET_VERSION_MD5=${VERSION_DATA[1]}
+
+# 获取snapcraft中的版本号
+SNAP_VERSION=$(find $root_dir/snap -name "snapcraft.yaml" | xargs grep -P "'\d+\.\d+\.\d{5,}" -o)
+
+if [ "$SNAP_VERSION" != "'$TARGET_VERSION" ];then
+    echo "SNAP版本不匹配！！！"
+    exit 1
+fi
