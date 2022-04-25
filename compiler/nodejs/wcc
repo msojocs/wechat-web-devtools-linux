@@ -396,6 +396,7 @@ if (args.includes("-llw")) {
                     __COMMON__: funcName,
                 },
             };
+            // 取分割符
             const split_mark = argss[argss.indexOf("--split") + 1];
             // ./miniprogram_npm/miniprogram-barrage/index>_<4685./m
             const needArr = argss
@@ -403,11 +404,14 @@ if (args.includes("-llw")) {
                     (arg) => arg.includes(split_mark) && arg.startsWith("./")
                 )[0]
                 .split(split_mark);
+            // 获取x数组并解析
             const indexArr = eval(str.match(/var x=(\[.*\]);/)[1]);
             const pageConfig = {};
             let i = 0;
             indexArr.forEach((ele, index) => {
+                // 非 ../ 开头
                 if (!ele.startsWith("../")) {
+                    // a/b/c -> {}
                     pageConfig[ele.substring(2, ele.length - 5)] = {
                         funcName: `${funcName}_XC_${i}`,
                         num: i,
@@ -416,20 +420,20 @@ if (args.includes("-llw")) {
                     i++;
                 }
             });
-            // 引入解析
+            // 获取所有依赖 _ai函数 被引入的文件, 文件
             const deps = str.matchAll(
                 /_ai\(.*?,x\[(\d+)\],.*?,x\[(\d+)\],\d+,\d+\)/g
             );
+            // 处理依赖
             for (let dep of deps) {
-                // console.log(dep[1]) // 被引用文件下标
-                // console.log(dep[2]) // 引用文件下标
                 const target = indexArr[dep[2]];
                 pageConfig[target.substring(2, target.length - 5)].deps.unshift(
                     "./" + path.join(path.dirname(target), indexArr[dep[1]])
                 );
             }
+            // 生成函数内容
             for (let key in pageConfig) {
-                if (needArr.includes("./" + key)) {
+                if (needArr.includes(`./${key}`)) {
                     resultObj.generateFunctionName[key] =
                         pageConfig[key].funcName;
                     resultObj.generateFunctionContent[key] =
@@ -441,6 +445,7 @@ if (args.includes("-llw")) {
                         );
                 }
             }
+            // 生成common
             resultObj.generateFunctionContent.__COMMON__ = genCommonContent_LLW(
                 str,
                 pageConfig,

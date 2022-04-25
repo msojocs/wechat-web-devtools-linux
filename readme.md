@@ -10,14 +10,13 @@
 ----
 
 [![Node.js CI](https://github.com/msojocs/wechat-devtools-linux/actions/workflows/release.yml/badge.svg)](https://github.com/msojocs/wechat-devtools-linux/actions/workflows/release.yml)
-[![wechat-tools](https://img.shields.io/badge/wechat--devtools-1.05.2203070-yellow)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+[![wechat-tools](https://img.shields.io/badge/wechat--devtools-1.05.2204180-yellow)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 [![nwjs](https://img.shields.io/badge/nwjs-0.55.0-green)](https://nwjs.io/downloads/)
 [![node](https://img.shields.io/badge/node-16.4.2-orange)](https://nodejs.org/en/)
-[![node](https://img.shields.io/badge/aur-1.05.2203070-blue)](https://aur.archlinux.org/packages/wechat-devtools)
+[![aur](https://img.shields.io/aur/version/wechat-devtools)](https://aur.archlinux.org/packages/wechat-devtools)
 
   这是微信开发者工具 Linux版
   
-  图标作者[dragonation](https://github.com/dragonation), 由于是基于其项目修改，未经授权。
 
   <br>
 </div>
