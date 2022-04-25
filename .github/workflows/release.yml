@@ -364,7 +364,7 @@ jobs:
     needs:
       - build-tar
       - build-deb
-      # - build-deepin
+      - build-snap
       - build-arch
     runs-on: ubuntu-latest
     steps:
