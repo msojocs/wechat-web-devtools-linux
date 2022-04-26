@@ -5,7 +5,7 @@ const path = require("path");
 const fs = require("fs");
 const { exit } = require("process");
 
-const projectPath = "/home/msojocs/Documents/we1";
+const projectPath = "/mnt/disk1/WeChatProjects/we1";
 const config = ["-d","--split",">_<7271","-cc","2>_<7271./pages/index/index.wxml>_<72710>_<7271./pages/logs/logs.wxml>_<72710","-llw","./pages/index/index>_<7271./pages/logs/logs","./pages/index/index.wxml","./pages/logs/logs.wxml","-gn","$gwx"];
 const id = 5;
 

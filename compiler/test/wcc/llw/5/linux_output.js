@@ -1057,6 +1057,11 @@ Z([3,'even'])
 Z([3,' even '])
 Z([[4],[[5],[[5],[[5],[[5],[[5],[1,1]],[1,2]],[1,3]],[1,4]],[1,5]]])
 Z([[2,'?:'],[[2,'=='],[[2,'%'],[[7],[3,'item']],[1,2]],[1,0]],[1,'even'],[1,'odd']])
+Z([3,'msgItem'])
+Z([a,[3,' '],[[7],[3,'index']],[3,': '],[[7],[3,'msg']],[3,' ']])
+Z([a,[3,' Time: '],[[7],[3,'time']],z[8][1]])
+Z([[10],[[7],[3,'item']]])
+Z(z[7])
 Z([3,'userinfo'])
 Z([[7],[3,'canIUseOpenData']])
 Z([3,'bindViewTap'])
@@ -1070,11 +1075,11 @@ Z([3,'getUserProfile'])
 Z([3,' 获取头像昵称 '])
 Z([[7],[3,'canIUse']])
 Z([3,'getUserInfo'])
-Z(z[19])
-Z(z[17])
+Z(z[24])
+Z(z[22])
 Z([3,' 请使用1.4.4及以上版本基础库 '])
-Z(z[9])
-Z(z[10])
+Z(z[14])
+Z(z[15])
 Z([3,'cover'])
 Z([[6],[[7],[3,'userInfo']],[3,'avatarUrl']])
 Z([3,'userinfo-nickname'])
@@ -1145,6 +1150,37 @@ throw err
 p_[b]=false
 return r
 }
+d_[x[0]]["msgItem"]=function(e,s,r,gg){
+var z=gz$gwx_1()
+var b=x[0]+':msgItem'
+r.wxVkey=b
+gg.f=$gdc(f_["./pages/index/index.wxml"],"",1)
+if(p_[b]){_wl(b,x[0]);return}
+p_[b]=true
+try{
+cs.push("./pages/index/index.wxml:view:19:4")
+var oB=_n('view')
+cs.push("./pages/index/index.wxml:text:20:6")
+var xC=_n('text')
+var oD=_oz(z,8,e,s,gg)
+_(xC,oD)
+cs.pop()
+_(oB,xC)
+cs.push("./pages/index/index.wxml:text:21:6")
+var fE=_n('text')
+var cF=_oz(z,9,e,s,gg)
+_(fE,cF)
+cs.pop()
+_(oB,fE)
+cs.pop()
+_(r,oB)
+}catch(err){
+p_[b]=false
+throw err
+}
+p_[b]=false
+return r
+}
 var m0=function(e,s,r,gg){
 var z=gz$gwx_1()
 cs.push("./pages/index/index.wxml:view:2:2")
@@ -1176,96 +1212,110 @@ _wp('./pages/index/index.wxml:block:10:4: Now you can provide attr `wx:key` for 
 xC.wxXCkey=2
 _2z(z,5,oD,e,s,gg,xC,'item','index','')
 cs.pop()
-cs.push("./pages/index/index.wxml:view:14:4")
-var tM=_n('view')
-_rz(z,tM,'class',7,e,s,gg)
-var eN=_v()
-_(tM,eN)
-if(_oz(z,8,e,s,gg)){eN.wxVkey=1
-cs.push("./pages/index/index.wxml:block:15:6")
-cs.push("./pages/index/index.wxml:view:16:8")
-var bO=_mz(z,'view',['bindtap',9,'class',1,'style',2],[],e,s,gg)
-cs.push("./pages/index/index.wxml:open-data:17:10")
-var oP=_n('open-data')
-_rz(z,oP,'type',12,e,s,gg)
-cs.pop()
-_(bO,oP)
-cs.pop()
-_(eN,bO)
-cs.push("./pages/index/index.wxml:open-data:19:8")
-var xQ=_n('open-data')
-_rz(z,xQ,'type',13,e,s,gg)
-cs.pop()
-_(eN,xQ)
-cs.pop()
+var tM=_v()
+_(oB,tM)
+cs.push("./pages/index/index.wxml:template:24:2")
+var eN=_oz(z,11,e,s,gg)
+var bO=_gd(x[0],eN,e_,d_)
+if(bO){
+var oP=_1z(z,10,e,s,gg) || {}
+var cur_globalf=gg.f
+tM.wxXCkey=3
+bO(oP,oP,tM,gg)
+gg.f=cur_globalf
 }
-else if(_oz(z,14,e,s,gg)){eN.wxVkey=2
-cs.push("./pages/index/index.wxml:block:21:6")
+else _w(eN,x[0],24,14)
+cs.pop()
+cs.push("./pages/index/index.wxml:view:26:4")
+var xQ=_n('view')
+_rz(z,xQ,'class',12,e,s,gg)
 var oR=_v()
-_(eN,oR)
-if(_oz(z,15,e,s,gg)){oR.wxVkey=1
-cs.push("./pages/index/index.wxml:button:22:8")
-cs.push("./pages/index/index.wxml:button:22:8")
-var fS=_n('button')
-_rz(z,fS,'bindtap',16,e,s,gg)
-var cT=_oz(z,17,e,s,gg)
+_(xQ,oR)
+if(_oz(z,13,e,s,gg)){oR.wxVkey=1
+cs.push("./pages/index/index.wxml:block:27:6")
+cs.push("./pages/index/index.wxml:view:28:8")
+var fS=_mz(z,'view',['bindtap',14,'class',1,'style',2],[],e,s,gg)
+cs.push("./pages/index/index.wxml:open-data:29:10")
+var cT=_n('open-data')
+_rz(z,cT,'type',17,e,s,gg)
+cs.pop()
 _(fS,cT)
 cs.pop()
 _(oR,fS)
-cs.pop()
-}
-else if(_oz(z,18,e,s,gg)){oR.wxVkey=2
-cs.push("./pages/index/index.wxml:button:23:8")
-cs.push("./pages/index/index.wxml:button:23:8")
-var hU=_mz(z,'button',['bindgetuserinfo',19,'openType',1],[],e,s,gg)
-var oV=_oz(z,21,e,s,gg)
-_(hU,oV)
+cs.push("./pages/index/index.wxml:open-data:31:8")
+var hU=_n('open-data')
+_rz(z,hU,'type',18,e,s,gg)
 cs.pop()
 _(oR,hU)
 cs.pop()
 }
-else{oR.wxVkey=3
-cs.push("./pages/index/index.wxml:view:24:8")
-cs.push("./pages/index/index.wxml:view:24:8")
-var cW=_n('view')
+else if(_oz(z,19,e,s,gg)){oR.wxVkey=2
+cs.push("./pages/index/index.wxml:block:33:6")
+var oV=_v()
+_(oR,oV)
+if(_oz(z,20,e,s,gg)){oV.wxVkey=1
+cs.push("./pages/index/index.wxml:button:34:8")
+cs.push("./pages/index/index.wxml:button:34:8")
+var cW=_n('button')
+_rz(z,cW,'bindtap',21,e,s,gg)
 var oX=_oz(z,22,e,s,gg)
 _(cW,oX)
 cs.pop()
-_(oR,cW)
+_(oV,cW)
+cs.pop()
+}
+else if(_oz(z,23,e,s,gg)){oV.wxVkey=2
+cs.push("./pages/index/index.wxml:button:35:8")
+cs.push("./pages/index/index.wxml:button:35:8")
+var lY=_mz(z,'button',['bindgetuserinfo',24,'openType',1],[],e,s,gg)
+var aZ=_oz(z,26,e,s,gg)
+_(lY,aZ)
+cs.pop()
+_(oV,lY)
+cs.pop()
+}
+else{oV.wxVkey=3
+cs.push("./pages/index/index.wxml:view:36:8")
+cs.push("./pages/index/index.wxml:view:36:8")
+var t1=_n('view')
+var e2=_oz(z,27,e,s,gg)
+_(t1,e2)
+cs.pop()
+_(oV,t1)
+cs.pop()
+}
+oV.wxXCkey=1
+cs.pop()
+}
+else{oR.wxVkey=3
+cs.push("./pages/index/index.wxml:block:38:6")
+cs.push("./pages/index/index.wxml:image:39:8")
+var b3=_mz(z,'image',['bindtap',28,'class',1,'mode',2,'src',3],[],e,s,gg)
+cs.pop()
+_(oR,b3)
+cs.push("./pages/index/index.wxml:text:40:8")
+var o4=_n('text')
+_rz(z,o4,'class',32,e,s,gg)
+var x5=_oz(z,33,e,s,gg)
+_(o4,x5)
+cs.pop()
+_(oR,o4)
 cs.pop()
 }
 oR.wxXCkey=1
 cs.pop()
-}
-else{eN.wxVkey=3
-cs.push("./pages/index/index.wxml:block:26:6")
-cs.push("./pages/index/index.wxml:image:27:8")
-var lY=_mz(z,'image',['bindtap',23,'class',1,'mode',2,'src',3],[],e,s,gg)
+_(oB,xQ)
+cs.push("./pages/index/index.wxml:view:43:4")
+var o6=_mz(z,'view',['class',34,'style',1],[],e,s,gg)
+cs.push("./pages/index/index.wxml:text:44:6")
+var f7=_n('text')
+_rz(z,f7,'class',36,e,s,gg)
+var c8=_oz(z,37,e,s,gg)
+_(f7,c8)
 cs.pop()
-_(eN,lY)
-cs.push("./pages/index/index.wxml:text:28:8")
-var aZ=_n('text')
-_rz(z,aZ,'class',27,e,s,gg)
-var t1=_oz(z,28,e,s,gg)
-_(aZ,t1)
+_(o6,f7)
 cs.pop()
-_(eN,aZ)
-cs.pop()
-}
-eN.wxXCkey=1
-cs.pop()
-_(oB,tM)
-cs.push("./pages/index/index.wxml:view:31:4")
-var e2=_mz(z,'view',['class',29,'style',1],[],e,s,gg)
-cs.push("./pages/index/index.wxml:text:32:6")
-var b3=_n('text')
-_rz(z,b3,'class',31,e,s,gg)
-var o4=_oz(z,32,e,s,gg)
-_(b3,o4)
-cs.pop()
-_(e2,b3)
-cs.pop()
-_(oB,e2)
+_(oB,o6)
 cs.pop()
 _(r,oB)
 return r
@@ -1275,27 +1325,27 @@ d_[x[1]]={}
 var m1=function(e,s,r,gg){
 var z=gz$gwx_2()
 cs.push("./pages/logs/logs.wxml:view:2:2")
-var o6=_n('view')
-_rz(z,o6,'class',0,e,s,gg)
-var f7=_v()
-_(o6,f7)
+var o0=_n('view')
+_rz(z,o0,'class',0,e,s,gg)
+var cAB=_v()
+_(o0,cAB)
 cs.push("./pages/logs/logs.wxml:block:3:4")
-var c8=function(o0,h9,cAB,gg){
+var oBB=function(aDB,lCB,tEB,gg){
 cs.push("./pages/logs/logs.wxml:block:3:4")
 cs.push("./pages/logs/logs.wxml:text:4:6")
-var lCB=_mz(z,'text',['class',4,'style',1],[],o0,h9,gg)
-var aDB=_oz(z,6,o0,h9,gg)
-_(lCB,aDB)
+var bGB=_mz(z,'text',['class',4,'style',1],[],aDB,lCB,gg)
+var oHB=_oz(z,6,aDB,lCB,gg)
+_(bGB,oHB)
 cs.pop()
-_(cAB,lCB)
+_(tEB,bGB)
 cs.pop()
-return cAB
+return tEB
 }
-f7.wxXCkey=2
-_2z(z,2,c8,e,s,gg,f7,'log','index','timeStamp')
+cAB.wxXCkey=2
+_2z(z,2,oBB,e,s,gg,cAB,'log','index','timeStamp')
 cs.pop()
 cs.pop()
-_(r,o6)
+_(r,o0)
 return r
 }
 e_[x[1]]={f:m1,j:[],i:[],ti:[],ic:[]}

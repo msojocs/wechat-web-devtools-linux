@@ -1052,6 +1052,9 @@ Z([3,'odd'])
 Z([3,'even'])
 Z([[4],[[5],[[5],[[5],[[5],[[5],[1,1]],[1,2]],[1,3]],[1,4]],[1,5]]])
 Z([[2,'?:'],[[2,'=='],[[2,'%'],[[7],[3,'item']],[1,2]],[1,0]],[1,'even'],[1,'odd']])
+Z([3,'msgItem'])
+Z([[10],[[7],[3,'item']]])
+Z(z[5])
 })(__WXML_GLOBAL__.ops_cached.$gwx_1);return __WXML_GLOBAL__.ops_cached.$gwx_1
 }
 function gz$gwx_2(){
@@ -1095,6 +1098,21 @@ throw err
 p_[b]=false
 return r
 }
+d_[x[0]]["msgItem"]=function(e,s,r,gg){
+var z=gz$gwx_1()
+var b=x[0]+':msgItem'
+r.wxVkey=b
+gg.f=$gdc(f_["./pages/index/index.wxml"],"",1)
+if(p_[b]){_wl(b,x[0]);return}
+p_[b]=true
+try{
+}catch(err){
+p_[b]=false
+throw err
+}
+p_[b]=false
+return r
+}
 var m0=function(e,s,r,gg){
 var z=gz$gwx_1()
 cs.push("./pages/index/index.wxml:view:2:2")
@@ -1123,6 +1141,20 @@ return hG
 _wp('./pages/index/index.wxml:block:10:4: Now you can provide attr `wx:key` for a `wx:for` to improve performance.')
 xC.wxXCkey=2
 _2z(z,3,oD,e,s,gg,xC,'item','index','')
+cs.pop()
+var tM=_v()
+_(oB,tM)
+cs.push("./pages/index/index.wxml:template:24:2")
+var eN=_oz(z,7,e,s,gg)
+var bO=_gd(x[0],eN,e_,d_)
+if(bO){
+var oP=_1z(z,6,e,s,gg) || {}
+var cur_globalf=gg.f
+tM.wxXCkey=3
+bO(oP,oP,tM,gg)
+gg.f=cur_globalf
+}
+else _w(eN,x[0],24,14)
 cs.pop()
 cs.pop()
 _(r,oB)
