@@ -35,10 +35,13 @@ if [ "${SNAP_DEVTOOL_VERSION//=/}" != "${TARGET_VERSION//./}" ];then
     exit 1
 fi
 
-# LATEST_TAG=$(git describe --abbrev=0)
-# SNAP_VERSION=$(grep -P "'\d+\.\d+\.\d+-\d+" -o $root_dir/snap/snapcraft.yaml)
-# if [ "v${SNAP_VERSION//\'/}" != "$LATEST_TAG" ];then
-#     echo "SNAP版本与TAG不符!!!"
-#     echo "SNAP版本: v${SNAP_VERSION//\'/} != 最新TAG: $LATEST_TAG"
-#     exit 1
-# fi
+# 有当前版本的TAG,检查snap版本是否符合要求
+LATEST_TAG=$(git describe --abbrev=0)
+if [[ $LATEST_TAG == "v${TARGET_VERSION}"* ]];then
+    SNAP_VERSION=$(grep -P "'\d+\.\d+\.\d+-\d+" -o $root_dir/snap/snapcraft.yaml)
+    if [ "v${SNAP_VERSION//\'/}" != "$LATEST_TAG" ];then
+        echo "SNAP版本与TAG不符!!!"
+        echo "SNAP版本: v${SNAP_VERSION//\'/} != 最新TAG: $LATEST_TAG"
+        exit 1
+    fi
+fi
