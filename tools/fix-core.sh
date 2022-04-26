@@ -52,9 +52,16 @@ if [[ $NO_WINE == 'true' ]];then
     sed -i "s#{wcc:!0,wcsc:!0}#$new_str#g" "$find_result"
     new_str='"linux"===process.platform'
     sed -i "s#\"darwin\"===process.platform#$new_str#g" "$find_result"
-    # TODO: 看能不能动态识别函数名j,因为不同版本会发生变化
-    sed -i 's#return j("wcc")#return j("wcc.bin"),j("wcc")#g' "$find_result"
-    sed -i 's#return j("wcsc")#return j("wcsc.bin"),j("wcsc")#g' "$find_result"
+    
+    return_exp_wcc=$(cat $find_result | grep -P 'return [a-z]+\("wcc"\)' -o)  # return ?("wcc")
+    return_exp_wcc_replace="${return_exp_wcc//wcc/wcc.bin}" # return ?("wcc.bin")
+    return_exp_wcc_replace="${return_exp_wcc//return /${return_exp_wcc_replace},}" # return ?("wcc.bin")
+
+    return_exp_wcsc=$(cat $find_result | grep -P 'return [a-z]+\("wcsc"\)' -o)  # return ?("wcsc")
+    return_exp_wcsc_replace="${return_exp_wcc_replace//wcc/wcsc}"
+
+    sed -i "s#$return_exp_wcc#$return_exp_wcc_replace#g" "$find_result"
+    sed -i "s#$return_exp_wcsc#$return_exp_wcsc_replace#g" "$find_result"
   fi
   # 处理报错时控制台显示的环境
   find_result=$( grep -lr '(env:' "$tmp_dir/core.wxvpkg" )

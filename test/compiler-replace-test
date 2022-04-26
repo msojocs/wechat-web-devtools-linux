@@ -1,0 +1,17 @@
+#!/bin/bash
+# 此脚本用于使修改 core.wxvpkg 内的代码及时生效
+set -e
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+find_result="$root_dir/package.nw/core.wxvpkg.ext/19c6ae7eff08f795d1f2124f7b0248ad.js"
+return_exp_wcc=$(cat $find_result | grep -P 'return [a-z]+\("wcc"\)' -o)  # return ?("wcc")
+echo "return exp: $return_exp_wcc"
+return_exp_wcc_replace="${return_exp_wcc//wcc/wcc.bin}" # return ?("wcc.bin")
+echo "replace exp1: $return_exp_wcc_replace"
+return_exp_wcc_replace="${return_exp_wcc//return /${return_exp_wcc_replace},}" # return ?("wcc.bin")
+echo "replace exp2: $return_exp_wcc_replace"
+
+return_exp_wcsc=$(cat $find_result | grep -P 'return [a-z]+\("wcsc"\)' -o)  # return ?("wcc")
+return_exp_wcsc_replace="${return_exp_wcc_replace//wcc/wcsc}"
+
+sed -i "s#$return_exp_wcc#$return_exp_wcc_replace#g" "$find_result"
+sed -i "s#$return_exp_wcsc#$return_exp_wcsc_replace#g" "$find_result"
