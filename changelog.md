@@ -1,4 +1,5 @@
-# 1.05.2204180-2 / 2022-
+
+# 1.05.2204180-2 / 2022-04-26
 - feat: wcc,wcsc node模块懒加载template解析支持
 - feat: wcc,wcsc node模块懒加载cut参数支持
 
