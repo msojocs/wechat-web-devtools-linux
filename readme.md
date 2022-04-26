@@ -10,10 +10,11 @@
 ----
 
 [![Node.js CI](https://github.com/msojocs/wechat-devtools-linux/actions/workflows/release.yml/badge.svg)](https://github.com/msojocs/wechat-devtools-linux/actions/workflows/release.yml)
-[![wechat-tools](https://img.shields.io/badge/wechat--devtools-1.05.2204180-yellow)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+[![wechat-tools](https://img.shields.io/badge/wechat--devtools-1.05.2204250-yellow)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 [![nwjs](https://img.shields.io/badge/nwjs-0.55.0-green)](https://nwjs.io/downloads/)
 [![node](https://img.shields.io/badge/node-16.4.2-orange)](https://nodejs.org/en/)
 [![aur](https://img.shields.io/aur/version/wechat-devtools)](https://aur.archlinux.org/packages/wechat-devtools)
+[![wechat-devtools](https://snapcraft.io/wechat-devtools/badge.svg)](https://snapcraft.io/wechat-devtools)
 
   这是微信开发者工具 Linux版
   
