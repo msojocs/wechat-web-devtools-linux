@@ -11,10 +11,20 @@ VERSION_DATA=(${VERSION_DATA//,/ })
 TARGET_VERSION=${VERSION_DATA[0]}
 TARGET_VERSION_MD5=${VERSION_DATA[1]}
 
-# 获取snapcraft中的版本号
-SNAP_VERSION=$(find $root_dir/snap -name "snapcraft.yaml" | xargs grep -P "'\d+\.\d+\.\d{5,}" -o)
+LATEST_TAG=$(git describe --abbrev=0)
 
-if [ "$SNAP_VERSION" != "'$TARGET_VERSION" ];then
-    echo "SNAP版本不匹配！！！"
+# 检查snapcraft主版本号是否正确
+SNAP_VERSION=$(find $root_dir/snap -name "snapcraft.yaml" | xargs grep -P "'\d+\.\d+\.\d+-\d+" -o)
+if [ "v${SNAP_VERSION//\'/}" != "$LATEST_TAG" ];then
+    echo "SNAP版本不正确!!!"
+    echo "SNAP版本: v${SNAP_VERSION//\'/} != 最新TAG: $LATEST_TAG"
+    exit 1
+fi
+
+# 检查snapcraft构建时下载的工具版本号是否正确
+SNAP_DEVTOOL_VERSION=$(find $root_dir/snap -name "snapcraft.yaml" | xargs grep -P "=\d+\d+\d{5,}" -o)
+if [ "${SNAP_DEVTOOL_VERSION//=/}" != "${TARGET_VERSION//./}" ];then
+    echo "SNAP工具版本不匹配!!!"
+    echo "snap下载版本: ${SNAP_DEVTOOL_VERSION//=/} != 目标版本: ${TARGET_VERSION//./}"
     exit 1
 fi

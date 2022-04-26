@@ -32,8 +32,8 @@ parts:
       ls -l $SNAPCRAFT_PART_INSTALL
   package-nw:
     plugin: dump
-    source: https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=1052203070&version_type=1
-    # source: cache/wechat_devtools_1.05.2203070_x64.exe
+    source: https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=1052204180&version_type=1
+    # source: cache/wechat_devtools_1.05.2204180_x64.exe
     source-type: 7z
     source-subdir: code
     override-build: |
