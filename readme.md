@@ -91,24 +91,26 @@ docker-compose up
 
 ## 方法1
 
-由于使用到`node-gyp` `nw-gyp`，此方法会受`python`、`node`版本影响出现一些难以预料的异常（比如使用`node15.0.1`时，大部分模块构建会被忽略，但没有任何报错信息）。但是，`Docker`构建方式会帮你处理好这些问题。
+由于使用到 `node-gyp` `nw-gyp`，此方法会受 `python`、`node` 版本影响出现一些难以预料的异常（比如使用 `node15.0.1` 时，大部分模块构建会被忽略，但没有任何报错信息）。但是，`Docker` 构建方式会帮你处理好这些问题。
 
-1. 如果构建`wine`版本，请先在Linux环境中自行安装`wine` `wine-binfmt`；
-2. 安装编译`nodegit`所需的依赖：`python2.7 python3.6及以上 libkrb5-dev gcc openssl libssh2-1-dev g++ make pkg-config`  `7z`旧版解压可能存在问题（未测试最低版本号，比如：ubuntu16.04自带的不行），请参考`Dockerfile`
+1. 如果构建 `wine` 版本，请先在Linux环境中自行安装 `wine` `wine-binfmt`；
+2. 安装编译`nodegit`所需的依赖：`python2.7 python3.6及以上 libkrb5-dev gcc openssl libssh2-1-dev g++ make pkg-config` ；
+   
+   另外 `7z` 旧版解压可能存在问题（未测试最低版本号，比如：ubuntu16.04 自带的不行），请参考 `Dockerfile`
 3. 克隆本项目：
-```
-git clone https://github.com/msojocs/wechat-devtools-linux.git
-```
+    ```
+    git clone https://github.com/msojocs/wechat-devtools-linux.git
+    ```
 4. 在本地项目目录中执行如下的语句，构筑开发者工具：
-```
-./tools/setup-wechat-devtools-bash
-```
+    ```
+    ./tools/setup-wechat-devtools-bash
+    ```
 5. 在本地项目目录中执行如下的语句，可以安装应用图标（非必须）：
-```
-./tools/install-desktop-icon-node
-```
+    ```
+    ./tools/install-desktop-icon-node
+    ```
 
-之后即可通过点击应用图标启动微信开发者工具，也可以运行`bin/wechat-devtools`通过命令行启动
+之后即可通过点击应用图标启动微信开发者工具，也可以运行 `bin/wechat-devtools` 通过命令行启动
 
 # 与其他Linux下的微信开发者工具版本区别
 
@@ -117,11 +119,15 @@ git clone https://github.com/msojocs/wechat-devtools-linux.git
 3. 修复了nwjs上关于Menu的段错误，确保最新版本可以正常启动 (by dragonation)；
 4. 在构筑过程中会重新编译node_modules，确保原生模块可以在Linux上正确运行；
 5. 下载更新可以支持断点再续，并使用了taobao国内的npm源，加速下载（稳定性待测试）。
-6. 可以不需要`wine`环境的支持
+6. 纯 Linux 支持
 
 # 后续计划
 
 1. [处理计划](https://github.com/msojocs/wechat-devtools-linux/projects?type=beta)
+
+# 移植相关
+
+请参考： [移植流程记录](https://github.com/msojocs/wechat-web-devtools-linux/wiki)
 
 # FAQ
 [GO](docs/FAQ.MD)
@@ -137,10 +143,6 @@ git clone https://github.com/msojocs/wechat-devtools-linux.git
 版本 1.02.2001191
 ![screenshot 1.02.2001191](res/screenshots/1.02.2001191.jpg)
 
-# 免责声明
-
-微信开发者工具版权归腾讯公司所有，本项目旨在交流学习之用。如有不当之处，请联系本人，邮箱：jiyecafe@gmail.com
-
 # 赞赏
   如果这个仓库让你感到舒适，可以点个Star或者请这个菜鸡大学生喝杯咖啡（请尽量带上github昵称）：
 
@@ -155,3 +157,7 @@ git clone https://github.com/msojocs/wechat-devtools-linux.git
   6. zyk-miao
   7. Starrah
   8. CoryByte
+
+# 免责声明
+
+微信开发者工具版权归腾讯公司所有，本项目旨在交流学习之用。如有不当之处，请联系本人，邮箱：jiyecafe@gmail.com
