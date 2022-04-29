@@ -46,27 +46,33 @@
 
 在阁下遇到任何无法解决的问题时，请新建一个 [issue](https://github.com/msojocs/wechat-web-devtools-linux/issues/new/choose)
 
-# 使用方法
-
-1. 可以在本项目的[Release](https://github.com/msojocs/wechat-devtools-linux/releases)中，寻找已经构筑好了的`.tar.gz`包，下载解压后，运行其中的`bin/wechat-devtools`即可运行；也可以下载`AppImage`授予可执行权限后，直接运行。
-如果`Release`版本存在问题，可以尝试[Continuous](https://github.com/msojocs/wechat-web-devtools-linux/releases/tag/continuous)版本，这是基于`master`分支的最新提交构建的，会及时修复一些bug。
-2. 你可以[自行构建](#自行构建)
-
-
 # 系统要求
 
 * 基于Linux的桌面系统，首选GNOME（其他的桌面环境可能会有问题，未测试）
-* CI自动构建的包对glibc和libstdc++有一定的版本要求，glibc的版本要求2.23，libstdc++的版本要求3.4.21
-* 如果你下载的是`wine`版本，那么你需要安装有`wine` `wine-binfmt`支持，建议版本在5.0以上，低版本可能会存在有问题
+* CI自动构建的包对 glibc 和 libstdc++ 有一定的版本要求，glibc 的版本要求2.23，libstdc++ 的版本要求3.4.21
+* 如果你下载的是 `wine` 版本，那么你需要安装有 `wine` `wine-binfmt` 支持，建议版本在5.0以上，低版本可能会存在有问题
 
 # CLI支持
 
 在项目的`bin`目录中有`wechat-devtools-cli`命令，是微信开发者工具的命令行支持Linux版本。相关资料可以在[微信CLI命令行V2](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)上找到。
 
+# 使用方法
+1. [在线安装](#在线安装)
+2. 可以在本项目的[Release](https://github.com/msojocs/wechat-devtools-linux/releases)中，寻找已经构筑好了的软件包，下载使用。
+如果`Release`版本存在问题，可以尝试[Continuous](https://github.com/msojocs/wechat-web-devtools-linux/releases/tag/continuous)版本，这是基于`master`分支的最新提交构建的，会及时修复一些 bug，但也可能会带来新的 bug。
+3. 你可以 [自行构建](#自行构建)
+
+# 在线安装
+目前支持以下平台：
+
+1. [AUR](https://aur.archlinux.org/packages/wechat-devtools)
+2. [Snap Store](https://snapcraft.io/wechat-devtools)
+3. 统信商店（家庭版）、深度商店（社区版）
+
 # 自行构建
 
 > 注：
-> 如果不想使用`wine`，请添加环境变量：`export NO_WINE=true`,但是稳定性未测试
+> 如果想构建纯 Linux 版本，请添加环境变量：`export NO_WINE=true` 
 
 ## 方法0（推荐）
 
@@ -75,19 +81,19 @@
 1. 如果构建`wine`版本，请先在Linux环境中自行安装`wine` `wine-binfmt`；
 2. 请安装`docker` `docker-compose`
 3. 克隆本项目：
-```
-git clone https://github.com/msojocs/wechat-devtools-linux.git
-```
+    ```
+    git clone https://github.com/msojocs/wechat-devtools-linux.git
+    ```
 4. 在本地项目目录中执行如下的语句，构筑开发者工具：
-```
-docker-compose up
-```
+    ```
+    docker-compose up
+    ```
 5. 在本地项目目录中执行如下的语句，可以安装应用图标（非必须）：
-```
-./tools/install-desktop-icon-node
-```
+    ```
+    ./tools/install-desktop-icon-node
+    ```
 
-之后即可通过点击应用图标启动微信开发者工具，也可以运行`bin/wechat-devtools`通过命令行启动
+之后即可通过点击应用图标启动微信开发者工具，也可以运行 `bin/wechat-devtools` 通过命令行启动
 
 ## 方法1
 
@@ -123,14 +129,15 @@ docker-compose up
 
 # 后续计划
 
-1. [处理计划](https://github.com/msojocs/wechat-devtools-linux/projects?type=beta)
+请参考: [处理计划](https://github.com/msojocs/wechat-devtools-linux/projects?type=beta)
 
 # 移植相关
 
-请参考： [移植流程记录](https://github.com/msojocs/wechat-web-devtools-linux/wiki)
+请参考: [移植流程记录](https://github.com/msojocs/wechat-web-devtools-linux/wiki)
 
 # FAQ
-[GO](docs/FAQ.MD)
+
+请参考: [FAQ](docs/FAQ.MD)
 
 # 界面截图
 
@@ -144,6 +151,7 @@ docker-compose up
 ![screenshot 1.02.2001191](res/screenshots/1.02.2001191.jpg)
 
 # 赞赏
+
   如果这个仓库让你感到舒适，可以点个Star或者请这个菜鸡大学生喝杯咖啡（请尽量带上github昵称）：
 
   ![赞赏码](https://user-images.githubusercontent.com/20937135/154661198-93854dc1-c8ba-4c97-a7ab-9f8de26c0226.png)
