@@ -20,12 +20,15 @@ if [ "${SNAP_VERSION//\'/}" != "$TARGET_VERSION" ];then
 fi
 
 # 检查readme中的版本
-README_VERSION=$(grep -P '\-\d+\.\d+\.\d{5,}-' -o "$root_dir/readme.md")
-if [ "${README_VERSION//-/}" != "${TARGET_VERSION}" ];then
-    echo "README中版本不正确!!!"
-    echo "README中版本: ${README_VERSION//-/} != 目标版本: ${TARGET_VERSION}"
-    exit 1
-fi
+README_VERSION=$(grep -P '[\-`]\d+\.\d+\.\d{5,}[\-`]' -o "$root_dir/readme.md")
+for ver in $README_VERSION; do
+    ver="${ver//[-\`]/}"
+    if [ "${ver}" != "${TARGET_VERSION}" ];then
+        echo "README中版本不正确!!!"
+        echo "README中版本: ${ver} != 目标版本: ${TARGET_VERSION}"
+        exit 1
+    fi
+done
 
 # 检查snapcraft构建时下载的工具版本号是否正确
 SNAP_DEVTOOL_VERSION=$(cat $root_dir/snap/snapcraft.yaml | grep -P "=\d+\d+\d{5,}" -o)

@@ -3,7 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 const MODE = typeof nw === 'object' ? 'wine' : 'linux'
-
+const wcc_options = []
 const wcc_options1 = {
     "files": ["./miniprogram_npm/miniprogram-barrage/index.wxml", "./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml", "./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml", "./miniprogram_npm/wxml-to-canvas/index.wxml", "./page/API/index.wxml", "./page/API/components/set-tab-bar/set-tab-bar.wxml", "./page/cloud/index.wxml", "./page/common/foot.wxml", "./page/common/head.wxml", "./page/component/index.wxml", "./page/extend/index.wxml"],
     "debugWXS": false,
@@ -18,6 +18,7 @@ const wcc_options1 = {
     "cwd": "/mnt/disk1/WeChatProjects/miniprogram-demo/miniprogram/",
     "lazyloadConfig": ""
 }
+wcc_options.push([wcc_options1, 1])
 const wcc_options2 = {
     "files": ["./miniprogram_npm/miniprogram-barrage/index.wxml", "./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml", "./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml", "./miniprogram_npm/wxml-to-canvas/index.wxml", "./page/API/index.wxml", "./page/API/components/set-tab-bar/set-tab-bar.wxml", "./page/cloud/index.wxml", "./page/common/foot.wxml", "./page/common/head.wxml", "./page/component/index.wxml", "./page/extend/index.wxml", "./packageComponent/pages/canvas/canvas-2d/canvas-2d.wxml", "./packageComponent/pages/canvas/webgl/webgl.wxml", "./packageComponent/pages/content/icon/icon.wxml", "./packageComponent/pages/content/progress/progress.wxml", "./packageComponent/pages/content/rich-text/rich-text.wxml", "./packageComponent/pages/content/text/text.wxml", "./packageComponent/pages/form/button/button.wxml", "./packageComponent/pages/form/checkbox/checkbox.wxml", "./packageComponent/pages/form/editor/editor.wxml", "./packageComponent/pages/form/form/form.wxml", "./packageComponent/pages/form/input/input.wxml", "./packageComponent/pages/form/label/label.wxml", "./packageComponent/pages/form/picker/picker.wxml", "./packageComponent/pages/form/picker-view/picker-view.wxml", "./packageComponent/pages/form/radio/radio.wxml", "./packageComponent/pages/form/slider/slider.wxml", "./packageComponent/pages/form/switch/switch.wxml", "./packageComponent/pages/form/textarea/textarea.wxml", "./packageComponent/pages/map/map/map.wxml", "./packageComponent/pages/media/camera/camera.wxml", "./packageComponent/pages/media/image/image.wxml", "./packageComponent/pages/media/live-player/live-player.wxml", "./packageComponent/pages/media/live-pusher/live-pusher.wxml", "./packageComponent/pages/media/video/video.wxml", "./packageComponent/pages/nav/navigator/navigator.wxml", "./packageComponent/pages/obstacle-free/aria-component/aria-component.wxml", "./packageComponent/pages/open/ad/ad.wxml", "./packageComponent/pages/open/open-data/open-data.wxml", "./packageComponent/pages/open/web-view/web-view.wxml", "./packageComponent/pages/view/cover-view/cover-view.wxml", "./packageComponent/pages/view/movable-view/movable-view.wxml", "./packageComponent/pages/view/scroll-view/scroll-view.wxml", "./packageComponent/pages/view/swiper/swiper.wxml", "./packageComponent/pages/view/view/view.wxml"],
     "debugWXS": false,
@@ -31,6 +32,7 @@ const wcc_options2 = {
     "cwd": "/mnt/disk1/WeChatProjects/miniprogram-demo/miniprogram/",
     "lazyloadConfig": ""
 }
+wcc_options.push([wcc_options2, 2])
 const wcc_options3 = {
     "files": ["./miniprogram_npm/miniprogram-barrage/index.wxml", "./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml", "./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml", "./miniprogram_npm/wxml-to-canvas/index.wxml", "./page/API/index.wxml", "./page/API/components/set-tab-bar/set-tab-bar.wxml", "./page/cloud/index.wxml", "./page/common/foot.wxml", "./page/common/head.wxml", "./page/component/index.wxml", "./page/extend/index.wxml"],
     "debugWXS": false,
@@ -45,6 +47,7 @@ const wcc_options3 = {
     "cwd": "/mnt/disk1/WeChatProjects/miniprogram-demo/miniprogram/",
     "lazyloadConfig": ""
 }
+wcc_options.push([wcc_options3, 3])
 const wcc_options4 = {
     "files": ["./miniprogram_npm/miniprogram-barrage/index.wxml", "./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml", "./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml", "./miniprogram_npm/wxml-to-canvas/index.wxml", "./page/API/index.wxml", "./page/API/components/set-tab-bar/set-tab-bar.wxml", "./page/cloud/index.wxml", "./page/common/foot.wxml", "./page/common/head.wxml", "./page/component/index.wxml", "./page/extend/index.wxml"],
     "debugWXS": false,
@@ -58,6 +61,7 @@ const wcc_options4 = {
     "cwd": "/mnt/disk1/WeChatProjects/miniprogram-demo/miniprogram/",
     "lazyloadConfig": ""
 }
+wcc_options.push([wcc_options4, 4])
 const wcc_options5 = {
     "files": ["./miniprogram_npm/miniprogram-barrage/index.wxml", "./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml", "./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml", "./miniprogram_npm/wxml-to-canvas/index.wxml", "./page/API/index.wxml", "./page/API/components/set-tab-bar/set-tab-bar.wxml", "./page/cloud/index.wxml", "./page/common/foot.wxml", "./page/common/head.wxml", "./page/component/index.wxml", "./page/extend/index.wxml", "./packageComponent/pages/canvas/canvas-2d/canvas-2d.wxml", "./packageComponent/pages/canvas/webgl/webgl.wxml", "./packageComponent/pages/content/icon/icon.wxml", "./packageComponent/pages/content/progress/progress.wxml", "./packageComponent/pages/content/rich-text/rich-text.wxml", "./packageComponent/pages/content/text/text.wxml", "./packageComponent/pages/form/button/button.wxml", "./packageComponent/pages/form/checkbox/checkbox.wxml", "./packageComponent/pages/form/editor/editor.wxml", "./packageComponent/pages/form/form/form.wxml", "./packageComponent/pages/form/input/input.wxml", "./packageComponent/pages/form/label/label.wxml", "./packageComponent/pages/form/picker/picker.wxml", "./packageComponent/pages/form/picker-view/picker-view.wxml", "./packageComponent/pages/form/radio/radio.wxml", "./packageComponent/pages/form/slider/slider.wxml", "./packageComponent/pages/form/switch/switch.wxml", "./packageComponent/pages/form/textarea/textarea.wxml", "./packageComponent/pages/map/map/map.wxml", "./packageComponent/pages/media/camera/camera.wxml", "./packageComponent/pages/media/image/image.wxml", "./packageComponent/pages/media/live-player/live-player.wxml", "./packageComponent/pages/media/live-pusher/live-pusher.wxml", "./packageComponent/pages/media/video/video.wxml", "./packageComponent/pages/nav/navigator/navigator.wxml", "./packageComponent/pages/obstacle-free/aria-component/aria-component.wxml", "./packageComponent/pages/open/ad/ad.wxml", "./packageComponent/pages/open/open-data/open-data.wxml", "./packageComponent/pages/open/web-view/web-view.wxml", "./packageComponent/pages/view/cover-view/cover-view.wxml", "./packageComponent/pages/view/movable-view/movable-view.wxml", "./packageComponent/pages/view/scroll-view/scroll-view.wxml", "./packageComponent/pages/view/swiper/swiper.wxml", "./packageComponent/pages/view/view/view.wxml"],
     "debugWXS": false,
@@ -72,6 +76,7 @@ const wcc_options5 = {
     "cwd": "/mnt/disk1/WeChatProjects/miniprogram-demo/miniprogram/",
     "lazyloadConfig": ""
 }
+wcc_options.push([wcc_options5, 5])
 const wcc_options6 = {
     "files": ["./miniprogram_npm/miniprogram-barrage/index.wxml", "./miniprogram_npm/miniprogram-recycle-view/recycle-item.wxml", "./miniprogram_npm/miniprogram-recycle-view/recycle-view.wxml", "./miniprogram_npm/wxml-to-canvas/index.wxml", "./page/API/index.wxml", "./page/API/components/set-tab-bar/set-tab-bar.wxml", "./page/cloud/index.wxml", "./page/common/foot.wxml", "./page/common/head.wxml", "./page/component/index.wxml", "./page/extend/index.wxml"],
     "debugWXS": false,
@@ -85,6 +90,7 @@ const wcc_options6 = {
     "cwd": "/mnt/disk1/WeChatProjects/miniprogram-demo/miniprogram/",
     "lazyloadConfig": "./miniprogram_npm/miniprogram-barrage/index>_<4575./miniprogram_npm/miniprogram-recycle-view/recycle-item>_<4575./miniprogram_npm/miniprogram-recycle-view/recycle-view>_<4575./miniprogram_npm/wxml-to-canvas/index>_<4575./page/API/index>_<4575./page/API/components/set-tab-bar/set-tab-bar>_<4575./page/cloud/index>_<4575./page/component/index>_<4575./page/extend/index"
 }
+wcc_options.push([wcc_options6, 6])
 
 const wcc_options7 = {
     "files": ["./pages/index/index.wxml", "./pages/logs/logs.wxml"],
@@ -99,6 +105,7 @@ const wcc_options7 = {
     "cwd": "/mnt/disk1/WeChatProjects/we1",
     "lazyloadConfig": "./pages/index/index>_<4665./pages/logs/logs"
 }
+wcc_options.push([wcc_options7, 7])
 const wcc_options8 = {
     "pageCount": 2,
     "files": ["./pages/index/index.wxss", "./pages/logs/logs.wxss", "./app.wxss"],
@@ -109,6 +116,7 @@ const wcc_options8 = {
     },
     "debug": true
 }
+// wcc_options.push([wcc_options8, 8])
 const wcc_options9 = {
     "pageCount": 2,
     "files": ["./pages/index/index.wxss", "./pages/logs/logs.wxss", "./app.wxss"],
@@ -118,6 +126,7 @@ const wcc_options9 = {
     },
     "debug": true
 }
+wcc_options.push([wcc_options9, 9])
 const wcc_options10 = {
     "files": ["./pages/index/index.wxml", "./pages/logs/logs.wxml"],
     "debugWXS": false,
@@ -132,6 +141,7 @@ const wcc_options10 = {
     "cwd": "/mnt/disk1/WeChatProjects/we1",
     "lazyloadConfig": ""
 }
+wcc_options.push([wcc_options10, 10])
 const wcc_options11 = {
     "files": ["./pages/index/index.wxml", "./pages/logs/logs.wxml"],
     "debugWXS": false,
@@ -146,6 +156,7 @@ const wcc_options11 = {
     "cwd": "/mnt/disk1/WeChatProjects/we1",
     "lazyloadConfig": "./pages/index/index>_<6482./pages/logs/logs"
 }
+wcc_options.push([wcc_options11, 11])
 
 const test = async (options, id) => {
     console.log("============")
@@ -163,17 +174,7 @@ const test = async (options, id) => {
     fs.writeFileSync(path.resolve(__dirname, `${id}/wcc_node_${MODE}.txt`), result)
 };
 (async () => {
-    test(wcc_options1, 1);
-    test(wcc_options2, 2);
-    test(wcc_options3, 3);
-    test(wcc_options4, 4);
-    test(wcc_options5, 5);
-    test(wcc_options6, 6);
-
-    console.log('----template-----')
-    await test(wcc_options7, 7);
-    // await test(wcc_options8, 8); 有问题
-    await test(wcc_options9, 9);    // ok
-    await test(wcc_options10, 10); // ok
-    await test(wcc_options11, 11);
+    for(let options of wcc_options){
+        await test(options[0], options[1]);
+    }
 })()

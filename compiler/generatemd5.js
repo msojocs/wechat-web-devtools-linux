@@ -28,6 +28,7 @@ if(platform === 'darwin') {
 
 function generate(vendorPath) {
   let dirList = fs.readdirSync(vendorPath)
+
   let libs = {}
   dirList.forEach((item) => {
     if (item == 'dev' || item == 'quickstart' || item == 'beta') {
