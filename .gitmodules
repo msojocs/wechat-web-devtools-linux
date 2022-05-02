@@ -1,0 +1,3 @@
+[submodule "compiler"]
+	path = compiler
+	url = https://github.com/msojocs/wx-compiler

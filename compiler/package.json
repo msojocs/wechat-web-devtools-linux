@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "miniprogram-compiler": "^0.2.1"
+  }
+}
