@@ -72,6 +72,9 @@ parts:
         ls -l $SNAPCRAFT_STAGE
         ls -l
 
+        cd $SNAPCRAFT_PROJECT_DIR && git submodule update --init
+        cd $SNAPCRAFT_PROJECT_DIR/compiler && npm install
+        cd $SNAPCRAFT_PART_BUILD
         # 准备文件
         cp -r $SNAPCRAFT_STAGE/package.nw package.nw
         chmod -R 755 package.nw
