@@ -18,7 +18,8 @@ echo "fix: wcc,wcsc"
 # 可视化编译
 (cd "${package_dir}/node_modules/" \
 && rm -rf wcc \
-&& cp -rL "${srcdir}/compiler/wcc_node" "wcc" 
+&& cp -rL "${srcdir}/compiler/wcc_node" "wcc" \
+&& chmod +x wcc/bin/linux/*
 )
 
 # 预览编译，设置NO_WINE=true环境变量生效
