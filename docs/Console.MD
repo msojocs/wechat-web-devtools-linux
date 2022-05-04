@@ -13,7 +13,7 @@
 文件路径： `package.nw/core.wxvpkg.ext/284af385b4ef6206861fea66a2452277.js`
 定位字符串：`nw.Window.open`
 在回调函数中添加：
-```
+```javascript
 Object.keys(window).forEach(key=>{
   if(!e.window[key]){
     /*没有就添加*/

@@ -26,10 +26,11 @@
 
 本项目是一个完整的搭建Linux下可用的“微信开发者工具”的脚本和工具集，
 用于在Linux下的GNOME桌面上搭建可以持续更新和使用的“微信开发者工具”。
+
 本项目修改自：https://github.com/dragonation/wechat-devtools/
 
 # 项目地址
-* https://github.com/msojocs/wechat-devtools-linux
+* https://github.com/msojocs/wechat-web-devtools-linux
 
 # 进度
 
@@ -54,11 +55,11 @@
 
 # CLI支持
 
-在项目的`bin`目录中有`wechat-devtools-cli`命令，是微信开发者工具的命令行支持Linux版本。相关资料可以在[微信CLI命令行V2](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)上找到。
+在项目的 `bin` 目录中有 `wechat-devtools-cli` 脚本，是微信开发者工具的命令行支持 的Linux版本。相关资料可以在[微信CLI命令行V2](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)上找到。
 
 # 使用方法
 1. [在线安装](#在线安装)
-2. 可以在本项目的[Release](https://github.com/msojocs/wechat-devtools-linux/releases)中，寻找已经构筑好了的软件包，下载使用。
+2. 可以在本项目的[Release](https://github.com/msojocs/wechat-web-devtools-linux/releases)中，寻找已经构筑好了的软件包，下载使用。
 如果`Release`版本存在问题，可以尝试[Continuous](https://github.com/msojocs/wechat-web-devtools-linux/releases/tag/continuous)版本，这是基于`master`分支的最新提交构建的，会及时修复一些 bug，但也可能会带来新的 bug。
 3. 你可以 [自行构建](#自行构建)
 
@@ -78,11 +79,11 @@
 
 理论上此方法99%成功;在网络不稳定时容易失败（原因懂得都懂，构建过程已经尽量使用镜像源）
 
-1. 如果构建`wine`版本，请先在Linux环境中自行安装`wine` `wine-binfmt`；
-2. 请安装`docker` `docker-compose`
+1. 如果构建 `wine` 版本，请先在Linux环境中自行安装 `wine` `wine-binfmt`；
+2. 请安装 `docker` `docker-compose`
 3. 克隆本项目：
     ```
-    git clone https://github.com/msojocs/wechat-devtools-linux.git
+    git clone https://github.com/msojocs/wechat-web-devtools-linux.git
     ```
 4. 在本地项目目录中执行如下的语句，构筑开发者工具：
     ```
@@ -100,12 +101,12 @@
 由于使用到 `node-gyp` `nw-gyp`，此方法会受 `python`、`node` 版本影响出现一些难以预料的异常（比如使用 `node15.0.1` 时，大部分模块构建会被忽略，但没有任何报错信息）。但是，`Docker` 构建方式会帮你处理好这些问题。
 
 1. 如果构建 `wine` 版本，请先在Linux环境中自行安装 `wine` `wine-binfmt`；
-2. 安装编译`nodegit`所需的依赖：`python2.7 python3.6及以上 libkrb5-dev gcc openssl libssh2-1-dev g++ make pkg-config` ；
+2. 安装编译 `nodegit` 所需的依赖：`python2.7 python3.6及以上 libkrb5-dev gcc openssl libssh2-1-dev g++ make pkg-config` ；
    
    另外 `7z` 旧版解压可能存在问题（未测试最低版本号，比如：ubuntu16.04 自带的不行），请参考 `Dockerfile`
 3. 克隆本项目：
     ```
-    git clone https://github.com/msojocs/wechat-devtools-linux.git
+    git clone https://github.com/msojocs/wechat-web-devtools-linux.git
     ```
 4. 在本地项目目录中执行如下的语句，构筑开发者工具：
     ```
@@ -125,7 +126,7 @@
 3. 修复了nwjs上关于Menu的段错误，确保最新版本可以正常启动 (by dragonation)；
 4. 在构筑过程中会重新编译node_modules，确保原生模块可以在Linux上正确运行；
 5. 下载更新可以支持断点再续，并使用了taobao国内的npm源，加速下载（稳定性待测试）。
-6. 纯 Linux 支持
+6. 纯 Linux 支持，使用 nodejs 实现模拟官方编译器
 
 # 后续计划
 
@@ -157,14 +158,16 @@
   ![赞赏码](https://user-images.githubusercontent.com/20937135/154661198-93854dc1-c8ba-4c97-a7ab-9f8de26c0226.png)
 
 # 感谢赞赏支持
-  1. *喆
-  2. shaoxp
-  3. .
-  4. IvesSSa
-  5. icepie
-  6. zyk-miao
-  7. Starrah
-  8. CoryByte
+| 赞赏人 | 赞赏金额 |
+|-------|---------|
+| Milder | 50.00￥ |
+| [Starrah](https://github.com/Starrah) | 50.00￥ |
+| . | 20.00￥ |
+| [icepie](https://github.com/icepie) | 20.00￥ |
+| 李喆 | 10.00￥ |
+| shaoxp | 5.00￥ |
+| [zyk-miao](https://github.com/zyk-miao) | 5.00￥ |
+| [CoryByte](https://github.com/Corybyte) | 5.00￥ |
 
 # 免责声明
 
