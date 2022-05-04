@@ -22,16 +22,20 @@ jobs:
 
     strategy:
       matrix:
+        node-version: [16.x]
         ARCH: ['x86_64']
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
 
-      - name: Test
+      - name: Prepare
         run: |
+          cd compiler && npm install
           echo "$UID, $GID"
 
       - name: Generate TAG
@@ -109,6 +113,7 @@ jobs:
 
     strategy:
       matrix:
+        node-version: [16.x]
         ARCH: ['x86_64']
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
@@ -117,8 +122,9 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v2
 
-      - name: Test
+      - name: Prepare
         run: |
+          cd compiler && npm install
           echo "$UID, $GID"
 
       - name: Generate TAG
@@ -141,6 +147,9 @@ jobs:
           # tar.gz AppImage
           ls -l
           mkdir -p tmp/build
+          tools/build-prepare.sh
+          tools/build-release.sh ${{ matrix.ARCH }} ${{ steps.tag.outputs.tag }}
+          export NO_WINE=true
           tools/build-prepare.sh
           tools/build-release.sh ${{ matrix.ARCH }} ${{ steps.tag.outputs.tag }}
 
@@ -224,6 +233,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
@@ -232,6 +243,7 @@ jobs:
 
       - name: Prepare
         run: |
+          cd compiler && npm install
           npm install node-gyp nw-gyp npm -g
           node-gyp install
           cat /etc/passwd
@@ -291,19 +303,26 @@ jobs:
     timeout-minutes: 30
     strategy:
       matrix:
+        node-version: [16.x]
         ARCH: ['x86_64']
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
       - name: Install Snapcraft
         uses: samuelmeuli/action-snapcraft@v1
         with:
           use_lxd: true
 
+      - name: Prepare
+        run: |
+          cd compiler && npm install
+
       # You can now run Snapcraft shell commands
       - name: Build snap
-        run:  sg lxd -c 'snapcraft --use-lxd'
+        run: sg lxd -c 'snapcraft --use-lxd'
 
       - name: move file
         run: |

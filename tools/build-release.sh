@@ -47,21 +47,10 @@ if [[ "$INPUT_VERSION" != "$DEVTOOLS_VERSION" ]];then
   exit 1
 fi
 
-for type in wine no_wine; do
-  notice "当前构建类型: $type";
-  if [[ $type == 'no_wine' ]];then
-    notice "no wine handle"
-    export NO_WINE=true
-    "$root_dir/tools/fix-core.sh"
-    "$root_dir/tools/fix-other.sh"
-  fi
+# 构建压缩包
+notice "BUILD Simple Package"
+"$root_dir/tools/build-tar.sh"
 
-  # 构建压缩包
-  notice "BUILD Simple Package"
-  "$root_dir/tools/build-tar.sh"
-
-  # 构建AppImage
-  notice "BUILD AppImage"
-  "$root_dir/tools/build-appimage.sh"
-
-done
+# 构建AppImage
+notice "BUILD AppImage"
+"$root_dir/tools/build-appimage.sh"
