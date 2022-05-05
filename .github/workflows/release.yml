@@ -319,6 +319,8 @@ jobs:
       - name: Prepare
         run: |
           cd compiler && npm install
+          git --version
+          git --help
 
       # You can now run Snapcraft shell commands
       - name: Build snap
