@@ -80,7 +80,6 @@ export JOBS=$max_thread
     spdlog@0.11.1 \
     trash \
     vscode-oniguruma \
-    @vscode/ripgrep \
     nodegit \
     --registry=https://registry.npmmirror.com \
     --nodegit_binary_host_mirror=https://npmmirror.com/mirrors/nodegit/v0.27.0/ ) # reinstall modules
@@ -105,14 +104,13 @@ cd "$package_dir/node_modules_tmp/node_modules/spdlog" && nw-gyp rebuild --arch=
 (cd "${package_dir}/node_modules_tmp/node_modules" && find -name ".deps" | xargs -I{} rm -rf {} && find -name "obj.target" | xargs -I{} rm -rf {} && find -name "*.a" -delete && find -name "*.lib" -delete && find -name "*.mk" -delete)
 (cd "${package_dir}/node_modules_tmp/node_modules" && find -name "*.node" | xargs -I{} \cp -rf {} ${package_dir}/node_modules/{})
 
-cd "${package_dir}/node_modules_tmp/node_modules/@vscode/ripgrep" && \
-sed -i 's/api.github.com/wechat-devtools.jiyecafe.workers.dev/' lib/download.js && \
-sed -i "s/ const release/ downloadOpts.headers.upstream = 'api.github.com';const release/" lib/download.js && \
-sed -i "s/ return download/ opts.headers.upstream = 'objects.githubusercontent.com';return download/" lib/download.js && \
-sed -i 's/response.headers.location,/response.headers.location.replace("objects.githubusercontent.com", "wechat-devtools.jiyecafe.workers.dev"),/' lib/download.js && \
-npm run postinstall
-mkdir -p "${package_dir}/node_modules/vscode-ripgrep/bin"
-\cp -fr "${package_dir}/node_modules_tmp/node_modules/@vscode/ripgrep/bin/rg" "${package_dir}/node_modules/vscode-ripgrep/bin/rg"
+# https://github.com/microsoft/ripgrep-prebuilt
+cd "${package_dir}/node_modules_tmp/node_modules" && \
+mkdir -p vscode-ripgrep/bin && cd vscode-ripgrep && \
+wget https://gh2.yanqishui.work/https://github.com/microsoft/ripgrep-prebuilt/releases/download/v12.1.1-1/ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz -O ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz && \
+tar xvf ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz -C ./bin
+mkdir -p ${package_dir}/node_modules/vscode-ripgrep/bin &&\
+\cp -fr "${package_dir}/node_modules_tmp/node_modules/vscode-ripgrep/bin/rg" "${package_dir}/node_modules/vscode-ripgrep/bin/rg"
 
 (cd "${package_dir}/node_modules" && find -name ".deps" | xargs -I{} rm -rf {} && find -name "obj.target" | xargs -I{} rm -rf {} && find -name "*.a" -delete && find -name "*.lib" -delete && find -name "*.mk" -delete && find -name "*Makefile" -delete && find -name "*gyp*" -delete)
 rm -rf "${package_dir}/node_modules_tmp"

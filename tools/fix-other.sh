@@ -15,6 +15,7 @@ sed -i 's#module.exports = createWebviewManager;#module.exports = createWebviewM
 # 修复：可视化用的wcc,wcsc
 echo "fix: wcc,wcsc"
 # wcc wcsc
+ls -l "${srcdir}/compiler"
 # 可视化编译
 (cd "${package_dir}/node_modules/" \
 && rm -rf wcc \
