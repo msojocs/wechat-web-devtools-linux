@@ -46,8 +46,13 @@ rm -fr "vscode-windows-ca-certs" "vscode-windows-registry" "vscode-windows-regis
 rm -fr "${package_dir}/node_modules/vscode-ripgrep/bin/"* # redownload bin on linux
 # https://github.com/microsoft/ripgrep-prebuilt
 cd "${package_dir}/node_modules/vscode-ripgrep" && \
-mkdir -p tmp && cd tmp && \
-wget https://gh2.yanqishui.work/https://github.com/microsoft/ripgrep-prebuilt/releases/download/v12.1.1-1/ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz -O ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz && \
+mkdir -p tmp && cd tmp
+
+if [ "$ACTION_MODE" != "true" ]; then
+    notice "非ACTION模式, 设置镜像源"
+    prefix="https://gh2.yanqishui.work/"
+fi
+wget ${prefix}https://github.com/microsoft/ripgrep-prebuilt/releases/download/v12.1.1-1/ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz -O ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz
 tar xvf ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz -C ../bin && \
 cd .. && rm -rf tmp
 

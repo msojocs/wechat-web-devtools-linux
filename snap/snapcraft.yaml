@@ -59,6 +59,7 @@ parts:
         - make
         - openssl
         - libssh2-1-dev
+        - wget
     override-pull: |
         ls -l
     override-build: |

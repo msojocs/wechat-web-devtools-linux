@@ -279,6 +279,7 @@ jobs:
             make
             libssh2
             krb5
+            wget
           scripts: "cd tmp/AUR && makepkg && ls -l && cd ../../"
 
       - name: Fix Permissions

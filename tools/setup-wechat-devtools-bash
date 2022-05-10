@@ -42,7 +42,7 @@ if [ ! -f "$root_dir/node/bin/node" ]; then
 fi
 # 将node加入环境
 export PATH="$root_dir/node/bin":$PATH
-if [ $ACTION_MODE!='true' ]; then
+if [ "$ACTION_MODE" != "true" ]; then
     notice "非ACTION模式, 设置镜像源"
     npm config set registry http://registry.npmmirror.com/ # 注册模块镜像
     npm config set disturl http://npmmirror.com/dist # node-gyp 编译依赖的 node 源码镜像

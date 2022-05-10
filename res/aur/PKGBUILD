@@ -27,7 +27,7 @@ arch=("x86_64")
 url="https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html"
 license=('unknown')
 depends=('gconf' 'libxkbfile')
-makedepends=('p7zip' 'python2' 'openssl' 'gcc' 'make' 'libssh2' 'krb5')
+makedepends=('p7zip' 'python2' 'openssl' 'gcc' 'make' 'libssh2' 'krb5' 'wget')
 # compiler 用于可视化,以及编译
 source=("nwjs-v${_nwjs_ver}.tar.gz::https://npm.taobao.org/mirrors/nwjs/v${_nwjs_ver}/nwjs-sdk-v${_nwjs_ver}-linux-x64.tar.gz"
         "${_wechat_devtools_exe}::${_wechat_devtools_url}"
