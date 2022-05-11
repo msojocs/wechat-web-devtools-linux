@@ -14,3 +14,4 @@ cd "$NW_PACKAGE_DIR"
 sed -i 's#AppData/Local/\${global.userDirName}/User Data/\${global.productHash}/Default#.config/\${global.userDirName}/Default#g' js/common/cli/index.js
 sed -i 's#USERPROFILE#HOME#g' js/common/cli/index.js
 sed -i 's#`./\${global.appname}.exe`#`./bin/\${global.appname}`#g' js/common/cli/index.js
+sed -i 's#,""));const T#,""));_.$0="wechat-devtools-cli";const T#' js/common/cli/index.js
