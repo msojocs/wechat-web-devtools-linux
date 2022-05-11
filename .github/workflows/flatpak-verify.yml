@@ -42,6 +42,8 @@ jobs:
       run: |
         dnf -y install docker
     - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
+      env:
+        ACTION_MODE: true
       with:
         bundle: wechat-devtools.flatpak
         manifest-path: io.github.msojocs.wechat-devtools.yml
