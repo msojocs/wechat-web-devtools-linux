@@ -50,7 +50,7 @@ mkdir -p tmp && cd tmp
 
 if [ "$ACTION_MODE" != "true" ]; then
     notice "非ACTION模式, 设置镜像源"
-    prefix="https://gh2.yanqishui.work/"
+    prefix="https://mirror.ghproxy.com/"
 fi
 wget ${prefix}https://github.com/microsoft/ripgrep-prebuilt/releases/download/v12.1.1-1/ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz -O ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz
 tar xvf ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz -C ../bin && \

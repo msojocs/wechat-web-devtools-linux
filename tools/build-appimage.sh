@@ -51,13 +51,11 @@ if [[ "$INPUT_VERSION" != "$DEVTOOLS_VERSION" ]];then
 fi
 
 notice "下载AppImage构建工具 ACTION_MODE:$ACTION_MODE"
-if [[ $ACTION_MODE == 'true' ]]; then
-  appimagetool_host="github.com"
-else
-  appimagetool_host="github.rc1844.workers.dev"
+if [[ $ACTION_MODE != 'true' ]]; then
+  appimagetool_host="https://mirror.ghproxy.com/"
 fi
 if [ ! -f "$tmp_dir/appimagetool-x86_64.AppImage" ];then
-  wget "https://$appimagetool_host/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" \
+  wget "${appimagetool_host}https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" \
     -O "$tmp_dir/appimagetool-x86_64.AppImage"
 fi
 chmod a+x "$tmp_dir/appimagetool-x86_64.AppImage"
