@@ -30,6 +30,7 @@
 本项目修改自：https://github.com/dragonation/wechat-devtools/
 
 # 项目地址
+
 * https://github.com/msojocs/wechat-web-devtools-linux
 
 # 进度
@@ -158,12 +159,14 @@
   ![赞赏码](https://user-images.githubusercontent.com/20937135/154661198-93854dc1-c8ba-4c97-a7ab-9f8de26c0226.png)
 
 # 感谢赞赏支持
+
 | 赞赏人 | 赞赏金额 |
 |-------|---------|
 | Milder | 50.00￥ |
 | [Starrah](https://github.com/Starrah) | 50.00￥ |
 | . | 20.00￥ |
 | [icepie](https://github.com/icepie) | 20.00￥ |
+| 南极の短尾猫 | 20.00￥ |
 | 李喆 | 10.00￥ |
 | shaoxp | 5.00￥ |
 | [zyk-miao](https://github.com/zyk-miao) | 5.00￥ |
