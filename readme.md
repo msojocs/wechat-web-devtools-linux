@@ -84,7 +84,7 @@
 2. 请安装 `docker` `docker-compose`
 3. 克隆本项目：
     ```
-    git clone https://github.com/msojocs/wechat-web-devtools-linux.git
+    git clone --recurse-submodules https://github.com/msojocs/wechat-web-devtools-linux.git
     ```
 4. 在本地项目目录中执行如下的语句，构筑开发者工具：
     ```
@@ -107,7 +107,7 @@
    另外 `7z` 旧版解压可能存在问题（未测试最低版本号，比如：ubuntu16.04 自带的不行），请参考 `Dockerfile`
 3. 克隆本项目：
     ```
-    git clone https://github.com/msojocs/wechat-web-devtools-linux.git
+    git clone --recurse-submodules https://github.com/msojocs/wechat-web-devtools-linux.git
     ```
 4. 在本地项目目录中执行如下的语句，构筑开发者工具：
     ```
@@ -168,10 +168,16 @@
 | [icepie](https://github.com/icepie) | 20.00￥ |
 | 南极の短尾猫 | 20.00￥ |
 | 李喆 | 10.00￥ |
+| 陈陈菌 | 10.00￥ |
 | shaoxp | 5.00￥ |
+| david | 5.00￥ |
 | [zyk-miao](https://github.com/zyk-miao) | 5.00￥ |
 | [CoryByte](https://github.com/Corybyte) | 5.00￥ |
 
 # 免责声明
 
 微信开发者工具版权归腾讯公司所有，本项目旨在交流学习之用。如有不当之处，请联系本人，邮箱：jiyecafe@gmail.com
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/msojocs/wechat-web-devtools-linux.svg)](https://starchart.cc/msojocs/wechat-web-devtools-linux)
