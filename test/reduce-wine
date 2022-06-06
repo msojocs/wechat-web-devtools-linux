@@ -1,5 +1,5 @@
 #!/bin/bash
-export NO_WINE=true
+export WINE=fasle
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 $root_dir/tools/fix-core.sh

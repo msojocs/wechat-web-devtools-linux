@@ -29,7 +29,7 @@ elif [[ $ARCH == '' ]];then
   exit 1
 fi
 
-if [[ $NO_WINE == 'true' ]];then
+if [[ "$WINE" != 'true' ]];then
   TYPE='no_wine'
 else
   TYPE='wine'

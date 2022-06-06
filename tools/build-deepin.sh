@@ -31,7 +31,7 @@ fi
 
 ############ 准备构建deb包所需的文件及结构 ################
 package_name="io.github.msojocs.wechat-devtools"
-if [[ $NO_WINE == 'true' ]];then
+if [[ "$WINE" != 'true' ]];then
   BUILD_MARK='no_wine'
   package_name="${package_name}-no-wine"
 else
@@ -94,8 +94,8 @@ cd "$build_dir"
 ls -l "$build_dir"
 mkdir -p "$root_dir/tmp/build"
 
-if [[ $NO_WINE != 'true' ]];then
-  echo "添加wine依赖 - $NO_WINE"
+if [[ "$WINE" != 'false' ]];then
+  echo "添加wine依赖 - $WINE"
   echo "Depends: wine, wine-binfmt" >> "$build_dir/debian/control"
 fi
 

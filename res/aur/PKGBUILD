@@ -100,7 +100,7 @@ build() {
     export NW_VERSION=$_nwjs_ver
     # fix-package-name.js使用
     export srcdir=$srcdir
-    export NO_WINE=true
+    export WINE=false
     
     for script in fix-package-name.js fix-cli.sh fix-other.sh fix-menu.sh fix-core.sh rebuild-node-modules.sh; do
         _log "run ${script}"

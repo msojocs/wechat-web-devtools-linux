@@ -57,7 +57,7 @@ jobs:
           export DOCKER_UID=$UID
           export DOCKER_GID=$GID
           ls -l
-          export NO_WINE=false
+          export WINE=true
           docker-compose up
   
       - name: Compress Resources
@@ -69,7 +69,7 @@ jobs:
           cd nwjs && ln -s node node.exe
           cd ..
           tar -zcf tmp/src/src-wine.tar.gz bin nwjs package.nw tools
-          export NO_WINE=true
+          export WINE=false
           "tools/fix-core.sh"
           "tools/fix-other.sh"
           tar -zcf tmp/src/src-no-wine.tar.gz bin nwjs package.nw tools
@@ -142,14 +142,14 @@ jobs:
          
       - name: Build
         run: |
-          export NO_WINE=false
+          export WINE=true
           export ACTION_MODE=true
           # tar.gz AppImage
           ls -l
           mkdir -p tmp/build
           tools/build-prepare.sh
           tools/build-release.sh ${{ matrix.ARCH }} ${{ steps.tag.outputs.tag }}
-          export NO_WINE=true
+          export WINE=false
           tools/build-prepare.sh
           tools/build-release.sh ${{ matrix.ARCH }} ${{ steps.tag.outputs.tag }}
 
@@ -209,10 +209,10 @@ jobs:
           ls -l
           mkdir -p tmp/build
           tools/build-prepare.sh
-          env NO_WINE=false tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
-          export NO_WINE=true
+          env WINE=true tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
+          export WINE=false
           tools/build-prepare.sh
-          env NO_WINE=true tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
+          env WINE=false tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2.3.1

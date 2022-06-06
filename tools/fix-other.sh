@@ -23,9 +23,9 @@ ls -l "${srcdir}/compiler"
 && chmod +x wcc/bin/linux/*
 )
 
-# 预览编译，设置NO_WINE=true环境变量生效
+# 预览编译，设置 WINE!=true 环境变量生效
 # 如果是mac执行wcc,否则wcc.exe
-if [[ $NO_WINE == 'true' ]];then
+if [[ "$WINE" != 'true' ]];then
   \cp -rf "${srcdir}/compiler/generatemd5.js" "${package_dir}/js/vendor/generatemd5.js"
   \cp "${srcdir}/compiler/nodejs"/* "${package_dir}/js/vendor"
   cd "${package_dir}/js/vendor" && chmod 0755 wcc wcsc wcc.bin wcsc.bin

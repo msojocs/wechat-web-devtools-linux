@@ -11,7 +11,7 @@ services:
     environment:
       - ACTION_MODE=${ACTION_MODE:-false}
       # - https_proxy=${https_proxy:-}
-      - NO_WINE=${NO_WINE:-true}
+      - WINE=${WINE:-false}
       - LOCAL_USER_ID=${DOCKER_UID:-1000}
       - LOCAL_GROUP_ID=${DOCKER_GID:-1000}
       - BUILD_VERSION=${BUILD_VERSION:-v0}

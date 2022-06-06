@@ -42,8 +42,8 @@ if [[ ! -z $find_result ]];then
   sed -i "s#open -a Terminal \"\`pwd\`\"#$new_str#g" "$find_result"
 fi
 
-# wcc、wcsc处理，设置NO_WINE=true环境变量生效
-if [[ $NO_WINE == 'true' ]];then
+# wcc、wcsc处理，设置WINE=fasle环境变量生效
+if [[ "$WINE" != 'true' ]];then
   # "wcc.exe":!0,"wcsc.exe":!0
   find_result=$( grep -lr '{wcc:!0,wcsc:!0}' "$tmp_dir/core.wxvpkg" )
   echo "wcc: $find_result"

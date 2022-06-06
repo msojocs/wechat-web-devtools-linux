@@ -20,7 +20,7 @@ tmp_dir="$root_dir/tmp"
 store_dir="$tmp_dir/build"
 mkdir -p $store_dir
 rm -rf nwjs package.nw
-if [[ $NO_WINE == 'true' ]];then
+if [[ "$WINE" != 'true' ]];then
   tar -zxf wechat-devtools-*.src/src-no-wine.tar.gz -C .
 else
   tar -zxf wechat-devtools-*.src/src-wine.tar.gz -C .

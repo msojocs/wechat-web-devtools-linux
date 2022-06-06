@@ -97,7 +97,7 @@ modules:
         - --share=network
       prepend-ld-library-path: /app/lib/x86_64-linux-gnu
       env:
-        - NO_WINE=true
+        - WINE=false
     sources:
       # - type: git
       #   branch: dev

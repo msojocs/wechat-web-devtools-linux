@@ -46,7 +46,7 @@ parts:
     build-environment: 
         - PATH: "$SNAPCRAFT_STAGE/node/bin:$PATH"
         - NW_VERSION: 0.55.0
-        - NO_WINE: 'true'
+        - WINE: 'false'
         # - NW_PACKAGE_DIR: "$SNAPCRAFT_PART_BUILD/code/package.nw"
         # - srcdir: "$SNAPCRAFT_PROJECT_DIR"
     build-packages: 

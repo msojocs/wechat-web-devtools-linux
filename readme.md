@@ -59,12 +59,14 @@
 在项目的 `bin` 目录中有 `wechat-devtools-cli` 脚本，是微信开发者工具的命令行支持 的Linux版本。相关资料可以在[微信CLI命令行V2](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)上找到。
 
 # 使用方法
+
 1. [在线安装](#在线安装)
 2. 可以在本项目的[Release](https://github.com/msojocs/wechat-web-devtools-linux/releases)中，寻找已经构筑好了的软件包，下载使用。
 如果`Release`版本存在问题，可以尝试[Continuous](https://github.com/msojocs/wechat-web-devtools-linux/releases/tag/continuous)版本，这是基于`master`分支的最新提交构建的，会及时修复一些 bug，但也可能会带来新的 bug。
 3. 你可以 [自行构建](#自行构建)
 
 # 在线安装
+
 目前支持以下平台：
 
 1. [AUR](https://aur.archlinux.org/packages/wechat-devtools)
@@ -74,7 +76,7 @@
 # 自行构建
 
 > 注：
-> 如果想构建纯 Linux 版本，请添加环境变量：`export NO_WINE=true` 
+> 如果想构建 wine 版本，请添加环境变量：`export WINE=true` 
 
 ## 方法0（推荐）
 
