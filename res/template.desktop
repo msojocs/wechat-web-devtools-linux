@@ -8,6 +8,6 @@ Exec=dir/bin/wechat-devtools
 Icon=dir/res/icons/wechat-devtools.svg
 Type=Application
 Terminal=false
-StartupWMClass=wechat_devtools
+StartupWMClass=wechat-devtools
 Actions=
 MimeType=x-scheme-handler/wechatide
