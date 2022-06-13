@@ -47,5 +47,4 @@ jobs:
       with:
         bundle: wechat-devtools.flatpak
         manifest-path: io.github.msojocs.wechat-devtools.yml
-        cache-key: flatpak-builder-${{ github.sha }}
         arch: ${{ matrix.arch }}
