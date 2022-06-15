@@ -72,12 +72,18 @@ sed -i "s#dir#/opt/apps/$package_name/files/bin#" "$base_dir/entries/application
 sed -i "s/WeChat Dev Tools/WeChat Dev Tools$NAME_SUFFIX/g" "$base_dir/info" "$base_dir/entries/applications/$package_name.desktop"
 sed -i "s/微信开发者工具/微信开发者工具$NAME_SUFFIX/g" "$base_dir/entries/applications/$package_name.desktop"
 
-\cp -rf "$root_dir/res/icons/wechat-devtools.svg" "$base_dir/entries/icons/hicolor/scalable/apps/$package_name.svg"
+# \cp -rf "$root_dir/res/icons/wechat-devtools.svg" "$base_dir/entries/icons/hicolor/scalable/apps/$package_name.svg"
+for size in 16x16 32x32 64x64 128x128 256x256 512x512;do
+  install -Dm644 "$root_dir/res/icons/$size.png" "$base_dir/entries/icons/hicolor/$size/apps/$package_name.png"
+done
+for size in 16x16 32x32 64x64 128x128 256x256 512x512;do
+  install -Dm644 "$root_dir/res/icons/$size.png" "$build_dir/usr/share/icons/hicolor/$size/apps/$package_name.png"
+done
 
 # 兼容普通deb
 mkdir -p "$build_dir/usr/share/applications" "$build_dir/usr/share/icons/hicolor/scalable/apps"
 \cp -rf "$base_dir/entries/applications/$package_name.desktop" "$build_dir/usr/share/applications/$package_name.desktop"
-\cp -rf "$base_dir/entries/icons/hicolor/scalable/apps/$package_name.svg" "$build_dir/usr/share/icons/hicolor/scalable/apps/$package_name.svg"
+# \cp -rf "$base_dir/entries/icons/hicolor/scalable/apps/$package_name.svg" "$build_dir/usr/share/icons/hicolor/scalable/apps/$package_name.svg"
 
 # 主体文件
 cp -r "$root_dir/package.nw" "$base_dir/files/bin/package.nw"

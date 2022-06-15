@@ -14,7 +14,7 @@ for (let size of ["64", "128", "256", "512"]) {
     } catch (error) {}
     info(`Writing icon file ${iconPath}`);
     fs.copyFileSync(
-        path.resolve(__dirname, "../res/icons", `wechat-devtools${size}.png`),
+        path.resolve(__dirname, "../res/icons", `${size}x${size}.png`),
         iconPath
     );
 }

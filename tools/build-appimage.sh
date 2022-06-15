@@ -70,7 +70,7 @@ mkdir -p $app_dir/usr/share/{metainfo,icons}
 notice "COPY FILES"
 cp "$root_dir/bin/wechat-devtools" "$app_dir/bin/wechat-devtools"
 cp "$root_dir/bin/wechat-devtools-cli" "$app_dir/bin/wechat-devtools-cli"
-cp "$root_dir/res/icons/wechat-devtools.png" "$app_dir/wechat-devtools.png"
+cp "$root_dir/res/icons/512x512.png" "$app_dir/wechat-devtools.png"
 \cp -rf "$root_dir/res/appimage"/* "$app_dir"
 cp $app_dir/usr/share/applications/*.desktop "$app_dir/io.github.msojocs.wechat_devtools.desktop"
 
