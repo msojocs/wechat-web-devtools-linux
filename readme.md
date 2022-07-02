@@ -169,14 +169,15 @@
 | . | 20.00￥ |
 | [icepie](https://github.com/icepie) | 20.00￥ |
 | 南极の短尾猫 | 20.00￥ |
-| younland | 20.00￥ |
+| [younland](https://github.com/younland) | 20.00￥ |
 | 李喆 | 10.00￥ |
 | 陈陈菌 | 10.00￥ |
+| [chiiihc](https://github.com/chiiihc) | 10.00￥ |
+| [nsfoxer](https://github.com/nsfoxer) | 10.00￥ |
 | shaoxp | 5.00￥ |
 | david | 5.00￥ |
 | [zyk-miao](https://github.com/zyk-miao) | 5.00￥ |
 | [CoryByte](https://github.com/Corybyte) | 5.00￥ |
-| 天际 | 5.00￥ |
 
 # 免责声明
 
