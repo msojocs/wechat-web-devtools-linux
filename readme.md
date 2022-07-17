@@ -170,6 +170,7 @@
 | [icepie](https://github.com/icepie) | 20.00￥ |
 | 南极の短尾猫 | 20.00￥ |
 | [younland](https://github.com/younland) | 20.00￥ |
+| [guanzhengyinqin](https://github.com/guanzhengyinqin) | 20.00￥ |
 | 李喆 | 10.00￥ |
 | 陈陈菌 | 10.00￥ |
 | [chiiihc](https://github.com/chiiihc) | 10.00￥ |
