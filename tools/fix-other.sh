@@ -26,10 +26,10 @@ ls -l "${srcdir}/compiler"
 # 预览编译，设置 WINE!=true 环境变量生效
 # 如果是mac执行wcc,否则wcc.exe
 if [[ "$WINE" != 'true' ]];then
-  \cp -rf "${srcdir}/compiler/generatemd5.js" "${package_dir}/js/vendor/generatemd5.js"
-  \cp "${srcdir}/compiler/nodejs"/* "${package_dir}/js/vendor"
-  cd "${package_dir}/js/vendor" && chmod 0755 wcc wcsc wcc.bin wcsc.bin
-  node "${package_dir}/js/vendor/generatemd5.js"
+  # \cp -rf "${srcdir}/compiler/generatemd5.js" "${package_dir}/js/vendor/generatemd5.js"
+  \cp "${srcdir}/compiler/nodejs"/* "${package_dir}/node_modules/wcc-exec"
+  cd "${package_dir}/node_modules/wcc-exec" && chmod 0755 wcc wcsc wcc.bin wcsc.bin
+  # node "${package_dir}/js/vendor/generatemd5.js"
 
   current=`date "+%Y-%m-%d %H:%M:%S"`
   timeStamp=`date -d "$current" +%s`

@@ -48,18 +48,18 @@ rm -fr "${package_dir}/node_modules/vscode-ripgrep/bin/"* # redownload bin on li
 cd "${package_dir}/node_modules/vscode-ripgrep" && \
 mkdir -p tmp && cd tmp
 
-if [ "$ACTION_MODE" != "true" ]; then
-    notice "非ACTION模式, 设置镜像源"
-    prefix="https://mirror.ghproxy.com/"
-fi
-wget ${prefix}https://github.com/microsoft/ripgrep-prebuilt/releases/download/v12.1.1-1/ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz -O ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz
+# if [ "$ACTION_MODE" != "true" ]; then
+#     notice "非ACTION模式, 设置镜像源"
+#     export https_proxy="http://127.0.0.1:7890"
+# fi
+wget https://github.com/microsoft/ripgrep-prebuilt/releases/download/v12.1.1-1/ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz -O ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz
 tar xvf ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz -C ../bin && \
 cd .. && rm -rf tmp
 
 (cd "${package_dir}/node_modules" && \
 find -name *.pdb | xargs -I{} rm -rf {} && \
 find -name *.lib | xargs -I{} rm -rf {} && \
-find -name *.exe | xargs -I{} rm -rf {} && \
+# find -name *.exe | xargs -I{} rm -rf {} && \
 find -name *.dll | xargs -I{} rm -rf {}) # remove pdb debugging file
 
 rm -fr "${package_dir}/node_modules_tmp" # remove previous hacking tmp 

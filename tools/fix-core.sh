@@ -45,23 +45,24 @@ fi
 # wcc、wcsc处理，设置WINE=fasle环境变量生效
 if [[ "$WINE" != 'true' ]];then
   # "wcc.exe":!0,"wcsc.exe":!0
-  find_result=$( grep -lr '{wcc:!0,wcsc:!0}' "$tmp_dir/core.wxvpkg" )
+  find_result=$( grep -lr 'wcc-exec' "$tmp_dir/core.wxvpkg" )
   echo "wcc: $find_result"
   if [[ ! -z $find_result ]];then
-    new_str='{"wcc.bin":!0,"wcsc.bin":!0,wcc:!0,wcsc:!0}'
-    sed -i "s#{wcc:!0,wcsc:!0}#$new_str#g" "$find_result"
-    new_str='"linux"===process.platform'
-    sed -i "s#\"darwin\"===process.platform#$new_str#g" "$find_result"
+    # new_str='{"wcc.bin":!0,"wcsc.bin":!0,wcc:!0,wcsc:!0}'
+    # sed -i "s#{wcc:!0,wcsc:!0}#$new_str#g" "$find_result"
+    # new_str='"linux"===process.platform'
+    # sed -i "s#\"darwin\"===process.platform#$new_str#g" "$find_result"
     
-    return_exp_wcc=$(cat $find_result | grep -P 'return [a-z]+\("wcc"\)' -o)  # return ?("wcc")
-    return_exp_wcc_replace="${return_exp_wcc//wcc/wcc.bin}" # return ?("wcc.bin")
-    return_exp_wcc_replace="${return_exp_wcc//return /${return_exp_wcc_replace},}" # return ?("wcc.bin")
+    # return_exp_wcc=$(cat $find_result | grep -P 'return [a-z]+\("wcc"\)' -o)  # return ?("wcc")
+    # return_exp_wcc_replace="${return_exp_wcc//wcc/wcc.bin}" # return ?("wcc.bin")
+    # return_exp_wcc_replace="${return_exp_wcc//return /${return_exp_wcc_replace},}" # return ?("wcc.bin")
 
-    return_exp_wcsc=$(cat $find_result | grep -P 'return [a-z]+\("wcsc"\)' -o)  # return ?("wcsc")
-    return_exp_wcsc_replace="${return_exp_wcc_replace//wcc/wcsc}"
+    # return_exp_wcsc=$(cat $find_result | grep -P 'return [a-z]+\("wcsc"\)' -o)  # return ?("wcsc")
+    # return_exp_wcsc_replace="${return_exp_wcc_replace//wcc/wcsc}"
 
-    sed -i "s#$return_exp_wcc#$return_exp_wcc_replace#g" "$find_result"
-    sed -i "s#$return_exp_wcsc#$return_exp_wcsc_replace#g" "$find_result"
+    sed -i "s#wcc\\.exe#wcc#g" "$find_result"
+    sed -i "s#wcsc\\.exe#wcsc#g" "$find_result"
+    sed -i "s#code/package.nw#package.nw#g" "$find_result"
   fi
   # 处理报错时控制台显示的环境
   find_result=$( grep -lr '(env:' "$tmp_dir/core.wxvpkg" )
