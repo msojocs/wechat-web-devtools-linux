@@ -32,8 +32,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=1062206090&version_type=1
-        md5: a2e0e0826571daeab239755d5b3347e5
+        url: https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=1062207210&version_type=1
+        md5:  7599cfeeebb57bda7ae5594daf2e0659
         archive-type: 7z
         path: code
         strip-components: 0
