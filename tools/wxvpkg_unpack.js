@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // Extract core.wxvpkg of current folder to dest folder
 /**
  * 使用：

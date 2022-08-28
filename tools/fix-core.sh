@@ -1,5 +1,21 @@
 #!/bin/bash
 root_dir=$(cd `dirname $0`/.. && pwd -P)
+set -e
+trap 'catchError $LINENO "$BASH_COMMAND"' ERR # 捕获错误情况
+catchError() {
+    exit_code=$?
+    if [ $exit_code -ne 0 ]; then
+        fail "\033[31mcommand: $2\n  at $0:$1\n  at $STEP\033[0m"
+    fi
+    exit $exit_code
+}
+
+notice() {
+    echo -e "\033[36m $1 \033[0m "
+}
+fail() {
+    echo -e "\033[41;37m 失败 \033[0m $1"
+}
 
 package_dir="$root_dir/package.nw"
 tmp_dir="$root_dir/tmp/core"
@@ -35,6 +51,7 @@ if [[ ! -z $token_find_result ]];then
 fi
 
 # open -a Terminal "`pwd`" --> gnome-terminal
+notice "fix terminal"
 find_result=$( grep -lr 'open -a Terminal "`pwd`"' "$tmp_dir/core.wxvpkg" )
 echo "Terminal启动位置: $find_result"
 if [[ ! -z $find_result ]];then
@@ -79,6 +96,7 @@ if [[ "$WINE" != 'true' ]];then
 fi
 
 # fix theme
+notice "fix theme"
 find_result=$( grep -lr "OSThemeController=" "$tmp_dir/core.wxvpkg" )
 echo "theme: $find_result"
 if [[ -n $find_result ]];then
@@ -93,8 +111,11 @@ if [[ -n $find_result ]];then
 fi
 
 # fix update check
+notice "fix update check"
+sed -i 's#</body><script src=../js/core#</body><script src="../js/unpack/hackrequire/index.js"></script><script src=../js/core#' "$package_dir/html/whatsnew.html"
 find_result=$( grep -lr "whatsnew.html" "$tmp_dir/core.wxvpkg" )
-sed -i 's#t=>{W("new_version_hint#t=>{t.window.global.shareData=global.shareData;t.window.global.windowMap=global.windowMap;W("new_version_hint#' $find_result
+grep -lr "t=>{R(\"new_version_hint" "$find_result"
+sed -i 's#t=>{R("new_version_hint#t=>{const keys = ["shareData", "windowMap", "isSimple","masterProxyPort", "proxyPort", "masterH2ProxyPort", "h2ProxyPort"];for(let k of keys)t.window.global[k] = global[k];R("new_version_hint#' $find_result
 
 # pack 路径 到 文件
 echo "pack"
