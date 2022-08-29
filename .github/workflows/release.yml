@@ -57,7 +57,7 @@ jobs:
           export DOCKER_UID=$UID
           export DOCKER_GID=$GID
           ls -l
-          export WINE=true
+          export WINE=false
           docker-compose up
   
       - name: Compress Resources
@@ -68,11 +68,7 @@ jobs:
           cp  node/bin/node nwjs/node
           cd nwjs && ln -s node node.exe
           cd ..
-          tar -zcf tmp/src/src-wine.tar.gz bin nwjs package.nw tools
-          export WINE=false
-          "tools/fix-core.sh"
-          "tools/fix-other.sh"
-          tar -zcf tmp/src/src-no-wine.tar.gz bin nwjs package.nw tools
+          tar -zcf tmp/src/src-linux.tar.gz bin nwjs package.nw tools
 
       - name: Compress nodegit compiler
         run: |
@@ -142,14 +138,11 @@ jobs:
          
       - name: Build
         run: |
-          export WINE=true
+          export WINE=false
           export ACTION_MODE=true
           # tar.gz AppImage
           ls -l
           mkdir -p tmp/build
-          tools/build-prepare.sh
-          tools/build-release.sh ${{ matrix.ARCH }} ${{ steps.tag.outputs.tag }}
-          export WINE=false
           tools/build-prepare.sh
           tools/build-release.sh ${{ matrix.ARCH }} ${{ steps.tag.outputs.tag }}
 
@@ -208,8 +201,6 @@ jobs:
           export BUILD_VERSION=${{ steps.tag.outputs.tag }}
           ls -l
           mkdir -p tmp/build
-          tools/build-prepare.sh
-          env WINE=true tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
           export WINE=false
           tools/build-prepare.sh
           env WINE=false tools/build-deepin.sh ${{ steps.tag.outputs.tag }}

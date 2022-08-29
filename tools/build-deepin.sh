@@ -33,7 +33,7 @@ fi
 package_name="io.github.msojocs.wechat-devtools"
 if [[ "$WINE" != 'true' ]];then
   BUILD_MARK='no_wine'
-  package_name="${package_name}-no-wine"
+  package_name="${package_name}-linux"
 else
   BUILD_MARK='wine'
   NAME_SUFFIX=" (wine)"
