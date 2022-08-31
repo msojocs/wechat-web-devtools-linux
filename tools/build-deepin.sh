@@ -32,7 +32,7 @@ fi
 ############ 准备构建deb包所需的文件及结构 ################
 package_name="io.github.msojocs.wechat-devtools"
 if [[ "$WINE" != 'true' ]];then
-  BUILD_MARK='no_wine'
+  BUILD_MARK='linux'
   package_name="${package_name}-linux"
 else
   BUILD_MARK='wine'

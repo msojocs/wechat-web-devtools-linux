@@ -30,7 +30,7 @@ elif [[ $ARCH == '' ]];then
 fi
 
 if [[ "$WINE" != 'true' ]];then
-  TYPE='no_wine'
+  TYPE='linux'
 else
   TYPE='wine'
 fi
