@@ -166,6 +166,7 @@
 |-------|---------|
 | Milder | 50.00￥ |
 | [Starrah](https://github.com/Starrah) | 50.00￥ |
+| 仙人柱 | 50.00￥ |
 | . | 20.00￥ |
 | [icepie](https://github.com/icepie) | 20.00￥ |
 | 南极の短尾猫 | 20.00￥ |
