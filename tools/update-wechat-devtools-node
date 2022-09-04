@@ -62,42 +62,13 @@ const fetching = function () {
                         result += data;
                     });
                     res.on("end", () => {
-                        let links = {};
-                        result
-                            .toString("utf8")
-                            .split('<div class="page-inner"')[1]
-                            .split('<a href="')
-                            .slice(1)
-                            .map((a) => {
-                                return a.split("</a>")[0];
-                            })
-                            .filter((link) => link[0] != "#")
-                            .forEach((link) => {
-                                let content = link
-                                    .split(">")
-                                    .slice(1)
-                                    .join(">")
-                                    .replace(/<([^>]*)>/g, "")
-                                    .replace(/\s+/g, "-")
-                                    .toLowerCase();
-                                if (
-                                    content === "windows-64" ||
-                                    content === "windows-32" ||
-                                    content === "macos"
-                                ) {
-                                    if (!links[content]) {
-                                        links[content] = [];
-                                    }
-                                    let url = link.split('"')[0];
-                                    links[content].push(url);
-                                    info(`Found ${content} link: ${url}`);
-                                }
-                            });
-                        if (!links["windows-64"][0]) {
+                        const linkM = result.match(/href="(https[^"]*?type=win32_x64.*?)"/)
+                        if (!linkM) {
                             console.error("No windows-64 dist found");
                             exit(1);
                         }
-                        resolve(links["windows-64"][0]);
+                        const link = linkM[1]
+                        resolve(link);
                     });
                 })
                 .on("error", reject);
