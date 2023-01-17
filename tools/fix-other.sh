@@ -16,6 +16,7 @@ sed -i 's#module.exports = createWebviewManager;#module.exports = createWebviewM
 echo "fix: wcc,wcsc"
 # wcc wcsc
 ls -l "${srcdir}/compiler"
+cd "${srcdir}/compiler" && npm install
 # 可视化编译
 (cd "${package_dir}/node_modules/" \
 && rm -rf wcc \
