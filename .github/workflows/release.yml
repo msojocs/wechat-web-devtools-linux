@@ -121,6 +121,7 @@ jobs:
       - name: Prepare
         run: |
           cd compiler && npm install
+          sudo apt install -y fuse
           echo "$UID, $GID"
 
       - name: Generate TAG
@@ -361,6 +362,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          sudo apt install -y fuse
           wget -q https://github.com/TheAssassin/pyuploadtool/releases/download/continuous/pyuploadtool-x86_64.AppImage
           chmod +x pyuploadtool-x86_64.AppImage
           ./pyuploadtool-x86_64.AppImage **build/WeChat*.AppImage **build/*.tar.gz **build/*.deb **build/*.pkg.* **build/*.snap
