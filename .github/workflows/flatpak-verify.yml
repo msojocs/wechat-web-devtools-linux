@@ -31,22 +31,22 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: 'recursive'
-    - name: Prepare
-      run: |
-        yum install -y p7zip p7zip-plugins nodejs
-        cd compiler && npm install
-        cat /etc/issue
-        7z
-    # Docker is required by the docker/setup-qemu-action which enables emulation
-    - name: Install deps
-      run: |
-        dnf -y install docker
-    - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
-      env:
-        ACTION_MODE: true
-      with:
-        bundle: wechat-devtools.flatpak
-        manifest-path: io.github.msojocs.wechat-devtools.yml
-        cache-key: flatpak-builder-${{ github.sha }}
-        cache: false
-        arch: ${{ matrix.arch }}
+    # - name: Prepare
+    #   run: |
+    #     yum install -y p7zip p7zip-plugins nodejs
+    #     cd compiler && npm install
+    #     cat /etc/issue
+    #     7z
+    # # Docker is required by the docker/setup-qemu-action which enables emulation
+    # - name: Install deps
+    #   run: |
+    #     dnf -y install docker
+    # - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
+    #   env:
+    #     ACTION_MODE: true
+    #   with:
+    #     bundle: wechat-devtools.flatpak
+    #     manifest-path: io.github.msojocs.wechat-devtools.yml
+    #     cache-key: flatpak-builder-${{ github.sha }}
+    #     cache: false
+    #     arch: ${{ matrix.arch }}
