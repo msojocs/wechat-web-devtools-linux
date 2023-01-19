@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e # 命令出错就退出
-trap 'catchError $LINENO $BASH_COMMAND' SIGHUP SIGINT SIGQUIT EXIT # 捕获错误情况
+trap 'catchError $LINENO $BASH_COMMAND' ERR # 捕获错误情况
 
 catchError() {
     exit_code=$?
@@ -24,7 +24,6 @@ python --version
 echo "docker node version: $( node --version )"
 
 cd /workspace
-rm -rf node nwjs package.nw
 # 
 # exec ./tools/rebuild-node-modules 0.53.1
 ./tools/setup-wechat-devtools-bash

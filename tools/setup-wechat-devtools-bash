@@ -6,6 +6,12 @@
 #          x.xx.xxxxx - 指定版本号
 # 
 
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+
+export PATH="$root_dir/tools:$PATH"
+# 步骤
+source "step.sh"
+
 set -e
 trap 'catchError $LINENO "$BASH_COMMAND"' ERR # 捕获错误情况
 catchError() {
@@ -25,49 +31,67 @@ notice() {
     echo -e "\033[36m $1 \033[0m "
 }
 
-root_dir=$(cd `dirname $0`/.. && pwd -P)
 
-echo "==========Initializing node=========="
+if [ $CURRENT_STEP == $INSTALL_START ];then
+  rm -rf "$root_dir"/{node,nwjs,package.nw}
+  echo "==========Initializing node=========="
+  if [ -f "$root_dir/node/bin/node" ]; then
+    step_switch $INSTALL_NODE_SUCCESS
+    success "node安装完毕"
+  else
+    "$root_dir/tools/update-node.sh"
+    step_switch $INSTALL_NODE_SUCCESS
+    success "node ok"
+  fi
 
-if [ -f "$root_dir/node/bin/node" ]; then
-  success "node安装完毕"
-else
-  "$root_dir/tools/update-node.sh"
-  success "node ok"
+  if [ ! -f "$root_dir/node/bin/node" ]; then
+    step_switch $INSTALL_START
+    fail "Node安装失败"
+    exit
+  fi
 fi
 
-if [ ! -f "$root_dir/node/bin/node" ]; then
-  fail "Node安装失败"
-  exit
-fi
 # 将node加入环境
 export PATH="$root_dir/node/bin":$PATH
-if [ "$ACTION_MODE" != "true" ]; then
-    notice "非ACTION模式, 设置镜像源"
-    npm config set registry http://registry.npmmirror.com/ # 注册模块镜像
-    npm config set disturl http://npmmirror.com/dist # node-gyp 编译依赖的 node 源码镜像
-    ## 以下选择添加
-    npm config set sass_binary_site http://npmmirror.com/mirrors/node-sass # node-sass 二进制包镜像
-    npm config set electron_mirror http://npmmirror.com/mirrors/electron/ # electron 二进制包镜像
-    npm config set puppeteer_download_host http://npmmirror.com/mirrors # puppeteer 二进制包镜像
-    npm config set chromedriver_cdnurl http://npmmirror.com/mirrors/chromedriver # chromedriver 二进制包镜像
-    npm config set operadriver_cdnurl http://npmmirror.com/mirrors/operadriver # operadriver 二进制包镜像
-    npm config set phantomjs_cdnurl http://npmmirror.com/mirrors/phantomjs # phantomjs 二进制包镜像
-    npm config set selenium_cdnurl http://npmmirror.com/mirrors/selenium # selenium 二进制包镜像
-    npm config set node_inspector_cdnurl http://npmmirror.com/mirrors/node-inspector # node-inspector 二进制包镜像
-    # npm cache clean --force # 清空缓存
-fi
-echo "=====安装node-gyp nw-gyp===="
-npm uninstall node-gyp -g
-npm install node-gyp nw-gyp npm -g
-node-gyp install
-node-gyp list
+node --version
+npm --version
 
-echo "==========Initializing nwjs=========="
-if [ -f "$root_dir/nwjs/nw" ]; then
-  success "nwjs安装完毕"
-else
-  node "$root_dir/tools/update-nwjs-node"
+if [ $CURRENT_STEP == $INSTALL_NODE_SUCCESS ];then
+  if [ "$ACTION_MODE" != "true" ]; then
+      notice "非ACTION模式, 设置镜像源"
+      npm config set registry http://registry.npmmirror.com/ # 注册模块镜像
+      npm config set disturl http://npmmirror.com/dist # node-gyp 编译依赖的 node 源码镜像
+      ## 以下选择添加
+      npm config set sass_binary_site http://npmmirror.com/mirrors/node-sass # node-sass 二进制包镜像
+      npm config set electron_mirror http://npmmirror.com/mirrors/electron/ # electron 二进制包镜像
+      npm config set puppeteer_download_host http://npmmirror.com/mirrors # puppeteer 二进制包镜像
+      npm config set chromedriver_cdnurl http://npmmirror.com/mirrors/chromedriver # chromedriver 二进制包镜像
+      npm config set operadriver_cdnurl http://npmmirror.com/mirrors/operadriver # operadriver 二进制包镜像
+      npm config set phantomjs_cdnurl http://npmmirror.com/mirrors/phantomjs # phantomjs 二进制包镜像
+      npm config set selenium_cdnurl http://npmmirror.com/mirrors/selenium # selenium 二进制包镜像
+      npm config set node_inspector_cdnurl http://npmmirror.com/mirrors/node-inspector # node-inspector 二进制包镜像
+      # npm cache clean --force # 清空缓存
+  fi
+  step_switch $INSTALL_NPM_CONFIG_SUCCESS
+fi
+
+if [ $CURRENT_STEP == $INSTALL_NPM_CONFIG_SUCCESS ];then
+  notice "=====安装node-gyp nw-gyp===="
+  npm uninstall node-gyp -g
+  npm install node-gyp nw-gyp -g
+  node-gyp install
+  node-gyp list
+  step_switch $INSTALL_GYP_SUCCESS
+fi
+
+if [ $CURRENT_STEP == $INSTALL_GYP_SUCCESS ];then
+  echo "==========Initializing nwjs=========="
+  if [ -f "$root_dir/nwjs/nw" ]; then
+    success "nwjs安装完毕"
+  else
+    node "$root_dir/tools/update-nwjs-node"
+  fi
+  step_switch $INSTALL_NW_SUCCESS
 fi
 
 # 7z旧版本解压不正常
@@ -79,31 +103,65 @@ fi
 # ln -s 7zz 7z
 # export PATH="$root_dir/tmp/7z:$PATH"
 
-echo "==========Initializing wechat-devtools package=========="
+if [ $CURRENT_STEP == $INSTALL_NW_SUCCESS ];then
+  notice "==========Initializing wechat-devtools package=========="
+  if [[ $@ == *version* ]];then
+    # 参数有版本号，优先级高，清空TARGET_VERSION
+    echo "参数有版本号"
+    TARGET_VERSION=""
+  else
+    # 参数没有版本号，获取
+    echo "参数没有版本号"
+    VERSION_DATA=$( cat "$root_dir/conf/devtools_v" )
+    VERSION_DATA=(${VERSION_DATA//,/ })
+    TARGET_VERSION="version=${VERSION_DATA[0]}"
+  fi
+  echo "TARGET_VERSION: $TARGET_VERSION"
+  if [ ! -f "$root_dir/package.nw/package.json" ];then
+    # 没装，直接装
+    node "$root_dir/tools/update-wechat-devtools-node" $TARGET_VERSION $@
+    
+    step_switch $INSTALL_WECHAT_SUCCESS
+  else
+    # 装了，获取已安装版本
+    DEVTOOLS_VERSION=$( cat "$root_dir/package.nw/package.json" | grep -m 1 -Eo "\"[0-9]{1}\.[0-9]{2}\.[0-9]+" )
+    DEVTOOLS_VERSION="${DEVTOOLS_VERSION//\"/}"
+    # 已安装, 比较目标版本
+    if [ "$TARGET_VERSION" != "$DEVTOOLS_VERSION" ];then
+      node "$root_dir/tools/update-wechat-devtools-node" $TARGET_VERSION $@
+    fi
+    step_switch $INSTALL_WECHAT_SUCCESS
+  fi
+fi
 
-if [[ $@ == *version* ]];then
-  # 参数有版本号，优先级高，清空TARGET_VERSION
-  echo "参数有版本号"
-  TARGET_VERSION=""
-else
-  # 参数没有版本号，获取
-  echo "参数没有版本号"
-  VERSION_DATA=$( cat "$root_dir/conf/devtools_v" )
-  VERSION_DATA=(${VERSION_DATA//,/ })
-  TARGET_VERSION="version=${VERSION_DATA[0]}"
+if [ $CURRENT_STEP == $INSTALL_WECHAT_SUCCESS ];then
+  notice "Patching wechat-devtools package name"
+  "$root_dir/tools/fix-package-name.js"
+
+  notice "Patching wechat-devtools editor selection autocopy"
+  "$root_dir/tools/fix-selection-copy-node"
+
+  notice "Patching wechat-devtools CLI supports"
+  "$root_dir/tools/fix-cli.sh"
+
+  notice "Patching wechat-devtools core.wxvpkg"
+  "$root_dir/tools/fix-core.sh"
+
+  notice "Rebuilding wechat-devtools node modules"
+  nwjsConfig=`cat "$root_dir/conf/nwjs.json" | grep -m 1 -Eo "version\": \"[0-9]{1}\.[0-9]{2}\.[0-9]+"`
+  nwjs_version="${nwjsConfig/version\": \"/}"
+  "$root_dir/tools/rebuild-node-modules.sh" "$nwjs_version"
+  step_switch $INSTALL_REBUILD_SUCCESS
 fi
-echo "TARGET_VERSION: $TARGET_VERSION"
-if [ ! -f "$root_dir/package.nw/package.json" ];then
-  # 没装，直接装
-  node "$root_dir/tools/update-wechat-devtools-node" $TARGET_VERSION $@
-  exit 0
+
+if [ $CURRENT_STEP == $INSTALL_REBUILD_SUCCESS ];then
+  notice "Patching wechat-devtools"
+  "$root_dir/tools/fix-menu.sh"
+
+  notice "Patching Other"
+  "$root_dir/tools/fix-other.sh"
 fi
-# 装了，获取已安装版本
-DEVTOOLS_VERSION=$( cat "$root_dir/package.nw/package.json" | grep -m 1 -Eo "\"[0-9]{1}\.[0-9]{2}\.[0-9]+" )
-DEVTOOLS_VERSION="${DEVTOOLS_VERSION//\"/}"
-# 已安装, 比较目标版本
-if [ "$TARGET_VERSION" == "$DEVTOOLS_VERSION" ];then
-  success "微信开发者工具安装完毕"
-  exit 0
-fi
-node "$root_dir/tools/update-wechat-devtools-node" $TARGET_VERSION $@
+
+success "微信开发者工具安装完毕"
+
+step_over

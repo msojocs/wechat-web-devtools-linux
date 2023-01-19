@@ -3,6 +3,9 @@
 
 set -e
 
+warn() {
+    echo -e "\033[43;37m 警告 \033[0m $1"
+}
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 NW_PACKAGE_DIR="$root_dir/package.nw"
 
@@ -15,8 +18,8 @@ if [ ! -f "$target_file" ]; then
 fi
 # 判断匹配函数，匹配函数不为0，则包含给定字符
 if [ `grep -c "patch wechat devtools begin" $target_file` -ne '0' ];then
-    echo -e "\e[1;31m$target_file seems to have been modified\e[0m" >&2
-    exit 1
+    warn "$target_file seems to have been modified"
+    exit 0
 fi
 
 tmp_file=$(mktemp)
