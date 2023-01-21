@@ -57,6 +57,7 @@ mkdir -p tmp && cd tmp
 ripgrep_version="12.1.1-1"
 # ripgrep路径
 ripgrep_path="$root_dir/cache/ripgrep-v${ripgrep_version}-x86_64-unknown-linux-musl.tar.gz"
+mkdir -p "$root_dir/cache"
 # 文件不存在，下载
 if [ ! -f "$ripgrep_path" ];then
   wget https://github.com/microsoft/ripgrep-prebuilt/releases/download/v12.1.1-1/ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz \
