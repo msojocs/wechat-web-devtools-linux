@@ -8,6 +8,10 @@ notice() {
     echo -e "\033[36m $1 \033[0m "
 }
 
+fail() {
+    echo -e "\033[41;37m 失败 \033[0m $1"
+}
+
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 package_dir="$root_dir/package.nw"
 export PATH="$root_dir/node/bin:$PATH"
@@ -22,7 +26,7 @@ fi
 
 PY_VERSION=`python -V 2>&1|awk '{print $2}'|awk -F '.' '{print $1}'`
 if [ $PY_VERSION != 2 ]; then
-  hash python2 2>/dev/null || { echo >&2 "I require python2 but it's not installed.  Aborting."; exit 1; }
+  hash python2 2>/dev/null || { fail "I require python2 but it's not installed.  Aborting."; exit 1; }
   ln -s "$( which python2 )" "$root_dir/node/bin/python"
 fi
 
