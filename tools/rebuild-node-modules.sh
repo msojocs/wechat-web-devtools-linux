@@ -52,8 +52,18 @@ mkdir -p tmp && cd tmp
 #     notice "非ACTION模式, 设置镜像源"
 #     export https_proxy="http://127.0.0.1:7890"
 # fi
-wget https://github.com/microsoft/ripgrep-prebuilt/releases/download/v12.1.1-1/ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz -O ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz
-tar xvf ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz -C ../bin && \
+
+# ripgrep版本
+ripgrep_version="12.1.1-1"
+# ripgrep路径
+ripgrep_path="$root_dir/cache/ripgrep-v${ripgrep_version}-x86_64-unknown-linux-musl.tar.gz"
+# 文件不存在，下载
+if [ ! -f "$ripgrep_path" ];then
+  wget https://github.com/microsoft/ripgrep-prebuilt/releases/download/v12.1.1-1/ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz \
+  -O "${ripgrep_path}.tmp"
+  mv "${ripgrep_path}.tmp" "${ripgrep_path}"
+fi
+tar xvf "$ripgrep_path" -C ../bin && \
 cd .. && rm -rf tmp
 
 (cd "${package_dir}/node_modules" && \
@@ -112,6 +122,7 @@ find -name "*.a" -delete && \
 find -name "*.lib" -delete && \
 find -name "*.mk" -delete)
 
+# TODO: 检查路径包含空格时，是否正常
 notice "copy node files"
 (cd "${package_dir}/node_modules_tmp/node_modules" && \
 find -name "*.node" | xargs -I{} \cp -rf {} ${package_dir}/node_modules/{})

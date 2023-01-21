@@ -7,12 +7,10 @@ const { execSync } = require("child_process");
 console.info("Patching editor selection copy configs");
 
 let configPath = os.homedir() + "/.config/wechat_devtools/Default/Editor/User/settings.json";
-let config = undefined;
+let config = {};
 if (fs.existsSync(configPath)) {
     // console.info(configPath)
     config = JSON.parse(fs.readFileSync(configPath, "utf8"));
-} else {
-    config = {};
 }
 
 config["editor.selectionClipboard"] = false;
