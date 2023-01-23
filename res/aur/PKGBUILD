@@ -120,7 +120,7 @@ package() {
     find ./package.nw -type d | xargs -I {} chmod -R a+rx {}
 
     cp ${srcdir}/node.${_node_version} nwjs/node
-    cd nwjs && ln -s node node.exe
+    cd nwjs && ln -s node node.exe && ln -s ../package.nw package.nw
 
     install -Dm755 "${srcdir}/wechat-devtools" "${pkgdir}${_install_dir}/bin/wechat-devtools"
     install -Dm755 "${srcdir}/wechat-devtools-cli" "${pkgdir}${_install_dir}/bin/wechat-devtools-cli"
