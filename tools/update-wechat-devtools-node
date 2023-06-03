@@ -196,6 +196,16 @@ const upgrade = function (extractPath) {
                 );
             }
         }
+        if(fs.existsSync(path.resolve(__dirname, '../package.nw/js/common/miniprogram-builder/modules/fullcompiler/app/contactandlaunch/updateContactAndLaunch.js'))) {
+            try {
+                fs.renameSync(
+                    path.resolve(__dirname, '../package.nw/js/common/miniprogram-builder/modules/fullcompiler/app/contactandlaunch/updateContactAndLaunch.js'),
+                    path.resolve(__dirname, '../package.nw/js/common/miniprogram-builder/modules/fullcompiler/app/contactandlaunch/updatecontactandlaunch.js')
+                )
+            } catch (error) {
+                
+            }
+        }
 
         resolve();
     });
