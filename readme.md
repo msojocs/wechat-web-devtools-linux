@@ -70,8 +70,6 @@
 目前支持以下平台：
 
 1. [AUR](https://aur.archlinux.org/packages/wechat-devtools)
-2. [Snap Store](https://snapcraft.io/wechat-devtools)
-3. 统信商店（家庭版）、深度商店（社区版）
 
 # 自行构建
 
