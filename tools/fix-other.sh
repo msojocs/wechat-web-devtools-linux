@@ -12,6 +12,27 @@ package_dir="$root_dir/package.nw"
 echo "fix: webview manager"
 sed -i 's#module.exports = createWebviewManager;#module.exports = createWebviewManager,( /** @type {any} */ (window)).createWebviewManager = createWebviewManager;#g' "$package_dir/js/libs/vseditor/webview-resource/main.js"
 
+echo "replace: wcc,wcsc linux version"
+source "${srcdir}/conf/compiler_version"
+
+mkdir -p "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}"
+if [ ! -f "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc" ];then
+  wget -c "https://github.com/msojocs/wx-compiler/releases/download/${WX_COMPILER_VERSION}/wcc" -O "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc.tmp"
+  mv "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc.tmp" "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc"
+  chmod 0755 "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc"
+fi
+
+if [ ! -f "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc" ];then
+  wget -c "https://github.com/msojocs/wx-compiler/releases/download/${WX_COMPILER_VERSION}/wcsc" -O "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc.tmp"
+  mv "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc.tmp" "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc"
+  chmod 0755 "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc"
+fi
+
+# \cp -rf "${srcdir}/compiler/generatemd5.js" "${package_dir}/js/vendor/generatemd5.js"
+\cp "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}"/* "${package_dir}/node_modules/wcc-exec"
+cd "${package_dir}/node_modules/wcc-exec" && chmod 0755 wcc wcsc && rm -rf wcc.exe wcsc.exe
+# node "${package_dir}/js/vendor/generatemd5.js"
+
 # 修复：可视化用的wcc,wcsc
 echo "fix: wcc,wcsc"
 # wcc wcsc
@@ -24,17 +45,9 @@ cd "${srcdir}/compiler" && npm install
 && chmod +x wcc/bin/linux/*
 )
 
-# 预览编译，设置 WINE!=true 环境变量生效
-# 如果是mac执行wcc,否则wcc.exe
-if [[ "$WINE" != 'true' ]];then
-  # \cp -rf "${srcdir}/compiler/generatemd5.js" "${package_dir}/js/vendor/generatemd5.js"
-  \cp "${srcdir}/compiler/nodejs"/* "${package_dir}/node_modules/wcc-exec"
-  cd "${package_dir}/node_modules/wcc-exec" && chmod 0755 wcc wcsc wcc.bin wcsc.bin
-  # node "${package_dir}/js/vendor/generatemd5.js"
+current=`date "+%Y-%m-%d %H:%M:%S"`
+timeStamp=`date -d "$current" +%s`
+echo $timeStamp > "${package_dir}/.build_time"
 
-  current=`date "+%Y-%m-%d %H:%M:%S"`
-  timeStamp=`date -d "$current" +%s`
-  echo $timeStamp > "${package_dir}/.build_time"
-fi
 
 rm -rf "$tmp_dir/node_modules"

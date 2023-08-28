@@ -91,7 +91,7 @@ const download = function (url) {
             util.format("../cache/wechat_devtools_%s_x64.exe", version)
         );
         let headers = execSync(`curl -IL "${url}"`).toString()
-        console.log(headers)
+        console.log('response header data:', headers)
         md5 = headers.match(/X-COS-META-MD5: (.*?)\r/i)[1]
 
         if (fs.existsSync(localPath)) {
