@@ -45,7 +45,9 @@ python3 --version
 
 # these modules are only available in windows
 cd "${package_dir}/node_modules" && \
-rm -fr "vscode-windows-ca-certs" "vscode-windows-registry" "vscode-windows-registry-node" "windows-process-tree"
+rm -fr "vscode-windows-ca-certs" \
+"vscode-windows-registry" "vscode-windows-registry-node" "windows-process-tree" \
+"node-pty" "node-pty-node"
 
 rm -fr "${package_dir}/node_modules/vscode-ripgrep/bin/"* # redownload bin on linux
 # https://github.com/microsoft/ripgrep-prebuilt
@@ -86,7 +88,7 @@ export JOBS=$max_thread
 (cd "${package_dir}/node_modules_tmp" && npm install \
     extract-file-icon \
     native-keymap \
-    node-pty \
+    node-pty@1.0.0 \
     native-watchdog \
     oniguruma \
     spdlog@0.11.1 \
@@ -101,6 +103,10 @@ notice "rebuild node-pty"
 cd "$package_dir/node_modules_tmp/node_modules" && \
 cp -fr "node-pty" "node-pty-node" && \
 cd "node-pty" && nw-gyp rebuild --arch=x64 "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
+mkdir -p "$package_dir/node_modules/node-pty/build/Release" && \
+cp -rf "$package_dir/node_modules_tmp/node_modules/node-pty/lib" "$package_dir/node_modules/node-pty/lib" && \
+cp -rf "$package_dir/node_modules_tmp/node_modules/node-pty/package.json" "$package_dir/node_modules/node-pty/package.json" && \
+cp -rf "$package_dir/node_modules/node-pty" "$package_dir/node_modules/node-pty-node"
 
 notice "rebuild native-watchdog"
 cd "$package_dir/node_modules_tmp/node_modules/native-watchdog" && \
