@@ -1,6 +1,7 @@
-# 1.06.2306020-2 / 2023-09-
+# 1.06.2307260-1 / 2023-09-09
 
 - update: node-pty to v1.0.0
+- update: devtools to v1.06.2307260
 - update: compiler(Linux) v0.0.4
 - dprecated: wine version
 
