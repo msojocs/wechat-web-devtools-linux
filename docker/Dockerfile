@@ -1,31 +1,23 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 
 WORKDIR /workspace
-
+ARG DEBIAN_FRONTEND=noninteractive
 RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
     sed -i 's/security.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
     sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
-    mkdir -p /build_temp/python36 /build_temp/nodejs && \
+    sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
+    mkdir -p /build_temp/nodejs && \
     apt update  && \
     apt install -y binutils software-properties-common gcc g++ \
-    gconf2 libxkbfile-dev p7zip-full make libssh2-1-dev libkrb5-dev wget curl \
+    gconf2 libxkbfile-dev p7zip-full make libssh2-1-dev libkrb5-dev wget curl python python3 \
     openssl pkg-config build-essential && \
-    cd /build_temp/python36 && \
-    apt-get install -y aptitude &&\
-    aptitude -y install gcc make zlib1g-dev libffi-dev libssl-dev &&\
-    mkdir -p test && cd test &&\
-    wget http://npmmirror.com/mirrors/python/3.6.5/Python-3.6.5.tgz &&\
-    tar -xvf Python-3.6.5.tgz &&\
-    chmod -R +x Python-3.6.5 &&\
-    cd Python-3.6.5/ &&\
-    ./configure &&\
-    aptitude -y install  libffi-dev libssl-dev &&\
-    make && make install &&\
     cd /build_temp/nodejs &&\
-    wget https://deb.nodesource.com/setup_16.x &&\
-    chmod +x setup_16.x &&\
-    ./setup_16.x &&\
-    apt-get install -y nodejs &&\
+    apt-get update && apt-get install -y ca-certificates curl gnupg
+
+RUN mkdir -p /etc/apt/keyrings && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg &&\
+    NODE_MAJOR=16 &&\
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list &&\
+    apt-get update && apt-get install nodejs -y &&\
     rm -rf /build_temp && \
     apt install -y gosu && \
     gosu nobody true && \

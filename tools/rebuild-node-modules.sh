@@ -84,7 +84,7 @@ mkdir -p "${package_dir}/node_modules_tmp/node_modules"
 
 notice "install modules"
 max_thread=$(cat /proc/cpuinfo| grep "processor"| wc -l)
-# export JOBS=$max_thread
+export JOBS=$max_thread
 (cd "${package_dir}/node_modules_tmp" && npm install \
     extract-file-icon \
     native-keymap \
