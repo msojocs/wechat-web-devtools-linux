@@ -1,3 +1,7 @@
+# 1.06.2308310-3 / 2023-12-24
+
+- update: compiler(Linux) v0.0.7
+
 # 1.06.2308310-2 / 2023-11-10
 
 - update: compiler(Linux) v0.0.6
