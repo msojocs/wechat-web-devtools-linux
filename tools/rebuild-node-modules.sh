@@ -93,7 +93,10 @@ export JOBS=$max_thread
     oniguruma \
     spdlog@0.11.1 \
     trash \
-    vscode-oniguruma \
+    vscode-oniguruma )
+
+notice "install nodegit"
+(cd "${package_dir}/node_modules_tmp" && npm install \
     nodegit \
     --registry=https://registry.npmmirror.com \
     --nodegit_binary_host_mirror=https://npmmirror.com/mirrors/nodegit/v0.27.0/ ) # reinstall modules

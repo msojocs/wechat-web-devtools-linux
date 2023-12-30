@@ -25,7 +25,7 @@ tmp_dir="$root_dir/tmp/core"
 mkdir -p $tmp_dir
 unpack_script="$root_dir/tools/wxvpkg_unpack.js"
 pack_script="$root_dir/tools/wxvpkg_pack.js"
- 
+
 echo "Fix Core"
 # unpack 文件 到 路径
 node "$unpack_script" "$package_dir/core.wxvpkg" "$tmp_dir/core.wxvpkg"

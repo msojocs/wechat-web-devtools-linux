@@ -4,8 +4,22 @@
     <title>Hello World!</title>
   </head>
   <body>
+    <input id="file1" type="file" nwdirectory="true" />
+    <script>
+      console.log('input test')
+      function selectChange(e) {
+        console.log('change:', e)
+      }
+      function selectCancel(e) {
+        console.log('selectCancel:', e)
+      }
+      const file = document.getElementById('file1')
+      file.addEventListener('change', selectChange)
+      file.addEventListener('cancel', selectCancel)
+    </script>
     <h1>Hello World!</h1>
     We are using node.js 9999
+
     <script>
     document.write(process.version)
     console.log(123)
