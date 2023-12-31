@@ -13,5 +13,8 @@ else
   node tools/wxvpkg_pack.js package.nw/core.wxvpkg.ext package.nw/core.wxvpkg
   rm -rf ~/.config/wechat-devtools/WeappCache
   rm -rf ~/.config/wechat-devtools/WeappVendor
+  unset https_proxy
+  unset http_proxy
+  unset all_proxy
   bin/wechat-devtools
 fi

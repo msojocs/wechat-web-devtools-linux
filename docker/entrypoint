@@ -24,6 +24,14 @@ python --version
 echo "docker node version: $( node --version )"
 
 cd /workspace
+# export C_INCLUDE_PATH=/usr/local/openssl/include:$C_INCLUDE_PATH
+# export CPLUS_INCLUDE_PATH=/usr/local/openssl/include：$CPLUS_INCLUDE_PATH
+# export LIBRARY_PATH=/usr/local/openssl/lib64:$LIBRARY_PATH
+# export LD_LIBRARY_PATH=/usr/local/openssl/lib64:$LD_LIBRARY_PATH
+# export PATH=/opt/7z:/usr/local/openssl/bin:$PATH
+# ls -l /usr/local/openssl/lib64
+# openssl version -a
+
 # 
 # exec ./tools/rebuild-node-modules 0.53.1
 ./tools/setup-wechat-devtools-bash

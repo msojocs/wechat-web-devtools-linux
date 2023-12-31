@@ -82,9 +82,13 @@ find -name *.dll | xargs -I{} rm -rf {}) # remove pdb debugging file
 rm -fr "${package_dir}/node_modules_tmp" # remove previous hacking tmp 
 mkdir -p "${package_dir}/node_modules_tmp/node_modules"
 
-notice "install modules"
 max_thread=$(cat /proc/cpuinfo| grep "processor"| wc -l)
 export JOBS=$max_thread
+notice "install nodegit"
+(cd "${package_dir}/node_modules_tmp" && npm install \
+    nodegit@next \
+    --registry=https://registry.npmmirror.com  ) # reinstall modules
+notice "install modules"
 (cd "${package_dir}/node_modules_tmp" && npm install \
     extract-file-icon \
     native-keymap \
@@ -95,11 +99,6 @@ export JOBS=$max_thread
     trash \
     vscode-oniguruma )
 
-notice "install nodegit"
-(cd "${package_dir}/node_modules_tmp" && npm install \
-    nodegit \
-    --registry=https://registry.npmmirror.com \
-    --nodegit_binary_host_mirror=https://npmmirror.com/mirrors/nodegit/v0.27.0/ ) # reinstall modules
 
 # rebuild
 notice "rebuild node-pty"

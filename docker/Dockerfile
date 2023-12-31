@@ -31,3 +31,15 @@ RUN apt remove -y p7zip p7zip-full p7zip-rar &&\
     tar -xJf 7z2107-linux-x64.tar.xz && \
     ln -s 7zz 7z
 ENV PATH=/opt/7z:$PATH
+
+# ENV PATH=/opt/7z:/usr/local/openssl/bin:$PATH
+# ENV export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/openssl/lib
+# ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/openssl/lib
+# RUN apt install build-essential checkinstall zlib1g-dev -y && \
+#     mkdir openssl && cd openssl && \
+#     wget https://www.openssl.org/source/openssl-3.0.0.tar.gz --no-check-certificate && \
+#     tar -xf openssl-3.0.0.tar.gz && \
+#     cd openssl-3.0.0 && \
+#     ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl shared zlib && \
+#     make -j$(nproc) && make install && \
+#     echo '/usr/local/openssl/lib64' > /etc/ld.so.conf.d/openssl.conf && ldconfig
