@@ -125,6 +125,16 @@ else
   warn "theme位置未找到"
 fi
 
+# fix WebSocket for nw >= v0.76.0
+notice "fix WebSocket"
+find_result=$( grep -lr "this._onBeforeRequest=e=>{if" "$tmp_dir/core.wxvpkg" )
+echo "WebSocket: $find_result"
+if [[ -n $find_result ]];then
+  sed -i 's#this._onBeforeRequest=e=>{if#this._onBeforeRequest=(e)=>{/*for nw >= v0.76.0*/if (/^wss?:\\/\\//i.test(e.url)) return void 0;if#' $find_result
+else
+  warn "WebSocket位置未找到"
+fi
+
 # fix update check
 notice "fix update check"
 sed -i 's#</body><script src=../js/core#</body><script src="../js/unpack/hackrequire/index.js"></script><script src=../js/core#' "$package_dir/html/whatsnew.html"
