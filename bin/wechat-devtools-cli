@@ -15,7 +15,7 @@ export APPDATA="$root_dir/nwjs"
 export PATH="$root_dir/node/bin:$root_dir/nwjs:$PATH"
 
 node $root_dir/package.nw/js/common/cli/index.js "$@"
-if [ ! -z "$APPIMAGE"];then
+if [ ! -z "$APPIMAGE" ];then
   # AppImage在程序退出后会删除相关程序文件，导致无法启动
   tail -f /etc/issue
 fi
