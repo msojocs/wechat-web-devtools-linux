@@ -13,8 +13,7 @@
 [![wechat-tools](https://img.shields.io/badge/wechat--devtools-1.06.2209070-yellow)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 [![nwjs](https://img.shields.io/badge/nwjs-0.55.0-green)](https://nwjs.io/downloads/)
 [![node](https://img.shields.io/badge/node-16.4.2-orange)](https://nodejs.org/en/)
-[![aur](https://img.shields.io/aur/version/wechat-devtools)](https://aur.archlinux.org/packages/wechat-devtools)
-[![wechat-devtools](https://snapcraft.io/wechat-devtools/badge.svg)](https://snapcraft.io/wechat-devtools)
+
 
   这是微信开发者工具 Linux版
   
@@ -35,7 +34,7 @@
 
 # 进度
 
-当前工具可以在Linux上构筑最新版 `1.06.2209070`，支持CLI模式。
+当前工具可以在Linux上构筑最新版 `1.06.2310080`，支持CLI模式。
 另现在已经可以直接在设置界面里面修改字体，手工输入字体名称就可以。
 
 # 功能测试记录
@@ -69,12 +68,12 @@
 
 目前支持以下平台：
 
-1. [AUR](https://aur.archlinux.org/packages/wechat-devtools)
+1. 统信应用商店（deepin）
 
 # 自行构建
 
 > 注：
-> 如果想构建 wine 版本，请添加环境变量：`export WINE=true` 
+> 如果想构建 wine 版本，请添加环境变量：`export WINE=true` 。注意：不受支持。
 
 ## 方法0（推荐）
 
@@ -160,24 +159,40 @@
 
 # 感谢赞赏支持
 
-| 赞赏人 | 赞赏金额 |
-|-------|---------|
-| Milder | 50.00￥ |
-| [Starrah](https://github.com/Starrah) | 50.00￥ |
-| 仙人柱 | 50.00￥ |
-| . | 20.00￥ |
-| [icepie](https://github.com/icepie) | 20.00￥ |
-| 南极の短尾猫 | 20.00￥ |
-| [younland](https://github.com/younland) | 20.00￥ |
-| [guanzhengyinqin](https://github.com/guanzhengyinqin) | 20.00￥ |
-| 李喆 | 10.00￥ |
-| 陈陈菌 | 10.00￥ |
-| [chiiihc](https://github.com/chiiihc) | 10.00￥ |
-| [nsfoxer](https://github.com/nsfoxer) | 10.00￥ |
-| shaoxp | 5.00￥ |
-| david | 5.00￥ |
-| [zyk-miao](https://github.com/zyk-miao) | 5.00￥ |
-| [CoryByte](https://github.com/Corybyte) | 5.00￥ |
+时间倒序
+
+| 赞赏人 | 赞赏 | 时间 |
+|-------|---------|-----|
+| [liushuai05](https://github.com/liushuai05) | 88.00￥ | 2023-12-26 |
+| LGTU | 10.00￥ | 2023-11-25 |
+| [WRXinYue](https://github.com/WRXinYue) | 10 | 2023-11-09 |
+| silentdoer | 50.00￥ | 2023-09-26 |
+| ??? | 20 |2023-08-11 |
+| Geequlim | 100 | 2023-07-12 |
+| 对方正在输入 | 10 | 2023-04-28 |
+| @DaqiongYang | 50 | 2023-03-29 |
+| AInoob | 5 | 2023-01-30 |
+| ??? | 5  | 2023-01-18 |
+| 仙人柱 | 50.00￥ | 2022-08-09 |
+| [guanzhengyinqin](https://github.com/guanzhengyinqin) | 20.00￥ | 2022-07-14 |
+| [nsfoxer](https://github.com/nsfoxer) | 10.00￥ | 2022-06-30 |
+| [chiiihc](https://github.com/chiiihc) | 5.00￥ | 2022-06-17 |
+| [younland](https://github.com/younland) | 20.00￥ | 2022-06-15 |
+| [chiiihc](https://github.com/chiiihc) | 5.00￥ | 2022-06-14 |
+| 陈陈菌 | 10.00￥ | 2022-05-29 |
+| WWW |  5.00￥ | 2022-05-26 |
+| 南极の短尾猫 | 20.00￥ | 2022-05-22 |
+| 猪宝的猪 | 20.00￥ | 2022-05-15 |
+| finalwhy | 66.60￥ | 2022-05-09 |
+| [CoryByte](https://github.com/Corybyte) | 5.00￥ | 2022-04-23 |
+| [Starrah](https://github.com/Starrah) | 50.00￥ | 2022-04-12 |
+| [zyk-miao](https://github.com/zyk-miao) | 5.00￥ | 2022-04-12 |
+| [icepie](https://github.com/icepie) | 20.00￥ | 2022-04-08 |
+| Milder | 50.00￥ | 2022-03-23 |
+| . | 20.00￥ | 2022-03-21 |
+| shaoxp | 5.00￥ | 2022-03-16 |
+| 李喆 | 10.00￥ | 2022-03-05 |
+| david | 5.00￥ | ??? |
 
 # 免责声明
 
