@@ -120,7 +120,6 @@ jobs:
 
       - name: Prepare
         run: |
-          cd compiler && npm install
           sudo apt install -y fuse
           echo "$UID, $GID"
 
