@@ -186,9 +186,12 @@ jobs:
           echo "::set-output name=tag::$tag"
           echo "::set-output name=name::$name"
       # https://stackoverflow.com/questions/61096521/how-to-use-gpg-key-in-github-actions
+      # gpg --generate-key
+      # gpg --export-secret-keys YOUR_ID_HERE | base64 > private.key
       - name: Configure GPG Key
         run: |
           echo -n "$GPG_SIGNING_KEY" | base64 --decode | gpg --import
+          gpg --list-secret-keys jiyecafe@gmail.com
         env:
           GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
 

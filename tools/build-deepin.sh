@@ -100,7 +100,7 @@ cd "$build_dir"
 ls -l "$build_dir"
 mkdir -p "$root_dir/tmp/build"
 
-if [[ "$WINE" != 'false' ]];then
+if [[ "$WINE" == 'true' ]];then
   echo "添加wine依赖 - $WINE"
   echo "Depends: wine, wine-binfmt" >> "$build_dir/debian/control"
 fi
