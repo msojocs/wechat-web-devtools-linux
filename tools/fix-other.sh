@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 srcdir=$root_dir
 tmp_dir="$root_dir/tmp"
@@ -28,22 +28,29 @@ if [ ! -f "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc" ];then
   chmod 0755 "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc"
 fi
 
+if [ ! -f "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc_module.node" ];then
+  wget -c "https://github.com/msojocs/wx-compiler/releases/download/${WX_COMPILER_VERSION}/wcc_module.node" -O "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc_module.node.tmp"
+  mv "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc_module.node.tmp" "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc_module.node"
+  chmod 0755 "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc_module.node"
+fi
+
+if [ ! -f "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc_module.node" ];then
+  wget -c "https://github.com/msojocs/wx-compiler/releases/download/${WX_COMPILER_VERSION}/wcsc_module.node" -O "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc_module.node.tmp"
+  mv "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc_module.node.tmp" "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc_module.node"
+  chmod 0755 "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc_module.node"
+fi
+
 # \cp -rf "${srcdir}/compiler/generatemd5.js" "${package_dir}/js/vendor/generatemd5.js"
-\cp "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}"/* "${package_dir}/node_modules/wcc-exec"
+\cp "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}"/{wcc,wcsc} "${package_dir}/node_modules/wcc-exec"
 cd "${package_dir}/node_modules/wcc-exec" && chmod 0755 wcc wcsc && rm -rf wcc.exe wcsc.exe
 # node "${package_dir}/js/vendor/generatemd5.js"
 
 # 修复：可视化用的wcc,wcsc
 echo "fix: wcc,wcsc"
-# wcc wcsc
-ls -l "${srcdir}/compiler"
-cd "${srcdir}/compiler" && npm install
-# 可视化编译
-(cd "${package_dir}/node_modules/" \
-&& rm -rf wcc \
-&& cp -rL "${srcdir}/compiler/wcc_node" "wcc" \
-&& chmod +x wcc/bin/linux/*
-)
+\cp "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}"/wcc_module.node "${package_dir}/node_modules/wcc/build/Release"
+cd "${package_dir}/node_modules/wcc/build/Release" && rm -rf wcc.node && mv wcc_module.node wcc.node
+\cp "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}"/wcsc_module.node "${package_dir}/node_modules/wcc/build/Release"
+cd "${package_dir}/node_modules/wcc/build/Release" && rm -rf wcsc.node && mv wcsc_module.node wcsc.node
 
 current=`date "+%Y-%m-%d %H:%M:%S"`
 timeStamp=`date -d "$current" +%s`

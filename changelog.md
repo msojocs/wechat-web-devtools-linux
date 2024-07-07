@@ -1,3 +1,8 @@
+# 1.06.2405020-1 / 2024-07-07
+
+- update: devtools to v1.06.2405020
+- update: compiler(Linux) v0.0.9
+
 # 1.06.2402040-1 / 2024-05-03
 
 - update: devtools to v1.06.2402040
