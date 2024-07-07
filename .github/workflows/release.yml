@@ -35,7 +35,6 @@ jobs:
 
       - name: Prepare
         run: |
-          cd compiler && npm install
           echo "$UID, $GID"
 
       - name: Generate TAG
@@ -70,16 +69,13 @@ jobs:
           cd ..
           tar -zcf tmp/src/src-linux.tar.gz bin nwjs package.nw tools
 
-      - name: Compress nodegit compiler
+      - name: Compress nodegit
         run: |
           ls -l
           mkdir -p tmp/build
           cp -r package.nw/node_modules/nodegit .
-          sudo rm -rf compiler/test
-          tar -zcf compiler.tar.gz compiler
           tar -zcf nodegit.tar.gz nodegit
           mv nodegit.tar.gz tmp/build
-          mv compiler.tar.gz tmp/build
           cd tmp/build
           ls -l
 
