@@ -52,6 +52,9 @@ cd "${package_dir}/node_modules/wcc/build/Release" && rm -rf wcc.node && mv wcc_
 \cp "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}"/wcsc_module.node "${package_dir}/node_modules/wcc/build/Release"
 cd "${package_dir}/node_modules/wcc/build/Release" && rm -rf wcsc.node && mv wcsc_module.node wcsc.node
 
+# 修复mock按钮无反应
+sed -i '1s/^/window.prompt = parent.prompt;\n/' "${package_dir}/js/ideplugin/devtools/index.js"
+
 current=`date "+%Y-%m-%d %H:%M:%S"`
 timeStamp=`date -d "$current" +%s`
 echo $timeStamp > "${package_dir}/.build_time"
