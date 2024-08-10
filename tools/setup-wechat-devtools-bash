@@ -72,7 +72,6 @@ if [ $CURRENT_STEP == $INSTALL_NODE_SUCCESS ];then
       npm config set phantomjs_cdnurl http://npmmirror.com/mirrors/phantomjs # phantomjs 二进制包镜像
       npm config set selenium_cdnurl http://npmmirror.com/mirrors/selenium # selenium 二进制包镜像
       npm config set node_inspector_cdnurl http://npmmirror.com/mirrors/node-inspector # node-inspector 二进制包镜像
-      # npm cache clean --force # 清空缓存
   fi
   step_switch $INSTALL_NPM_CONFIG_SUCCESS
 fi

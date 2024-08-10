@@ -24,6 +24,8 @@ python --version
 echo "docker node version: $( node --version )"
 
 cd /workspace
+export HOME="/tmp/home"
+mkdir -p /tmp/home
 # 
 # exec ./tools/rebuild-node-modules 0.53.1
 ./tools/setup-wechat-devtools-bash
