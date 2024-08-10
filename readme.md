@@ -85,9 +85,9 @@
     ```
     git clone --recurse-submodules https://github.com/msojocs/wechat-web-devtools-linux.git
     ```
-4. 在本地项目目录中执行如下的语句，构筑开发者工具：
+4. 在本地项目目录中执行如下的语句，构建开发者工具：
     ```
-    docker-compose up
+    tools/build-with-docker.sh
     ```
 5. 在本地项目目录中执行如下的语句，可以安装应用图标（非必须）：
     ```
@@ -103,12 +103,12 @@
 1. 如果构建 `wine` 版本，请先在Linux环境中自行安装 `wine` `wine-binfmt`；
 2. 安装编译 `nodegit` 所需的依赖：`python2.7 python3.6及以上 libkrb5-dev gcc openssl libssh2-1-dev g++ make pkg-config` ；
    
-   另外 `7z` 旧版解压可能存在问题（未测试最低版本号，比如：ubuntu16.04 自带的不行），请参考 `Dockerfile`
+   另外 `7z` 旧版解压可能存在问题（未测试最低版本号，比如：ubuntu16.04 自带的不行），请参考[`Dockerfile`](docker/Dockerfile)
 3. 克隆本项目：
     ```
     git clone --recurse-submodules https://github.com/msojocs/wechat-web-devtools-linux.git
     ```
-4. 在本地项目目录中执行如下的语句，构筑开发者工具：
+4. 在本地项目目录中执行以下命令，构建开发者工具：
     ```
     ./tools/setup-wechat-devtools-bash
     ```
