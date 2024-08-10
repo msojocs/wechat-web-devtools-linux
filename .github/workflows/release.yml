@@ -9,7 +9,7 @@ on:
   push:
     tags:        
       - v*
-    branches: [ master, dev, 45-snap-version]
+    branches: [ master, dev, ci]
   pull_request:
     branches: [ master ]
   # # Allows you to run this workflow manually from the Actions tab
@@ -53,11 +53,9 @@ jobs:
       - name: Build
         run: |
           export ACTION_MODE=true
-          export DOCKER_UID=$UID
-          export DOCKER_GID=$GID
           ls -l
           export WINE=false
-          docker compose up
+          tools/build-with-docker.sh
   
       - name: Compress Resources
         run: |
