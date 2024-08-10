@@ -57,7 +57,7 @@ jobs:
           export DOCKER_GID=$GID
           ls -l
           export WINE=false
-          docker-compose up
+          docker compose up
   
       - name: Compress Resources
         run: |
