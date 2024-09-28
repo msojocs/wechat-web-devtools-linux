@@ -3,6 +3,7 @@ set -ex
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 srcdir=$root_dir
 tmp_dir="$root_dir/tmp"
+nwjs_dir="$root_dir/nwjs"
 package_dir="$root_dir/package.nw"
 
 # 修复: webview manager
@@ -54,6 +55,14 @@ cd "${package_dir}/node_modules/wcc/build/Release" && rm -rf wcsc.node && mv wcs
 
 # 修复mock按钮无反应
 sed -i '1s/^/window.prompt = parent.prompt;\n/' "${package_dir}/js/ideplugin/devtools/index.js"
+
+# 修复视频无法播放
+if [ ! -f "${srcdir}/cache/libffmpeg-0.55.00-linux-x64.zip" ];then
+  wget -c https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/0.55.0/0.55.0-linux-x64.zip -O "${srcdir}/cache/libffmpeg-0.55.00-linux-x64.zip.tmp"
+  mv "${srcdir}/cache/libffmpeg-0.55.00-linux-x64.zip.tmp" "${srcdir}/cache/libffmpeg-0.55.00-linux-x64.zip"
+fi
+rm -rf "${nwjs_dir}/lib/libffmpeg.so"
+unzip "${srcdir}/cache/libffmpeg-0.55.00-linux-x64.zip" -d "${nwjs_dir}/lib"
 
 current=`date "+%Y-%m-%d %H:%M:%S"`
 timeStamp=`date -d "$current" +%s`

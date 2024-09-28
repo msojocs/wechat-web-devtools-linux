@@ -163,6 +163,8 @@
 
 | 赞赏人 | 赞赏 | 时间 |
 |-------|---------|-----|
+| [shao4598](https://github.com/shao4598) | 50.00￥ | 2024-09-24 |
+| [OWALabuy](https://github.com/OWALabuy) | 16.66￥ | 2024-08-28 |
 | [wangvation](https://github.com/wangvation) | 50.00￥ | 2024-07-16 |
 | 孤泉冷月 | 100.00￥ | 2024-07-12 |
 | [liushuai05](https://github.com/liushuai05) | 88.00￥ | 2023-12-26 |

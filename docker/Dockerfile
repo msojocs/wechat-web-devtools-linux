@@ -4,6 +4,7 @@ WORKDIR /workspace
 
 RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
     sed -i 's/security.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
+    sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
     sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
     mkdir -p /build_temp/python36 /build_temp/nodejs && \
     apt update  && \
@@ -27,7 +28,7 @@ RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
     ./setup_16.x &&\
     apt-get install -y nodejs &&\
     rm -rf /build_temp && \
-    apt install -y gosu && \
+    apt install -y gosu unzip python && \
     gosu nobody true && \
     useradd -s /bin/bash -m user
 
