@@ -28,7 +28,7 @@ export HOME="/tmp/home"
 mkdir -p /tmp/home
 # 
 # exec ./tools/rebuild-node-modules 0.53.1
-./tools/setup-wechat-devtools-bash
+./tools/setup-wechat-devtools.sh
 
 # chmod -R 777 tmp node nwjs package.nw
 # ls -l package.nw
