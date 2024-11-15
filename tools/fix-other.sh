@@ -64,6 +64,9 @@ fi
 rm -rf "${nwjs_dir}/lib/libffmpeg.so"
 unzip "${srcdir}/cache/libffmpeg-0.55.00-linux-x64.zip" -d "${nwjs_dir}/lib"
 
+# 不加载Skyline插件
+sed -i 's#,this.skylineStyleClient.init(),#,/*this.skylineStyleClient.init(),*/#' "${package_dir}/js/libs/vseditor/extensions/wechat-miniprogram-development/extension.js"
+
 current=`date "+%Y-%m-%d %H:%M:%S"`
 timeStamp=`date -d "$current" +%s`
 echo $timeStamp > "${package_dir}/.build_time"
