@@ -67,6 +67,12 @@ unzip "${srcdir}/cache/libffmpeg-0.55.00-linux-x64.zip" -d "${nwjs_dir}/lib"
 # 不加载Skyline插件
 sed -i 's#,this.skylineStyleClient.init(),#,/*this.skylineStyleClient.init(),*/#' "${package_dir}/js/libs/vseditor/extensions/wechat-miniprogram-development/extension.js"
 
+# 阻止无限启动服务器
+mv "${package_dir}/js/core/entrance.js" "${package_dir}/js/core/entrance.js.bak"
+cat "${srcdir}/res/scripts/entrance.js" > "${package_dir}/js/core/entrance.js"
+cat "${package_dir}/js/core/entrance.js.bak" >> "${package_dir}/js/core/entrance.js"
+rm "${package_dir}/js/core/entrance.js.bak"
+
 current=`date "+%Y-%m-%d %H:%M:%S"`
 timeStamp=`date -d "$current" +%s`
 echo $timeStamp > "${package_dir}/.build_time"
