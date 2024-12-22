@@ -10,7 +10,7 @@
 ----
 
 [![Node.js CI](https://github.com/msojocs/wechat-devtools-linux/actions/workflows/release.yml/badge.svg)](https://github.com/msojocs/wechat-devtools-linux/actions/workflows/release.yml)
-[![wechat-tools](https://img.shields.io/badge/wechat--devtools-1.06.2407120-yellow)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+[![wechat-tools](https://img.shields.io/badge/wechat--devtools-1.06.2409140-yellow)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 [![nwjs](https://img.shields.io/badge/nwjs-0.55.0-green)](https://nwjs.io/downloads/)
 [![node](https://img.shields.io/badge/node-16.4.2-orange)](https://nodejs.org/en/)
 
@@ -153,7 +153,7 @@
 
 # 赞赏
 
-  如果这个仓库让你感到舒适，可以点个Star或者请这个菜鸡大学生喝杯咖啡（请尽量带上github昵称）：
+  如果这个仓库让你感到舒适，可以点个Star或者请这个 ~~菜鸡大学生~~ 打工人喝杯咖啡（请尽量带上github昵称）：
 
   ![赞赏码](https://user-images.githubusercontent.com/20937135/154661198-93854dc1-c8ba-4c97-a7ab-9f8de26c0226.png)
 
@@ -163,6 +163,11 @@
 
 | 赞赏人 | 赞赏 | 时间 |
 |-------|---------|-----|
+| [senseab](https://github.com/senseab) | 50.00￥ | 2024-12-21 |
+| lcurk0 | 50.00￥ | 2024-11-29 |
+| [stvsl](https://github.com/stvsl) | 10.00￥ | 2024-11-26 |
+| 仙人柱 | 50.00￥ | 2024-11-20 |
+| [cabbage7th](https://github.com/cabbage7th) | 20.00￥ | 2024-10-06 |
 | [shao4598](https://github.com/shao4598) | 50.00￥ | 2024-09-24 |
 | [OWALabuy](https://github.com/OWALabuy) | 16.66￥ | 2024-08-28 |
 | [wangvation](https://github.com/wangvation) | 50.00￥ | 2024-07-16 |
