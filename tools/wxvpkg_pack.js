@@ -28,7 +28,10 @@ function writeInt32(number, start) {
   writeSync(buf, start)
 }
 
-let files = fs.readdirSync(dest)
+// 加入子文件夹的文件
+const files = fs.readdirSync(dest, { recursive: true }).filter(e => fs.statSync(path.join(dest, e)).isFile())
+// console.log(JSON.stringify(files, null, 4))
+
 // 文件数
 let totalCount = files.length
 
@@ -57,6 +60,7 @@ for (let file of files) {
   writeInt32(dataOffset, start)
   start += 4
   // write length
+  // console.info('dest:', dest, 'file:', file)
   let contentBuf = fs.readFileSync(path.join(dest, file))
   writeInt32(contentBuf.length, start)
   start += 4
