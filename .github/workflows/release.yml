@@ -81,14 +81,14 @@ jobs:
         run: |
           ls -l
 
-      - name: Upload artifact
+      - name: Upload src artifact
         uses: actions/upload-artifact@v4
         with:
           # Artifact name
           name: wechat-devtools-${{ matrix.ARCH }}.src
           path: tmp/src
 
-      - name: Upload artifact
+      - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           # Artifact name
@@ -111,7 +111,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Download artifacts
         uses: actions/download-artifact@v4
-
+      - name: Inspect directory after downloading artifacts
+        run: |
+          ls -alFR wechat-devtools-*.build
+          ls -alFR wechat-devtools-*.src
       - name: Prepare
         run: |
           sudo apt install -y fuse
