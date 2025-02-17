@@ -79,8 +79,7 @@ jobs:
 
       - name: View Directory
         run: |
-          ls -l wechat-devtools-*.build
-          ls -l wechat-devtools-*.src
+          ls -l
 
       - name: Upload src artifact
         uses: actions/upload-artifact@v4
