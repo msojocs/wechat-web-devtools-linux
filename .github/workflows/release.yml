@@ -79,7 +79,8 @@ jobs:
 
       - name: View Directory
         run: |
-          ls -l
+          ls -l wechat-devtools-*.build
+          ls -l wechat-devtools-*.src
 
       - name: Upload src artifact
         uses: actions/upload-artifact@v4
@@ -87,7 +88,6 @@ jobs:
           # Artifact name
           name: wechat-devtools-${{ matrix.ARCH }}.src
           path: tmp/src
-          overwrite: true
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
@@ -95,7 +95,6 @@ jobs:
           # Artifact name
           name: wechat-devtools-${{ matrix.ARCH }}.build
           path: tmp/build
-          overwrite: true
 
   build-tar:
     name: Build tar.gz AppImage
@@ -153,9 +152,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           # Artifact name
-          name: wechat-devtools-${{ matrix.ARCH }}.build
+          name: wechat-devtools-simple-${{ matrix.ARCH }}.build
           path: tmp/build
-          overwrite: true
 
   build-deb:
     name: Build DEB Package
@@ -212,9 +210,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           # Artifact name
-          name: wechat-devtools-${{ matrix.ARCH }}.build
+          name: wechat-devtools-deb-${{ matrix.ARCH }}.build
           path: tmp/build
-          overwrite: true
 
   upload:
     name: Create release and upload artifacts
