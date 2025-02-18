@@ -10,7 +10,7 @@
 ----
 
 [![Node.js CI](https://github.com/msojocs/wechat-devtools-linux/actions/workflows/release.yml/badge.svg)](https://github.com/msojocs/wechat-devtools-linux/actions/workflows/release.yml)
-[![wechat-tools](https://img.shields.io/badge/wechat--devtools-1.06.2409140-yellow)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+[![wechat-tools](https://img.shields.io/badge/wechat--devtools-1.06.2412050-blue)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 [![nwjs](https://img.shields.io/badge/nwjs-0.55.0-green)](https://nwjs.io/downloads/)
 [![node](https://img.shields.io/badge/node-16.4.2-orange)](https://nodejs.org/en/)
 
@@ -34,7 +34,7 @@
 
 # 进度
 
-当前工具可以在Linux上构筑最新版 `1.06.2407120`，支持CLI模式。
+当前工具可以在Linux上构筑最新版 `1.06.2412050`，支持CLI模式。
 另现在已经可以直接在设置界面里面修改字体，手工输入字体名称就可以。
 
 # 功能测试记录
@@ -50,8 +50,8 @@
 # 系统要求
 
 * 基于Linux的桌面系统，首选GNOME（其他的桌面环境可能会有问题，未测试）
-* CI自动构建的包对 glibc 和 libstdc++ 有一定的版本要求，glibc 的版本要求2.23，libstdc++ 的版本要求3.4.21
-* 如果你下载的是 `wine` 版本，那么你需要安装有 `wine` `wine-binfmt` 支持，建议版本在5.0以上，低版本可能会存在有问题
+* CI自动构建的包对 glibc 和 libstdc++ 有一定的版本要求，glibc 的版本要求>=2.23，libstdc++ 的版本要求>=3.4.21
+* ~~如果你下载的是 `wine` 版本，那么你需要安装有 `wine` `wine-binfmt` 支持，建议版本在5.0以上，低版本可能会存在有问题~~
 
 # CLI支持
 
@@ -126,7 +126,7 @@
 3. 修复了nwjs上关于Menu的段错误，确保最新版本可以正常启动 (by dragonation)；
 4. 在构筑过程中会重新编译node_modules，确保原生模块可以在Linux上正确运行；
 5. 下载更新可以支持断点再续，并使用了taobao国内的npm源，加速下载（稳定性待测试）。
-6. 纯 Linux 支持，使用 nodejs 实现模拟官方编译器
+6. 纯 Linux 支持，使用 cpp 实现模拟官方编译器。[wx-compiler](https://github.com/msojocs/wx-compiler)
 
 # 后续计划
 
@@ -164,6 +164,7 @@
 | 赞赏人 | 赞赏 | 时间 |
 |-------|---------|-----|
 | [senseab](https://github.com/senseab) | 50.00￥ | 2024-12-21 |
+| l | 10.00￥ | 2024-12-08 |
 | lcurk0 | 50.00￥ | 2024-11-29 |
 | [stvsl](https://github.com/stvsl) | 10.00￥ | 2024-11-26 |
 | 仙人柱 | 50.00￥ | 2024-11-20 |
