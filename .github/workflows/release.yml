@@ -158,7 +158,7 @@ jobs:
     name: Build DEB Package
     needs:
       - build-src
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
