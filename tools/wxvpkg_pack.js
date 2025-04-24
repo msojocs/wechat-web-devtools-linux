@@ -3,7 +3,6 @@
 // https://gist.github.com/chemzqm/9f2334ca201dc2fbc363fdd757aa2ed4
 const path = require('path')
 const fs = require('fs')
-const { execSync } = require('child_process')
 
 const args = process.argv.slice(2);
 const from = args[0]
@@ -12,7 +11,10 @@ const to = args[1]
 let file = to
 console.log(file)
 if (fs.existsSync(file)) {
-  execSync(`rm -rf ${file}`)
+  try{
+    fs.rmSync(file)
+  }
+  catch{}
 }
 
 let fd = fs.openSync(file, 'w')
