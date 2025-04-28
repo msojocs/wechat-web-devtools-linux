@@ -1,0 +1,88 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Build Base Packages
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build-src:
+    name: Build Base Packages
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        ARCH: ['x86_64']
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+
+      - name: Prepare
+        run: |
+          echo "$UID, $GID"
+
+      - name: Generate TAG
+        id: Tag
+        run: |
+          tag='continuous'
+          name='Continuous Build'
+          if [ 'true' == ${{ startsWith(github.ref, 'refs/tags/') }} ];then
+            tag='${{ github.ref_name }}'
+            name='${{ github.ref_name }}'
+          fi
+          echo "tag result: $tag - $name"
+          echo "::set-output name=tag::$tag"
+          echo "::set-output name=name::$name"
+         
+      - name: Build
+        run: |
+          export ACTION_MODE=true
+          ls -l
+          export WINE=false
+          tools/build-with-docker.sh
+  
+      - name: Compress Resources
+        run: |
+          ls -l
+          mkdir -p tmp/src
+          rm -rf nwjs/node nwjs/node.exe
+          cp  node/bin/node nwjs/node
+          cd nwjs && ln -s node node.exe
+          cd ..
+          tar -zcf tmp/src/src-linux.tar.gz bin nwjs package.nw tools
+
+      - name: Compress nodegit
+        run: |
+          ls -l
+          mkdir -p tmp/build
+          cp -r package.nw/node_modules/nodegit .
+          tar -zcf nodegit.tar.gz nodegit
+          mv nodegit.tar.gz tmp/build
+          cd tmp/build
+          ls -l
+
+      - name: View Directory
+        run: |
+          ls -l
+
+      - name: Upload src artifact
+        uses: actions/upload-artifact@v4
+        with:
+          # Artifact name
+          name: wechat-devtools-${{ matrix.ARCH }}.src
+          path: tmp/src
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          # Artifact name
+          name: wechat-devtools-${{ matrix.ARCH }}.build
+          path: tmp/build
