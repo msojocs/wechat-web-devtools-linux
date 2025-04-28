@@ -9,7 +9,7 @@ on:
   push:
     tags:        
       - v*
-    branches: [ master, dev, ci]
+    branches: [ master, dev, ci, skyline]
   pull_request:
     branches: [ master ]
   # # Allows you to run this workflow manually from the Actions tab
@@ -17,201 +17,18 @@ on:
 
 jobs:
   build-src:
-    name: Build Base Packages
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-        ARCH: ['x86_64']
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-
-      - name: Prepare
-        run: |
-          echo "$UID, $GID"
-
-      - name: Generate TAG
-        id: Tag
-        run: |
-          tag='continuous'
-          name='Continuous Build'
-          if [ 'true' == ${{ startsWith(github.ref, 'refs/tags/') }} ];then
-            tag='${{ github.ref_name }}'
-            name='${{ github.ref_name }}'
-          fi
-          echo "tag result: $tag - $name"
-          echo "::set-output name=tag::$tag"
-          echo "::set-output name=name::$name"
-         
-      - name: Build
-        run: |
-          export ACTION_MODE=true
-          ls -l
-          export WINE=false
-          tools/build-with-docker.sh
-  
-      - name: Compress Resources
-        run: |
-          ls -l
-          mkdir -p tmp/src
-          rm -rf nwjs/node nwjs/node.exe
-          cp  node/bin/node nwjs/node
-          cd nwjs && ln -s node node.exe
-          cd ..
-          tar -zcf tmp/src/src-linux.tar.gz bin nwjs package.nw tools
-
-      - name: Compress nodegit
-        run: |
-          ls -l
-          mkdir -p tmp/build
-          cp -r package.nw/node_modules/nodegit .
-          tar -zcf nodegit.tar.gz nodegit
-          mv nodegit.tar.gz tmp/build
-          cd tmp/build
-          ls -l
-
-      - name: View Directory
-        run: |
-          ls -l
-
-      - name: Upload src artifact
-        uses: actions/upload-artifact@v4
-        with:
-          # Artifact name
-          name: wechat-devtools-${{ matrix.ARCH }}.src
-          path: tmp/src
-
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          # Artifact name
-          name: wechat-devtools-${{ matrix.ARCH }}.build
-          path: tmp/build
-
+    uses: ./.github/workflows/build-src.yml
+    secrets: inherit
   build-tar:
-    name: Build tar.gz AppImage
     needs:
       - build-src
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-        ARCH: ['x86_64']
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-      - name: Inspect directory after downloading artifacts
-        run: |
-          ls -alFR wechat-devtools-*.build
-          ls -alFR wechat-devtools-*.src
-      - name: Prepare
-        run: |
-          sudo apt install -y fuse
-          echo "$UID, $GID"
-
-      - name: Generate TAG
-        id: Tag
-        run: |
-          tag='continuous'
-          name='Continuous Build'
-          if [ 'true' == ${{ startsWith(github.ref, 'refs/tags/') }} ];then
-            tag='${{ github.ref_name }}'
-            name='${{ github.ref_name }}'
-          fi
-          echo "tag result: $tag - $name"
-          echo "::set-output name=tag::$tag"
-          echo "::set-output name=name::$name"
-         
-      - name: Build
-        run: |
-          export WINE=false
-          export ACTION_MODE=true
-          # tar.gz AppImage
-          ls -l
-          mkdir -p tmp/build
-          tools/build-prepare.sh
-          tools/build-release.sh ${{ matrix.ARCH }} ${{ steps.tag.outputs.tag }}
-
-      - name: View Directory
-        run: |
-          ls -l
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          # Artifact name
-          name: wechat-devtools-simple-${{ matrix.ARCH }}.build
-          path: tmp/build
-
+    uses: ./.github/workflows/build-tar.yml
+    secrets: inherit
   build-deb:
-    name: Build DEB Package
     needs:
       - build-src
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        ARCH: ['x86_64']
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-
-      - name: Generate TAG
-        id: Tag
-        run: |
-          tag='continuous'
-          name='Continuous Build'
-          if [ 'true' == ${{ startsWith(github.ref, 'refs/tags/') }} ];then
-            tag='${{ github.ref_name }}'
-            name='${{ github.ref_name }}'
-          fi
-          echo "tag result: $tag - $name"
-          echo "::set-output name=tag::$tag"
-          echo "::set-output name=name::$name"
-      # https://stackoverflow.com/questions/61096521/how-to-use-gpg-key-in-github-actions
-      # gpg --generate-key
-      # gpg --export-secret-keys YOUR_ID_HERE | base64 > private.key
-      - name: Configure GPG Key
-        run: |
-          echo -n "$GPG_SIGNING_KEY" | base64 --decode | gpg --import
-          gpg --list-secret-keys jiyecafe@gmail.com
-        env:
-          GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
-
-      - name: Prepare
-        run: |
-          sudo apt-get install -y build-essential fakeroot devscripts debhelper # debmake lintian pbuilder
-
-      - name: Build Deb Package
-        run: |
-          export BUILD_VERSION=${{ steps.tag.outputs.tag }}
-          ls -l
-          mkdir -p tmp/build
-          export WINE=false
-          tools/build-prepare.sh
-          env WINE=false tools/build-deepin.sh ${{ steps.tag.outputs.tag }}
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          # Artifact name
-          name: wechat-devtools-deb-${{ matrix.ARCH }}.build
-          path: tmp/build
-
+    uses: ./.github/workflows/build-deb.yml
+    secrets: inherit
   upload:
     name: Create release and upload artifacts
     needs:
