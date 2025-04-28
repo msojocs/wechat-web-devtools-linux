@@ -64,8 +64,15 @@ fi
 rm -rf "${nwjs_dir}/lib/libffmpeg.so"
 unzip "${srcdir}/cache/libffmpeg-0.55.00-linux-x64.zip" -d "${nwjs_dir}/lib"
 
-# 不加载Skyline插件
-sed -i 's#,this.skylineStyleClient.init(),#,/*this.skylineStyleClient.init(),*/#' "${package_dir}/js/libs/vseditor/extensions/wechat-miniprogram-development/extension.js"
+# Skyline解析插件修复
+float_pigment_version="continuous"
+if [ ! -f "${srcdir}/cache/float-pigment-${float_pigment_version}.node" ];then
+  wget -c "https://github.com/msojocs/float-pigment-rust/releases/download/${float_pigment_version}/float-pigment.linux-x64-gnu.node" -O "${srcdir}/cache/float-pigment-${float_pigment_version}.node.tmp"
+  mv "${srcdir}/cache/float-pigment-${float_pigment_version}.node.tmp" "${srcdir}/cache/float-pigment-${float_pigment_version}.node"
+fi
+rm "${package_dir}/node_modules/node-float-pigment-css/float-pigment-css-for-nodejs.node" "${package_dir}/node_modules/node-float-pigment-css/float-pigment-css-for-nwjs.node"
+cp "${srcdir}/cache/float-pigment-${float_pigment_version}.node" "${package_dir}/node_modules/node-float-pigment-css/float-pigment-css-for-nodejs.node"
+cp "${srcdir}/cache/float-pigment-${float_pigment_version}.node" "${package_dir}/node_modules/node-float-pigment-css/float-pigment-css-for-nwjs.node"
 
 # 阻止无限启动服务器
 mv "${package_dir}/js/core/entrance.js" "${package_dir}/js/core/entrance.js.bak"
