@@ -162,6 +162,9 @@ if [ $CURRENT_STEP == $INSTALL_REBUILD_SUCCESS ];then
 
   notice "Patching Other"
   "$root_dir/tools/fix-other.sh"
+
+  notice "Replace Skyline"
+  "$root_dir/tools/replace-skyline.sh"
 fi
 
 success "微信开发者工具安装完毕"

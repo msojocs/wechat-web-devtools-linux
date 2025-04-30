@@ -19,3 +19,8 @@ rm build/skyline.node
 wget -c https://github.com/msojocs/skyline-client-server/releases/download/$skyline_version/skyline-skylineClient-linux-x86_64-$skyline_version.node -Obuild/skyline.node
 rm build/icudtl.dat
 rm -rf bundle
+
+mv ${package_dir}/js/extensions/inject/documentstart/index.js ${package_dir}/js/extensions/inject/documentstart/index.js.bak
+cp ${srcdir}/res/scripts/document_start.js ${package_dir}/js/extensions/inject/documentstart/index.js
+cat ${package_dir}/js/extensions/inject/documentstart/index.js.bak >> ${package_dir}/js/extensions/inject/documentstart/index.js
+rm ${package_dir}/js/extensions/inject/documentstart/index.js.bak
