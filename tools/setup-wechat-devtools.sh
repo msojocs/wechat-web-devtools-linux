@@ -130,7 +130,7 @@ if [ $CURRENT_STEP == $INSTALL_NW_SUCCESS ];then
     DEVTOOLS_VERSION="${DEVTOOLS_VERSION//\"/}"
     # 已安装, 比较目标版本
     if [ "$TARGET_VERSION" != "$DEVTOOLS_VERSION" ];then
-      node "$root_dir/tools/update-wechat-devtools-node" $TARGET_VERSION $@
+      node "$root_dir/tools/update-wechat-devtools.js" $TARGET_VERSION $@
     fi
     step_switch $INSTALL_WECHAT_SUCCESS
   fi
