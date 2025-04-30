@@ -16,7 +16,7 @@ _wechat_devtools_md5="2785d569b88d72a8e238d438d92faf44"
 _wechat_devtools_exe="wechat_devtools_${_wechat_devtools_ver}_x64.exe"
 _nwjs_ver="0.55.0"
 _install_dir="/opt/wechat-devtools"
-_node_version="16.4.2"
+_node_version="16.11.0"
 
 pkgname=wechat-devtools
 pkgver="${_wechat_devtools_ver}"  # 主版本号
