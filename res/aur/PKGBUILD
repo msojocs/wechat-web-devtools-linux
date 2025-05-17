@@ -89,7 +89,7 @@ build() {
     _log "prepare nw-gyp"
     node --version
     npm uninstall node-gyp -g
-    npm install nw-gyp node-gyp -g
+    npm install nw-gyp@3.6.6 node-gyp -g
 
     # node bin
     _log "copy node exectuable"
