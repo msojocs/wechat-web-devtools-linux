@@ -37,17 +37,6 @@ node "$unpack_script" "$package_dir/core.wxvpkg" "$tmp_dir/core.wxvpkg"
 #   |_| \_\_____|_|   |_____/_/   \_\____|_____|  \____\___/|_| \_\_____|
 #                                                                        
 
-# find
-open_find_result=$( grep -lr "this.props.onWindowOpenFail());if" "$tmp_dir/core.wxvpkg" )
-echo "云开发控制台启动点: $open_find_result"
-if [[ ! -z $open_find_result ]];then
-  # replace
-  new_cb_handle="this.props.onWindowOpenFail());Object.keys(window).forEach(key=>{if(!e.window[key]){try{e.window[key]=window[key];}catch(e){console.error(e);}}});"
-  sed -i "s/this.props.onWindowOpenFail());/$new_cb_handle/g" $open_find_result
-else
-  warn "云开发控制台启动点未找到"
-fi
-
 token_find_result=$( grep -lr "constructor(){this._sessionToken=\"\",this._tokenMap={}}" "$tmp_dir/core.wxvpkg" )
 echo "WebSocket token存储对象位置: $token_find_result"
 if [[ ! -z $token_find_result ]];then
@@ -57,41 +46,8 @@ else
   warn "WebSocket token存储对象位置未找到"
 fi
 
-# open -a Terminal "`pwd`" --> gnome-terminal
-notice "fix terminal"
-find_result=$( grep -lr 'open -a Terminal "`pwd`"' "$tmp_dir/core.wxvpkg" )
-echo "Terminal启动位置: $find_result"
-if [[ ! -z $find_result ]];then
-  new_str="gnome-terminal"
-  sed -i "s#open -a Terminal \"\`pwd\`\"#$new_str#g" "$find_result"
-else
-  warn "Terminal启动位置未找到"
-fi
-
 # wcc、wcsc处理，设置WINE=fasle环境变量生效
 if [[ "$WINE" != 'true' ]];then
-  # "wcc.exe":!0,"wcsc.exe":!0
-  find_result=$( grep -lr 'wcc-exec' "$tmp_dir/core.wxvpkg" )
-  echo "wcc: $find_result"
-  if [[ ! -z $find_result ]];then
-    # new_str='{"wcc.bin":!0,"wcsc.bin":!0,wcc:!0,wcsc:!0}'
-    # sed -i "s#{wcc:!0,wcsc:!0}#$new_str#g" "$find_result"
-    # new_str='"linux"===process.platform'
-    # sed -i "s#\"darwin\"===process.platform#$new_str#g" "$find_result"
-    
-    # return_exp_wcc=$(cat $find_result | grep -P 'return [a-z]+\("wcc"\)' -o)  # return ?("wcc")
-    # return_exp_wcc_replace="${return_exp_wcc//wcc/wcc.bin}" # return ?("wcc.bin")
-    # return_exp_wcc_replace="${return_exp_wcc//return /${return_exp_wcc_replace},}" # return ?("wcc.bin")
-
-    # return_exp_wcsc=$(cat $find_result | grep -P 'return [a-z]+\("wcsc"\)' -o)  # return ?("wcsc")
-    # return_exp_wcsc_replace="${return_exp_wcc_replace//wcc/wcsc}"
-
-    sed -i "s#wcc\\.exe#wcc#g" "$find_result"
-    sed -i "s#wcsc\\.exe#wcsc#g" "$find_result"
-    sed -i "s#code/package.nw#package.nw#g" "$find_result"
-  else
-    warn "wcc位置未找到"
-  fi
   # 处理报错时控制台显示的环境
   find_result=$( grep -lr '(env:' "$tmp_dir/core.wxvpkg" )
   echo "env: $find_result"
