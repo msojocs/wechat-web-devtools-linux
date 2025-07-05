@@ -125,10 +125,6 @@ else
   warn "theme位置未找到"
 fi
 
-# fix update check
-notice "fix update check"
-sed -i 's#</body><script src=../js/core#</body><script src="../js/unpack/hackrequire/index.js"></script><script src=../js/core#' "$package_dir/html/whatsnew.html"
-
 # pack 路径 到 文件
 notice "pack"
 node "$pack_script" "$tmp_dir/core.wxvpkg" "$package_dir/core.wxvpkg"

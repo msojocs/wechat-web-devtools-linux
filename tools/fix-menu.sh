@@ -125,6 +125,7 @@ cat > "$tmp_file" <<EOF
             console.warn('[wechat-devtools] nw.Window.open is called, url:', url, 'options:', options);
             let cb = callback
             if (options.title === '版本更新提示') {
+                options.inject_js_start = 'js/unpack/hackrequire/index.js';
                 cb = (...args) => {
                     const keys = [
                         "shareData",
