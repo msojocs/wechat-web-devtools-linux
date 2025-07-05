@@ -120,6 +120,28 @@ cat > "$tmp_file" <<EOF
             item.parentMenu = this;
             return originInsert.call(this, item, index);
         };
+        const originalOpen = nw.Window.open
+        nw.Window.open = function (url, options, callback) {
+            console.warn('[wechat-devtools] nw.Window.open is called, url:', url, 'options:', options);
+            let cb = callback
+            if (options.title === '版本更新提示') {
+                cb = (...args) => {
+                    const keys = [
+                        "shareData",
+                        "windowMap",
+                        "isSimple",
+                        "masterProxyPort",
+                        "proxyPort",
+                        "masterH2ProxyPort",
+                        "h2ProxyPort"
+                    ];
+                    for(let k of keys)
+                        args[0].window.global[k] = global[k];
+                    callback(...args)
+                }
+            }
+            return originalOpen.apply(this, [url, options, cb])
+        }
     } catch (error) {
         process.stderr.write(error.message);
         process.stderr.write(error.stack);

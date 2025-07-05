@@ -53,7 +53,7 @@ else
 fi;
 
 EXTENSION1="--load-extension=$root_dir/nwjs/package.nw/js/ideplugin"
-EXTENSION2=--load-extension=$APPDATA/WeappPlugin 
+EXTENSION2="--load-extension=$APPDATA/WeappPlugin"
 INSPECTOR1="--custom-devtools-frontend=file://$root_dir/package.nw/js/ideplugin/inspector" # 要加file://指明为本地文件路径
 INSPECTOR2="--custom-devtools-frontend=file://$APPDATA/WeappPlugin/inspector/"
 USERDATADIR="$APPDATA"

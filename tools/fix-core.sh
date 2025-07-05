@@ -128,9 +128,6 @@ fi
 # fix update check
 notice "fix update check"
 sed -i 's#</body><script src=../js/core#</body><script src="../js/unpack/hackrequire/index.js"></script><script src=../js/core#' "$package_dir/html/whatsnew.html"
-find_result=$( grep -lr "whatsnew.html" "$tmp_dir/core.wxvpkg" )
-grep -lr "t=>{R(\"new_version_hint" "$find_result"
-sed -i 's#t=>{R("new_version_hint#t=>{const keys = ["shareData", "windowMap", "isSimple","masterProxyPort", "proxyPort", "masterH2ProxyPort", "h2ProxyPort"];for(let k of keys)t.window.global[k] = global[k];R("new_version_hint#' $find_result
 
 # pack 路径 到 文件
 notice "pack"
