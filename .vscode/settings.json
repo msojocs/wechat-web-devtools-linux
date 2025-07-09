@@ -6,5 +6,6 @@
     "**/.hg/store/**": true,
     ".flatpak/**": true,
     "_build/**": true
-  }
+  },
+  "prettier.tabWidth": 4
 }
