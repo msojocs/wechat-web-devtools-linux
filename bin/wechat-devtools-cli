@@ -8,7 +8,7 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 root_dir="$( cd -P "$( dirname "$SOURCE" )"/.. >/dev/null 2>&1 && pwd )"
 
-cd $root_dir
+cd $root_dir/bin
 
 export WECHAT_DEVTOOLS_DIR="$root_dir/nwjs"
 export APPDATA="$root_dir/nwjs"
