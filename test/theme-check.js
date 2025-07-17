@@ -3,7 +3,7 @@ const { execSync, spawn } = require("child_process");
 
 class CheckDark {
     // 监听gsettings monitor org.gnome.desktop.interface gtk-theme
-    monitorTheme() {
+    monitorTheme(callback) {
         try {
             let monitor = null;
             const { DESKTOP_SESSION } = process.env;
@@ -37,11 +37,8 @@ class CheckDark {
                 monitor.stdout.on("data", (chunk) => {
                     // TODO: 防抖动包装
                     const data = chunk.toString();
-                    const t = data.toLowerCase().includes("dark");
-                    console.log(data);
-                    console.log("dark", t);
-                    // (this._theme = t ? i.Dark : i.Light),
-                    //         this._onDidThemeChange.fire(this._theme);
+                    const isDark = data.toLowerCase().includes("dark");
+                    callback(isDark)
                 });
             process.on("SIGTERM", (signal) => {
                 monitor.kill(signal);
@@ -83,7 +80,7 @@ class CheckDark {
     }
     get gnomeScheme() {
         try {
-            // 判断 Gnome-Shell 版本
+            // 判断 Gnome-Shell 版本 from @icepie
             const gnomeVersion = execSync(`gnome-shell --version`)
                 .toString()
                 .replace(/[\r\n]/g, "")
@@ -98,7 +95,9 @@ class CheckDark {
     }
 }
 const cd = new CheckDark();
-cd.monitorTheme();
+cd.monitorTheme((isDark) => {
+    console.info('is dark:', isDark)
+});
 console.log(cd.isDark);
 
 function original() {
