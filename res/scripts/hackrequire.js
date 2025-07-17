@@ -175,8 +175,55 @@
             }
             return originalExec.apply(this, [command, options, callback])
         }
-        
         {
+            const {spawn, execSync} = require('child_process')
+            let isDark = (function () {
+                    try {
+                        const { DESKTOP_SESSION } = process.env;
+                        console.log(DESKTOP_SESSION);
+                        let theme = "";
+                        switch (DESKTOP_SESSION) {
+                            case "deepin":
+                                theme = execSync(
+                                    `gsettings get com.deepin.dde.appearance gtk-theme`
+                                );
+                                break;
+                            case "gnome":
+                            case "gnome-classic":
+                                theme = execSync(
+                                    `gsettings get org.gnome.desktop.interface ${this.gnomeScheme}`
+                                );
+                                break;
+            
+                            case "plasma":
+                                theme = execSync(
+                                    `gsettings get org.gnome.desktop.interface color-scheme`,
+                                );
+                                break;
+                            default:
+                                console.warn(
+                                    `NOT SUPPORTED !!! DESKTOP_SESSION: ${DESKTOP_SESSION}`
+                                );
+                                break;
+                        }
+                        console.log(theme.toString());
+                        return theme.toString().toLowerCase().includes("dark");
+                    } catch (error) {
+                        console.error("尝试获取主题信息失败，使用默认暗色");
+                        return true;
+                    }
+                })()
+            const originalMatchMedia = window.matchMedia
+            window.matchMedia = function (...args) {
+                console.warn('----------------> matchMedia:', ...args)
+                const mm = originalMatchMedia.apply(this, args)
+                Object.defineProperty(mm, 'matches', {
+                    get(){
+                        return isDark
+                    }
+                })
+                return mm
+            }
             class CheckDark {
                 // 监听gsettings monitor org.gnome.desktop.interface gtk-theme
                 monitorTheme(callback) {
@@ -204,6 +251,13 @@
                                     this.gnomeScheme,
                                 ]);
                                 break;
+                            case "plasma":
+                                monitor = spawn("gsettings", [
+                                    "monitor",
+                                    "org.gnome.desktop.interface",
+                                    'color-scheme',
+                                ]);
+                                break;
                             default:
                                 console.warn(
                                     `NOT SUPPORTED !!! DESKTOP_SESSION: ${DESKTOP_SESSION}`
@@ -216,9 +270,9 @@
                             });
                         monitor &&
                             monitor.stdout.on("data", (chunk) => {
-                                // TODO: 防抖动包装
                                 const data = chunk.toString();
-                                const isDark = data.toLowerCase().includes("dark");
+                                console.warn('Theme changed:', data)
+                                isDark = data.toLowerCase().includes("dark");
                                 this.callback(isDark)
                             });
                         process.on("SIGTERM", (signal) => {
@@ -226,37 +280,6 @@
                         });
                     } catch (err) {
                         console.error("尝试监听主题失败！", err);
-                    }
-                }
-                get isDark() {
-                    try {
-                        const { DESKTOP_SESSION } = process.env;
-                        console.log(DESKTOP_SESSION);
-                        let theme = "";
-                        switch (DESKTOP_SESSION) {
-                            case "deepin":
-                                theme = execSync(
-                                    `gsettings get com.deepin.dde.appearance gtk-theme`
-                                );
-                                break;
-                            case "gnome":
-                            case "gnome-classic":
-                                theme = execSync(
-                                    `gsettings get org.gnome.desktop.interface ${this.gnomeScheme}`
-                                );
-                                break;
-            
-                            default:
-                                console.warn(
-                                    `NOT SUPPORTED !!! DESKTOP_SESSION: ${DESKTOP_SESSION}`
-                                );
-                                break;
-                        }
-                        console.log(theme.toString());
-                        return theme.toString().toLowerCase().includes("dark");
-                    } catch (error) {
-                        console.error("尝试获取主题信息失败，使用默认暗色");
-                        return true;
                     }
                 }
                 get gnomeScheme() {
