@@ -1,24 +1,30 @@
 /* patch wechat devtools begin */
 (() => {
     try {
-        const originalSpawn = require("child_process").spawn;
-        require("child_process").spawn = function (command, args, options) {
-            if (command.includes("wcc.exe")) {
-                command = command.replace("code/package.nw", "package.nw");
-                command = command.replace("wcc.exe", "wcc");
-            } else if (command.includes("wcsc.exe")) {
-                command = command.replace("code/package.nw", "package.nw");
-                command = command.replace("wcsc.exe", "wcsc");
-            }
-            return originalSpawn.apply(this, [command, args, options]);
-        };
-        const originalResolve = require("path").resolve;
-        require("path").resolve = function (...paths) {
-            if (paths.length === 2 && paths[1].includes("code/package.nw")) {
-                paths[1] = paths[1].replace("code/package.nw", "package.nw");
-            }
-            return originalResolve.apply(this, paths);
-        };
+        {
+            // 修正编译器路径
+            const originalSpawn = require("child_process").spawn;
+            require("child_process").spawn = function (command, args, options) {
+                if (command.includes("wcc.exe")) {
+                    command = command.replace("code/package.nw", "package.nw");
+                    command = command.replace("wcc.exe", "wcc");
+                } else if (command.includes("wcsc.exe")) {
+                    command = command.replace("code/package.nw", "package.nw");
+                    command = command.replace("wcsc.exe", "wcsc");
+                }
+                return originalSpawn.apply(this, [command, args, options]);
+            };
+        }
+        {
+            // 修正路径错误
+            const originalResolve = require("path").resolve;
+            require("path").resolve = function (...paths) {
+                if (paths.length === 2 && paths[1].includes("code/package.nw")) {
+                    paths[1] = paths[1].replace("code/package.nw", "package.nw");
+                }
+                return originalResolve.apply(this, paths);
+            };
+        }
         if (typeof nw === "undefined") {
             return;
         }
@@ -111,71 +117,78 @@
             item.parentMenu = this;
             return originInsert.call(this, item, index);
         };
-        const originalOpen = nw.Window.open
-        nw.Window.open = function (url, options, callback) {
-            console.warn('[wechat-devtools] nw.Window.open is called, url:', url, 'options:', options);
-            let cb = callback
-            if (options.title === '版本更新提示') {
-                options.inject_js_start = 'js/unpack/hackrequire/index.js';
-                cb = (...args) => {
-                    const keys = [
-                        "shareData",
-                        "windowMap",
-                        "isSimple",
-                        "masterProxyPort",
-                        "proxyPort",
-                        "masterH2ProxyPort",
-                        "h2ProxyPort"
-                    ];
-                    for(let k of keys)
-                        args[0].window.global[k] = global[k];
-                    callback(...args)
+        {
+            // 修正新窗口数据丢失的问题
+            const originalOpen = nw.Window.open
+            nw.Window.open = function (url, options, callback) {
+                console.warn('[wechat-devtools] nw.Window.open is called, url:', url, 'options:', options);
+                let cb = callback
+                if (options.title === '版本更新提示') {
+                    options.inject_js_start = 'js/unpack/hackrequire/index.js';
+                    cb = (...args) => {
+                        const keys = [
+                            "shareData",
+                            "windowMap",
+                            "isSimple",
+                            "masterProxyPort",
+                            "proxyPort",
+                            "masterH2ProxyPort",
+                            "h2ProxyPort"
+                        ];
+                        for(let k of keys)
+                            args[0].window.global[k] = global[k];
+                        callback(...args)
+                    }
                 }
-            }
-            else if (options.title === '云开发控制台') {
-                cb = (...args) => {
-                    const keys = [
-                        "shareData",
-                        "windowMap",
-                        "isSimple",
-                        "masterProxyPort",
-                        "proxyPort",
-                        "masterH2ProxyPort",
-                        "h2ProxyPort",
-                        'tokenData',
-                    ];
-                    for(let k of keys)
-                        args[0].window.global[k] = global[k];
-                    callback(...args)
+                else if (options.title === '云开发控制台') {
+                    cb = (...args) => {
+                        const keys = [
+                            "shareData",
+                            "windowMap",
+                            "isSimple",
+                            "masterProxyPort",
+                            "proxyPort",
+                            "masterH2ProxyPort",
+                            "h2ProxyPort",
+                            'tokenData',
+                        ];
+                        for(let k of keys)
+                            args[0].window.global[k] = global[k];
+                        callback(...args)
+                    }
                 }
-            }
-            else if (options.title.includes('微信开发者工具')) {
-                cb = (...args) => {
-                    const keys = [
-                        "shareData",
-                        "windowMap",
-                        "isSimple",
-                        "masterProxyPort",
-                        "proxyPort",
-                        "masterH2ProxyPort",
-                        "h2ProxyPort",
-                        'tokenData',
-                    ];
-                    for(let k of keys)
-                        args[0].window.global[k] = global[k];
-                    callback(...args)
+                else if (options.title.includes('微信开发者工具')) {
+                    cb = (...args) => {
+                        const keys = [
+                            "shareData",
+                            "windowMap",
+                            "isSimple",
+                            "masterProxyPort",
+                            "proxyPort",
+                            "masterH2ProxyPort",
+                            "h2ProxyPort",
+                            'tokenData',
+                        ];
+                        for(let k of keys)
+                            args[0].window.global[k] = global[k];
+                        callback(...args)
+                    }
                 }
+                return originalOpen.apply(this, [url, options, cb])
             }
-            return originalOpen.apply(this, [url, options, cb])
-        }
-        const originalExec = require('child_process').exec;
-        require('child_process').exec = function (command, options, callback) {
-            if (command.includes('open -a Terminal')) {
-                command = 'gnome-terminal'
-            }
-            return originalExec.apply(this, [command, options, callback])
         }
         {
+            // 修正打开外部Terminal的功能
+            const originalExec = require('child_process').exec;
+            require('child_process').exec = function (command, options, callback) {
+                if (command.includes('open -a Terminal')) {
+                    command = 'gnome-terminal'
+                }
+                return originalExec.apply(this, [command, options, callback])
+            }
+        }
+        {
+            // 修正 暗色/亮色 自动跟随系统
             const {spawn, execSync} = require('child_process')
             let isDark = (function () {
                     try {
@@ -308,6 +321,22 @@
                     })
                 })
                 return original.apply(this, args)
+            }
+        }
+        {
+            // 修复云开发控制台
+            const originalBind = Function.prototype.bind
+            Function.prototype.bind = function(...args) {
+                if (args[0]?._tokenMap) {
+                    console.warn('---------set tokenData')
+                    if (window.tokenData) {
+                        args[0]._sessionToken = window.tokenData._sessionToken
+                        args[0]._tokenMap = window.tokenData._tokenMap
+                    }
+                    else
+                        window.tokenData = args[0]
+                }
+                return originalBind.apply(this, args)
             }
         }
     } catch (error) {
