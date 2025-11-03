@@ -15,11 +15,11 @@ const urls = {
         "https://developers.weixin.qq.com/miniprogram/dev/devtools/nightly.html",
 };
 
-const arguments = process.argv.slice(2);
-console.log(arguments)
+const commandArgs = process.argv.slice(2);
+console.log(commandArgs)
 
 const args = {};
-for (let arg of arguments) {
+for (let arg of commandArgs) {
     let t = arg.split("=");
     args[t[0]] = t[1];
 }

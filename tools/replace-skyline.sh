@@ -8,7 +8,7 @@ nwjs_dir="$root_dir/nwjs"
 package_dir="$root_dir/package.nw"
 
 shared_memory_version="v1.0.2"
-skyline_version="continuous"
+skyline_version="v1.0.3"
 
 cd "$package_dir/node_modules"
 rm sharedMemory/sharedMemory.node
