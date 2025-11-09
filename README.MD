@@ -139,7 +139,7 @@
 
 # FAQ
 
-## Skyline
+## Skyline(实验性功能)
 
 启动Server后，点击编译即可；第一次启动Server会有wine配置提示，**不需要安装mono**。
 

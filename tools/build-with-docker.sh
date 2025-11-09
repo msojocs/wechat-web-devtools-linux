@@ -8,4 +8,4 @@ docker run --rm -i \
     -w /workspace \
     -v "$root_dir:/workspace" \
     jiyecafe/wechat-devtools-build:v1.0.4 \
-    bash ./docker/entrypoint
+    bash ./tools/setup-wechat-devtools.sh

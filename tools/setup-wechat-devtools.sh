@@ -56,6 +56,11 @@ export PATH="$root_dir/cache/npm/node_global/bin:$root_dir/node/bin:$PATH"
 node --version
 npm --version
 
+if [ "$ACTION_MODE" == "true" ]; then
+  # ACTION HOME没有定义，导致异常
+  export HOME="/tmp/home"
+  mkdir -p /tmp/home
+fi
 if [ $CURRENT_STEP == $INSTALL_NODE_SUCCESS ];then
   npm config set prefix "$root_dir/cache/npm/node_global"
   npm config set cache "$root_dir/cache/npm/node_cache"
@@ -63,15 +68,6 @@ if [ $CURRENT_STEP == $INSTALL_NODE_SUCCESS ];then
       notice "非ACTION模式, 设置镜像源"
       npm config set registry http://registry.npmmirror.com/ # 注册模块镜像
       npm config set disturl http://npmmirror.com/dist # node-gyp 编译依赖的 node 源码镜像
-      ## 以下选择添加
-      npm config set sass_binary_site http://npmmirror.com/mirrors/node-sass # node-sass 二进制包镜像
-      npm config set electron_mirror http://npmmirror.com/mirrors/electron/ # electron 二进制包镜像
-      npm config set puppeteer_download_host http://npmmirror.com/mirrors # puppeteer 二进制包镜像
-      npm config set chromedriver_cdnurl http://npmmirror.com/mirrors/chromedriver # chromedriver 二进制包镜像
-      npm config set operadriver_cdnurl http://npmmirror.com/mirrors/operadriver # operadriver 二进制包镜像
-      npm config set phantomjs_cdnurl http://npmmirror.com/mirrors/phantomjs # phantomjs 二进制包镜像
-      npm config set selenium_cdnurl http://npmmirror.com/mirrors/selenium # selenium 二进制包镜像
-      npm config set node_inspector_cdnurl http://npmmirror.com/mirrors/node-inspector # node-inspector 二进制包镜像
   fi
   step_switch $INSTALL_NPM_CONFIG_SUCCESS
 fi
