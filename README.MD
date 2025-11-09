@@ -139,7 +139,28 @@
 
 # FAQ
 
-请参考: [FAQ](docs/FAQ.MD)
+## Skyline(实验性功能)
+
+启动Server后，点击编译即可；第一次启动Server会有wine配置提示，**不需要安装mono**。
+
+> [!Warning]
+> 第一次编译之后的编译操作可能会失败，因为点击编译按钮后，wine服务器需要一些时间完成重启。
+
+```shell
+docker run -d -it \
+  --restart=always \
+  --hostname="$(hostname)" \
+  --env="DISPLAY" \
+  --platform="linux/amd64" \
+  --volume="${XAUTHORITY:-${HOME}/.Xauthority}:/root/.Xauthority:ro" \
+  --volume="/tmp/.X11-unix:/tmp/.X11-unix:ro" \
+  --volume="/dev/shm:/dev/shm" \
+  -p 3001:3001 \
+  --name skyline_server \
+  ghcr.io/msojocs/skyline-client-server:master
+```
+
+其它请参考: [FAQ](docs/FAQ.MD)
 
 # 界面截图
 
