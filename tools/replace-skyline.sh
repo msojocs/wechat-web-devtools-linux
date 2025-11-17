@@ -7,8 +7,8 @@ cache_dir="$root_dir/cache"
 nwjs_dir="$root_dir/nwjs"
 package_dir="$root_dir/package.nw"
 
-shared_memory_version="v1.0.2"
-skyline_version="v1.0.3"
+shared_memory_version="v1.0.3"
+skyline_version="v1.0.4"
 
 cd "$package_dir/node_modules"
 rm sharedMemory/sharedMemory.node
@@ -16,7 +16,7 @@ wget -c https://github.com/msojocs/skyline-shared-memory/releases/download/$shar
 
 cd skyline-addon
 rm build/skyline.node
-wget -c https://github.com/msojocs/skyline-client-server/releases/download/$skyline_version/skyline-skylineClient-linux-x86_64-$skyline_version.node -Obuild/skyline.node
+wget -c https://github.com/msojocs/skyline-client-server/releases/download/$skyline_version/skyline-client-linux-x86_64-$skyline_version.node -Obuild/skyline.node
 rm build/icudtl.dat
 rm -rf bundle
 
