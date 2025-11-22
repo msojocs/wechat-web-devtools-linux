@@ -24,3 +24,8 @@ mv ${package_dir}/js/extensions/inject/documentstart/index.js ${package_dir}/js/
 cp ${srcdir}/res/scripts/document_start.js ${package_dir}/js/extensions/inject/documentstart/index.js
 cat ${package_dir}/js/extensions/inject/documentstart/index.js.bak >> ${package_dir}/js/extensions/inject/documentstart/index.js
 rm ${package_dir}/js/extensions/inject/documentstart/index.js.bak
+
+mv ${package_dir}/js/extensions/skyline/index.js ${package_dir}/js/extensions/skyline/index.js.bak
+cp ${srcdir}/res/scripts/skyline.js ${package_dir}/js/extensions/skyline/index.js
+cat ${package_dir}/js/extensions/skyline/index.js.bak >> ${package_dir}/js/extensions/skyline/index.js
+rm ${package_dir}/js/extensions/skyline/index.js.bak

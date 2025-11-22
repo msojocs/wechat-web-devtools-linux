@@ -145,6 +145,7 @@
 
 > [!Warning]
 > 实验性功能，有问题请建立issue进行反馈，谢谢。
+> 已知问题：https://github.com/msojocs/skyline-client-server
 
 ```shell
 docker run -d -it \
