@@ -7,5 +7,5 @@ docker run --rm -i \
     -e "ACTION_MODE=${ACTION_MODE:-false}" \
     -w /workspace \
     -v "$root_dir:/workspace" \
-    jiyecafe/wechat-devtools-build:v1.0.4 \
+    msojocs/wechat-devtools-build:v1.0.5 \
     bash ./tools/setup-wechat-devtools.sh

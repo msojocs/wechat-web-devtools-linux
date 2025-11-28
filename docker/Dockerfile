@@ -8,9 +8,13 @@ RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
     sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
     mkdir -p /build_temp/python36 /build_temp/nodejs && \
     apt update  && \
-    apt install -y binutils software-properties-common gcc g++ \
+    apt install -y binutils software-properties-common \
     gconf2 libxkbfile-dev p7zip-full make libssh2-1-dev libkrb5-dev wget curl \
     openssl pkg-config build-essential && \
+    add-apt-repository ppa:ubuntu-toolchain-r/test && \
+    apt update && \
+    apt install -y gcc-9 g++-9 && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 90 --slave /usr/bin/g++ g++ /usr/bin/g++-9 && \
     cd /build_temp/python36 && \
     apt-get install -y aptitude &&\
     aptitude -y install gcc make zlib1g-dev libffi-dev libssl-dev &&\

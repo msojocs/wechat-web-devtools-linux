@@ -1,5 +1,6 @@
-# 1.06.2504060-2 / 2025-11-
+# 2.01.2510250-1 / 2025-11-
 - feat: skyline support
+- update: devtools to v2.01.2510250
 
 # 1.06.2504060-1 / 2025-10-30
 - update: devtools to v1.06.2504060

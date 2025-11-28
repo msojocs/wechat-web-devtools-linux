@@ -1,6 +1,0 @@
-#!/bin/sh
-
-root_dir=$(cd `dirname $0`/.. && pwd -P)
-export PATH="$root_dir/cache/wechat_devtools_1.05.2201240_x64:$PATH"
-execute="$root_dir/cache/wechat_devtools_1.05.2201240_x64/node.exe"
-wine $execute -e "require('wcc')"

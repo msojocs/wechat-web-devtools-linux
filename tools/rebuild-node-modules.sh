@@ -95,6 +95,7 @@ export JOBS=$max_thread
     trash \
     vscode-oniguruma \
     nodegit \
+    @vscode/sqlite3 \
     --registry=https://registry.npmmirror.com \
     --nodegit_binary_host_mirror=https://npmmirror.com/mirrors/nodegit/v0.27.0/ ) # reinstall modules
 
@@ -123,6 +124,8 @@ cd "oniguruma" && nw-gyp rebuild --arch=x64 "--target=$NW_VERSION" --dist-url=ht
 notice "rebuild spdlog"
 cd "${package_dir}/node_modules_tmp/node_modules" && \
 cp -fr "spdlog" "spdlog-node" && \
+mkdir -p "@vscode" && \
+cp -fr "spdlog" "@vscode/spdlog18" && \
 cd "spdlog" && nw-gyp rebuild --arch=x64 "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
 
 notice "remove unused files"

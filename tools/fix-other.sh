@@ -6,37 +6,30 @@ tmp_dir="$root_dir/tmp"
 nwjs_dir="$root_dir/nwjs"
 package_dir="$root_dir/package.nw"
 
-# 修复: webview manager
-# 此bug导致以下功能异常: 
-# 1. 代码依赖分析不可用
-# 2. 拓展中的“SERVICE MARKET RECOMMENDS”功能不可用
-echo "fix: webview manager"
-sed -i 's#module.exports = createWebviewManager;#module.exports = createWebviewManager,( /** @type {any} */ (window)).createWebviewManager = createWebviewManager;#g' "$package_dir/js/libs/vseditor/webview-resource/main.js"
-
 echo "replace: wcc,wcsc linux version"
 source "${srcdir}/conf/compiler_version"
 
 mkdir -p "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}"
 if [ ! -f "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc" ];then
-  wget -c "https://github.com/msojocs/wx-compiler/releases/download/${WX_COMPILER_VERSION}/wcc" -O "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc.tmp"
+  wget -c "https://github.com/msojocs/wx-compiler/releases/download/${WX_COMPILER_VERSION}/wcc-x86_64" -O "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc.tmp"
   mv "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc.tmp" "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc"
   chmod 0755 "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc"
 fi
 
 if [ ! -f "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc" ];then
-  wget -c "https://github.com/msojocs/wx-compiler/releases/download/${WX_COMPILER_VERSION}/wcsc" -O "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc.tmp"
+  wget -c "https://github.com/msojocs/wx-compiler/releases/download/${WX_COMPILER_VERSION}/wcsc-x86_64" -O "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc.tmp"
   mv "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc.tmp" "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc"
   chmod 0755 "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc"
 fi
 
 if [ ! -f "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc_module.node" ];then
-  wget -c "https://github.com/msojocs/wx-compiler/releases/download/${WX_COMPILER_VERSION}/wcc_module.node" -O "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc_module.node.tmp"
+  wget -c "https://github.com/msojocs/wx-compiler/releases/download/${WX_COMPILER_VERSION}/wcc-x86_64.node" -O "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc_module.node.tmp"
   mv "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc_module.node.tmp" "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc_module.node"
   chmod 0755 "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc_module.node"
 fi
 
 if [ ! -f "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc_module.node" ];then
-  wget -c "https://github.com/msojocs/wx-compiler/releases/download/${WX_COMPILER_VERSION}/wcsc_module.node" -O "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc_module.node.tmp"
+  wget -c "https://github.com/msojocs/wx-compiler/releases/download/${WX_COMPILER_VERSION}/wcsc-x86_64.node" -O "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc_module.node.tmp"
   mv "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc_module.node.tmp" "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc_module.node"
   chmod 0755 "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc_module.node"
 fi
@@ -73,6 +66,14 @@ fi
 rm "${package_dir}/node_modules/node-float-pigment-css/float-pigment-css-for-nodejs.node" "${package_dir}/node_modules/node-float-pigment-css/float-pigment-css-for-nwjs.node"
 cp "${srcdir}/cache/float-pigment-${float_pigment_version}.node" "${package_dir}/node_modules/node-float-pigment-css/float-pigment-css-for-nodejs.node"
 cp "${srcdir}/cache/float-pigment-${float_pigment_version}.node" "${package_dir}/node_modules/node-float-pigment-css/float-pigment-css-for-nwjs.node"
+
+# websocket找不到
+cd "${package_dir}/js/libs/vseditor/extensions/node_modules/ws/lib"
+mv "WebSocket.js" "websocket.js"
+mv "Receiver.js" "receiver.js"
+mv "Sender.js" "sender.js"
+mv "Constants.js" "constants.js"
+mv "Validation.js" "validation.js"
 
 # 阻止无限启动服务器
 mv "${package_dir}/js/core/entrance.js" "${package_dir}/js/core/entrance.js.bak"
