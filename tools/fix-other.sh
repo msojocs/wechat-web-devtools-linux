@@ -7,55 +7,54 @@ nwjs_dir="$root_dir/nwjs"
 package_dir="$root_dir/package.nw"
 
 echo "replace: wcc,wcsc linux version"
-source "${srcdir}/conf/compiler_version"
+compiler_version=$(node "$root_dir/tools/parse-config.js" --get-compiler-version $@)
+arch=$(node "$root_dir/tools/parse-config.js" --get-arch $@)
 
-mkdir -p "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}"
-if [ ! -f "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc" ];then
-  wget -c "https://github.com/msojocs/wx-compiler/releases/download/${WX_COMPILER_VERSION}/wcc-x86_64" -O "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc.tmp"
-  mv "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc.tmp" "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc"
-  chmod 0755 "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc"
+mkdir -p "${srcdir}/cache/compiler/v${compiler_version}"
+if [ ! -f "${srcdir}/cache/compiler/v${compiler_version}/wcc-${arch}" ];then
+  wget -c "https://github.com/msojocs/wx-compiler/releases/download/v${compiler_version}/wcc-${arch}" -O "${srcdir}/cache/compiler/v${compiler_version}/wcc-${arch}.tmp"
+  mv "${srcdir}/cache/compiler/v${compiler_version}/wcc-${arch}.tmp" "${srcdir}/cache/compiler/v${compiler_version}/wcc-${arch}"
+  chmod +x "${srcdir}/cache/compiler/v${compiler_version}/wcc-${arch}"
 fi
 
-if [ ! -f "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc" ];then
-  wget -c "https://github.com/msojocs/wx-compiler/releases/download/${WX_COMPILER_VERSION}/wcsc-x86_64" -O "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc.tmp"
-  mv "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc.tmp" "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc"
-  chmod 0755 "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc"
+if [ ! -f "${srcdir}/cache/compiler/v${compiler_version}/wcsc-${arch}" ];then
+  wget -c "https://github.com/msojocs/wx-compiler/releases/download/v${compiler_version}/wcsc-${arch}" -O "${srcdir}/cache/compiler/v${compiler_version}/wcsc-${arch}.tmp"
+  mv "${srcdir}/cache/compiler/v${compiler_version}/wcsc-${arch}.tmp" "${srcdir}/cache/compiler/v${compiler_version}/wcsc-${arch}"
+  chmod +x "${srcdir}/cache/compiler/v${compiler_version}/wcsc-${arch}"
 fi
 
-if [ ! -f "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc_module.node" ];then
-  wget -c "https://github.com/msojocs/wx-compiler/releases/download/${WX_COMPILER_VERSION}/wcc-x86_64.node" -O "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc_module.node.tmp"
-  mv "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc_module.node.tmp" "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc_module.node"
-  chmod 0755 "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcc_module.node"
+if [ ! -f "${srcdir}/cache/compiler/v${compiler_version}/wcc-${arch}.node" ];then
+  wget -c "https://github.com/msojocs/wx-compiler/releases/download/v${compiler_version}/wcc-${arch}.node" -O "${srcdir}/cache/compiler/v${compiler_version}/wcc-${arch}.node.tmp"
+  mv "${srcdir}/cache/compiler/v${compiler_version}/wcc-${arch}.node.tmp" "${srcdir}/cache/compiler/v${compiler_version}/wcc-${arch}.node"
 fi
 
-if [ ! -f "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc_module.node" ];then
-  wget -c "https://github.com/msojocs/wx-compiler/releases/download/${WX_COMPILER_VERSION}/wcsc-x86_64.node" -O "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc_module.node.tmp"
-  mv "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc_module.node.tmp" "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc_module.node"
-  chmod 0755 "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}/wcsc_module.node"
+if [ ! -f "${srcdir}/cache/compiler/v${compiler_version}/wcsc-${arch}.node" ];then
+  wget -c "https://github.com/msojocs/wx-compiler/releases/download/v${compiler_version}/wcsc-${arch}.node" -O "${srcdir}/cache/compiler/v${compiler_version}/wcsc-${arch}.node.tmp"
+  mv "${srcdir}/cache/compiler/v${compiler_version}/wcsc-${arch}.node.tmp" "${srcdir}/cache/compiler/v${compiler_version}/wcsc-${arch}.node"
 fi
 
-# \cp -rf "${srcdir}/compiler/generatemd5.js" "${package_dir}/js/vendor/generatemd5.js"
-\cp "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}"/{wcc,wcsc} "${package_dir}/node_modules/wcc-exec"
-cd "${package_dir}/node_modules/wcc-exec" && chmod 0755 wcc wcsc && rm -rf wcc.exe wcsc.exe
-# node "${package_dir}/js/vendor/generatemd5.js"
+cp "${srcdir}/cache/compiler/v${compiler_version}"/wcc-${arch} "${package_dir}/node_modules/wcc-exec/wcc"
+cp "${srcdir}/cache/compiler/v${compiler_version}"/wcsc-${arch} "${package_dir}/node_modules/wcc-exec/wcsc"
+cd "${package_dir}/node_modules/wcc-exec" && chmod +x wcc wcsc && rm -rf wcc.exe wcsc.exe
 
 # 修复：可视化用的wcc,wcsc
 echo "fix: wcc,wcsc"
-\cp "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}"/wcc_module.node "${package_dir}/node_modules/wcc/build/Release"
-cd "${package_dir}/node_modules/wcc/build/Release" && rm -rf wcc.node && mv wcc_module.node wcc.node
-\cp "${srcdir}/cache/compiler/${WX_COMPILER_VERSION}"/wcsc_module.node "${package_dir}/node_modules/wcc/build/Release"
-cd "${package_dir}/node_modules/wcc/build/Release" && rm -rf wcsc.node && mv wcsc_module.node wcsc.node
+\cp "${srcdir}/cache/compiler/v${compiler_version}"/wcc-${arch}.node "${package_dir}/node_modules/wcc/build/Release"
+cd "${package_dir}/node_modules/wcc/build/Release" && rm -rf wcc.node && mv wcc-${arch}.node wcc.node
+\cp "${srcdir}/cache/compiler/v${compiler_version}"/wcsc-${arch}.node "${package_dir}/node_modules/wcc/build/Release"
+cd "${package_dir}/node_modules/wcc/build/Release" && rm -rf wcsc.node && mv wcsc-${arch}.node wcsc.node
 
 # 修复mock按钮无反应
 sed -i '1s/^/window.prompt = parent.prompt;\n/' "${package_dir}/js/ideplugin/devtools/index.js"
 
+nw_version=$(node "$root_dir/tools/parse-config.js" --get-nwjs-version $@)
 # 修复视频无法播放
-if [ ! -f "${srcdir}/cache/libffmpeg-0.55.00-linux-x64.zip" ];then
-  wget -c https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/0.55.0/0.55.0-linux-x64.zip -O "${srcdir}/cache/libffmpeg-0.55.00-linux-x64.zip.tmp"
-  mv "${srcdir}/cache/libffmpeg-0.55.00-linux-x64.zip.tmp" "${srcdir}/cache/libffmpeg-0.55.00-linux-x64.zip"
+if [ ! -f "${srcdir}/cache/libffmpeg-${nw_version}-linux-x64.zip" ];then
+  wget -c https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/${nw_version}/${nw_version}-linux-x64.zip -O "${srcdir}/cache/libffmpeg-${nw_version}-linux-x64.zip.tmp"
+  mv "${srcdir}/cache/libffmpeg-${nw_version}-linux-x64.zip.tmp" "${srcdir}/cache/libffmpeg-${nw_version}-linux-x64.zip"
 fi
 rm -rf "${nwjs_dir}/lib/libffmpeg.so"
-unzip "${srcdir}/cache/libffmpeg-0.55.00-linux-x64.zip" -d "${nwjs_dir}/lib"
+unzip "${srcdir}/cache/libffmpeg-${nw_version}-linux-x64.zip" -d "${nwjs_dir}/lib"
 
 # Skyline解析插件修复
 float_pigment_version="continuous"

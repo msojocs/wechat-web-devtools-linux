@@ -1,6 +1,0 @@
-# 此处版本应与nwjs使用的node版本一致
-if [ -z $NODE_VERSION ];then
-  NODE_VERSION=16.11.0
-fi
-NODE_URL_CN=https://npmmirror.com/mirrors/node/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.gz
-NODE_URL_GLOBAL=https://nodejs.org/download/release/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.gz

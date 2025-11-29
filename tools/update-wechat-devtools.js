@@ -309,23 +309,11 @@ const start = async () => {
         const localPath = await download(url);
         const extractPath = await extract(localPath);
         await upgrade(extractPath);
-        // await patch_wechat_devtools_package_name();
-        // await patch_wechat_devtools_editor_selection_autocopy();
-        // await patch_wechat_devtools_CLI();
-        // await patch_wechat_devtools_core();
-        // await rebuild_wechat_devtools_node_modules();
-        // await patch_wechat_devtools();
-        // await patch_other();
         // 写入构建时间戳
         fs.writeFileSync(
             path.resolve(__dirname, "../package.nw/.build_time"),
             "" + parseInt(new Date().getTime() / 1000)
         );
-        // 写入版本
-        fs.writeFileSync(
-            path.resolve(__dirname, "../conf/devtools_v"),
-            `${version},${md5}`
-        )
         console.log(
             `Succeeded upgrading wechat-devtools to version ${version}`
         );

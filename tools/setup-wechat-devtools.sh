@@ -39,7 +39,7 @@ if [ $CURRENT_STEP == $INSTALL_START ];then
     step_switch $INSTALL_NODE_SUCCESS
     success "node安装完毕"
   else
-    "$root_dir/tools/update-node.sh"
+    "$root_dir/tools/update-node.sh" $@
     step_switch $INSTALL_NODE_SUCCESS
     success "node ok"
   fi
@@ -87,7 +87,7 @@ if [ $CURRENT_STEP == $INSTALL_GYP_SUCCESS ];then
   if [ -f "$root_dir/nwjs/nw" ]; then
     success "nwjs安装完毕"
   else
-    node "$root_dir/tools/update-nwjs-node"
+    "$root_dir/tools/update-nwjs.sh" $@
   fi
   step_switch $INSTALL_NW_SUCCESS
 fi
@@ -110,9 +110,8 @@ if [ $CURRENT_STEP == $INSTALL_NW_SUCCESS ];then
   else
     # 参数没有版本号，获取
     echo "参数没有版本号"
-    VERSION_DATA=$( cat "$root_dir/conf/devtools_v" )
-    VERSION_DATA=(${VERSION_DATA//,/ })
-    TARGET_VERSION="version=${VERSION_DATA[0]}"
+    VERSION_DATA=$(node "$root_dir/tools/parse-config.js" --get-devtools-version $@)
+    TARGET_VERSION="version=${VERSION_DATA}"
   fi
   echo "TARGET_VERSION: $TARGET_VERSION"
   if [ ! -f "$root_dir/package.nw/package.json" ];then
@@ -146,8 +145,7 @@ if [ $CURRENT_STEP == $INSTALL_WECHAT_SUCCESS ];then
   "$root_dir/tools/fix-core.sh"
 
   notice "Rebuilding wechat-devtools node modules"
-  nwjsConfig=`cat "$root_dir/conf/nwjs.json" | grep -m 1 -Eo "version\": \"[0-9]{1}\.[0-9]{2}\.[0-9]+"`
-  nwjs_version="${nwjsConfig/version\": \"/}"
+  nwjs_version=$(node "$root_dir/tools/parse-config.js" --get-nwjs-version $@)
   "$root_dir/tools/rebuild-node-modules.sh" "$nwjs_version"
   step_switch $INSTALL_REBUILD_SUCCESS
 fi
@@ -157,7 +155,7 @@ if [ $CURRENT_STEP == $INSTALL_REBUILD_SUCCESS ];then
   "$root_dir/tools/fix-menu.sh"
 
   notice "Patching Other"
-  "$root_dir/tools/fix-other.sh"
+  "$root_dir/tools/fix-other.sh" $@
 
   notice "Replace Skyline"
   "$root_dir/tools/replace-skyline.sh"

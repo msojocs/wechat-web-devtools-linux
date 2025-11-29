@@ -1,5 +1,5 @@
 #!/bin/bash
-docker run -d -it \
+docker run -it \
   --restart=always \
   --hostname="$(hostname)" \
   --env="DISPLAY" \
@@ -7,6 +7,8 @@ docker run -d -it \
   --volume="${XAUTHORITY:-${HOME}/.Xauthority}:/root/.Xauthority:ro" \
   --volume="/tmp/.X11-unix:/tmp/.X11-unix:ro" \
   --volume="/dev/shm:/dev/shm" \
+  --volume="./.wine:/root/.wine" \
   -p 3001:3001 \
   --name skyline_server \
-  ghcr.io/msojocs/skyline-client-server:master
+  ghcr.io/msojocs/skyline-client-server:master \
+  bash
