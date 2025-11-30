@@ -1,0 +1,30 @@
+FROM ubuntu:20.04
+
+WORKDIR /workspace
+
+ARG DEBIAN_FRONTEND=noninteractive
+RUN sed -i 's/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list && \
+    sed -i 's/security.debian.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list && \
+    sed -i 's/security.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list && \
+    sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list && \
+    mkdir -p /build_temp/python36 /build_temp/nodejs && \
+    apt update && apt install -y sudo && \
+    useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
+    apt install -y binutils software-properties-common \
+    gconf2 libxkbfile-dev p7zip-full make libssh2-1-dev libkrb5-dev wget curl \
+    openssl pkg-config build-essential
+RUN apt update && \
+    apt install -y gcc-9 g++-9 && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 90 --slave /usr/bin/g++ g++ /usr/bin/g++-9 && \
+    apt-get install -y aptitude &&\
+    aptitude -y install gcc make zlib1g-dev libffi-dev libssl-dev &&\
+    apt install python3.8 -y && \
+    cd /build_temp/nodejs &&\
+    wget https://deb.nodesource.com/setup_16.x &&\
+    chmod +x setup_16.x &&\
+    ./setup_16.x &&\
+    apt-get install -y nodejs &&\
+    rm -rf /build_temp && \
+    apt install -y gosu unzip python && \
+    gosu nobody true && \
+    useradd -s /bin/bash -m user

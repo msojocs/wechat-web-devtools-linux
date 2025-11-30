@@ -25,15 +25,40 @@ if [ -z $NW_VERSION ]; then
 fi
 
 PY_VERSION=`python -V 2>&1|awk '{print $2}'|awk -F '.' '{print $1}'`
+# TODO: 兼容python2.7的命令
 if [ $PY_VERSION != 2 ]; then
-  hash python2 2>/dev/null || { fail "I require python2 but it's not installed.  Aborting."; exit 1; }
-  ln -s "$( which python2 )" "$root_dir/node/bin/python"
+  hash python2.7 2>/dev/null || hash python2 2>/dev/null || { fail "I require python2 but it's not installed.  Aborting."; exit 1; }
+  if hash python2.7 2>/dev/null; then
+    ln -s "$( which python2.7 )" "$root_dir/node/bin/python"
+  else
+    ln -s "$( which python2 )" "$root_dir/node/bin/python"
+  fi
 fi
 
 hash nw-gyp 2>/dev/null || {
   echo "=======请安装nw-gyp======="
   exit 1
 }
+
+arch=$(node "$root_dir/tools/parse-config.js" --get-arch $@)
+
+if [ "$arch" == "loong64" ];then
+  notice "龙架构，准备交叉编译"
+  export PATH="$root_dir/cache/cross-tools/target/usr/bin:$root_dir/node/bin:$root_dir/cache/cross-tools/loongarch64-unknown-linux-gnu/bin:$root_dir/cache/cross-tools/bin:$PATH"
+  tools/cross-loong64-prepare.sh
+  export CC=loongarch64-unknown-linux-gnu-gcc
+  export CXX=loongarch64-unknown-linux-gnu-g++
+  export AR=loongarch64-unknown-linux-gnu-ar
+  export LINK=loongarch64-unknown-linux-gnu-g++
+  export RANLIB=loongarch64-unknown-linux-gnu-ranlib
+  export CFLAGS="-I$root_dir/cache/cross-tools/target/usr/include -I$root_dir/cache/cross-tools/target/usr/include/loongarch64-linux-gnu"
+  export CXXFLAGS="-I$root_dir/cache/cross-tools/target/usr/include -I$root_dir/cache/cross-tools/target/usr/include/loongarch64-linux-gnu" # -fpermissive
+  export LDFLAGS="-L$root_dir/cache/cross-tools/target/usr/lib64 -L$root_dir/cache/cross-tools/target/usr/lib/loongarch64-linux-gnu"
+
+  # sed -i 's#-m64##' /home/user/.node-gyp/16.11.0/include/node/common.gypi
+  # sed -i 's#-pthread##' /home/user/.node-gyp/16.11.0/include/node/common.gypi
+  # sed -i 's#-rdynamic##' /home/user/.node-gyp/16.11.0/include/node/common.gypi
+fi
 
 echo -e "\033[42;37m ######## 版本信息 $(date '+%Y-%m-%d %H:%M:%S') ########\033[0m"
 echo "NW VERSION: $NW_VERSION"
@@ -92,49 +117,102 @@ export JOBS=$max_thread
     native-watchdog \
     oniguruma \
     spdlog@0.11.1 \
-    trash \
-    vscode-oniguruma \
     nodegit \
     @vscode/sqlite3 \
+    --ignore-scripts \
     --registry=https://registry.npmmirror.com \
     --nodegit_binary_host_mirror=https://npmmirror.com/mirrors/nodegit/v0.27.0/ ) # reinstall modules
 
-# rebuild
+# 每个模块单独 rebuild，因为交叉编译时可能需要单独调整配置
+cd "${package_dir}/node_modules_tmp/node_modules"
+
+cd nodegit
+notice "Build nodegit"
+node-gyp configure --target_platform=linux --target_arch=${arch} --verbose --host
+if [ "$arch" == "loong64" ];then
+  sed -i 's#libssh2ConfigureScript,#`${libssh2ConfigureScript} --host=loongarch64-unknown-linux-gnu`,#' utils/configureLibssh2.js
+fi
+node-gyp build
+rm -rf .github include src lifecycleScripts vendor utils build/vendor build/Release/.deps
+cd ..
+
+cd extract-file-icon
+node-gyp configure --target_platform=linux --target_arch=${arch} --verbose --host
+node-gyp build
+cd ..
+
+cd native-keymap
+node-gyp configure --target_platform=linux --target_arch=${arch} --verbose --host
+node-gyp build
+cd ..
+
+cd node-pty
+# node build
+node-gyp configure --target_platform=linux --target_arch=${arch} --verbose --host
+node-gyp build
+cd ..
+# nw rebuild
 notice "rebuild node-pty"
-cd "$package_dir/node_modules_tmp/node_modules" && \
-cp -fr "node-pty" "node-pty-node" && \
-cd "node-pty" && nw-gyp rebuild --arch=x64 "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
-mkdir -p "$package_dir/node_modules/node-pty/build/Release" && \
-cp -rf "$package_dir/node_modules_tmp/node_modules/node-pty/lib" "$package_dir/node_modules/node-pty/lib" && \
-cp -rf "$package_dir/node_modules_tmp/node_modules/node-pty/package.json" "$package_dir/node_modules/node-pty/package.json" && \
+cp -fr "node-pty" "node-pty-node"
+cd "node-pty"
+nw-gyp rebuild --arch=$arch "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
+mkdir -p "$package_dir/node_modules/node-pty/build/Release"
+cp -rf lib "$package_dir/node_modules/node-pty/lib"
+cp -rf package.json "$package_dir/node_modules/node-pty/package.json"
+# TODO: 此处似乎有问题，node用的也是nw的？
 cp -rf "$package_dir/node_modules/node-pty" "$package_dir/node_modules/node-pty-node"
+cd ..
 
-notice "rebuild native-watchdog"
-cd "$package_dir/node_modules_tmp/node_modules/native-watchdog" && \
-nw-gyp rebuild --arch=x64 "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
+cd native-watchdog
+# 不需要node的版本
+notice "build native-watchdog"
+nw-gyp rebuild --arch=$arch "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
+cd ..
 
-cd "${package_dir}/node_modules_tmp/node_modules/nodegit" && rm -rf .github include src lifecycleScripts vendor utils build/vendor build/Release/.deps
-cp -fr "${package_dir}/node_modules_tmp/node_modules/nodegit" "${package_dir}/node_modules"
-
+cp -fr "oniguruma" "oniguruma-node"
+cd oniguruma-node
+if [ "$arch" == "loong64" ];then
+  BAK_CFLAGS="$CFLAGS"
+  BAK_CXXFLAGS="$CXXFLAGS"
+  export CFLAGS="$CFLAGS -x c -std=gnu89 -Wno-error=incompatible-pointer-types -Wno-incompatible-pointer-types"
+  export CXXFLAGS="$CXXFLAGS -Wno-error=incompatible-pointer-types -Wno-incompatible-pointer-types"
+fi
+node-gyp configure --target_platform=linux --target_arch=${arch} --verbose --host
+node-gyp build
+cd ../oniguruma
 notice "rebuild oniguruma"
-cd "${package_dir}/node_modules_tmp/node_modules" && \
-cp -fr "oniguruma" "oniguruma-node" && \
-cd "oniguruma" && nw-gyp rebuild --arch=x64 "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
+nw-gyp rebuild --arch=$arch "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
+if [ "$arch" == "loong64" ];then
+  export CFLAGS="$BAK_CFLAGS"
+  export CXXFLAGS="$BAK_CXXFLAGS"
+fi
 
+cd ..
+
+cp -fr "spdlog" "spdlog-node"
+cd spdlog-node
+node-gyp configure --target_platform=linux --target_arch=${arch} --verbose --host
+node-gyp build
+cd ..
+mkdir -p @vscode
+cp -fr "spdlog-node" "@vscode/spdlog18"
+cd spdlog
 notice "rebuild spdlog"
-cd "${package_dir}/node_modules_tmp/node_modules" && \
-cp -fr "spdlog" "spdlog-node" && \
-mkdir -p "@vscode" && \
-cp -fr "spdlog" "@vscode/spdlog18" && \
-cd "spdlog" && nw-gyp rebuild --arch=x64 "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
+nw-gyp rebuild --arch=$arch "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
+cd ..
+
+cd @vscode/sqlite3
+notice "Build @vscode/sqlite3"
+node-gyp configure --target_platform=linux --target_arch=${arch} --verbose --host
+node-gyp build
+cd ../..
 
 notice "remove unused files"
-(cd "${package_dir}/node_modules_tmp/node_modules" && \
-find -name ".deps" | xargs -I{} rm -rf {} && \
-find -name "obj.target" | xargs -I{} rm -rf {} && \
-find -name "*.a" -delete && \
-find -name "*.lib" -delete && \
-find -name "*.mk" -delete)
+find -name ".deps" | xargs -I{} rm -rf {}
+find -name "obj.target" | xargs -I{} rm -rf {}
+find -name "*.a" -delete
+find -name "*.lib" -delete
+find -name "*.mk" -delete
 
 # TODO: 检查路径包含空格时，是否正常
 notice "copy node files"
