@@ -9,6 +9,9 @@ package_dir="$root_dir/package.nw"
 echo "replace: wcc,wcsc linux version"
 compiler_version=$(node "$root_dir/tools/parse-config.js" --get-compiler-version $@)
 arch=$(node "$root_dir/tools/parse-config.js" --get-arch $@)
+if [ "$arch" == "x64" ];then
+  arch="x86_64"
+fi
 
 mkdir -p "${srcdir}/cache/compiler/v${compiler_version}"
 if [ ! -f "${srcdir}/cache/compiler/v${compiler_version}/wcc-${arch}" ];then

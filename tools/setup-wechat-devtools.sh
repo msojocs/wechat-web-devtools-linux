@@ -146,7 +146,7 @@ if [ $CURRENT_STEP == $INSTALL_WECHAT_SUCCESS ];then
 
   notice "Rebuilding wechat-devtools node modules"
   nwjs_version=$(node "$root_dir/tools/parse-config.js" --get-nwjs-version $@)
-  "$root_dir/tools/rebuild-node-modules.sh" "$nwjs_version"
+  "$root_dir/tools/rebuild-node-modules.sh" "$nwjs_version" $@
   step_switch $INSTALL_REBUILD_SUCCESS
 fi
 

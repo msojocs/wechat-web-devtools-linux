@@ -38,8 +38,7 @@ const options = {
     },
 }
 const configArg = {
-    /**@type {'x86_64' | 'loong64'} */
-    arch: process.arch === 'x64' ? 'x86_64' : process.arch,
+    arch: process.arch,
 }
 for (let i = 0; i < args.length; i++) {
     if (options[args[i]]) {
@@ -47,7 +46,7 @@ for (let i = 0; i < args.length; i++) {
             i++;
             if (i < args.length) {
                 if (args[i - 1] === '--arch') {
-                    if (args[i] === 'x86_64' || args[i] === 'loong64') {
+                    if (args[i] === 'x64' || args[i] === 'loong64') {
                         configArg.arch = args[i];
                     } else {
                         console.error(`Invalid value for option --arch: ${args[i]}`);

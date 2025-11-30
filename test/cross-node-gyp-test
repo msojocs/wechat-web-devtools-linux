@@ -1,0 +1,76 @@
+#!/bin/bash
+set -ex
+
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+cd $root_dir/tmp
+mkdir -p node_modules
+
+export PATH="$root_dir/cache/cross-tools/target/usr/bin:$root_dir/node/bin:$root_dir/cache/cross-tools/loongarch64-unknown-linux-gnu/bin:$root_dir/cache/cross-tools/bin:$PATH"
+export CC=loongarch64-unknown-linux-gnu-gcc
+export CXX=loongarch64-unknown-linux-gnu-g++
+export AR=loongarch64-unknown-linux-gnu-ar
+export RANLIB=loongarch64-unknown-linux-gnu-ranlib
+export LINK=loongarch64-unknown-linux-gnu-g++
+# X11/X.h: No such file or directory
+# Fix pointer precision loss error on 32-bit architectures
+export CFLAGS="-I$root_dir/cache/cross-tools/target/usr/include -I$root_dir/cache/cross-tools/target/usr/include/loongarch64-linux-gnu"
+export CXXFLAGS="-I$root_dir/cache/cross-tools/target/usr/include -I$root_dir/cache/cross-tools/target/usr/include/loongarch64-linux-gnu" # -fpermissive
+export LDFLAGS="-L$root_dir/cache/cross-tools/target/usr/lib64 -L$root_dir/cache/cross-tools/target/usr/lib/loongarch64-linux-gnu"
+
+function install_pkg {
+    pkg_url=$1
+    pkg_name=$(basename $pkg_url)
+    if [ ! -f "$pkg_name" ]; then
+        wget -c $pkg_url -O $pkg_name
+    fi
+    dpkg -x $pkg_name $root_dir/cache/cross-tools/target
+}
+install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/libx/libx11/libx11-dev_1.8.12-1_loong64.deb
+install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/libx/libxkbfile/libxkbfile-dev_1.1.0-1+b3_loong64.deb
+install_pkg http://ftp.kr.debian.org/debian/pool/main/x/xorgproto/x11proto-dev_2024.1-1_all.deb
+install_pkg http://ftp.kr.debian.org/debian-ports/pool-loong64/main/libx/libx11/libx11-6_1.8.12-1_loong64.deb
+install_pkg http://ftp.kr.debian.org/debian-ports/pool-loong64/main/libx/libxkbfile/libxkbfile1_1.1.0-1+b3_loong64.deb
+install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/k/krb5/libkrb5-dev_1.22.1-2_loong64.deb
+install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/k/krb5/krb5-multidev_1.22.1-2_loong64.deb
+install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/o/openssl/openssl_3.5.4-1_loong64.deb
+install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/o/openssl/libssl-dev_3.5.4-1_loong64.deb
+install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/libs/libssh2/libssh2-1-dev_1.11.1-1_loong64.deb
+install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/libs/libssh2/libssh2-1t64_1.11.1-1_loong64.deb
+install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/z/zlib/zlib1g_1.3.dfsg+really1.3.1-1+b1_loong64.deb
+install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/e/e2fsprogs/comerr-dev_2.1-1.47.2-3+b3_loong64.deb
+install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/k/krb5/libkrb5-3_1.22.1-2_loong64.deb
+install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/k/krb5/libk5crypto3_1.22.1-2_loong64.deb
+install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/k/krb5/libgssapi-krb5-2_1.22.1-2_loong64.deb
+install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/e/e2fsprogs/libcom-err2_1.47.2-3+b3_loong64.deb
+
+# export CFLAGS="$CFLAGS -I$root_dir/tmp/libx11/usr/include"
+# export CXXFLAGS="$CXXFLAGS -I$root_dir/tmp/libx11/usr/include"
+# export LDFLAGS="$LDFLAGS -L$root_dir/tmp/libx11/usr/lib/loongarch64-linux-gnu -L$root_dir/tmp/libx11/usr/lib"
+
+# which krb5-config
+# krb5-config gssapi --libs
+
+# $root_dir/cache/cross-tools/target/usr/bin/krb5-config
+echo 'echo "-L/usr/lib/loongarch64-linux-gnu/mit-krb5 -Wl,-Bsymbolic-functions -flto=auto -ffat-lto-objects -Wl,-z,relro -lgssapi_krb5 -lkrb5 -lk5crypto -lcom_err"' > $root_dir/cache/cross-tools/target/usr/bin/krb5-config
+# tmp/node_modules/nodegit/vendor/libssh2/config.sub
+# 添加架构支持，3处，搜索'Invalid configuration'
+# loongarch64)
+# 	basic_machine=loongarch64-unknown
+# 	;;
+node-gyp install
+node_version=$(node -v | sed 's/v//')
+sed -i "s#'-m64',##" $HOME/.cache/node-gyp/$node_version/include/node/common.gypi
+sed -i "s#'-m64'##" $HOME/.cache/node-gyp/$node_version/include/node/common.gypi
+# npm install node-gyp -g
+name="nodegit"
+npm install $name --ignore-scripts
+cd node_modules/$name
+
+# oniguruma
+# export CFLAGS="$CFLAGS -x c -std=gnu89 -Wno-error=incompatible-pointer-types -Wno-incompatible-pointer-types"
+# export CXXFLAGS="$CXXFLAGS -Wno-error=incompatible-pointer-types -Wno-incompatible-pointer-types"
+
+node-gyp configure --target_platform=linux --target_arch=loong64 --verbose --host
+sed -i 's#libssh2ConfigureScript,#`${libssh2ConfigureScript} --host=loongarch64-unknown-linux-gnu`,#' utils/configureLibssh2.js
+
+node-gyp rebuild
