@@ -1,4 +1,15 @@
 (() => {
+    (() => {
+        if (window.require) {
+            // fix: 代码高亮失效
+            const fs = window.require('fs')
+            const readFile = fs.readFile
+            fs.readFile = function(...args) {
+                args[0] = args[0].replace('code/package.nw', 'package.nw')
+                return readFile.apply(this, args)
+            }
+        }
+    })();
     if (!window.skylineRequireReplace) {
         window.skylineRequireReplace = true;
         const originalRequire = window.require;

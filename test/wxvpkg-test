@@ -4,4 +4,4 @@ root_dir=$(cd `dirname $0`/.. && pwd -P)
 tmp_dir="$root_dir/tmp"
 
 # unpack 文件 到 路径
-node "$root_dir/tools/wxvpkg_unpack.js" "/home/msojocs/.config/wechat-devtools/WeappVendor/3.8.5.wxvpkg" "/home/msojocs/.config/wechat-devtools/WeappVendor/3.8.5.wxvpkg.ext"
+node "$root_dir/tools/wxvpkg_unpack.js" "$root_dir/package.nw/core.wxvpkg" "$root_dir/package.nw/core.wxvpkg.ext"
