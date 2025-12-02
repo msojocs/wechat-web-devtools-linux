@@ -5,7 +5,7 @@ echo "$(id -u):$(id -g)"
 
 arch=$(node "$root_dir/tools/parse-config.js" --get-arch $@)
 
-image="msojocs/wechat-devtools-build:v1.0.5"
+image="msojocs/wechat-devtools-build:v1.0.6"
 if [ "$arch" == "loong64" ]; then
     image="msojocs/wechat-devtools-build:loong64-v1.0.0"
 fi
