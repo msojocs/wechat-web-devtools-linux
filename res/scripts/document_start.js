@@ -1,4 +1,17 @@
 (() => {
+    {
+        // fix: 云开发 -> 记录列表 -> 右键菜单项目缺少
+        let env = undefined
+        Object.defineProperty(window, 'env', {
+            set(v) {
+                v.platform = 'linux'
+                env = v
+            },
+            get() {
+                return env
+            }
+        })
+    }
     (() => {
         if (window.require) {
             // fix: 代码高亮失效
