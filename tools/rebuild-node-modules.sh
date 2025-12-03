@@ -27,10 +27,11 @@ PY_VERSION=`python -V 2>&1|awk '{print $2}'|awk -F '.' '{print $1}'`
 # TODO: 兼容python2.7的命令
 if [ $PY_VERSION != 2 ]; then
   hash python2.7 2>/dev/null || hash python2 2>/dev/null || { fail "I require python2 but it's not installed.  Aborting."; exit 1; }
+  mkdir -p "$root_dir/tmp/bin"
   if hash python2.7 2>/dev/null; then
-    ln -s "$( which python2.7 )" "$root_dir/node/bin/python"
+    ln -s "$( which python2.7 )" "$root_dir/tmp/bin/python"
   else
-    ln -s "$( which python2 )" "$root_dir/node/bin/python"
+    ln -s "$( which python2 )" "$root_dir/tmp/bin/python"
   fi
 fi
 
