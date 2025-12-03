@@ -42,7 +42,7 @@ hash nw-gyp 2>/dev/null || {
 
 arch=$(node "$root_dir/tools/parse-config.js" --get-arch $@)
 
-if [ "$arch" == "loong64" ];then
+if [ "$arch" == "loongarch64" ];then
   notice "龙架构，准备交叉编译"
   export PATH="$root_dir/cache/cross-tools/target/usr/bin:$root_dir/cache/cross-tools/loongarch64-unknown-linux-gnu/bin:$root_dir/cache/cross-tools/bin:$PATH"
   tools/cross-loong64-prepare.sh
@@ -132,7 +132,7 @@ configure_args="--target_platform=linux --target_arch=${arch} --verbose --host -
 cd nodegit
 notice "Build nodegit"
 node-gyp configure "$configure_args"
-if [ "$arch" == "loong64" ];then
+if [ "$arch" == "loongarch64" ];then
   sed -i 's#libssh2ConfigureScript,#`${libssh2ConfigureScript} --host=loongarch64-unknown-linux-gnu`,#' utils/configureLibssh2.js
 fi
 node-gyp build
@@ -174,7 +174,7 @@ cd ..
 
 cp -fr "oniguruma" "oniguruma-node"
 cd oniguruma-node
-if [ "$arch" == "loong64" ];then
+if [ "$arch" == "loongarch64" ];then
   BAK_CFLAGS="$CFLAGS"
   BAK_CXXFLAGS="$CXXFLAGS"
   export CFLAGS="$CFLAGS -x c -std=gnu89 -Wno-error=incompatible-pointer-types -Wno-incompatible-pointer-types"
