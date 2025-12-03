@@ -5,7 +5,7 @@
                 "version": "0.55.0",
                 "template": "https://oss.npmmirror.com/dist/nwjs/v${version}/nwjs-sdk-v${version}-linux-x64.tar.gz"
             },    
-            "loong64": {
+            "loongarch64": {
                 "version": "0.65.1",
                 "template": "https://github.com/msojocs/nwjs-loongarch/releases/download/v0.65.2/nwjs-sdk-v0.65.2-linux-loong64.tar.gz"
             }
@@ -56,9 +56,9 @@
                 "version": "16.13.1",
                 "template": "https://npmmirror.com/mirrors/node/v${version}/node-v${version}-linux-x64.tar.gz"
             },    
-            "loong64": {
-                "version": "16.13.1",
-                "template": "https://npmmirror.com/mirrors/node/v${version}/node-v${version}-linux-x64.tar.gz"
+            "loongarch64": {
+                "version": "18.20.4",
+                "template": "https://github.com/loong64/node/releases/download/v${version}/node-v${version}-linux-loong64.tar.gz"
             }
         }
     },

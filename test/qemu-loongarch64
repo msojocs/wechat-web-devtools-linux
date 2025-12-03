@@ -1,0 +1,11 @@
+#!/bin/bash
+# qemu
+docker run --rm --privileged loongcr.lcpu.dev/multiarch/archlinux --reset -p yes
+
+docker run --rm -it \
+    --name hello \
+    -v $(pwd):/workspace \
+    -w /workspace \
+    --platform=linux/loong64 \
+    ghcr.io/loong64/debian:trixie-slim \
+    /bin/bash

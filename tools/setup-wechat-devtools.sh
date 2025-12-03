@@ -52,7 +52,7 @@ if [ $CURRENT_STEP == $INSTALL_START ];then
 fi
 
 # 将node加入环境
-export PATH="$root_dir/cache/npm/node_global/bin:$root_dir/node/bin:$PATH"
+export PATH="$root_dir/cache/npm/node_global/bin:$PATH"
 node --version
 npm --version
 

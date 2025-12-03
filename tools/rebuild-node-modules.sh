@@ -14,7 +14,6 @@ fail() {
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 package_dir="$root_dir/package.nw"
-export PATH="$root_dir/node/bin:$PATH"
 
 if [ ! -z $1 ];then
   NW_VERSION=$1
@@ -44,7 +43,7 @@ arch=$(node "$root_dir/tools/parse-config.js" --get-arch $@)
 
 if [ "$arch" == "loong64" ];then
   notice "龙架构，准备交叉编译"
-  export PATH="$root_dir/cache/cross-tools/target/usr/bin:$root_dir/node/bin:$root_dir/cache/cross-tools/loongarch64-unknown-linux-gnu/bin:$root_dir/cache/cross-tools/bin:$PATH"
+  export PATH="$root_dir/cache/cross-tools/target/usr/bin:$root_dir/cache/cross-tools/loongarch64-unknown-linux-gnu/bin:$root_dir/cache/cross-tools/bin:$PATH"
   tools/cross-loong64-prepare.sh
   export CC=loongarch64-unknown-linux-gnu-gcc
   export CXX=loongarch64-unknown-linux-gnu-g++
@@ -126,9 +125,12 @@ export JOBS=$max_thread
 # 每个模块单独 rebuild，因为交叉编译时可能需要单独调整配置
 cd "${package_dir}/node_modules_tmp/node_modules"
 
+node_version=$(node $root_dir/tools/parse-config.js --get-node-version $@)
+configure_args="--target_platform=linux --target_arch=${arch} --verbose --host --target=v$node_version"
+
 cd nodegit
 notice "Build nodegit"
-node-gyp configure --target_platform=linux --target_arch=${arch} --verbose --host
+node-gyp configure "$configure_args"
 if [ "$arch" == "loong64" ];then
   sed -i 's#libssh2ConfigureScript,#`${libssh2ConfigureScript} --host=loongarch64-unknown-linux-gnu`,#' utils/configureLibssh2.js
 fi
@@ -137,18 +139,18 @@ rm -rf .github include src lifecycleScripts vendor utils build/vendor build/Rele
 cd ..
 
 cd extract-file-icon
-node-gyp configure --target_platform=linux --target_arch=${arch} --verbose --host
+node-gyp configure "$configure_args"
 node-gyp build
 cd ..
 
 cd native-keymap
-node-gyp configure --target_platform=linux --target_arch=${arch} --verbose --host
+node-gyp configure "$configure_args"
 node-gyp build
 cd ..
 
 cd node-pty
 # node build
-node-gyp configure --target_platform=linux --target_arch=${arch} --verbose --host
+node-gyp configure "$configure_args"
 node-gyp build
 cd ..
 # nw rebuild
@@ -177,7 +179,7 @@ if [ "$arch" == "loong64" ];then
   export CFLAGS="$CFLAGS -x c -std=gnu89 -Wno-error=incompatible-pointer-types -Wno-incompatible-pointer-types"
   export CXXFLAGS="$CXXFLAGS -Wno-error=incompatible-pointer-types -Wno-incompatible-pointer-types"
 fi
-node-gyp configure --target_platform=linux --target_arch=${arch} --verbose --host
+node-gyp configure "$configure_args"
 node-gyp build
 cd ../oniguruma
 notice "rebuild oniguruma"
@@ -191,7 +193,7 @@ cd ..
 
 cp -fr "spdlog" "spdlog-node"
 cd spdlog-node
-node-gyp configure --target_platform=linux --target_arch=${arch} --verbose --host
+node-gyp configure "$configure_args"
 node-gyp build
 cd ..
 mkdir -p @vscode
@@ -203,7 +205,7 @@ cd ..
 
 cd @vscode/sqlite3
 notice "Build @vscode/sqlite3"
-node-gyp configure --target_platform=linux --target_arch=${arch} --verbose --host
+node-gyp configure "$configure_args"
 node-gyp build
 cd ../..
 

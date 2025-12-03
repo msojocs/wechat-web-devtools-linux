@@ -11,6 +11,8 @@ compiler_version=$(node "$root_dir/tools/parse-config.js" --get-compiler-version
 arch=$(node "$root_dir/tools/parse-config.js" --get-arch $@)
 if [ "$arch" == "x64" ];then
   arch="x86_64"
+elif [ "$arch" == "loongarch64" ];then
+  arch="loong64"
 fi
 
 mkdir -p "${srcdir}/cache/compiler/v${compiler_version}"
