@@ -1,11 +1,23 @@
 #!/bin/bash
-# qemu
-docker run --rm --privileged loongcr.lcpu.dev/multiarch/archlinux --reset -p yes
 
-docker run --rm -it \
-    --name hello \
-    -v $(pwd):/workspace \
-    -w /workspace \
-    --platform=linux/loong64 \
-    ghcr.io/loong64/debian:trixie-slim \
-    /bin/bash
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+
+efi_version="8.0"
+
+qemu-system-loongarch64 \
+    -m 4G \
+    -cpu la464-loongarch-cpu \
+    -machine virt \
+    -smp 8 \
+    -bios $root_dir/cache/QEMU_EFI.fd \
+    -serial stdio \
+    -device virtio-gpu-pci \
+    -boot d \
+    -net nic -net user \
+    -device nec-usb-xhci,id=xhci,addr=0x1b \
+    -device usb-tablet,id=tablet,bus=xhci.0,port=1 \
+    -device usb-kbd,id=keyboard,bus=xhci.0,port=2 \
+    -nic user,model=virtio-net-pci,hostfwd=tcp::5555-:22 \
+    -virtfs local,path=$root_dir,mount_tag=host0,security_model=passthrough,id=host0 \
+    -hda $root_dir/cache/archlinux.qcow2 \
+    -cdrom $root_dir/cache/archlinux-loong64.iso
