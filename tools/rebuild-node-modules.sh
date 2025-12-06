@@ -42,8 +42,8 @@ hash nw-gyp 2>/dev/null || {
 
 arch=$(node "$root_dir/tools/parse-config.js" --get-arch $@)
 
-if [ "$arch" == "loongarch64" ];then
-  notice "龙架构，准备交叉编译"
+if [ "$arch" == "loongarch64" ] && [ "$(uname -m)" == "x86_64" ];then
+  notice "在x86构建龙架构，准备交叉编译"
   export PATH="$root_dir/cache/cross-tools/target/usr/bin:$root_dir/cache/cross-tools/loongarch64-unknown-linux-gnu/bin:$root_dir/cache/cross-tools/bin:$PATH"
   tools/cross-loong64-prepare.sh
   export CC=loongarch64-unknown-linux-gnu-gcc
@@ -89,6 +89,8 @@ ripgrep_version="12.1.1-1"
 # ripgrep路径
 ripgrep_path="$root_dir/cache/ripgrep-v${ripgrep_version}-x86_64-unknown-linux-musl.tar.gz"
 mkdir -p "$root_dir/cache"
+
+# TODO: loongarch64版本
 # 文件不存在，下载
 if [ ! -f "$ripgrep_path" ];then
   wget https://github.com/microsoft/ripgrep-prebuilt/releases/download/v12.1.1-1/ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz \
@@ -162,7 +164,7 @@ nw-gyp rebuild --arch=$arch "--target=$NW_VERSION" --dist-url=https://registry.n
 mkdir -p "$package_dir/node_modules/node-pty/build/Release"
 cp -rf lib "$package_dir/node_modules/node-pty/lib"
 cp -rf package.json "$package_dir/node_modules/node-pty/package.json"
-# TODO: 此处似乎有问题，node用的也是nw的？
+# TODO: 此处待确认，node用的也是nw的？
 cp -rf "$package_dir/node_modules/node-pty" "$package_dir/node_modules/node-pty-node"
 cd ..
 
@@ -174,7 +176,7 @@ cd ..
 
 cp -fr "oniguruma" "oniguruma-node"
 cd oniguruma-node
-if [ "$arch" == "loongarch64" ];then
+if [ "$arch" == "loongarch64" ] && [ "$(uname -m)" == "x86_64" ];then
   BAK_CFLAGS="$CFLAGS"
   BAK_CXXFLAGS="$CXXFLAGS"
   export CFLAGS="$CFLAGS -x c -std=gnu89 -Wno-error=incompatible-pointer-types -Wno-incompatible-pointer-types"
@@ -185,7 +187,7 @@ node-gyp build
 cd ../oniguruma
 notice "rebuild oniguruma"
 nw-gyp rebuild --arch=$arch "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
-if [ "$arch" == "loong64" ];then
+if [ "$arch" == "loongarch64" ] && [ "$(uname -m)" == "x86_64" ];then
   export CFLAGS="$BAK_CFLAGS"
   export CXXFLAGS="$BAK_CXXFLAGS"
 fi
@@ -217,7 +219,6 @@ find -name "*.a" -delete
 find -name "*.lib" -delete
 find -name "*.mk" -delete
 
-# TODO: 检查路径包含空格时，是否正常
 notice "copy node files"
 (cd "${package_dir}/node_modules_tmp/node_modules" && \
 find -name "*.node" | xargs -I{} \cp -rf {} ${package_dir}/node_modules/{})

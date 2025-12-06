@@ -54,12 +54,14 @@ sed -i '1s/^/window.prompt = parent.prompt;\n/' "${package_dir}/js/ideplugin/dev
 
 nw_version=$(node "$root_dir/tools/parse-config.js" --get-nwjs-version $@)
 # 修复视频无法播放
-if [ ! -f "${srcdir}/cache/libffmpeg-${nw_version}-linux-x64.zip" ];then
-  wget -c https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/${nw_version}/${nw_version}-linux-x64.zip -O "${srcdir}/cache/libffmpeg-${nw_version}-linux-x64.zip.tmp"
-  mv "${srcdir}/cache/libffmpeg-${nw_version}-linux-x64.zip.tmp" "${srcdir}/cache/libffmpeg-${nw_version}-linux-x64.zip"
+if [ "$arch" == "x64" ];then
+  if [ ! -f "${srcdir}/cache/libffmpeg-${nw_version}-linux-x64.zip" ];then
+    wget -c https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/${nw_version}/${nw_version}-linux-x64.zip -O "${srcdir}/cache/libffmpeg-${nw_version}-linux-x64.zip.tmp"
+    mv "${srcdir}/cache/libffmpeg-${nw_version}-linux-x64.zip.tmp" "${srcdir}/cache/libffmpeg-${nw_version}-linux-x64.zip"
+  fi
+  rm -rf "${nwjs_dir}/lib/libffmpeg.so"
+  unzip "${srcdir}/cache/libffmpeg-${nw_version}-linux-x64.zip" -d "${nwjs_dir}/lib"
 fi
-rm -rf "${nwjs_dir}/lib/libffmpeg.so"
-unzip "${srcdir}/cache/libffmpeg-${nw_version}-linux-x64.zip" -d "${nwjs_dir}/lib"
 
 # Skyline解析插件修复
 float_pigment_version="continuous"
