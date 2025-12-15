@@ -2,19 +2,20 @@
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 
-qemu-system-loongarch64 \
-    -m 4G \
-    -cpu la464-loongarch-cpu \
-    -machine virt \
-    -smp 8 \
-    -bios $root_dir/cache/QEMU_EFI.fd \
-    -serial stdio \
-    -device virtio-gpu-pci \
-    -net nic -net user \
-    -device nec-usb-xhci,id=xhci,addr=0x1b \
-    -device usb-tablet,id=tablet,bus=xhci.0,port=1 \
-    -device usb-kbd,id=keyboard,bus=xhci.0,port=2 \
-    -nic user,model=virtio-net-pci,hostfwd=tcp::5555-:22 \
-    -virtfs local,path=$root_dir,mount_tag=host0,security_model=passthrough,id=host0 \
-    -hda $root_dir/cache/archlinux.qcow2 \
-    -cdrom $root_dir/cache/archlinux-loong64.iso
+docker run --rm --privileged loongcr.lcpu.dev/multiarch/archlinux --reset -p yes
+# 检查docker 容器是否存在
+if [ "$(docker ps -a | grep loongarchlinux-test)" ]; then
+    docker start loongarchlinux-test
+    docker exec -it loongarchlinux-test /bin/bash -i
+else
+    docker run -it \
+        --name loongarchlinux-test \
+        --platform="linux/loong64" \
+        --env="DISPLAY" \
+        --volume="${XAUTHORITY:-${HOME}/.Xauthority}:/root/.Xauthority:ro" \
+        --volume="/tmp/.X11-unix:/tmp/.X11-unix:ro" \
+        -v "$root_dir":/workspace \
+        -w /workspace \
+        ghcr.io/loongarchlinux/archlinux:latest \
+        bash
+fi

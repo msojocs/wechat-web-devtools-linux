@@ -10,5 +10,4 @@ docker run -it \
   --volume="./.wine:/root/.wine" \
   -p 3001:3001 \
   --name skyline_server \
-  ghcr.io/msojocs/skyline-client-server:master \
-  bash
+  ghcr.io/msojocs/skyline-client-server:master

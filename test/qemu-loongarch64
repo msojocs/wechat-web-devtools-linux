@@ -3,18 +3,19 @@
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 
 qemu-system-loongarch64 \
-    -m 4G \
+    -m 8G \
     -cpu la464-loongarch-cpu \
     -machine virt \
     -smp 8 \
-    -bios $root_dir/cache/QEMU_EFI.fd \
+    -bios QEMU_EFI.fd \
     -serial stdio \
-    -device virtio-gpu-pci \
+    -device virtio-gpu-gl-pci \
+    -display sdl,gl=on \
+    -accel tcg,thread=multi \
     -net nic -net user \
     -device nec-usb-xhci,id=xhci,addr=0x1b \
     -device usb-tablet,id=tablet,bus=xhci.0,port=1 \
     -device usb-kbd,id=keyboard,bus=xhci.0,port=2 \
     -nic user,model=virtio-net-pci,hostfwd=tcp::5555-:22 \
-    -virtfs local,path=$root_dir,mount_tag=host0,security_model=passthrough,id=host0 \
-    -hda $root_dir/cache/archlinux.qcow2 \
-    -cdrom $root_dir/cache/archlinux-loong64.iso
+    -virtfs local,path=.,mount_tag=host0,security_model=passthrough,id=host0 \
+    -hda debian.qcow2
