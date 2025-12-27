@@ -19,3 +19,6 @@ qemu-system-loongarch64 \
     -nic user,model=virtio-net-pci,hostfwd=tcp::5555-:22 \
     -virtfs local,path=.,mount_tag=host0,security_model=passthrough,id=host0 \
     -hda debian.qcow2
+
+
+# qemu-system-loongarch64 -m 8G -cpu la464-loongarch-cpu -machine virt -smp 8 -bios QEMU_EFI.fd -serial stdio -device virtio-gpu-pci -net nic -net user -device nec-usb-xhci,id=xhci,addr=0x1b -device usb-tablet,id=tablet,bus=xhci.0,port=1 -device usb-kbd,id=keyboard,bus=xhci.0,port=2 -hda debian.qcow2

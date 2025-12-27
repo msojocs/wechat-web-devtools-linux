@@ -211,98 +211,6 @@ const upgrade = function (extractPath) {
     });
 };
 
-// const patch_wechat_devtools_package_name = function () {
-//     info("Patching wechat-devtools package name");
-
-//     return new Promise((resolve, reject) => {
-//         spawn(path.resolve(__dirname, "fix-package-name.js"), [], {
-//             stdio: "inherit",
-//         }).on("close", (code) => {
-//             resolve();
-//         });
-//     });
-// };
-// const patch_wechat_devtools_editor_selection_autocopy = function () {
-//     info("Patching wechat-devtools editor selection autocopy");
-
-//     return new Promise((resolve, reject) => {
-//         spawn(path.resolve(__dirname, "fix-selection-copy-node"), [], {
-//             stdio: "inherit",
-//         }).on("close", (code) => {
-//             resolve();
-//         });
-//     });
-// };
-// const patch_wechat_devtools_CLI = function () {
-//     info("Patching wechat-devtools CLI supports");
-
-//     return new Promise((resolve, reject) => {
-//         spawn(path.resolve(__dirname, "fix-cli.sh"), [], {
-//             stdio: "inherit",
-//         }).on("close", (code) => {
-//             resolve();
-//         });
-//     });
-// };
-// const patch_wechat_devtools_core = function () {
-//     info("Patching wechat-devtools core.wxvpkg");
-
-//     return new Promise((resolve, reject) => {
-//         spawn(path.resolve(__dirname, "fix-core.sh"), [], {
-//             stdio: "inherit",
-//         }).on("close", (code) => {
-//             resolve();
-//         });
-//     });
-// };
-// const rebuild_wechat_devtools_node_modules = function () {
-//     info("Rebuilding wechat-devtools node modules");
-
-//     return new Promise((resolve, reject) => {
-//         const nwConfig = require(path.resolve(__dirname, "../conf/nwjs.json"));
-//         const e = spawn(
-//             path.resolve(__dirname, "rebuild-node-modules.sh"),
-//             [nwConfig.version],
-//             {
-//                 stdio: "inherit",
-//             }
-//         );
-//         e.on("error", (code) => {
-//             reject(code);
-//         });
-//         e.on("close", (code) => {
-//             console.info(
-//                 `Rebuilding wechat-devtools node modules Result Code: ${code}`
-//             );
-//             if (0 === code) resolve();
-//             else {
-//                 reject(code);
-//             }
-//         });
-//     });
-// };
-// const patch_wechat_devtools = function () {
-//     info("Patching wechat-devtools");
-
-//     return new Promise((resolve, reject) => {
-//         const exec = spawn(path.resolve(__dirname, "fix-menu.sh"), [], {
-//             stdio: "inherit",
-//         });
-//         exec.on("close", (code) => {
-//             resolve();
-//         });
-//     });
-// };
-// const patch_other = function () {
-//     info("Patching Other");
-
-//     return new Promise((resolve, reject) => {
-//         execSync(path.resolve(__dirname, "fix-other.sh"));
-
-//         resolve();
-//     });
-// };
-
 const start = async () => {
     try {
         const url = await fetching();
@@ -314,6 +222,9 @@ const start = async () => {
             path.resolve(__dirname, "../package.nw/.build_time"),
             "" + parseInt(new Date().getTime() / 1000)
         );
+        const cfg = require(path.resolve(__dirname, '../conf/config.json'))
+        cfg.devtools.version = version
+        fs.writeFileSync(path.resolve(__dirname, '../conf/config.json'), JSON.stringify(cfg, null, 4))
         console.log(
             `Succeeded upgrading wechat-devtools to version ${version}`
         );

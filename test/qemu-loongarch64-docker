@@ -6,7 +6,7 @@ docker run --rm --privileged loongcr.lcpu.dev/multiarch/archlinux --reset -p yes
 # 检查docker 容器是否存在
 if [ "$(docker ps -a | grep loongarchlinux-test)" ]; then
     docker start loongarchlinux-test
-    docker exec -it loongarchlinux-test /bin/bash -i
+    docker exec -it loongarchlinux-test tmp/nwjs-sdk-v0.94.1-linux-loong64/nw
 else
     docker run -it \
         --name loongarchlinux-test \
