@@ -74,9 +74,9 @@ rm -fr "vscode-windows-ca-certs" \
 "vscode-windows-registry" "vscode-windows-registry-node" "windows-process-tree" \
 "node-pty" "node-pty-node"
 
-rm -fr "${package_dir}/node_modules/vscode-ripgrep/bin/"* # redownload bin on linux
+rm -fr "${package_dir}/node_modules/@vscode/ripgrep/bin/"* # redownload bin on linux
 # https://github.com/microsoft/ripgrep-prebuilt
-cd "${package_dir}/node_modules/vscode-ripgrep" && \
+cd "${package_dir}/node_modules/@vscode/ripgrep" && \
 mkdir -p tmp && cd tmp
 
 # if [ "$ACTION_MODE" != "true" ]; then
@@ -85,7 +85,7 @@ mkdir -p tmp && cd tmp
 # fi
 
 # ripgrep版本
-ripgrep_version="12.1.1-1"
+ripgrep_version="15.0.0"
 # ripgrep路径
 ripgrep_path="$root_dir/cache/ripgrep-v${ripgrep_version}-x86_64-unknown-linux-musl.tar.gz"
 mkdir -p "$root_dir/cache"
@@ -93,7 +93,7 @@ mkdir -p "$root_dir/cache"
 # TODO: loongarch64版本
 # 文件不存在，下载
 if [ ! -f "$ripgrep_path" ];then
-  wget https://github.com/microsoft/ripgrep-prebuilt/releases/download/v12.1.1-1/ripgrep-v12.1.1-1-x86_64-unknown-linux-musl.tar.gz \
+  wget https://github.com/microsoft/ripgrep-prebuilt/releases/download/v${ripgrep_version}/ripgrep-v${ripgrep_version}-x86_64-unknown-linux-musl.tar.gz \
   -O "${ripgrep_path}.tmp"
   mv "${ripgrep_path}.tmp" "${ripgrep_path}"
 fi
