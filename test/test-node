@@ -1,5 +1,0 @@
-#!/usr/bin/env node
-const fs = require('fs')
-const path = require('path')
-
-fs.chmodSync(path.resolve(__dirname, '../package.nw'), 0o777)

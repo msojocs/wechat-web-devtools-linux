@@ -1,6 +1,0 @@
-#!/bin/bash
-export WINE=fasle
-
-root_dir=$(cd `dirname $0`/.. && pwd -P)
-$root_dir/tools/fix-core.sh
-$root_dir/tools/fix-other.sh

@@ -87,6 +87,9 @@ cat "${srcdir}/res/scripts/entrance.js" > "${package_dir}/js/core/entrance.js"
 cat "${package_dir}/js/core/entrance.js.bak" >> "${package_dir}/js/core/entrance.js"
 rm "${package_dir}/js/core/entrance.js.bak"
 
+# 修复编辑器不能覆盖粘贴
+sed -i 's#if(super(),l.isLinux){let#if(super(),l.isLinux){return;let#' "${package_dir}/js/libs/vseditor/bundled/editor.bundled.js"
+
 current=`date "+%Y-%m-%d %H:%M:%S"`
 timeStamp=`date -d "$current" +%s`
 echo $timeStamp > "${package_dir}/.build_time"

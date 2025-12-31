@@ -1,5 +1,5 @@
 #!/bin/bash
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 
-rm -rf ~/.config/wechat_devtools/WeappCache/requireCache
+rm -rf ~/.config/wechat-devtools/WeappCache
 $root_dir/bin/wechat-devtools

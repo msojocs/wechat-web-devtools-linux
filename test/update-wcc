@@ -1,4 +1,0 @@
-#!/bin/sh
-
-root_dir=$(cd `dirname $0`/.. && pwd -P)
-cp $HOME/github/wx-compiler/build/wcc $root_dir/package.nw/node_modules/wcc-exec/wcc
