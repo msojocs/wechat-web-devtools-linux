@@ -54,7 +54,7 @@ jobs:
           ls -l
           mkdir -p tmp/src
           rm -rf nwjs/node nwjs/node.exe
-          cp  node/bin/node nwjs/node
+          cp node/bin/node nwjs/node
           cd nwjs && ln -s node node.exe
           cd ..
           tar -zcf tmp/src/src-linux.tar.gz bin nwjs package.nw tools

@@ -12,7 +12,7 @@ export PATH="$root_dir/tools:$PATH"
 # 步骤
 source "step.sh"
 
-set -e
+set -ex
 trap 'catchError $LINENO "$BASH_COMMAND"' ERR # 捕获错误情况
 catchError() {
     exit_code=$?
@@ -56,8 +56,8 @@ export PATH="$root_dir/cache/npm/node_global/bin:$PATH"
 node --version
 npm --version
 
-if [ "$ACTION_MODE" == "true" ]; then
-  # ACTION HOME没有定义，导致异常
+if [[ -z "$HOME" || "$HOME" = "/" ]]; then
+  # HOME没有定义，导致异常
   export HOME="/tmp/home"
   mkdir -p /tmp/home
 fi
