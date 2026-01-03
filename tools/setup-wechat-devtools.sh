@@ -57,7 +57,7 @@ node --version
 npm --version
 
 if [[ -z "$HOME" || "$HOME" = "/" ]]; then
-  # HOME没有定义，导致异常
+  # 部分环境HOME定义异常，导致权限问题
   export HOME="/tmp/home"
   mkdir -p /tmp/home
 fi

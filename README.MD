@@ -184,53 +184,54 @@ docker run -d -it \
 
 时间倒序
 
-| 赞赏人 | 赞赏 | 时间 |
-|-------|---------|-----|
-| returning | 10.00￥ | 2025-07-12 |
-| 👍 | 10.00￥ | 2025-07-10 |
-| hanwor | 20.00￥ | 2025-06-17 |
-| 。。。 | 10.00￥ | 2025-03-29 |
-| SakuraPuare | 20.00￥ | 2025-03-24 |
-| [senseab](https://github.com/senseab) | 50.00￥ | 2024-12-21 |
-| l | 10.00￥ | 2024-12-08 |
-| lcurk0 | 50.00￥ | 2024-11-29 |
-| [stvsl](https://github.com/stvsl) | 10.00￥ | 2024-11-26 |
-| 仙人柱 | 50.00￥ | 2024-11-20 |
-| [cabbage7th](https://github.com/cabbage7th) | 20.00￥ | 2024-10-06 |
-| [shao4598](https://github.com/shao4598) | 50.00￥ | 2024-09-24 |
-| [OWALabuy](https://github.com/OWALabuy) | 16.66￥ | 2024-08-28 |
-| [wangvation](https://github.com/wangvation) | 50.00￥ | 2024-07-16 |
-| 孤泉冷月 | 100.00￥ | 2024-07-12 |
-| [liushuai05](https://github.com/liushuai05) | 88.00￥ | 2023-12-26 |
-| LGTU | 10.00￥ | 2023-11-25 |
-| [WRXinYue](https://github.com/WRXinYue) | 10 | 2023-11-09 |
-| silentdoer | 50.00￥ | 2023-09-26 |
-| ??? | 20 |2023-08-11 |
-| Geequlim | 100 | 2023-07-12 |
-| 对方正在输入 | 10 | 2023-04-28 |
-| @DaqiongYang | 50 | 2023-03-29 |
-| AInoob | 5 | 2023-01-30 |
-| ??? | 5  | 2023-01-18 |
-| 仙人柱 | 50.00￥ | 2022-08-09 |
-| [guanzhengyinqin](https://github.com/guanzhengyinqin) | 20.00￥ | 2022-07-14 |
-| [nsfoxer](https://github.com/nsfoxer) | 10.00￥ | 2022-06-30 |
-| [chiiihc](https://github.com/chiiihc) | 5.00￥ | 2022-06-17 |
-| [younland](https://github.com/younland) | 20.00￥ | 2022-06-15 |
-| [chiiihc](https://github.com/chiiihc) | 5.00￥ | 2022-06-14 |
-| 陈陈菌 | 10.00￥ | 2022-05-29 |
-| WWW |  5.00￥ | 2022-05-26 |
-| 南极の短尾猫 | 20.00￥ | 2022-05-22 |
-| 猪宝的猪 | 20.00￥ | 2022-05-15 |
-| finalwhy | 66.60￥ | 2022-05-09 |
-| [CoryByte](https://github.com/Corybyte) | 5.00￥ | 2022-04-23 |
-| [Starrah](https://github.com/Starrah) | 50.00￥ | 2022-04-12 |
-| [zyk-miao](https://github.com/zyk-miao) | 5.00￥ | 2022-04-12 |
-| [icepie](https://github.com/icepie) | 20.00￥ | 2022-04-08 |
-| Milder | 50.00￥ | 2022-03-23 |
-| . | 20.00￥ | 2022-03-21 |
-| shaoxp | 5.00￥ | 2022-03-16 |
-| 李喆 | 10.00￥ | 2022-03-05 |
-| david | 5.00￥ | ??? |
+| 赞赏人 | 时间 |
+|-------|-----|
+| yinyu | 2026-01-03 |
+| returning | 2025-07-12 |
+| 👍 | 2025-07-10 |
+| hanwor | 2025-06-17 |
+| 。。。 | 2025-03-29 |
+| SakuraPuare | 2025-03-24 |
+| [senseab](https://github.com/senseab) | 2024-12-21 |
+| l |  2024-12-08 |
+| lcurk0 |  2024-11-29 |
+| [stvsl](https://github.com/stvsl) |  2024-11-26 |
+| 仙人柱 | 2024-11-20 |
+| [cabbage7th](https://github.com/cabbage7th) | 2024-10-06 |
+| [shao4598](https://github.com/shao4598) | 2024-09-24 |
+| [OWALabuy](https://github.com/OWALabuy) | 2024-08-28 |
+| [wangvation](https://github.com/wangvation) | 2024-07-16 |
+| 孤泉冷月 | 2024-07-12 |
+| [liushuai05](https://github.com/liushuai05) | 2023-12-26 |
+| LGTU | 2023-11-25 |
+| [WRXinYue](https://github.com/WRXinYue) | 2023-11-09 |
+| silentdoer | 2023-09-26 |
+| ??? | 023-08-11 |
+| Geequlim | 2023-07-12 |
+| 对方正在输入 | 2023-04-28 |
+| @DaqiongYang | 2023-03-29 |
+| AInoob | 2023-01-30 |
+| ??? | 2023-01-18 |
+| 仙人柱 | 2022-08-09 |
+| [guanzhengyinqin](https://github.com/guanzhengyinqin) | 2022-07-14 |
+| [nsfoxer](https://github.com/nsfoxer) | 2022-06-30 |
+| [chiiihc](https://github.com/chiiihc) | 2022-06-17 |
+| [younland](https://github.com/younland) | 2022-06-15 |
+| [chiiihc](https://github.com/chiiihc) | 2022-06-14 |
+| 陈陈菌 | 2022-05-29 |
+| WWW |  2022-05-26 |
+| 南极の短尾猫 | 2022-05-22 |
+| 猪宝的猪 | 2022-05-15 |
+| finalwhy | 2022-05-09 |
+| [CoryByte](https://github.com/Corybyte) | 2022-04-23 |
+| [Starrah](https://github.com/Starrah) | 2022-04-12 |
+| [zyk-miao](https://github.com/zyk-miao) | 2022-04-12 |
+| [icepie](https://github.com/icepie) | 2022-04-08 |
+| Milder | 2022-03-23 |
+| . | 2022-03-21 |
+| shaoxp | 2022-03-16 |
+| 李喆 | 2022-03-05 |
+| david | ??? |
 
 # 免责声明
 
