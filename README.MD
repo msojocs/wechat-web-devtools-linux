@@ -10,7 +10,7 @@
 ----
 
 [![Node.js CI](https://github.com/msojocs/wechat-devtools-linux/actions/workflows/release.yml/badge.svg)](https://github.com/msojocs/wechat-devtools-linux/actions/workflows/release.yml)
-[![wechat-tools](https://img.shields.io/badge/wechat--devtools-2.01.2510260-blue)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+[![wechat-tools](https://img.shields.io/badge/wechat--devtools-2.01.2510280-blue)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 [![nwjs](https://img.shields.io/badge/nwjs-0.55.0-green)](https://nwjs.io/downloads/)
 [![node](https://img.shields.io/badge/node-16.11.0-orange)](https://nodejs.org/en/)
 [![wx-compiler](https://img.shields.io/badge/wx--compiler-0.1.6-pink)](https://github.com/msojocs/wx-compiler)

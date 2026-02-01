@@ -67,7 +67,7 @@
         "template": "https://github.com/msojocs/wx-compiler/releases/download/v${version}"
     },
     "devtools": {
-        "version": "2.01.2510260",
+        "version": "2.01.2510280",
         "template": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=win32_x64&from=mpwiki&download_version=${version}&version_type=1"
     }
 }
