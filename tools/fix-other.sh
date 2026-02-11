@@ -75,11 +75,13 @@ cp "${srcdir}/cache/float-pigment-${float_pigment_version}.node" "${package_dir}
 
 # websocket找不到
 cd "${package_dir}/js/libs/vseditor/extensions/node_modules/ws/lib"
-mv "WebSocket.js" "websocket.js"
-mv "Receiver.js" "receiver.js"
-mv "Sender.js" "sender.js"
-mv "Constants.js" "constants.js"
-mv "Validation.js" "validation.js"
+if [ -f "WebSocket.js" ];then
+  mv "WebSocket.js" "websocket.js"
+  mv "Receiver.js" "receiver.js"
+  mv "Sender.js" "sender.js"
+  mv "Constants.js" "constants.js"
+  mv "Validation.js" "validation.js"
+fi
 
 # 阻止无限启动服务器
 mv "${package_dir}/js/core/entrance.js" "${package_dir}/js/core/entrance.js.bak"

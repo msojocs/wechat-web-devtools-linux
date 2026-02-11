@@ -13,31 +13,99 @@ if [ ! -d "$root_dir/cache/cross-tools" ]; then
     tar -xf x86_64-cross-tools-loongarch64-binutils_2.45-gcc_15.1.0-glibc_2.42.tar.xz
 fi
 cd $root_dir/cache/pkg
-function install_pkg {
-    pkg_url=$1
-    pkg_name=$(basename $pkg_url)
-    if [ ! -f "$pkg_name" ]; then
-        wget -c $pkg_url -O $pkg_name
-    fi
-    dpkg -x $pkg_name $root_dir/cache/cross-tools/target
+BASE_PORTS="http://ftp.kr.debian.org/debian-ports"
+BASE_DEBIAN="http://ftp.kr.debian.org/debian"
+SUITE="unstable"
+COMPONENT="main"
+
+function _index_path {
+    local base_tag=$1
+    local arch=$2
+    echo "$root_dir/cache/pkg/Packages-${base_tag}-${arch}.xz"
 }
-install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/libx/libx11/libx11-dev_1.8.12-1_loong64.deb
-install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/libx/libxkbfile/libxkbfile-dev_1.1.0-1+b3_loong64.deb
-install_pkg http://ftp.kr.debian.org/debian/pool/main/x/xorgproto/x11proto-dev_2024.1-1_all.deb
-install_pkg http://ftp.kr.debian.org/debian-ports/pool-loong64/main/libx/libx11/libx11-6_1.8.12-1_loong64.deb
-install_pkg http://ftp.kr.debian.org/debian-ports/pool-loong64/main/libx/libxkbfile/libxkbfile1_1.1.0-1+b3_loong64.deb
-install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/k/krb5/libkrb5-dev_1.22.1-2_loong64.deb
-install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/k/krb5/krb5-multidev_1.22.1-2_loong64.deb
-install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/o/openssl/openssl_3.5.4-1_loong64.deb
-install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/o/openssl/libssl-dev_3.5.4-1_loong64.deb
-install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/libs/libssh2/libssh2-1-dev_1.11.1-1_loong64.deb
-install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/libs/libssh2/libssh2-1t64_1.11.1-1_loong64.deb
-install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/z/zlib/zlib1g_1.3.dfsg+really1.3.1-1+b1_loong64.deb
-install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/e/e2fsprogs/comerr-dev_2.1-1.47.2-3+b3_loong64.deb
-install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/k/krb5/libkrb5-3_1.22.1-2_loong64.deb
-install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/k/krb5/libk5crypto3_1.22.1-2_loong64.deb
-install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/k/krb5/libgssapi-krb5-2_1.22.1-2_loong64.deb
-install_pkg http://ftp.kr.debian.org/debian-ports//pool-loong64/main/e/e2fsprogs/libcom-err2_1.47.2-3+b3_loong64.deb
+
+function _download_index {
+    local base_url=$1
+    local base_tag=$2
+    local arch=$3
+    local index_path=$(_index_path "$base_tag" "$arch")
+    local index_url="$base_url/dists/$SUITE/$COMPONENT/binary-$arch/Packages.xz"
+    if [ ! -f "$index_path" ]; then
+        wget -c "$index_url" -O "$index_path"
+    fi
+}
+
+function _find_filename_in_index {
+    local pkg_name=$1
+    local index_path=$2
+    if [ ! -f "$index_path" ]; then
+        return 1
+    fi
+    xzcat "$index_path" | awk -v pkg="$pkg_name" '
+        $1=="Package:" {p=$2}
+        $1=="Filename:" && p==pkg {print $2; exit}
+    '
+}
+
+function _resolve_pkg_url {
+    local pkg_name=$1
+    local filename=""
+
+    _download_index "$BASE_PORTS" "ports" "loong64"
+    filename=$(_find_filename_in_index "$pkg_name" "$(_index_path ports loong64)")
+    if [ -n "$filename" ]; then
+        echo "$BASE_PORTS/$filename"
+        return 0
+    fi
+
+    _download_index "$BASE_PORTS" "ports" "all"
+    filename=$(_find_filename_in_index "$pkg_name" "$(_index_path ports all)")
+    if [ -n "$filename" ]; then
+        echo "$BASE_PORTS/$filename"
+        return 0
+    fi
+
+    _download_index "$BASE_DEBIAN" "debian" "all"
+    filename=$(_find_filename_in_index "$pkg_name" "$(_index_path debian all)")
+    if [ -n "$filename" ]; then
+        echo "$BASE_DEBIAN/$filename"
+        return 0
+    fi
+
+    return 1
+}
+
+function install_pkg {
+    local pkg_name=$1
+    local pkg_url=$(_resolve_pkg_url "$pkg_name")
+    if [ -z "$pkg_url" ]; then
+        echo "Failed to resolve package URL for $pkg_name" >&2
+        exit 1
+    fi
+    local pkg_file=$(basename "$pkg_url")
+    if [ ! -f "$pkg_file" ]; then
+        wget -c "$pkg_url" -O "$pkg_file"
+    fi
+    dpkg -x "$pkg_file" "$root_dir/cache/cross-tools/target"
+}
+
+install_pkg libx11-dev
+install_pkg libxkbfile-dev
+install_pkg x11proto-dev
+install_pkg libx11-6
+install_pkg libxkbfile1
+install_pkg libkrb5-dev
+install_pkg krb5-multidev
+install_pkg openssl
+install_pkg libssl-dev
+install_pkg libssh2-1-dev
+install_pkg libssh2-1t64
+install_pkg zlib1g
+install_pkg comerr-dev
+install_pkg libkrb5-3
+install_pkg libk5crypto3
+install_pkg libgssapi-krb5-2
+install_pkg libcom-err2
 
 node-gyp install
 version=$(node -p "process.versions.node")

@@ -6,7 +6,7 @@ docker run --rm --privileged loongcr.lcpu.dev/multiarch/archlinux --reset -p yes
 # 检查docker 容器是否存在
 if [ "$(docker ps -a | grep loongarchlinux-test)" ]; then
     docker start loongarchlinux-test
-    docker exec -it loongarchlinux-test tmp/nwjs-sdk-v0.94.1-linux-loong64/nw
+    docker exec -it loongarchlinux-test bash -c "rm -rf ~/.config/wechat-devtools && /workspace/bin/wechat-devtools"
 else
     docker run -it \
         --name loongarchlinux-test \
@@ -17,5 +17,5 @@ else
         -v "$root_dir":/workspace \
         -w /workspace \
         ghcr.io/loongarchlinux/archlinux:latest \
-        bash
+        bash -c "pacman -Syu --noconfirm nss atk cups libxkbcommon libxcomposite libxdamage libxrandr pango alsa-lib mesa libdrm gtk3 && bash"
 fi

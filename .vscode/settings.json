@@ -7,5 +7,6 @@
     ".flatpak/**": true,
     "_build/**": true
   },
-  "prettier.tabWidth": 4
+  "search.useIgnoreFiles": false,
+  "search.followSymlinks": false
 }

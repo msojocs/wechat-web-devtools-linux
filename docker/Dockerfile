@@ -13,7 +13,7 @@ RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
     openssl pkg-config build-essential && \
     add-apt-repository ppa:ubuntu-toolchain-r/test && \
     apt update && \
-    apt install -y gcc-9 g++-9 && \
+    apt install -y gcc-9 g++-9 lld && \
     update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 90 --slave /usr/bin/g++ g++ /usr/bin/g++-9 && \
     cd /build_temp/python36 && \
     apt-get install -y aptitude &&\

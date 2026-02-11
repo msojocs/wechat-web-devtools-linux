@@ -11,14 +11,21 @@ shared_memory_version="v1.0.3"
 skyline_version="v1.0.4"
 
 cd "$package_dir/node_modules"
-rm sharedMemory/sharedMemory.node
-wget -c https://github.com/msojocs/skyline-shared-memory/releases/download/$shared_memory_version/skyline-sharedMemory-linux-x86_64-$shared_memory_version.node -OsharedMemory/sharedMemory.node
+mkdir -p "$cache_dir/skyline"
+rm -f sharedMemory/sharedMemory.node
+if [ ! -f "$cache_dir/skyline/sharedMemory-linux-x86_64-$shared_memory_version.node" ]; then
+    wget -c https://github.com/msojocs/skyline-shared-memory/releases/download/$shared_memory_version/skyline-sharedMemory-linux-x86_64-$shared_memory_version.node -O "$cache_dir/skyline/sharedMemory-linux-x86_64-$shared_memory_version.node.tmp"
+    mv "$cache_dir/skyline/sharedMemory-linux-x86_64-$shared_memory_version.node.tmp" "$cache_dir/skyline/sharedMemory-linux-x86_64-$shared_memory_version.node"
+fi
+cp "$cache_dir/skyline/sharedMemory-linux-x86_64-$shared_memory_version.node" sharedMemory/sharedMemory.node
 
 cd skyline-addon
-rm build/skyline.node
-wget -c https://github.com/msojocs/skyline-client-server/releases/download/$skyline_version/skyline-client-linux-x86_64-$skyline_version.node -Obuild/skyline.node
-rm build/icudtl.dat
-rm -rf bundle
+rm -f build/skyline.node
+if [ ! -f "$cache_dir/skyline/client-linux-x86_64-$skyline_version.node" ]; then
+    wget -c https://github.com/msojocs/skyline-client-server/releases/download/$skyline_version/skyline-client-linux-x86_64-$skyline_version.node -O "$cache_dir/skyline/client-linux-x86_64-$skyline_version.node.tmp"
+    mv "$cache_dir/skyline/client-linux-x86_64-$skyline_version.node.tmp" "$cache_dir/skyline/client-linux-x86_64-$skyline_version.node"
+fi
+cp "$cache_dir/skyline/client-linux-x86_64-$skyline_version.node" build/skyline.node
 
 mv ${package_dir}/js/extensions/inject/documentstart/index.js ${package_dir}/js/extensions/inject/documentstart/index.js.bak
 cp ${srcdir}/res/scripts/document_start.js ${package_dir}/js/extensions/inject/documentstart/index.js

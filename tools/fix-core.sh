@@ -37,14 +37,13 @@ node "$unpack_script" "$package_dir/core.wxvpkg" "$tmp_dir/core.wxvpkg"
 #   |_| \_\_____|_|   |_____/_/   \_\____|_____|  \____\___/|_| \_\_____|
 #                                                                        
 
-# token_find_result=$( grep -lr "constructor(){this._sessionToken=\"\",this._tokenMap={}}" "$tmp_dir/core.wxvpkg" )
-# echo "WebSocket token存储对象位置: $token_find_result"
-# if [[ ! -z $token_find_result ]];then
-#   new_constructor="constructor(){if(window.tokenData){/*有就直接用*/this._sessionToken=window.tokenData._sessionToken;this._tokenMap=window.tokenData._tokenMap;}else{/*没有就新建*/this._sessionToken=\"\",this._tokenMap={};window.tokenData=this;/*新建完要给中间人*/}}"
-#   sed -i "s#constructor(){this._sessionToken=\"\",this._tokenMap={}}#$new_constructor#g" "$token_find_result"
-# else
-#   warn "WebSocket token存储对象位置未找到"
-# fi
+launch_find_result=$( grep -lr '"launch");(' "$tmp_dir/core.wxvpkg" )
+echo "Launch触发位置: $launch_find_result"
+if [[ ! -z $launch_find_result ]];then
+  sed -i 's#"launch");(#"launch");await (new Promise((resolve) => setTimeout(resolve, 1000)));(#g' "$launch_find_result"
+else
+  warn "Launch触发位置未找到"
+fi
 
 # wcc、wcsc处理，设置WINE=fasle环境变量生效
 if [[ "$WINE" != 'true' ]];then
