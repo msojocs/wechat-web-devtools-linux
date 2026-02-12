@@ -160,7 +160,7 @@ cd ..
 notice "rebuild node-pty"
 cp -fr "node-pty" "node-pty-node"
 cd "node-pty"
-nw-gyp rebuild --arch=$arch "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
+nw-gyp rebuild --arch=$arch "--target=$NW_VERSION"
 mkdir -p "$package_dir/node_modules/node-pty/build/Release"
 cp -rf lib "$package_dir/node_modules/node-pty/lib"
 cp -rf package.json "$package_dir/node_modules/node-pty/package.json"
@@ -171,7 +171,7 @@ cd ..
 cd native-watchdog
 # 不需要node的版本
 notice "build native-watchdog"
-nw-gyp rebuild --arch=$arch "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
+nw-gyp rebuild --arch=$arch "--target=$NW_VERSION"
 cd ..
 
 cp -fr "oniguruma" "oniguruma-node"
@@ -186,7 +186,7 @@ node-gyp configure "$configure_args"
 node-gyp build
 cd ../oniguruma
 notice "rebuild oniguruma"
-nw-gyp rebuild --arch=$arch "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
+nw-gyp rebuild --arch=$arch "--target=$NW_VERSION"
 if [ "$arch" == "loongarch64" ] && [ "$(uname -m)" == "x86_64" ];then
   export CFLAGS="$BAK_CFLAGS"
   export CXXFLAGS="$BAK_CXXFLAGS"
@@ -201,10 +201,10 @@ node-gyp build
 cd ..
 mkdir -p @vscode
 cp -fr "spdlog-node" "@vscode/spdlog18"
-cd spdlog
-notice "rebuild spdlog"
-nw-gyp rebuild --arch=$arch "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
-cd ..
+# cd spdlog
+# notice "rebuild spdlog"
+# nw-gyp rebuild --arch=$arch "--target=$NW_VERSION"
+# cd ..
 
 cd @vscode/sqlite3
 notice "Build @vscode/sqlite3"
