@@ -66,8 +66,8 @@ if [ $CURRENT_STEP == $INSTALL_NODE_SUCCESS ];then
   npm config set cache "$root_dir/cache/npm/node_cache"
   if [ "$ACTION_MODE" != "true" ]; then
       notice "非ACTION模式, 设置镜像源"
-      npm config set registry http://registry.npmmirror.com/ # 注册模块镜像
-      npm config set disturl http://npmmirror.com/dist # node-gyp 编译依赖的 node 源码镜像
+      # npm config set registry http://registry.npmmirror.com/ # 注册模块镜像
+      # npm config set disturl http://npmmirror.com/dist # node-gyp 编译依赖的 node 源码镜像
   fi
   step_switch $INSTALL_NPM_CONFIG_SUCCESS
 fi
