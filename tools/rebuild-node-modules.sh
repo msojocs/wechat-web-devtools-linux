@@ -28,11 +28,13 @@ PY_VERSION=`python -V 2>&1|awk '{print $2}'|awk -F '.' '{print $1}'`
 if [ $PY_VERSION != 2 ]; then
   hash python2.7 2>/dev/null || hash python2 2>/dev/null || { fail "I require python2 but it's not installed.  Aborting."; exit 1; }
   mkdir -p "$root_dir/tmp/bin"
+  rm -rf "$root_dir/tmp/bin/python"
   if hash python2.7 2>/dev/null; then
     ln -s "$( which python2.7 )" "$root_dir/tmp/bin/python"
   else
     ln -s "$( which python2 )" "$root_dir/tmp/bin/python"
   fi
+  export PATH="$root_dir/tmp/bin:$PATH"
 fi
 
 hash nw-gyp 2>/dev/null || {
@@ -194,13 +196,13 @@ fi
 
 cd ..
 
-cp -fr "spdlog" "spdlog-node"
-cd spdlog-node
-node-gyp configure "$configure_args"
-node-gyp build
-cd ..
-mkdir -p @vscode
-cp -fr "spdlog-node" "@vscode/spdlog18"
+# cp -fr "spdlog" "spdlog-node"
+# cd spdlog-node
+# node-gyp configure "$configure_args"
+# node-gyp build
+# cd ..
+# mkdir -p @vscode
+# cp -fr "spdlog-node" "@vscode/spdlog18"
 # cd spdlog
 # notice "rebuild spdlog"
 # nw-gyp rebuild --arch=$arch "--target=$NW_VERSION"
