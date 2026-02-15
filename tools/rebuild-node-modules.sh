@@ -112,7 +112,7 @@ export JOBS=$max_thread
     node-pty@1.0.0 \
     native-watchdog \
     oniguruma \
-    spdlog@0.11.1 \
+    @vscode/spdlog@0.13.11 \
     nodegit \
     @vscode/sqlite3 \
     --ignore-scripts \
@@ -181,17 +181,11 @@ fi
 
 cd ..
 
-cp -fr "spdlog" "spdlog-node"
-cd spdlog-node
+cp -fr "@vscode/spdlog" "@vscode/spdlog18"
+cd @vscode/spdlog18
 node-gyp configure "${configure_args[@]}"
 node-gyp build
-cd ..
-mkdir -p @vscode
-cp -fr "spdlog-node" "@vscode/spdlog18"
-# cd spdlog
-# notice "rebuild spdlog"
-# nw-gyp rebuild --arch=$arch "--target=$NW_VERSION"
-# cd ..
+cd ../..
 
 cd @vscode/sqlite3
 notice "Build @vscode/sqlite3"

@@ -82,7 +82,20 @@
         
             }
         
-            return new originMenuItem(options);
+            const instance = new originMenuItem(options);
+            Object.defineProperties(instance, {
+                key: {
+                    set(value) {
+                        console.warn('Ignore setting key:', value);
+                    }
+                },
+                modifiers: {
+                    set(value) {
+                        console.warn('Ignore setting modifiers:', value);
+                    }
+                }
+            });
+            return instance;
         
         };
         
