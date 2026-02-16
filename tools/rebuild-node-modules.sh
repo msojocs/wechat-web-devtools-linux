@@ -123,7 +123,7 @@ export JOBS=$max_thread
 cd "${package_dir}/node_modules_tmp/node_modules"
 
 node_version=$(node $root_dir/tools/parse-config.js --get-node-version $@)
-configure_args="--target_platform=linux --target_arch=${arch} --verbose --host --target=v$node_version"
+configure_args=(--target_platform=linux --target_arch="$arch" --verbose --host --target="v$node_version")
 
 # 对于崩溃模块，要判断一下环境是nwjs还是node
 # nwjs需要使用nw-gyp，node则需要使用node-gyp
@@ -131,7 +131,7 @@ configure_args="--target_platform=linux --target_arch=${arch} --verbose --host -
 
 cd nodegit
 notice "Build nodegit"
-node-gyp configure "$configure_args"
+node-gyp configure "${configure_args[@]}"
 if [ "$arch" == "loongarch64" ];then
   sed -i 's#libssh2ConfigureScript,#`${libssh2ConfigureScript} --host=loongarch64-unknown-linux-gnu`,#' utils/configureLibssh2.js
 fi
@@ -140,18 +140,18 @@ rm -rf .github include src lifecycleScripts vendor utils build/vendor build/Rele
 cd ..
 
 cd extract-file-icon
-node-gyp configure "$configure_args"
+node-gyp configure "${configure_args[@]}"
 node-gyp build
 cd ..
 
 cd native-keymap
-node-gyp configure "$configure_args"
+node-gyp configure "${configure_args[@]}"
 node-gyp build
 cd ..
 
 cd node-pty
 # node build
-node-gyp configure "$configure_args"
+node-gyp configure "${configure_args[@]}"
 node-gyp build
 cd ..
 
@@ -169,7 +169,7 @@ if [ "$arch" == "loongarch64" ] && [ "$(uname -m)" == "x86_64" ];then
   export CFLAGS="$CFLAGS -x c -std=gnu89 -Wno-error=incompatible-pointer-types -Wno-incompatible-pointer-types"
   export CXXFLAGS="$CXXFLAGS -Wno-error=incompatible-pointer-types -Wno-incompatible-pointer-types"
 fi
-node-gyp configure "$configure_args"
+node-gyp configure "${configure_args[@]}"
 node-gyp build
 cd ../oniguruma
 notice "rebuild oniguruma"
@@ -183,7 +183,7 @@ cd ..
 
 cp -fr "spdlog" "spdlog-node"
 cd spdlog-node
-node-gyp configure "$configure_args"
+node-gyp configure "${configure_args[@]}"
 node-gyp build
 cd ..
 mkdir -p @vscode
@@ -195,7 +195,7 @@ cd ..
 
 cd @vscode/sqlite3
 notice "Build @vscode/sqlite3"
-node-gyp configure "$configure_args"
+node-gyp configure "${configure_args[@]}"
 node-gyp build
 cd ../..
 
