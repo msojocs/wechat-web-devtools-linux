@@ -71,18 +71,12 @@ python3 --version
 # these modules are only available in windows
 cd "${package_dir}/node_modules" && \
 rm -fr "vscode-windows-ca-certs" \
-"vscode-windows-registry" "vscode-windows-registry-node" "windows-process-tree" \
-"node-pty" "node-pty-node"
+"vscode-windows-registry" "vscode-windows-registry-node" "windows-process-tree"
 
 rm -fr "${package_dir}/node_modules/@vscode/ripgrep/bin/"* # redownload bin on linux
 # https://github.com/microsoft/ripgrep-prebuilt
 cd "${package_dir}/node_modules/@vscode/ripgrep" && \
 mkdir -p tmp && cd tmp
-
-# if [ "$ACTION_MODE" != "true" ]; then
-#     notice "非ACTION模式, 设置镜像源"
-#     export https_proxy="http://127.0.0.1:7890"
-# fi
 
 # ripgrep版本
 ripgrep_version="15.0.0"
@@ -131,6 +125,10 @@ cd "${package_dir}/node_modules_tmp/node_modules"
 node_version=$(node $root_dir/tools/parse-config.js --get-node-version $@)
 configure_args="--target_platform=linux --target_arch=${arch} --verbose --host --target=v$node_version"
 
+# 对于崩溃模块，要判断一下环境是nwjs还是node
+# nwjs需要使用nw-gyp，node则需要使用node-gyp
+# 在js层打印 `process.versions` 来判断环境
+
 cd nodegit
 notice "Build nodegit"
 node-gyp configure "$configure_args"
@@ -155,17 +153,6 @@ cd node-pty
 # node build
 node-gyp configure "$configure_args"
 node-gyp build
-cd ..
-# nw rebuild
-notice "rebuild node-pty"
-cp -fr "node-pty" "node-pty-node"
-cd "node-pty"
-nw-gyp rebuild --arch=$arch "--target=$NW_VERSION" --dist-url=https://registry.npmmirror.com/-/binary/nwjs
-mkdir -p "$package_dir/node_modules/node-pty/build/Release"
-cp -rf lib "$package_dir/node_modules/node-pty/lib"
-cp -rf package.json "$package_dir/node_modules/node-pty/package.json"
-# TODO: 此处待确认，node用的也是nw的？
-cp -rf "$package_dir/node_modules/node-pty" "$package_dir/node_modules/node-pty-node"
 cd ..
 
 cd native-watchdog
