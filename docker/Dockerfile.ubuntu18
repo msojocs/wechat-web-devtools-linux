@@ -1,0 +1,47 @@
+FROM docker.1ms.run/ubuntu:18.04
+
+WORKDIR /workspace
+
+RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list && \
+    sed -i 's/security.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list && \
+    sed -i 's/security.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list && \
+    sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list && \
+    mkdir -p /build_temp/python36 /build_temp/nodejs && \
+    apt update  && \
+    apt install -y binutils software-properties-common lld \
+    gconf2 libxkbfile-dev p7zip-full make libssh2-1-dev libkrb5-dev wget curl \
+    openssl pkg-config build-essential && \
+    apt install -y aptitude &&\
+    apt install -y gosu unzip python && \
+    apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN add-apt-repository ppa:ubuntu-toolchain-r/test && \
+    apt update && \
+    apt install -y gcc-10 g++-10 lld && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 90 --slave /usr/bin/g++ g++ /usr/bin/g++-10 && \
+    aptitude -y install gcc make zlib1g-dev libffi-dev libssl-dev && \
+    apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN cd /build_temp/python36 && \
+    mkdir -p test && cd test &&\
+    wget http://npmmirror.com/mirrors/python/3.8.10/Python-3.8.10.tgz &&\
+    tar -xvf Python-3.8.10.tgz &&\
+    chmod -R +x Python-3.8.10 &&\
+    cd Python-3.8.10/ &&\
+    ./configure &&\
+    make -j20 && make install &&\
+    cd /build_temp/nodejs &&\
+    wget https://deb.nodesource.com/setup_16.x &&\
+    chmod +x setup_16.x &&\
+    ./setup_16.x &&\
+    apt install -y nodejs &&\
+    rm -rf /build_temp && \
+    gosu nobody true && \
+    useradd -s /bin/bash -m user
+
+RUN apt remove -y p7zip p7zip-full p7zip-rar &&\
+    rm -rf /opt/7z && \
+    mkdir -p /opt/7z && \
+    cd /opt/7z && \
+    wget https://www.7-zip.org/a/7z2107-linux-x64.tar.xz && \
+    tar -xJf 7z2107-linux-x64.tar.xz && \
+    ln -s 7zz 7z
+ENV PATH=/opt/7z:$PATH
