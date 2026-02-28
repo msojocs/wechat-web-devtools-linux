@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-root_dir=$(cd `dirname $0`/.. && pwd -P)
+root_dir=$(cd "$(dirname "$0")/../.." && pwd -P)
 
 mkdir -p $root_dir/cache/pkg
 if [ ! -f "$root_dir/cache/x86_64-cross-tools-loongarch64-binutils_2.45-gcc_15.1.0-glibc_2.42.tar.xz" ]; then

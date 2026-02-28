@@ -36,11 +36,11 @@ if [ $CURRENT_STEP == $INSTALL_START ];then
   rm -rf "$root_dir"/{node,nwjs,package.nw}
   echo "==========Initializing node=========="
   if [ -f "$root_dir/node/bin/node" ]; then
-    step_switch $INSTALL_NODE_SUCCESS
+    step_switch $INSTALL_NPM_CONFIG_SUCCESS
     success "node安装完毕"
   else
     "$root_dir/tools/update-node.sh" $@
-    step_switch $INSTALL_NODE_SUCCESS
+    step_switch $INSTALL_NPM_CONFIG_SUCCESS
     success "node ok"
   fi
 
@@ -61,16 +61,8 @@ if [[ -z "$HOME" || "$HOME" = "/" ]]; then
   export HOME="/tmp/home"
   mkdir -p /tmp/home
 fi
-if [ $CURRENT_STEP == $INSTALL_NODE_SUCCESS ];then
-  npm config set prefix "$root_dir/cache/npm/node_global"
-  npm config set cache "$root_dir/cache/npm/node_cache"
-  if [ "$ACTION_MODE" != "true" ]; then
-      notice "非ACTION模式, 设置镜像源"
-      npm config set registry http://registry.npmmirror.com/ # 注册模块镜像
-      npm config set disturl http://npmmirror.com/dist # node-gyp 编译依赖的 node 源码镜像
-  fi
-  step_switch $INSTALL_NPM_CONFIG_SUCCESS
-fi
+npm config set prefix "$root_dir/cache/npm/node_global"
+npm config set cache "$root_dir/cache/npm/node_cache"
 
 if [ $CURRENT_STEP == $INSTALL_NPM_CONFIG_SUCCESS ];then
   notice "=====安装node-gyp nw-gyp===="
@@ -136,7 +128,7 @@ if [ $CURRENT_STEP == $INSTALL_WECHAT_SUCCESS ];then
   "$root_dir/tools/fix-package-name.js"
 
   notice "Patching wechat-devtools editor selection autocopy"
-  "$root_dir/tools/fix-selection-copy-node"
+  "$root_dir/tools/fix-selection-copy-node.js"
 
   notice "Patching wechat-devtools CLI supports"
   "$root_dir/tools/fix-cli.sh"

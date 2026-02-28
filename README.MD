@@ -115,7 +115,7 @@
     ```
 5. 在本地项目目录中执行如下的语句，可以安装应用图标（非必须）：
     ```
-    ./tools/install-desktop-icon-bash
+    ./tools/install-desktop-icon-bash.sh
     ```
 
 之后即可通过点击应用图标启动微信开发者工具，也可以运行 `bin/wechat-devtools` 通过命令行启动

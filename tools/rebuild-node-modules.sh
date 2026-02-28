@@ -39,25 +39,21 @@ hash nw-gyp 2>/dev/null || {
   echo "=======请安装nw-gyp======="
   exit 1
 }
-
+ 
 arch=$(node "$root_dir/tools/parse-config.js" --get-arch $@)
 
 if [ "$arch" == "loongarch64" ] && [ "$(uname -m)" == "x86_64" ];then
   notice "在x86构建龙架构，准备交叉编译"
   export PATH="$root_dir/cache/cross-tools/target/usr/bin:$root_dir/cache/cross-tools/loongarch64-unknown-linux-gnu/bin:$root_dir/cache/cross-tools/bin:$PATH"
-  tools/cross-loong64-prepare.sh
+  tools/cross/toolchain-prepare-loong64.sh
   export CC=loongarch64-unknown-linux-gnu-gcc
   export CXX=loongarch64-unknown-linux-gnu-g++
   export AR=loongarch64-unknown-linux-gnu-ar
   export LINK=loongarch64-unknown-linux-gnu-g++
   export RANLIB=loongarch64-unknown-linux-gnu-ranlib
   export CFLAGS="-I$root_dir/cache/cross-tools/target/usr/include -I$root_dir/cache/cross-tools/target/usr/include/loongarch64-linux-gnu"
-  export CXXFLAGS="-I$root_dir/cache/cross-tools/target/usr/include -I$root_dir/cache/cross-tools/target/usr/include/loongarch64-linux-gnu" # -fpermissive
+  export CXXFLAGS="-I$root_dir/cache/cross-tools/target/usr/include -I$root_dir/cache/cross-tools/target/usr/include/loongarch64-linux-gnu"
   export LDFLAGS="-L$root_dir/cache/cross-tools/target/usr/lib64 -L$root_dir/cache/cross-tools/target/usr/lib/loongarch64-linux-gnu"
-
-  # sed -i 's#-m64##' /home/user/.node-gyp/16.11.0/include/node/common.gypi
-  # sed -i 's#-pthread##' /home/user/.node-gyp/16.11.0/include/node/common.gypi
-  # sed -i 's#-rdynamic##' /home/user/.node-gyp/16.11.0/include/node/common.gypi
 fi
 
 echo -e "\033[42;37m ######## 版本信息 $(date '+%Y-%m-%d %H:%M:%S') ########\033[0m"
@@ -123,7 +119,7 @@ export JOBS=$max_thread
 cd "${package_dir}/node_modules_tmp/node_modules"
 
 node_version=$(node $root_dir/tools/parse-config.js --get-node-version $@)
-configure_args=(--target_platform=linux --target_arch="$arch" --verbose --host --target="v$node_version")
+configure_args=(--target_platform=linux --target_arch="$arch" --verbose --host --target="v$node_version" --registry=https://registry.npmmirror.com)
 
 # 对于崩溃模块，要判断一下环境是nwjs还是node
 # nwjs需要使用nw-gyp，node则需要使用node-gyp
