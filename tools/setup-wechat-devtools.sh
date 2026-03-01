@@ -61,8 +61,6 @@ if [[ -z "$HOME" || "$HOME" = "/" ]]; then
   export HOME="/tmp/home"
   mkdir -p /tmp/home
 fi
-npm config set prefix "$root_dir/cache/npm/node_global"
-npm config set cache "$root_dir/cache/npm/node_cache"
 
 if [ $CURRENT_STEP == $INSTALL_NPM_CONFIG_SUCCESS ];then
   notice "=====安装node-gyp nw-gyp===="
