@@ -46,7 +46,7 @@ for (let i = 0; i < args.length; i++) {
             i++;
             if (i < args.length) {
                 if (args[i - 1] === '--arch') {
-                    if (args[i] === 'x64' || args[i] === 'loongarch64') {
+                    if (args[i] === 'x64' || args[i] === 'loongarch64' || args[i] === 'arm64') {
                         configArg.arch = args[i];
                     } else {
                         console.error(`Invalid value for option --arch: ${args[i]}`);

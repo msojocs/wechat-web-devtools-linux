@@ -8,6 +8,10 @@
             "loongarch64": {
                 "version": "0.65.1",
                 "template": "https://github.com/msojocs/nwjs-loongarch/releases/download/v0.65.2/nwjs-sdk-v0.65.2-linux-loong64.tar.gz"
+            },
+            "arm64": {
+                "version": "0.55.0",
+                "template": "https://github.com/LeonardLaszlo/nw.js-armv7-binaries/releases/download/nw55-arm64_2021-12-05/nw55-arm64_2021-12-05.tar.gz"
             }
         },
         "nw2node": {
@@ -59,11 +63,15 @@
             "loongarch64": {
                 "version": "18.20.4",
                 "template": "https://github.com/loong64/node/releases/download/v${version}/node-v${version}-linux-loong64.tar.gz"
+            },
+            "arm64": {
+                "version": "16.13.1",
+                "template": "https://npmmirror.com/mirrors/node/v${version}/node-v${version}-linux-arm64.tar.gz"
             }
         }
     },
     "compiler": {
-        "version": "0.1.6",
+        "version": "0.1.7",
         "template": "https://github.com/msojocs/wx-compiler/releases/download/v${version}"
     },
     "devtools": {

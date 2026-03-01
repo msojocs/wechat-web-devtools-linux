@@ -135,7 +135,9 @@ if [ $CURRENT_STEP == $INSTALL_WECHAT_SUCCESS ];then
 
   notice "Patching wechat-devtools core.wxvpkg"
   "$root_dir/tools/fix-core.sh"
-
+  step_switch $INSTALL_FIX_SUCCESS
+fi
+if [ $CURRENT_STEP == $INSTALL_FIX_SUCCESS ];then
   notice "Rebuilding wechat-devtools node modules"
   nwjs_version=$(node "$root_dir/tools/parse-config.js" --get-nwjs-version $@)
   "$root_dir/tools/rebuild-node-modules.sh" "$nwjs_version" $@
