@@ -12,6 +12,8 @@ fi
 docker run --rm -i \
     -u "$(id -u):$(id -g)" \
     -e "ACTION_MODE=${ACTION_MODE:-false}" \
+    -e "npm_config_prefix=/workspace/cache/npm/node_global" \
+    -e "npm_config_cache=/workspace/cache/npm/node_cache" \
     -w /workspace \
     -v "$root_dir:/workspace" \
     $image \
