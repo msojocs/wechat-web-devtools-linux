@@ -7,8 +7,8 @@ cache_dir="$root_dir/cache"
 nwjs_dir="$root_dir/nwjs"
 package_dir="$root_dir/package.nw"
 
-shared_memory_version="v1.0.3"
-skyline_version="v1.0.4"
+shared_memory_version="v1.0.4"
+skyline_version="v2.01.2510280-1"
 
 cd "$package_dir/node_modules"
 mkdir -p "$cache_dir/skyline"
