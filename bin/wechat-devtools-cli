@@ -10,8 +10,21 @@ root_dir="$( cd -P "$( dirname "$SOURCE" )"/.. >/dev/null 2>&1 && pwd )"
 
 cd $root_dir/bin
 
+# 数据目录处理
+if [ -z "$XDG_CONFIG_HOME" ];then
+  DATA_DIR=$HOME/.config
+else
+  DATA_DIR=$XDG_CONFIG_HOME
+fi
+
+# 获取App名称
+APP_NAME=$( cat "$root_dir/package.nw/package.json" | grep -Eo 'name":".*","main' )
+APP_NAME=${APP_NAME//name\":\"/}
+APP_NAME=${APP_NAME//\",\"main/}
+
 export WECHAT_DEVTOOLS_DIR="$root_dir/nwjs"
-export APPDATA="$root_dir/nwjs"
+export APPDATA="$DATA_DIR/$APP_NAME"
+export USERPROFILE="$APPDATA"
 export PATH="$root_dir/node/bin:$root_dir/nwjs:$PATH"
 
 node $root_dir/package.nw/js/common/cli/index.js "$@"
