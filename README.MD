@@ -141,24 +141,21 @@
 
 ## Skyline(实验性功能)
 
-启动Server后，点击编译即可；第一次启动Server会有wine配置提示，**不需要安装mono**。
+启动Server后，过一段时间，点击编译即可。
 
 > [!Warning]
 > 实验性功能，有问题请建立issue进行反馈，谢谢。
-> 已知问题：https://github.com/msojocs/skyline-client-server
+> 已知问题：https://github.com/msojocs/skyline-client-server/issues
 
 ```shell
-docker run -d -it \
-  --restart=always \
-  --hostname="$(hostname)" \
-  --env="DISPLAY" \
-  --platform="linux/amd64" \
-  --volume="${XAUTHORITY:-${HOME}/.Xauthority}:/root/.Xauthority:ro" \
-  --volume="/tmp/.X11-unix:/tmp/.X11-unix:ro" \
-  --volume="/dev/shm:/dev/shm" \
-  -p 3001:3001 \
-  --name skyline_server \
-  ghcr.io/msojocs/skyline-client-server:master
+docker run -d \
+    --network host \
+    -e HOST_UID=$(id -u) \
+    -e HOST_GID=$(id -g) \
+    -v "/dev/shm:/dev/shm" \
+    --name wechat_devtools_server \
+    ghcr.io/msojocs/skyline-client-server:master
+# 可将master替换为具体版本号
 ```
 
 其它请参考: [FAQ](docs/FAQ.MD)
