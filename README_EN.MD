@@ -3,6 +3,9 @@
   <img src="./res/icons/512x512.png" height="100px" width="100px"/>
 
   <h3>WeChat DevTools for Linux</h3>
+    
+[简体中文](./README.MD) | English
+  
   <br>
 
 ----

@@ -5,6 +5,9 @@
   <img src="./res/icons/512x512.png" height="100px" width="100px"/>
 
   <h3>微信开发者工具 Linux版</h3>
+  
+  简体中文 | [English](./README_EN.MD)
+
   <br>
 
 ----
