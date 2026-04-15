@@ -65,7 +65,7 @@ fi
 if [ $CURRENT_STEP == $INSTALL_NPM_CONFIG_SUCCESS ];then
   notice "=====安装node-gyp nw-gyp===="
   npm uninstall node-gyp -g
-  npm install node-gyp nw-gyp@3.6.6 -g --registry=http://registry.npmmirror.com/
+  npm install node-gyp@11 nw-gyp@3.6.6 -g --registry=http://registry.npmmirror.com/
   echo $PATH
   node-gyp install
   node-gyp list
