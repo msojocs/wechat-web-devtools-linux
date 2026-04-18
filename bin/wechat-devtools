@@ -42,13 +42,13 @@ clean_cache() {
 
 # 检测是否有清除缓存的必要
 if [[ -f "$APPDATA/.build_time" ]];then
-  diff "$APPDATA/.build_time" "$root_dir/package.nw/.build_time" >/dev/null;
+  diff "$APPDATA/.build_time" "$root_dir/resources/.build_time" >/dev/null;
   if [ ! "$?" == "0" ];then
-    \cp -f "$root_dir/package.nw/.build_time" "$APPDATA/.build_time";
+    \cp -f "$root_dir/resources/.build_time" "$APPDATA/.build_time";
     clean_cache;
   fi;
 else
-  \cp -f "$root_dir/package.nw/.build_time" "$APPDATA/.build_time";
+  \cp -f "$root_dir/resources/.build_time" "$APPDATA/.build_time";
   clean_cache;
 fi;
 
@@ -60,4 +60,4 @@ USERDATADIR="$APPDATA"
 
 # "$@"参数
 LANG=zh_CN.UTF-8
-exec "$root_dir/nwjs/nw" $root_dir/package.nw $EXTENSION2 $INSPECTOR1 "$@"
+exec "$root_dir/electron/electron" $root_dir/resources/app.asar $EXTENSION2 $INSPECTOR1 "$@"

@@ -20,3 +20,5 @@ temp.sh
 build-dir
 __pycache__
 .wine
+electron
+resources

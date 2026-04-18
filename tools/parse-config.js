@@ -12,10 +12,10 @@ const options = {
     '--get-arch': {
         type: 'boolean',
     },
-    '--get-nwjs-url': {
+    '--get-electron-url': {
         type: 'boolean',
     },
-    '--get-nwjs-version': {
+    '--get-electron-version': {
         type: 'boolean',
     },
     '--get-node-url': {
@@ -68,13 +68,13 @@ if (configArg['get-arch']) {
     exit(0);
 }
 
-if (configArg['get-nwjs-url']) {
-    console.log(config.nwjs.urls[configArg.arch].template.replace(/\${version}/g, config.nwjs.urls[configArg.arch].version));
+if (configArg['get-electron-url']) {
+    console.log(config.electron.urls[configArg.arch].template.replace(/\${version}/g, config.electron.urls[configArg.arch].version));
     exit(0);
 }
 
-if (configArg['get-nwjs-version']) {
-    console.log(config.nwjs.urls[configArg.arch].version);
+if (configArg['get-electron-version']) {
+    console.log(config.electron.urls[configArg.arch].version);
     exit(0);
 }
 

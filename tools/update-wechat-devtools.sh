@@ -16,24 +16,19 @@ fi
 # 解压
 extract_path="$root_dir/tmp/$(dirname $local_path)"
 mkdir -p "$extract_path"
-7z x "$local_path" -o"$extract_path" "code/package.nw" -y
+7z x "$local_path" -o"$extract_path" "resources" -y
 
 # 替换
-rm -rf "$root_dir/package.nw"
-mv "$extract_path/code/package.nw" "$root_dir/package.nw"
-chmod -R 755 "$root_dir/package.nw"
+rm -rf "$root_dir/resources"
+mv "$extract_path/resources" "$root_dir/resources"
+chmod -R 755 "$root_dir/resources"
 rm -rf "$extract_path"
 
-if [ -d "$root_dir/nwjs" ]; then
-    cd "$root_dir/nwjs"
-    ln -sr ../package.nw package.nw
-fi
-
-if [ -f "$root_dir/package.nw/js/common/miniprogram-builder/modules/fullcompiler/app/contactandlaunch/updateContactAndLaunch.js" ]; then
-    mv "$root_dir/package.nw/js/common/miniprogram-builder/modules/fullcompiler/app/contactandlaunch/updateContactAndLaunch.js" \
-       "$root_dir/package.nw/js/common/miniprogram-builder/modules/fullcompiler/app/contactandlaunch/updatecontactandlaunch.js"
+if [ -d "$root_dir/electron" ]; then
+    cd "$root_dir/electron"
+    ln -sr ../resources resources
 fi
 
 # 写入时间戳
 timestamp=$(date +%s)
-echo "$timestamp" > "$root_dir/package.nw/.build_time"
+echo "$timestamp" > "$root_dir/resources/.build_time"

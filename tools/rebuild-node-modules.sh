@@ -141,7 +141,7 @@ build_oniguruma() {
 # ─────────────────────────────────────────
 
 root_dir=$(cd "$(dirname "$0")/.." && pwd -P)
-package_dir="$root_dir/package.nw"
+package_dir="$root_dir/resources/app.asar.unpacked"
 
 if [ -n "$1" ]; then
   NW_VERSION=$1

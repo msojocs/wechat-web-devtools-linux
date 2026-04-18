@@ -33,7 +33,7 @@ notice() {
 
 
 if [ $CURRENT_STEP == $INSTALL_START ];then
-  rm -rf "$root_dir"/{node,nwjs,package.nw}
+  rm -rf "$root_dir"/{node,electron,resources}
   echo "==========Initializing node=========="
   if [ -f "$root_dir/node/bin/node" ]; then
     step_switch $INSTALL_NPM_CONFIG_SUCCESS
@@ -63,9 +63,9 @@ if [[ -z "$HOME" || "$HOME" = "/" ]]; then
 fi
 
 if [ $CURRENT_STEP == $INSTALL_NPM_CONFIG_SUCCESS ];then
-  notice "=====安装node-gyp nw-gyp===="
+  notice "=====安装node-gyp asar===="
   npm uninstall node-gyp -g
-  npm install node-gyp@11 nw-gyp@3.6.6 -g --registry=http://registry.npmmirror.com/
+  npm install node-gyp@11 asar -g --registry=http://registry.npmmirror.com/
   echo $PATH
   node-gyp install
   node-gyp list
@@ -73,11 +73,11 @@ if [ $CURRENT_STEP == $INSTALL_NPM_CONFIG_SUCCESS ];then
 fi
 
 if [ $CURRENT_STEP == $INSTALL_GYP_SUCCESS ];then
-  echo "==========Initializing nwjs=========="
-  if [ -f "$root_dir/nwjs/nw" ]; then
-    success "nwjs安装完毕"
+  echo "==========Initializing electron=========="
+  if [ -f "$root_dir/electron/electron" ]; then
+    success "electron安装完毕"
   else
-    "$root_dir/tools/update-nwjs.sh" $@
+    "$root_dir/tools/update-electron.sh" $@
   fi
   step_switch $INSTALL_NW_SUCCESS
 fi
@@ -138,19 +138,19 @@ fi
 if [ $CURRENT_STEP == $INSTALL_FIX_SUCCESS ];then
   notice "Rebuilding wechat-devtools node modules"
   nwjs_version=$(node "$root_dir/tools/parse-config.js" --get-nwjs-version $@)
-  "$root_dir/tools/rebuild-node-modules.sh" "$nwjs_version" $@
+  # "$root_dir/tools/rebuild-node-modules.sh" "$nwjs_version" $@
   step_switch $INSTALL_REBUILD_SUCCESS
 fi
 
 if [ $CURRENT_STEP == $INSTALL_REBUILD_SUCCESS ];then
   notice "Patching wechat-devtools"
-  "$root_dir/tools/fix-menu.sh"
+  # "$root_dir/tools/fix-menu.sh"
 
   notice "Patching Other"
-  "$root_dir/tools/fix-other.sh" $@
+  # "$root_dir/tools/fix-other.sh" $@
 
   notice "Replace Skyline"
-  "$root_dir/tools/replace-skyline.sh"
+  # "$root_dir/tools/replace-skyline.sh"
 fi
 
 success "微信开发者工具安装完毕"
