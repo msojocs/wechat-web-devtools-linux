@@ -99,7 +99,7 @@ if (configArg['get-compiler-version']) {
 }
 
 if (configArg['get-devtools-url']) {
-    console.log(config.devtools.template.replace(/\${version}/g, config.devtools.version));
+    console.log(config.devtools.template.replace(/\${version}/g, config.devtools.version.replace(/\./g, '')));
     exit(0);
 }
 

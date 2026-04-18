@@ -106,7 +106,7 @@ if [ $CURRENT_STEP == $INSTALL_NW_SUCCESS ];then
   echo "TARGET_VERSION: $TARGET_VERSION"
   if [ ! -f "$root_dir/package.nw/package.json" ];then
     # 没装，直接装
-    node "$root_dir/tools/update-wechat-devtools.js" $TARGET_VERSION $@
+    "$root_dir/tools/update-wechat-devtools.sh" $@
     
     step_switch $INSTALL_WECHAT_SUCCESS
   else
@@ -115,7 +115,7 @@ if [ $CURRENT_STEP == $INSTALL_NW_SUCCESS ];then
     DEVTOOLS_VERSION="${DEVTOOLS_VERSION//\"/}"
     # 已安装, 比较目标版本
     if [ "$TARGET_VERSION" != "$DEVTOOLS_VERSION" ];then
-      node "$root_dir/tools/update-wechat-devtools.js" $TARGET_VERSION $@
+      "$root_dir/tools/update-wechat-devtools.sh" $@
     fi
     step_switch $INSTALL_WECHAT_SUCCESS
   fi
