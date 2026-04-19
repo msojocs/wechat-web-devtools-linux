@@ -10,7 +10,7 @@
     "node": {
         "urls": {
             "x64": {
-                "version": "16.13.1",
+                "version": "22.16.0",
                 "template": "https://npmmirror.com/mirrors/node/v${version}/node-v${version}-linux-x64.tar.gz"
             },
             "loongarch64": {

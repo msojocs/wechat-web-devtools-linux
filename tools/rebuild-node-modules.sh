@@ -1,6 +1,4 @@
 #!/bin/bash
-# 参数：
-# 1 ---- NW版本
 
 set -ex
 
@@ -81,20 +79,19 @@ node_gyp_build() {
   local dir="$1"
   notice "Build $dir (node-gyp)"
   pushd "$dir"
-  node-gyp configure "${configure_args[@]}"
+  node-gyp configure "${configure_args[@]}" --target="v$node_version" --openssl_fips=''
   node-gyp build
   popd
 }
 
-# nw-gyp rebuild（在子目录内运行）
-nw_gyp_build() {
+electron_gyp_build() {
   local dir="$1"
-  notice "Build $dir (nw-gyp)"
+  notice "Build $dir (node-gyp)"
   pushd "$dir"
-  nw-gyp rebuild --arch="$arch" "--target=$NW_VERSION"
+  HOME=~/.electron-gyp node-gyp configure "${configure_args[@]}" --target="36.6.0" --openssl_fips='' --dist-url=https://electronjs.org/headers
+  HOME=~/.electron-gyp node-gyp build
   popd
 }
-
 # 在临时叠加 loongarch64 C 兼容标志的子环境中执行任意命令
 # 用法：with_loong64_cflags <cmd> [args...]
 with_loong64_cflags() {
@@ -114,7 +111,8 @@ with_loong64_cflags() {
 build_nodegit() {
   notice "Build nodegit"
   pushd nodegit
-  node-gyp configure "${configure_args[@]}"
+  # https://github.com/nodejs/node-gyp/issues/2673#issuecomment-1196931379
+  node-gyp configure "${configure_args[@]}" --target="v$node_version" --openssl_fips=''
   # 交叉编译时需要为 libssh2 的 configure 脚本传入 --host，否则 libssh2 会误判为宿主机架构
   if is_cross_compile; then
     sed -i "s#libssh2ConfigureScript,#\`\${libssh2ConfigureScript} --host=${GNU_TRIPLET}\`,#" \
@@ -125,31 +123,12 @@ build_nodegit() {
   popd
 }
 
-# oniguruma 既作为 nwjs 模块（oniguruma），又作为 node 模块（oniguruma-node）
-build_oniguruma() {
-  cp -fr oniguruma oniguruma-node
-
-  # node 版本：loongarch64 交叉编译需要额外的 C 兼容性标志
-  with_loong64_cflags node_gyp_build "oniguruma-node"
-
-  # nwjs 版本
-  nw_gyp_build "oniguruma"
-}
-
 # ─────────────────────────────────────────
 # 主流程
 # ─────────────────────────────────────────
 
 root_dir=$(cd "$(dirname "$0")/.." && pwd -P)
 package_dir="$root_dir/resources/app.asar.unpacked"
-
-if [ -n "$1" ]; then
-  NW_VERSION=$1
-fi
-if [ -z "$NW_VERSION" ]; then
-  echo "NW 版本未指定！"
-  exit 1
-fi
 
 # TODO: 兼容python2.7的命令
 PY_VERSION=$(python -V 2>&1 | awk '{print $2}' | awk -F '.' '{print $1}')
@@ -166,18 +145,11 @@ if [ "$PY_VERSION" != "2" ]; then
   fi
 fi
 
-hash nw-gyp 2>/dev/null || {
-  echo "=======请安装nw-gyp======="
-  exit 1
-}
-
 arch=$(node "$root_dir/tools/parse-config.js" --get-arch "$@")
 setup_cross_compile
 
 echo -e "\033[42;37m ######## 版本信息 $(date '+%Y-%m-%d %H:%M:%S') ########\033[0m"
-echo "NW VERSION:       $NW_VERSION"
 echo "arch:             $arch"
-echo "nw-gyp version:   $(nw-gyp --version)"
 echo "node version:     $(node --version)"
 echo "npm version:      $(npm --version)"
 python --version
@@ -233,7 +205,6 @@ export JOBS=$(nproc)
     native-keymap \
     node-pty@1.0.0 \
     native-watchdog \
-    oniguruma \
     @vscode/spdlog@0.13.11 \
     nodegit \
     @vscode/sqlite3 \
@@ -244,9 +215,6 @@ export JOBS=$(nproc)
 
 # ── 逐模块重编译 ──────────────────────────
 # 注：每个模块单独 rebuild，交叉编译时可能需要单独调整配置。
-# 关于 nw-gyp vs node-gyp：
-#   运行在 nwjs 进程中的模块用 nw-gyp，运行在 node 进程中的用 node-gyp。
-#   可在 js 层打印 `process.versions` 来确认当前环境。
 
 cd "${package_dir}/node_modules_tmp/node_modules"
 
@@ -254,8 +222,7 @@ node_version=$(node "$root_dir/tools/parse-config.js" --get-node-version "$@")
 configure_args=(
   --target_platform=linux
   --target_arch="$arch"
-  --verbose --host
-  --target="v$node_version"
+  --verbose
   --registry=https://registry.npmmirror.com
 )
 
@@ -263,14 +230,8 @@ build_nodegit
 node_gyp_build "extract-file-icon"
 node_gyp_build "native-keymap"
 node_gyp_build "node-pty"       # node build
-nw_gyp_build   "native-watchdog"  # nwjs build，不需要 node 版本号
-
-build_oniguruma
-
-# @vscode/spdlog: nwjs 用 spdlog18（node v18 ABI），node 用原目录
-cp -fr "@vscode/spdlog" "@vscode/spdlog18"
-node_gyp_build "@vscode/spdlog18"
-
+node_gyp_build "native-watchdog"
+(cd "@vscode" && electron_gyp_build "spdlog")
 (cd "@vscode" && node_gyp_build "sqlite3")
 
 # ── 清理编译产物冗余文件 ─────────────────
