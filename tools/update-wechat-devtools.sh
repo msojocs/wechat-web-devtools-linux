@@ -1,7 +1,8 @@
 #!/bin/bash
-set -ex
-
 root_dir=$(cd `dirname $0`/.. && pwd -P)
+source "$root_dir/tools/error-handler.sh"
+devtools_enable_error_trap
+set -ex
 
 wechat_devtools_url=$(node "$root_dir/tools/parse-config.js" --get-devtools-url $@)
 wechat_devtools_version=$(node "$root_dir/tools/parse-config.js" --get-devtools-version $@)

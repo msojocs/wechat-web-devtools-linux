@@ -1,7 +1,8 @@
 #!/bin/bash
-set -e
-
 root_dir=$(cd `dirname $0`/.. && pwd -P)
+source "$root_dir/tools/error-handler.sh"
+devtools_enable_error_trap
+set -e
 
 # 获取配置
 node_version=$(node "$root_dir/tools/parse-config.js" --get-node-version $@)

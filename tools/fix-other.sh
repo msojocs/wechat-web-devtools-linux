@@ -1,6 +1,8 @@
 #!/bin/bash
-set -ex
 root_dir=$(cd `dirname $0`/.. && pwd -P)
+source "$root_dir/tools/error-handler.sh"
+devtools_enable_error_trap
+set -ex
 srcdir=$root_dir
 tmp_dir="$root_dir/tmp"
 nwjs_dir="$root_dir/nwjs"

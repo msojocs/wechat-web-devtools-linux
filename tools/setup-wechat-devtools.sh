@@ -9,18 +9,7 @@
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 
 export PATH="$root_dir/tools:$PATH"
-# 步骤
-source "step.sh"
 
-set -ex
-trap 'catchError $LINENO "$BASH_COMMAND"' ERR # 捕获错误情况
-catchError() {
-    exit_code=$?
-    if [ $exit_code -ne 0 ]; then
-        fail "\033[31mcommand: $2\n  at $0:$1\n  at $STEP\033[0m"
-    fi
-    exit $exit_code
-}
 success() {
     echo -e "\033[42;37m 成功 \033[0m $1"
 }
@@ -30,6 +19,14 @@ fail() {
 notice() {
     echo -e "\033[36m $1 \033[0m "
 }
+
+source "$root_dir/tools/error-handler.sh"
+DEVTOOLS_SUPPRESS_CHILD_SCRIPT_ERROR=true
+devtools_enable_error_trap # 捕获错误情况
+set -ex
+
+# 步骤
+source "step.sh"
 
 
 if [ $CURRENT_STEP == $INSTALL_START ];then
@@ -147,7 +144,7 @@ if [ $CURRENT_STEP == $INSTALL_REBUILD_SUCCESS ];then
   # "$root_dir/tools/fix-menu.sh"
 
   notice "Patching Other"
-  # "$root_dir/tools/fix-other.sh" $@
+  "$root_dir/tools/fix-other.sh" $@
 
   notice "Replace Skyline"
   # "$root_dir/tools/replace-skyline.sh"

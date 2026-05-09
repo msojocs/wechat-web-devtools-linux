@@ -1,14 +1,6 @@
 #!/bin/bash
 root_dir=$(cd `dirname $0`/.. && pwd -P)
-# set -e
-# trap 'catchError $LINENO "$BASH_COMMAND"' ERR # 捕获错误情况
-# catchError() {
-#     exit_code=$?
-#     if [ $exit_code -ne 0 ]; then
-#         fail "\033[31mcommand: $2\n  at $0:$1\n  at $STEP\033[0m"
-#     fi
-#     exit $exit_code
-# }
+source "$root_dir/tools/error-handler.sh"
 
 notice() {
     echo -e "\033[36m $1 \033[0m "
@@ -19,6 +11,9 @@ warn() {
 fail() {
     echo -e "\033[41;37m 失败 \033[0m $1"
 }
+
+devtools_enable_error_trap
+set -e
 
 package_dir="$root_dir/package.nw"
 tmp_dir="$root_dir/tmp/core"
@@ -37,7 +32,7 @@ node "$unpack_script" "$package_dir/core.wxvpkg" "$tmp_dir/core.wxvpkg"
 #   |_| \_\_____|_|   |_____/_/   \_\____|_____|  \____\___/|_| \_\_____|
 #                                                                        
 
-launch_find_result=$( grep -lr '"launch");(' "$tmp_dir/core.wxvpkg" )
+launch_find_result=$( grep -lr '"launch");(' "$tmp_dir/core.wxvpkg" || true )
 echo "Launch触发位置: $launch_find_result"
 if [[ ! -z $launch_find_result ]];then
   sed -i 's#"launch");(#"launch");await (new Promise((resolve) => setTimeout(resolve, 1000)));(#g' "$launch_find_result"
@@ -48,7 +43,7 @@ fi
 # wcc、wcsc处理，设置WINE=fasle环境变量生效
 if [[ "$WINE" != 'true' ]];then
   # 处理报错时控制台显示的环境
-  find_result=$( grep -lr '(env:' "$tmp_dir/core.wxvpkg" )
+  find_result=$( grep -lr '(env:' "$tmp_dir/core.wxvpkg" || true )
   echo "env: $find_result"
   if [[ ! -z $find_result ]];then
     for file in $find_result; do

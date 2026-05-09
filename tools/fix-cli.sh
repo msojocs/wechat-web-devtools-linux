@@ -1,7 +1,9 @@
 #! /bin/bash
 
-set -e
 root_dir=$(cd `dirname $0`/.. && pwd -P)
+source "$root_dir/tools/error-handler.sh"
+devtools_enable_error_trap
+set -e
 PACKAGE_DIR="$root_dir/resources/app.asar.unpacked"
 
 if [ -z "$PACKAGE_DIR" ]; then
