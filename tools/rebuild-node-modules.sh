@@ -128,7 +128,9 @@ build_nodegit() {
 # ─────────────────────────────────────────
 
 root_dir=$(cd "$(dirname "$0")/.." && pwd -P)
-package_dir="$root_dir/resources/app.asar.unpacked"
+
+$root_dir/tools/asar-helper.sh unpack
+package_dir="$root_dir/resources/app"
 
 # TODO: 兼容python2.7的命令
 PY_VERSION=$(python -V 2>&1 | awk '{print $2}' | awk -F '.' '{print $1}')
@@ -232,7 +234,7 @@ node_gyp_build "native-keymap"
 node_gyp_build "node-pty"       # node build
 node_gyp_build "native-watchdog"
 (cd "@vscode" && electron_gyp_build "spdlog")
-(cd "@vscode" && node_gyp_build "sqlite3")
+(cd "@vscode" && electron_gyp_build "sqlite3")
 
 # ── 清理编译产物冗余文件 ─────────────────
 notice "remove unused files"
@@ -247,3 +249,5 @@ notice "copy node files"
 find . -name "*.node" | xargs -I{} cp -rf {} "${package_dir}/node_modules/{}"
 
 rm -rf "${package_dir}/node_modules_tmp"
+
+# $root_dir/tools/asar-helper.sh pack

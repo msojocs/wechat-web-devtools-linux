@@ -7,10 +7,10 @@ warn() {
     echo -e "\033[43;37m 警告 \033[0m $1"
 }
 root_dir=$(cd `dirname $0`/.. && pwd -P)
-NW_PACKAGE_DIR="$root_dir/package.nw"
+PACKAGE_DIR="$root_dir/resources/app"
 
-cd "$NW_PACKAGE_DIR"
-target_file=js/unpack/hackrequire/index.js
+cd "$PACKAGE_DIR"
+target_file=js/common/miniprogram-builder/modules/corecompiler/original/workerThread/config.js
 
 if [ ! -f "$target_file" ]; then
     echo -e "\e[1;31m$target_file is not exist\e[0m" >&2
@@ -23,7 +23,7 @@ if [ `grep -c "patch wechat devtools begin" $target_file` -ne '0' ];then
 fi
 
 tmp_file=$(mktemp)
-cat "$root_dir/res/scripts/hackrequire.js" > "$tmp_file"
+cat "$root_dir/res/scripts/config.js" > "$tmp_file"
 cat "$target_file" >> "$tmp_file"
 
 cat "$tmp_file" > "$target_file"

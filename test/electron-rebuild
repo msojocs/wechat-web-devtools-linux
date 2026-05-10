@@ -1,0 +1,18 @@
+#!/bin/bash
+
+root_dir=$(cd `dirname $0`/.. && pwd -P)
+export PATH="$root_dir/node/bin:$PATH"
+ln -s "$( which python2 )" "$root_dir/node/bin/python"
+
+configure_args=(
+  --target_platform=linux
+  --target_arch="x64"
+  --verbose
+  --registry=https://registry.npmmirror.com
+)
+
+cd "$root_dir/tmp/node_test/node_modules/@vscode/sqlite3"
+HOME=~/.electron-gyp node-gyp configure "${configure_args[@]}" --target="36.6.0" --openssl_fips='' --dist-url=https://electronjs.org/headers
+HOME=~/.electron-gyp node-gyp build
+
+cp "$root_dir/tmp/node_test/node_modules/@vscode/sqlite3/build/Release/vscode-sqlite3.node" "$root_dir/resources/app/node_modules/@vscode/sqlite3/build/Release/vscode-sqlite3.node"

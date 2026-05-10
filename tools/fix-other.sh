@@ -6,7 +6,7 @@ set -ex
 srcdir=$root_dir
 tmp_dir="$root_dir/tmp"
 nwjs_dir="$root_dir/nwjs"
-package_dir="$root_dir/package.nw"
+package_dir="$root_dir/resources/app"
 
 echo "replace: wcc,wcsc linux version"
 compiler_version=$(node "$root_dir/tools/parse-config.js" --get-compiler-version $@)
@@ -46,13 +46,13 @@ cd "${package_dir}/node_modules/wcc-exec" && chmod +x wcc wcsc && rm -rf wcc.exe
 
 # 修复：可视化用的wcc,wcsc
 echo "fix: wcc,wcsc"
-\cp "${srcdir}/cache/compiler/v${compiler_version}"/wcc-${arch}.node "${package_dir}/node_modules/wcc/build/Release"
-cd "${package_dir}/node_modules/wcc/build/Release" && rm -rf wcc.node && mv wcc-${arch}.node wcc.node
-\cp "${srcdir}/cache/compiler/v${compiler_version}"/wcsc-${arch}.node "${package_dir}/node_modules/wcc/build/Release"
-cd "${package_dir}/node_modules/wcc/build/Release" && rm -rf wcsc.node && mv wcsc-${arch}.node wcsc.node
+\cp "${srcdir}/cache/compiler/v${compiler_version}"/wcc-${arch}.node "${package_dir}/node_modules/wcc-electron/build/Release"
+cd "${package_dir}/node_modules/wcc-electron/build/Release" && rm -rf wcc.node && mv wcc-${arch}.node wcc.node
+\cp "${srcdir}/cache/compiler/v${compiler_version}"/wcsc-${arch}.node "${package_dir}/node_modules/wcc-electron/build/Release"
+cd "${package_dir}/node_modules/wcc-electron/build/Release" && rm -rf wcsc.node && mv wcsc-${arch}.node wcsc.node
 
 # 修复mock按钮无反应
-sed -i '1s/^/window.prompt = parent.prompt;\n/' "${package_dir}/js/ideplugin/devtools/index.js"
+# sed -i '1s/^/window.prompt = parent.prompt;\n/' "${package_dir}/js/ideplugin/devtools/index.js"
 
 nw_version=$(node "$root_dir/tools/parse-config.js" --get-nwjs-version $@)
 # 修复视频无法播放
@@ -76,30 +76,30 @@ cp "${srcdir}/cache/float-pigment-${float_pigment_version}.node" "${package_dir}
 cp "${srcdir}/cache/float-pigment-${float_pigment_version}.node" "${package_dir}/node_modules/node-float-pigment-css/float-pigment-css-for-nwjs.node"
 
 # websocket找不到
-cd "${package_dir}/js/libs/vseditor/extensions/node_modules/ws/lib"
-if [ -f "WebSocket.js" ];then
-  mv "WebSocket.js" "websocket.js"
-  mv "Receiver.js" "receiver.js"
-  mv "Sender.js" "sender.js"
-  mv "Constants.js" "constants.js"
-  mv "Validation.js" "validation.js"
-fi
+# cd "${package_dir}/js/libs/vseditor/extensions/node_modules/ws/lib"
+# if [ -f "WebSocket.js" ];then
+#   mv "WebSocket.js" "websocket.js"
+#   mv "Receiver.js" "receiver.js"
+#   mv "Sender.js" "sender.js"
+#   mv "Constants.js" "constants.js"
+#   mv "Validation.js" "validation.js"
+# fi
 
 # 阻止无限启动服务器
-mv "${package_dir}/js/core/entrance.js" "${package_dir}/js/core/entrance.js.bak"
-cat "${srcdir}/res/scripts/entrance.js" > "${package_dir}/js/core/entrance.js"
-cat "${package_dir}/js/core/entrance.js.bak" >> "${package_dir}/js/core/entrance.js"
-rm "${package_dir}/js/core/entrance.js.bak"
+# mv "${package_dir}/js/core/entrance.js" "${package_dir}/js/core/entrance.js.bak"
+# cat "${srcdir}/res/scripts/entrance.js" > "${package_dir}/js/core/entrance.js"
+# cat "${package_dir}/js/core/entrance.js.bak" >> "${package_dir}/js/core/entrance.js"
+# rm "${package_dir}/js/core/entrance.js.bak"
 
 # 修复iframe导致的崩溃
-sed -i 's#"use strict";##' "${package_dir}/js/core/index.js"
-mv "${package_dir}/js/core/index.js" "${package_dir}/js/core/index.js.bak"
-cat "${srcdir}/res/scripts/core_index.js" > "${package_dir}/js/core/index.js"
-cat "${package_dir}/js/core/index.js.bak" >> "${package_dir}/js/core/index.js"
-rm "${package_dir}/js/core/index.js.bak"
+# sed -i 's#"use strict";##' "${package_dir}/js/core/index.js"
+# mv "${package_dir}/js/core/index.js" "${package_dir}/js/core/index.js.bak"
+# cat "${srcdir}/res/scripts/core_index.js" > "${package_dir}/js/core/index.js"
+# cat "${package_dir}/js/core/index.js.bak" >> "${package_dir}/js/core/index.js"
+# rm "${package_dir}/js/core/index.js.bak"
 
 # 修复编辑器不能覆盖粘贴
-sed -i 's#if(super(),l.isLinux){let#if(super(),l.isLinux){return;let#' "${package_dir}/js/libs/vseditor/bundled/editor.bundled.js"
+# sed -i 's#if(super(),l.isLinux){let#if(super(),l.isLinux){return;let#' "${package_dir}/js/libs/vseditor/bundled/editor.bundled.js"
 
 current=`date "+%Y-%m-%d %H:%M:%S"`
 timeStamp=`date -d "$current" +%s`

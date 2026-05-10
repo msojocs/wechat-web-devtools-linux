@@ -16,22 +16,14 @@ else
 fi
 
 # 获取App名称
-APP_NAME=$( cat "$root_dir/package.nw/package.json" | grep -Eo 'name":".*","main' )
+APP_NAME=$( cat "$root_dir/resources/app/package.json" | grep -Eo 'name":".*","main' )
 APP_NAME=${APP_NAME//name\":\"/}
 APP_NAME=${APP_NAME//\",\"main/}
 
-export WECHAT_DEVTOOLS_DIR="$root_dir/nwjs"
+export WECHAT_DEVTOOLS_DIR="$root_dir/electron"
 export APPDATA="$DATA_DIR/$APP_NAME"
-export PATH="$root_dir/node/bin:$root_dir/nwjs:$PATH"
+export PATH="$root_dir/node/bin:$root_dir/electron:$PATH"
 export USERPROFILE=$APPDATA
-
-# SNAP
-# if [ -n $SNAP ];then
-#   if [ ! -f $DATA_DIR/nacl_irt_x86_64.nexe ];then
-#     # 解压
-#     tar -zxf $root_dir/nwjs/nacl_irt_x86_64.nexe.tar.gz -C $APPDATA/nacl_irt_x86_64.nexe
-#   fi
-# fi
 
 clean_cache() {
   echo "清理缓存";
@@ -52,12 +44,8 @@ else
   clean_cache;
 fi;
 
-EXTENSION1="--load-extension=$root_dir/nwjs/package.nw/js/ideplugin"
-EXTENSION2="--load-extension=$APPDATA/WeappPlugin"
-INSPECTOR1="--custom-devtools-frontend=file://$root_dir/package.nw/js/ideplugin/inspector" # 要加file://指明为本地文件路径
-INSPECTOR2="--custom-devtools-frontend=file://$APPDATA/WeappPlugin/inspector/"
 USERDATADIR="$APPDATA"
 
 # "$@"参数
 LANG=zh_CN.UTF-8
-exec "$root_dir/electron/electron" $root_dir/resources/app.asar $EXTENSION2 $INSPECTOR1 "$@"
+exec "$root_dir/electron/electron" $root_dir/resources/app
