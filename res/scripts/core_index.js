@@ -9,7 +9,7 @@
                 set(value) {
                     console.warn('webview instance set', value)
                     this._instance = value
-                    if (value) {
+                    if (value && process.env.SKYLINE_EXPERIMENT === 'true') {
                         Object.defineProperty(value, '_type', {
                             set(type) {
                                 console.warn('webview type set', type)
