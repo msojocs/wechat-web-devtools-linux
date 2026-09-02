@@ -259,6 +259,12 @@ if has_https_proxy; then
   fi
 fi
 
+if [[ "${NODEGIT_SKIP_TESTS:-}" == "1" ]]; then
+  sed -i \
+    's/if (hostArch === targetArch) {/if (hostArch === targetArch \&\& process.env.NODEGIT_SKIP_TESTS !== "1") {/' \
+    "${package_dir}/node_modules_tmp/node_modules/nodegit/utils/acquireOpenSSL.mjs"
+fi
+
 # ── 逐模块重编译 ──────────────────────────
 # 注：每个模块单独 rebuild，交叉编译时可能需要单独调整配置。
 

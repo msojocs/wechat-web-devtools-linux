@@ -1,0 +1,49 @@
+FROM ubuntu:20.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG TARGETARCH
+
+WORKDIR /workspace
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        binutils \
+        build-essential \
+        ca-certificates \
+        curl \
+        g++-10 \
+        gcc-10 \
+        libffi-dev \
+        libkrb5-dev \
+        libssh2-1-dev \
+        libssl-dev \
+        libxkbfile-dev \
+        lld \
+        nodejs \
+        openssl \
+        p7zip-full \
+        pkg-config \
+        python-is-python2 \
+        python2 \
+        python3 \
+        python3-dev \
+        unzip \
+        wget \
+        xz-utils \
+        zlib1g-dev && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 90 \
+        --slave /usr/bin/g++ g++ /usr/bin/g++-10 && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN case "$TARGETARCH" in \
+        amd64) seven_zip_arch=x64 ;; \
+        arm64) seven_zip_arch=arm64 ;; \
+        *) echo "Unsupported build architecture: $TARGETARCH" >&2; exit 1 ;; \
+    esac && \
+    mkdir -p /opt/7z && \
+    wget -q "https://www.7-zip.org/a/7z2600-linux-${seven_zip_arch}.tar.xz" -O /tmp/7z.tar.xz && \
+    tar -xJf /tmp/7z.tar.xz -C /opt/7z && \
+    ln -s 7zz /opt/7z/7z && \
+    rm /tmp/7z.tar.xz
+
+ENV PATH=/workspace/node/bin:/opt/7z:$PATH
