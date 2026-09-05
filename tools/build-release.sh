@@ -29,7 +29,7 @@ fi
 
 DEVTOOLS_VERSION=$("$root_dir/electron/node" -p \
   "JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8')).version" \
-  "$root_dir/resources/app/package.json")
+  "$root_dir/resources/app.asar.unpacked/package.json")
 
 if [[ $VERSION == 'continuous' ]];then
   export VERSION="v${DEVTOOLS_VERSION}-continuous"

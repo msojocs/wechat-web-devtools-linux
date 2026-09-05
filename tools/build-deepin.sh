@@ -11,7 +11,7 @@ fail() {
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 DEVTOOLS_VERSION=$("$root_dir/electron/node" -p \
   "JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8')).version" \
-  "$root_dir/resources/app/package.json")
+  "$root_dir/resources/app.asar.unpacked/package.json")
 echo $BUILD_VERSION
 if [ -n "$1" ];then
   export BUILD_VERSION=$1

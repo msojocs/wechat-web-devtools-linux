@@ -44,7 +44,7 @@ mkdir -p $build_dir
 notice "检查版本号"
 DEVTOOLS_VERSION=$("$root_dir/electron/node" -p \
   "JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8')).version" \
-  "$root_dir/resources/app/package.json")
+  "$root_dir/resources/app.asar.unpacked/package.json")
 INPUT_VERSION=$( echo $VERSION | sed 's/v//' | sed 's/-.*//' )
 if [[ "$INPUT_VERSION" != "$DEVTOOLS_VERSION" ]];then
   fail "传入版本号与实际版本号不一致！"

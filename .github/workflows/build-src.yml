@@ -35,9 +35,11 @@ jobs:
 
       - name: Compress Resources
         run: |
+          set -ex
           mkdir -p tmp/src
           test -x electron/electron
-          test -f resources/app/package.json
+          test -f resources/app.asar
+          test -f resources/app.asar.unpacked/package.json
           rm -f electron/node electron/node.exe electron/node-18.exe
           install -m 755 node/bin/node electron/node
           ln -s node electron/node.exe
@@ -46,10 +48,11 @@ jobs:
 
       - name: Compress nodegit
         run: |
+          set -ex
           mkdir -p tmp/build
-          test -d resources/app/node_modules/nodegit
+          test -f resources/app.asar.unpacked/node_modules/nodegit/build/Release/nodegit.node
           tar -zcf tmp/build/nodegit.tar.gz \
-            -C resources/app/node_modules nodegit
+            -C resources/app.asar.unpacked/node_modules nodegit
 
       - name: Upload src artifact
         uses: actions/upload-artifact@v4
