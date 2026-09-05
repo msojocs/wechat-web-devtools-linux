@@ -9,7 +9,7 @@ done
 root_dir="$( cd -P "$( dirname "$SOURCE" )"/.. >/dev/null 2>&1 && pwd )"
 
 # 数据目录处理
-if [ -z $XDG_CONFIG_HOME ];then
+if [ -z "$XDG_CONFIG_HOME" ];then
   DATA_DIR=$HOME/.config
 else
   DATA_DIR=$XDG_CONFIG_HOME
@@ -24,6 +24,8 @@ export WECHAT_DEVTOOLS_DIR="$root_dir/electron"
 export APPDATA="$DATA_DIR/$APP_NAME/app"
 export PATH="$root_dir/node/bin:$root_dir/electron:$PATH"
 export USERPROFILE=$APPDATA
+
+mkdir -p "$APPDATA" || exit 1
 
 clean_cache() {
   echo "清理缓存";
