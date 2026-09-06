@@ -24,11 +24,11 @@
         }
     },
     "compiler": {
-        "version": "0.1.7",
+        "version": "0.2.0",
         "template": "https://github.com/msojocs/wx-compiler/releases/download/v${version}"
     },
     "devtools": {
         "version": "2.02.2608060",
-        "template": "https://devtools.wxqcloud.qq.com.cn/WechatWebDev/release/be1ec64cf6184b0fa64091919793f068/wechat_devtools_2.02.2608060_win32_x64.exe"
+        "template": "https://devtools.wxqcloud.qq.com.cn/WechatWebDev/release/be1ec64cf6184b0fa64091919793f068/wechat_devtools_${version}_win32_x64.exe"
     }
 }

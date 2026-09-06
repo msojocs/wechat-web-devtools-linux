@@ -1,3 +1,6 @@
+# 2.02.2608060-2 / 2026-09-06
+- update: compiler(Linux) v0.2.0
+
 # 2.02.2608060-1 / 2026-09-05
 - update: devtools to v2.02.2608060
 - refactor: electron支持

@@ -16,7 +16,7 @@
 [![wechat-tools](https://img.shields.io/badge/wechat--devtools-2.02.2608060-blue)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 [![electron](https://img.shields.io/badge/electron-36.6.0-green)](https://www.electronjs.org/releases/stable)
 [![node](https://img.shields.io/badge/node-22.16.0-orange)](https://nodejs.org/en/)
-[![wx-compiler](https://img.shields.io/badge/wx--compiler-0.1.7-pink)](https://github.com/msojocs/wx-compiler)
+[![wx-compiler](https://img.shields.io/badge/wx--compiler-0.2.0-pink)](https://github.com/msojocs/wx-compiler)
 
 
   这是微信开发者工具 Linux版
