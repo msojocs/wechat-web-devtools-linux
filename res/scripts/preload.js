@@ -2,9 +2,7 @@
     const createElement = document.createElement
     document.createElement = function (tagName) {
         const instance = createElement.call(document, tagName)
-        if (tagName === 'iframe') {
-            instance.setAttribute('nwdisable', 'true')
-        } else if (tagName === 'webview') {
+        if (tagName === 'webview') {
             Object.defineProperty(instance, 'instance', {
                 set(value) {
                     console.warn('webview instance set', value)
@@ -12,13 +10,13 @@
                     if (value) {
                         Object.defineProperty(value, '_type', {
                             set(type) {
+                              const store = require('../b7691e109ad844af265d9385e5205802.js').default
                                 console.warn('webview type set', type)
                                 this.__type = type
                                 if (type === 'skyline_appservice') {
                                     const client = require('skyline-addon/build/skyline.node')
                                     const setErrorMsg = (msg) => {
                                         console.error('skyline error', msg)
-                                        const store = require('core.wxvpkg/b7691e109ad844af265d9385e5205802.js')
                                         if (msg?.includes('Not connected')) {
                                             msg = 'Skyline链接丢失，请检查服务状态'
                                         } else if (msg?.includes('Socket connection failed') || msg?.includes('Connection refused')) {
@@ -36,7 +34,49 @@
                                         setErrorMsg(e?.message)
                                         throw e
                                     }
+                                    if (this._controller) return;
                                     const controller = new client.Controller(setErrorMsg)
+                                    this._controller = controller
+                                    window.__test = this
+
+                                    // The native Controller is created here for the real
+                                    // skyline_appservice webview. Register the dialog route
+                                    // before src/mount can cause the guest to call sendSync.
+                                    controller.setDialogCallback((skylineWebview, requestId, type, ...args) => {
+                                        console.warn('[skyline] dialog callback', {
+                                            requestId,
+                                            type,
+                                            args,
+                                        })
+                                        const resolve = (result) => {
+                                            console.warn('[skyline] resolve dialog', {
+                                                requestId,
+                                                result,
+                                            })
+                                            controller.resolveDialog(requestId, result)
+                                        }
+
+                                        this.webviewManagerService.emitEvent(this, 'dialog', {
+                                            preventDefault() {},
+                                            messageText: args[0],
+                                            messageType: type,
+                                            dialog: {
+                                                ok(result) {
+                                                    console.warn('[skyline] dialog ok', {
+                                                        requestId,
+                                                        result,
+                                                    })
+                                                    resolve(result)
+                                                },
+                                                cancel() {
+                                                    console.warn('[skyline] dialog cancel', {
+                                                        requestId,
+                                                    })
+                                                    resolve()
+                                                },
+                                            },
+                                        })
+                                    })
                                     const webview = controller.webview
                                     Object.defineProperties(this, {
                                         src: {
@@ -67,7 +107,7 @@
                                         }
                                         catch(e){
                                             console.error('showDevTools error', e)
-                                            require('core.wxvpkg/b7691e109ad844af265d9385e5205802.js').dispatch({
+                                            store.dispatch({
                                                 type: 'SIMULATOR_LAUNCH_ERROR',
                                                 data: 'Skyline出现异常，无法启动AppService，请检查Skyline是否正常运行',
                                             })

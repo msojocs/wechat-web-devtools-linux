@@ -4,11 +4,14 @@ root_dir=$(cd `dirname $0`/.. && pwd -P)
 srcdir=$root_dir
 tmp_dir="$root_dir/tmp"
 cache_dir="$root_dir/cache"
-nwjs_dir="$root_dir/nwjs"
-package_dir="$root_dir/package.nw"
+package_dir="$root_dir/resources/app"
 
 shared_memory_version="v1.0.4"
 skyline_version="v2.01.2510280-1"
+
+if [ -f "$root_dir/resources/app.asar" ]; then
+    $root_dir/tools/asar-helper.sh unpack
+fi
 
 cd "$package_dir/node_modules"
 mkdir -p "$cache_dir/skyline"
@@ -27,11 +30,13 @@ if [ ! -f "$cache_dir/skyline/client-linux-x86_64-$skyline_version.node" ]; then
 fi
 cp "$cache_dir/skyline/client-linux-x86_64-$skyline_version.node" build/skyline.node
 
+# 调用拦截替换
 mv ${package_dir}/js/extensions/inject/documentstart/index.js ${package_dir}/js/extensions/inject/documentstart/index.js.bak
 cp ${srcdir}/res/scripts/document_start.js ${package_dir}/js/extensions/inject/documentstart/index.js
 cat ${package_dir}/js/extensions/inject/documentstart/index.js.bak >> ${package_dir}/js/extensions/inject/documentstart/index.js
 rm ${package_dir}/js/extensions/inject/documentstart/index.js.bak
 
+# 颜色反转处理
 mv ${package_dir}/js/extensions/skyline/index.js ${package_dir}/js/extensions/skyline/index.js.bak
 cp ${srcdir}/res/scripts/skyline.js ${package_dir}/js/extensions/skyline/index.js
 cat ${package_dir}/js/extensions/skyline/index.js.bak >> ${package_dir}/js/extensions/skyline/index.js
