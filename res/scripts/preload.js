@@ -117,6 +117,9 @@
                                         return webview
                                     }
                                     this.setAttribute = function (name, value) {
+                                        if (name === 'webpreferences') {
+                                            value += ',enableBlinkFeatures=SharedArrayBuffer'
+                                        }
                                         return webview.setAttribute(name, value)
                                     }
                                     {
