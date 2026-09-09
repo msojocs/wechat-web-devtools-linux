@@ -31,3 +31,7 @@ patch_cli() {
 
 # patch_cli "$root_dir/resources/app"
 patch_cli "$root_dir/resources/app.asar.unpacked"
+
+if [ -f "$root_dir/resources/app.asar.unpacked/js/common/cli/skill-index.js" ]; then
+    node "$root_dir/tools/fix-skill-cli.js"
+fi

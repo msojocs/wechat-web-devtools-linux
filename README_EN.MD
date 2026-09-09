@@ -58,6 +58,18 @@ If you encounter any unsolvable issues, please open an [issue](https://github.co
 
 The `bin` directory contains the `wechat-devtools-cli` script, which is the Linux version of the WeChat DevTools command-line support. Related documentation can be found on the [WeChat CLI Command Line V2](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html) page.
 
+`bin/wechatide` is the Linux entry point for skills and MCP. It runs the official skill CLI with Node from the source build. The build adapts Linux data paths, authorization startup, and skill installation checks.
+
+```bash
+./bin/wechatide -c Codex check_wechatide_status --skill-version 0.3.9
+./bin/wechatide -c Codex project_list
+./bin/wechatide auth -c Codex
+```
+
+Confirm client authorization in DevTools on first use. If CLI access tokens are enabled, supply `--token` when required. Use the version from the currently loaded `SKILL.md` for `--skill-version`.
+
+For an existing build, apply the CLI patch with `bash tools/fix-cli.sh`. Run `node --test test/wechatide-test.js` to verify the entry point.
+
 # Usage
 
 1. [Online Installation](#online-installation)
