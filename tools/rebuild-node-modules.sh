@@ -162,19 +162,19 @@ $root_dir/tools/asar-helper.sh unpack
 package_dir="$root_dir/resources/app"
 
 # TODO: 兼容python2.7的命令
-PY_VERSION=$(python -V 2>&1 | awk '{print $2}' | awk -F '.' '{print $1}')
-if [ "$PY_VERSION" != "2" ]; then
-  hash python2.7 2>/dev/null || hash python2 2>/dev/null || {
-    fail "I require python2 but it's not installed.  Aborting."
-    exit 1
-  }
-  mkdir -p "$root_dir/tmp/bin"
-  if hash python2.7 2>/dev/null; then
-    ln -sf "$(which python2.7)" "$root_dir/tmp/bin/python"
-  else
-    ln -sf "$(which python2)" "$root_dir/tmp/bin/python"
-  fi
-fi
+# PY_VERSION=$(python -V 2>&1 | awk '{print $2}' | awk -F '.' '{print $1}')
+# if [ "$PY_VERSION" != "2" ]; then
+#   hash python2.7 2>/dev/null || hash python2 2>/dev/null || {
+#     fail "I require python2 but it's not installed.  Aborting."
+#     exit 1
+#   }
+#   mkdir -p "$root_dir/tmp/bin"
+#   if hash python2.7 2>/dev/null; then
+#     ln -sf "$(which python2.7)" "$root_dir/tmp/bin/python"
+#   else
+#     ln -sf "$(which python2)" "$root_dir/tmp/bin/python"
+#   fi
+# fi
 
 arch=$(node "$root_dir/tools/parse-config.js" --get-arch "$@")
 setup_cross_compile
@@ -279,7 +279,7 @@ configure_args=(
   --registry=https://registry.npmmirror.com
 )
 
-electron_gyp_build "nodegit"
+# electron_gyp_build "nodegit"
 node_gyp_build "extract-file-icon"
 node_gyp_build "native-keymap"
 electron_gyp_build "node-pty"
