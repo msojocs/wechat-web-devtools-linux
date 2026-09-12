@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+
+source_path=$(readlink -f -- "${BASH_SOURCE[0]}")
+root_dir=$(cd -- "$(dirname -- "$source_path")/.." && pwd -P)
+
+export WECHAT_DEVTOOLS_DIR="$root_dir/electron"
+export ELECTRON_BASE_APP_PATH="$root_dir/electron/resources/app.asar"
+export PATH="$root_dir/bin:$root_dir/electron:$PATH"
+
+exec "$root_dir/electron/node" \
+    "$root_dir/resources/app.asar.unpacked/js/common/cli/skill-index.js" \
+    --electron "$@"
