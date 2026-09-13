@@ -19,14 +19,10 @@ elif [ "$type" == "unpack" ];then
     # extract 重建出来的文件统一是 0644（如 wcc-exec/wcc、ripgrep/bin/rg）。
     # 若不补回 +x，下面重新 pack 时 0644 会被 copyFile 固化进 app.asar.unpacked。
     # 这里把 ELF 二进制和 shebang 脚本的执行权限补回来。
-    find "$root_dir/resources/app" -type f ! -perm -u+x -print0 | xargs -0 -r -n 100 sh -c '
-        for f do
-            magic=$(od -An -tx1 -N4 "$f" | tr -d " \n")
-            case "$magic" in
-                7f454c46|2321*) chmod +x "$f" ;;  # ELF 二进制 / #! 脚本
-            esac
-        done
-    ' sh
+    cd "$root_dir/resources/app"
+    chmod +x node_modules/wcc-exec/wcc \
+             node_modules/wcc-exec/wcsc \
+             resources/app/node_modules/@vscode/ripgrep/bin/rg
 else
     echo "用法: $0 [pack|unpack]"
     exit 1
