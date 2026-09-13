@@ -14,7 +14,7 @@
                                 console.warn('webview type set', type)
                                 this.__type = type
                                 if (type === 'skyline_appservice') {
-                                    const client = require('skyline-addon/build/skyline.node')
+                                    const client = require('skyline-addon/build/render-client.node')
                                     const setErrorMsg = (msg) => {
                                         console.error('skyline error', msg)
                                         if (msg?.includes('Not connected')) {
@@ -77,6 +77,16 @@
                                             },
                                         })
                                     })
+                                    {
+                                      const showDevTools = this.webviewManagerService.mainWebviewService.showDevTools
+                                      this.webviewManagerService.mainWebviewService.showDevTools = function(e, t) {
+                                        console.warn('[analytics] intercepted showDevTools', { e, t })
+                                        if (e === 114514) {
+                                          return Promise.resolve()
+                                        }
+                                        return showDevTools.call(this.webviewManagerService.mainWebviewService, e, t)
+                                      }
+                                    }
                                     const webview = controller.webview
                                     Object.defineProperties(this, {
                                         src: {
@@ -92,26 +102,9 @@
                                             configurable: true,
                                         },
                                     })
-                                    webview.showDevTools = async function (show, container) {
-                                        try{ 
-                                            // 1. 获取列表
-                                            const resp = await fetch('http://127.0.0.1:9222/json/list')
-                                            const list = await resp.json()
-                                            // 2. 筛选 webview - appservice/mainframe
-                                            const target = list.find(item => item.type === 'webview')
-                                            // 3. 取到 webSocketDebuggerUrl
-                                            const webSocketDebuggerUrl = target.webSocketDebuggerUrl.replace('ws://', '')
-                                            // devtools://devtools/bundled/devtools_app.html?ws=127.0.0.1:9222/devtools/page/7601AF914FBACB429A289A8AC7AA82EB
-                                            container.src = `devtools://devtools/bundled/devtools_app.html?ws=${webSocketDebuggerUrl}`
-                                            // this.__webview__.showDevTools(show, container)
-                                        }
-                                        catch(e){
-                                            console.error('showDevTools error', e)
-                                            store.dispatch({
-                                                type: 'SIMULATOR_LAUNCH_ERROR',
-                                                data: 'Skyline出现异常，无法启动AppService，请检查Skyline是否正常运行',
-                                            })
-                                        }
+                                    {
+                                      const getId = webview.getWebContentsId
+                                      webview.getWebContentsId = () => 114514 + getId()
                                     }
                                     this.getOriginElement = function () {
                                         return webview
