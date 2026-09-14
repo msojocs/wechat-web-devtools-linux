@@ -112,6 +112,11 @@
                                     this.setAttribute = function (name, value) {
                                         if (name === 'webpreferences') {
                                             value += ',enableBlinkFeatures=SharedArrayBuffer'
+                                        } else if (name === 'preload') {
+                                          //  file:/// 前缀替换成 file:///Z:/
+                                          if (value.startsWith('file:///')) {
+                                              value = value.replace('file:///', 'file:///Z:/')
+                                          }
                                         }
                                         return webview.setAttribute(name, value)
                                     }

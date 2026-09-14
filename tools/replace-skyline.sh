@@ -30,6 +30,10 @@ cp "$cache_dir/skyline/sharedMemory-linux-x86_64-$shared_memory_version.node" sh
 # fi
 # cp "$cache_dir/skyline/client-linux-x86_64-$skyline_version.node" build/skyline.node
 
+cd skyline-addon/build
+ln -s /home/msojocs/github/skyline-client-server/packages/native/build/x86_64-unknown-linux-gnu/render-client.node render-client.node
+ln -s /home/msojocs/github/skyline-client-server/packages/native/build/x86_64-unknown-linux-gnu/main-client.node main-client.node
+
 # render process调用拦截替换
 mv ${package_dir}/js/electron/preload.js ${package_dir}/js/electron/preload.js.bak
 cp ${srcdir}/res/scripts/preload.js ${package_dir}/js/electron/preload.js
