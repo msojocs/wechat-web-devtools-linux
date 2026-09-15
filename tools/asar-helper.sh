@@ -20,9 +20,15 @@ elif [ "$type" == "unpack" ];then
     # 若不补回 +x，下面重新 pack 时 0644 会被 copyFile 固化进 app.asar.unpacked。
     # 这里把 ELF 二进制和 shebang 脚本的执行权限补回来。
     cd "$root_dir/resources/app"
-    chmod +x node_modules/wcc-exec/wcc \
-             node_modules/wcc-exec/wcsc \
-             resources/app/node_modules/@vscode/ripgrep/bin/rg
+    if [ -f node_modules/wcc-exec/wcc ]; then
+        chmod +x node_modules/wcc-exec/wcc
+    fi
+    if [ -f node_modules/wcc-exec/wcsc ]; then
+        chmod +x node_modules/wcc-exec/wcsc
+    fi
+    if [ -f node_modules/@vscode/ripgrep/bin/rg ]; then
+        chmod +x node_modules/@vscode/ripgrep/bin/rg
+    fi
 else
     echo "用法: $0 [pack|unpack]"
     exit 1
