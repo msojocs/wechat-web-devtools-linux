@@ -27,10 +27,10 @@ APP_NAME=${APP_NAME//\",\"main/}
 export WECHAT_DEVTOOLS_DIR="$root_dir/electron"
 export APPDATA="$DATA_DIR/$APP_NAME"
 export USERPROFILE="$APPDATA"
-export PATH="$root_dir/node/bin:$root_dir/electron:$PATH"
+export PATH="$root_dir/bin:$root_dir/electron:$PATH"
 mkdir -p "$APPDATA/Default"
 
-"$root_dir/node/bin/node" "$package_dir/js/common/cli/index.js" "$@"
+"$root_dir/bin/node" "$package_dir/js/common/cli/index.js" "$@"
 if [ ! -z "$APPIMAGE" ];then
   # AppImage在程序退出后会删除相关程序文件，导致无法启动
   tail -f /etc/issue
