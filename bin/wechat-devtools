@@ -22,7 +22,7 @@ APP_NAME=${APP_NAME//\",\"main/}
 
 export WECHAT_DEVTOOLS_DIR="$root_dir/electron"
 export APPDATA="$DATA_DIR/$APP_NAME/app"
-export PATH="$root_dir/node/bin:$root_dir/electron:$PATH"
+export PATH="$root_dir/bin:$root_dir/electron:$PATH"
 export USERPROFILE=$APPDATA
 
 mkdir -p "$APPDATA" || exit 1
