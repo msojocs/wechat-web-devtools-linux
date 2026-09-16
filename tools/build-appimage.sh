@@ -42,7 +42,7 @@ build_dir="$tmp_dir/build"
 mkdir -p $build_dir
 
 notice "检查版本号"
-DEVTOOLS_VERSION=$("$root_dir/electron/node" -p \
+DEVTOOLS_VERSION=$("$root_dir/node/bin/node" -p \
   "JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8')).version" \
   "$root_dir/resources/app.asar.unpacked/package.json")
 INPUT_VERSION=$( echo $VERSION | sed 's/v//' | sed 's/-.*//' )
@@ -87,16 +87,9 @@ chmod +x "$app_dir/AppRun"
 
 cp -a "$root_dir/electron" "$app_dir/electron"
 cp -a "$root_dir/resources" "$app_dir/resources"
-if [ -f "$root_dir/node/bin/node" ];then
-  rm -f "$app_dir/electron/node" "$app_dir/electron/node.exe" "$app_dir/electron/node-18.exe"
-  install -m 755 "$root_dir/node/bin/node" "$app_dir/electron/node"
-  ln -s node "$app_dir/electron/node.exe"
-  ln -s node "$app_dir/electron/node-18.exe"
-fi
-if [ ! -x "$app_dir/electron/node" ]; then
-  fail "Electron运行时缺少Node可执行文件"
-  exit 1
-fi
+# 清理旧构建遗留的Node，独立打包到node/bin。
+rm -f "$app_dir/electron/node" "$app_dir/electron/node.exe" "$app_dir/electron/node-18.exe"
+install -Dm755 "$root_dir/node/bin/node" "$app_dir/node/bin/node"
 
 # appimagetool $app_dir
 notice "MAKE APPIMAGE"

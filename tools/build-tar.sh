@@ -44,7 +44,7 @@ else
 fi
 
 notice "检查版本号"
-DEVTOOLS_VERSION=$("$root_dir/electron/node" -p \
+DEVTOOLS_VERSION=$("$root_dir/node/bin/node" -p \
   "JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8')).version" \
   "$root_dir/resources/app.asar.unpacked/package.json")
 INPUT_VERSION=$( echo $VERSION | sed 's/v//' | sed 's/-.*//' )
@@ -63,17 +63,10 @@ notice "COPY electron"
 \cp -arf "$root_dir/electron" "$build_dir/electron"
 notice "COPY resources"
 \cp -arf "$root_dir/resources" "$build_dir/resources"
-notice "EMBED node"
-if [ -f "$root_dir/node/bin/node" ];then
-  rm -f "$build_dir/electron/node" "$build_dir/electron/node.exe" "$build_dir/electron/node-18.exe"
-  install -m 755 "$root_dir/node/bin/node" "$build_dir/electron/node"
-  ln -s node "$build_dir/electron/node.exe"
-  ln -s node "$build_dir/electron/node-18.exe"
-fi
-if [ ! -x "$build_dir/electron/node" ]; then
-  fail "Electron运行时缺少Node可执行文件"
-  exit 1
-fi
+notice "COPY node"
+# 清理旧构建遗留的Node，独立打包到node/bin。
+rm -f "$build_dir/electron/node" "$build_dir/electron/node.exe" "$build_dir/electron/node-18.exe"
+install -Dm755 "$root_dir/node/bin/node" "$build_dir/node/bin/node"
 
 notice "MAKE tar.gz"
 cd "$tmp_dir/tar" && tar -zcf "$store_dir/$PACKAGE_NAME.tar.gz" "$PACKAGE_NAME"
