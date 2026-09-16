@@ -9,7 +9,7 @@ fail() {
 
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
-DEVTOOLS_VERSION=$("$root_dir/electron/node" -p \
+DEVTOOLS_VERSION=$("$root_dir/node/bin/node" -p \
   "JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8')).version" \
   "$root_dir/resources/app.asar.unpacked/package.json")
 echo $BUILD_VERSION
@@ -89,16 +89,9 @@ mkdir -p "$build_dir/usr/share/applications" "$build_dir/usr/share/icons/hicolor
 # 主体文件
 cp -a "$root_dir/electron" "$base_dir/files/bin/electron"
 cp -a "$root_dir/resources" "$base_dir/files/bin/resources"
-if [ -f "$root_dir/node/bin/node" ];then
-  rm -f "$base_dir/files/bin/electron/node" "$base_dir/files/bin/electron/node.exe" "$base_dir/files/bin/electron/node-18.exe"
-  install -m 755 "$root_dir/node/bin/node" "$base_dir/files/bin/electron/node"
-  ln -s node "$base_dir/files/bin/electron/node.exe"
-  ln -s node "$base_dir/files/bin/electron/node-18.exe"
-fi
-if [ ! -x "$base_dir/files/bin/electron/node" ]; then
-  fail "Electron运行时缺少Node可执行文件"
-  exit 1
-fi
+# 清理旧构建遗留的Node，独立打包到node/bin。
+rm -f "$base_dir/files/bin/electron/node" "$base_dir/files/bin/electron/node.exe" "$base_dir/files/bin/electron/node-18.exe"
+install -Dm755 "$root_dir/node/bin/node" "$base_dir/files/bin/node/bin/node"
 # chown -R root:root "$base_dir"
 
 notice "BUILD DEB Package"

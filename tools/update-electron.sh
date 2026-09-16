@@ -18,13 +18,6 @@ rm -rf "$root_dir/electron"
 mkdir -p "$root_dir/electron"
 unzip -q "$local_path" -d "$root_dir/electron"
 
-if [ -f "$root_dir/node/bin/node" ]; then
-    cd "$root_dir/electron"
-    cp ../node/bin/node node
-    ln -s node node.exe
-    ln -s node node-18.exe
-fi
-
 if [ -d "$root_dir/resources" ]; then
     cd "$root_dir/electron"
     rm -rf resources

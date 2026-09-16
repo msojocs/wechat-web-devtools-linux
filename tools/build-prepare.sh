@@ -19,7 +19,7 @@ root_dir=$(cd `dirname $0`/.. && pwd -P)
 tmp_dir="$root_dir/tmp"
 store_dir="$tmp_dir/build"
 mkdir -p $store_dir
-rm -rf electron resources
+rm -rf electron node resources
 if [[ "$WINE" != 'true' ]];then
   tar -zxf wechat-devtools-*.src/src-linux.tar.gz -C .
 else
