@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 root_dir=$(cd "$(dirname "$0")/.." && pwd -P)
 cd $root_dir/resources
 

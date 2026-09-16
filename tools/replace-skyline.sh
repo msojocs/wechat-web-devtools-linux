@@ -6,7 +6,7 @@ tmp_dir="$root_dir/tmp"
 cache_dir="$root_dir/cache"
 package_dir="$root_dir/resources/app"
 
-shared_memory_version="v1.0.4"
+shared_memory_version="v1.0.5"
 skyline_version="v2.01.2510280-1"
 
 if [ -f "$root_dir/resources/app.asar" ]; then
@@ -30,9 +30,9 @@ cp "$cache_dir/skyline/sharedMemory-linux-x86_64-$shared_memory_version.node" sh
 # fi
 # cp "$cache_dir/skyline/client-linux-x86_64-$skyline_version.node" build/skyline.node
 
-cd skyline-addon/build
-ln -s /home/msojocs/github/skyline-client-server/packages/native/build/x86_64-unknown-linux-gnu/render-client.node render-client.node
-ln -s /home/msojocs/github/skyline-client-server/packages/native/build/x86_64-unknown-linux-gnu/main-client.node main-client.node
+# cd skyline-addon/build
+# ln -s /home/msojocs/github/skyline-client-server/packages/native/build/x86_64-unknown-linux-gnu/render-client.node render-client.node
+# ln -s /home/msojocs/github/skyline-client-server/packages/native/build/x86_64-unknown-linux-gnu/main-client.node main-client.node
 
 # render process调用拦截替换
 mv ${package_dir}/js/electron/preload.js ${package_dir}/js/electron/preload.js.bak

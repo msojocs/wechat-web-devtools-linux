@@ -10,7 +10,16 @@
         webContents.fromId = function(id) {
           console.log('[webContents.fromId] called with id:', id)
           if (id >= 114514) {
-            const webContents = mainController.electron.webContents.fromId(id - 114514)
+            let webContents
+            try {
+              webContents = mainController.electron.webContents.fromId(id - 114514)
+            } catch (error) {
+              // Electron returns undefined for a vanished webContents. A Wine
+              // disconnect has the same meaning to local teardown callers.
+              if (/not connected|peer disconnected|closed connection|connection (?:refused|reset|aborted)|broken pipe/i.test(error.message)) return undefined
+              throw error
+            }
+            if (!webContents) return undefined
             {
               let devToolsWebContents = null
               webContents.setDevToolsWebContents = function(webContents) {

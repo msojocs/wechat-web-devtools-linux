@@ -14,18 +14,42 @@
                                 console.warn('webview type set', type)
                                 this.__type = type
                                 if (type === 'skyline_appservice') {
+                                    if (this._controller) return;
                                     const client = require('skyline-addon/build/render-client.node')
+                                    const isDisconnectedError = (error) => /not connected|peer disconnected|closed connection|connection (?:refused|reset|aborted)|broken pipe|socket connection failed/i.test(error?.message || String(error))
+                                    let disconnected = false
+                                    let errorScheduled = false
+                                    let lastError
                                     const setErrorMsg = (msg) => {
-                                        console.error('skyline error', msg)
-                                        if (msg?.includes('Not connected')) {
-                                            msg = 'Skyline链接丢失，请检查服务状态'
-                                        } else if (msg?.includes('Socket connection failed') || msg?.includes('Connection refused')) {
-                                            msg = 'Skyline连接失败，请检查服务状态'
+                                        if (isDisconnectedError(msg)) {
+                                            if (disconnected) return
+                                            disconnected = true
+                                            msg = 'Skyline连接已断开，请重新启动服务后重新打开项目'
                                         }
-                                        store.dispatch({
-                                            type: 'SIMULATOR_LAUNCH_ERROR',
-                                            data: msg || 'Skyline出现异常，无法启动AppService，请检查Skyline是否正常运行',
+                                        console.error('skyline error', msg)
+                                        lastError = msg || 'Skyline出现异常，无法启动AppService，请检查Skyline是否正常运行'
+                                        if (errorScheduled) return
+                                        errorScheduled = true
+                                        // Native RPC calls notify and then throw. Do not update React
+                                        // synchronously inside that callback or a commit/unmount hook.
+                                        queueMicrotask(() => {
+                                            errorScheduled = false
+                                            store.dispatch({
+                                                type: 'SIMULATOR_LAUNCH_ERROR',
+                                                data: lastError,
+                                            })
                                         })
+                                    }
+                                    // Only lifecycle effects can finish locally after the peer exits.
+                                    // Keep failures unrelated to a lost connection observable.
+                                    const runLifecycle = (operation) => {
+                                        if (disconnected) return
+                                        try {
+                                            return operation()
+                                        } catch (error) {
+                                            if (!isDisconnectedError(error)) throw error
+                                            setErrorMsg(error.message)
+                                        }
                                     }
                                     try {
                                         client.Controller.connect()
@@ -34,7 +58,6 @@
                                         setErrorMsg(e?.message)
                                         throw e
                                     }
-                                    if (this._controller) return;
                                     const controller = new client.Controller(setErrorMsg)
                                     this._controller = controller
                                     window.__test = this
@@ -53,7 +76,7 @@
                                                 requestId,
                                                 result,
                                             })
-                                            controller.resolveDialog(requestId, result)
+                                            runLifecycle(() => controller.resolveDialog(requestId, result))
                                         }
 
                                         this.webviewManagerService.emitEvent(this, 'dialog', {
@@ -88,23 +111,33 @@
                                       }
                                     }
                                     const webview = controller.webview
+                                    // Event cleanup uses getOriginElement() directly, bypassing the
+                                    // instance's setAttribute/unmount adapters.
+                                    for (const method of ['setAttribute', 'removeAttribute', 'addEventListener', 'removeEventListener', 'send']) {
+                                        const original = webview[method]
+                                        webview[method] = (...args) => runLifecycle(() => original.apply(webview, args))
+                                    }
+                                    let src = ''
                                     Object.defineProperties(this, {
                                         src: {
-                                            set(src) {
-                                                console.warn('skyline_appservice webview set src', src)
-                                                webview.src = src
+                                            set(value) {
+                                                src = value
+                                                runLifecycle(() => { webview.src = value })
                                                 this.__webview__.src = 'about:blank'
                                             },
                                             get() {
-                                                console.warn('skyline_appservice webview get src', webview.src)
-                                                return webview.src
+                                                return src
                                             },
                                             configurable: true,
                                         },
                                     })
                                     {
                                       const getId = webview.getWebContentsId
-                                      webview.getWebContentsId = () => 114514 + getId()
+                                      let id
+                                      webview.getWebContentsId = () => {
+                                          if (id === undefined) id = 114514 + getId()
+                                          return id
+                                      }
                                     }
                                     this.getOriginElement = function () {
                                         return webview
@@ -122,16 +155,31 @@
                                     }
                                     {
                                         const mount = this.mount
-                                        this.mount = function (e) {
-                                            mount.apply(this, e)
-                                            controller.mount()
+                                        this.mount = function () {
+                                            return runLifecycle(() => {
+                                                // The local webview is a placeholder. The real
+                                                // appservice must only be mounted in Wine.
+                                                mount.call(this)
+                                                controller.mount()
+                                            })
                                         }
                                     }
                                     {
                                         const unmount = this.unmount
-                                        this.unmount = function (e) {
-                                            unmount.apply(this, e)
-                                            controller.unmount()
+                                        let unmountPromise
+                                        this.unmount = function (...args) {
+                                            // Finish local manager/listener cleanup even when Wine is
+                                            // gone. Preserve the base method's Promise and arguments.
+                                            if (!unmountPromise) {
+                                                unmountPromise = (async () => {
+                                                    try {
+                                                        await unmount.apply(this, args)
+                                                    } finally {
+                                                        runLifecycle(() => controller.unmount())
+                                                    }
+                                                })()
+                                            }
+                                            return unmountPromise
                                         }
                                     }
                                 }
