@@ -134,14 +134,15 @@ if [ $CURRENT_STEP == $INSTALL_REBUILD_SUCCESS ];then
   notice "Patching wechat-devtools package name"
   "$root_dir/tools/fix-package-name.js"
 
-  notice "Patching wechat-devtools CLI supports"
-  "$root_dir/tools/fix-cli.sh"
-
   notice "Patching wechat-devtools"
   "$root_dir/tools/fix-compiler.sh"
 
   notice "Patching Other"
   "$root_dir/tools/fix-other.sh" $@
+
+  # Install external CLI adapters after the final ASAR unpack/repack.
+  notice "Patching wechat-devtools CLI supports"
+  "$root_dir/tools/fix-cli.sh"
 
   # notice "Replace Skyline"
   # "$root_dir/tools/replace-skyline.sh"

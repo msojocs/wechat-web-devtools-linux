@@ -61,17 +61,7 @@
 
 在项目的 `bin` 目录中有 `wechat-devtools-cli` 脚本，是微信开发者工具的命令行支持 的Linux版本。相关资料可以在[微信CLI命令行V2](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)上找到。
 
-`bin/wechatide` 是 skill 和 MCP 的 Linux 入口，使用源码构建目录中的 Node 运行官方 skill CLI。构建时会适配 Linux 数据目录、授权启动和 skill 安装检查。
-
-```bash
-./bin/wechatide -c Codex check_wechatide_status --skill-version 0.3.9
-./bin/wechatide -c Codex project_list
-./bin/wechatide auth -c Codex
-```
-
-首次使用时，在开发者工具内确认客户端授权；启用 CLI 访问令牌后，按工具要求传入 `--token`。`--skill-version` 应使用当前加载的 `SKILL.md` 版本。
-
-已有构建目录可运行 `bash tools/fix-cli.sh` 应用 CLI 补丁；运行 `node --test test/wechatide-test.js` 验证入口。
+`bin/wechatide` 是微信开发者工具 skill 和 MCP 的 Linux 命令入口，使用方法参见[开发者工具 Skills](https://developers.weixin.qq.com/miniprogram/dev/devtools/Skills.html)。
 
 # 使用方法
 
