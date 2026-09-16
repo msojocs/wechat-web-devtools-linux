@@ -52,6 +52,9 @@ cp ${srcdir}/res/scripts/skyline.js ${package_dir}/js/extensions/skyline/index.j
 cat ${package_dir}/js/extensions/skyline/index.js.bak >> ${package_dir}/js/extensions/skyline/index.js
 rm ${package_dir}/js/extensions/skyline/index.js.bak
 
+# 输入桥接必须在 SkylineRenderer 定义完成后安装。
+node "$srcdir/tools/fix-skyline-touch.js" "$package_dir"
+
 # node "$srcdir/tools/fix-skyline-heartbeat.js" "$package_dir"
 
 $root_dir/tools/asar-helper.sh pack

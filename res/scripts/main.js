@@ -41,10 +41,6 @@
                   }
                   catch(e){
                       console.error('showDevTools error', e)
-                      store.dispatch({
-                          type: 'SIMULATOR_LAUNCH_ERROR',
-                          data: 'Skyline出现异常，无法启动AppService，请检查Skyline是否正常运行',
-                      })
                   }
               }
             }
