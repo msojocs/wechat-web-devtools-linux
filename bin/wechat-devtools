@@ -46,6 +46,11 @@ else
   clean_cache;
 fi;
 
+if [[ ! -f "$APPDATA/.install_path" ]];then
+  echo "记录安装路径"
+  echo "$root_dir" > "$APPDATA/.install_path"
+fi
+
 USERDATADIR="$DATA_DIR/$APP_NAME/user"
 
 # 缩放设置，测试用 --force-device-scale-factor=1.5
