@@ -56,4 +56,4 @@ USERDATADIR="$DATA_DIR/$APP_NAME/user"
 # 缩放设置，测试用 --force-device-scale-factor=1.5
 # "$@"参数
 LANG=zh_CN.UTF-8
-exec "$root_dir/electron/electron" --inspect=9229 $root_dir/resources/app $@
+exec "$root_dir/electron/electron" --no-sandbox $root_dir/resources/app $@

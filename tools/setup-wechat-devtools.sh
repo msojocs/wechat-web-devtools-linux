@@ -126,13 +126,16 @@ if [ $CURRENT_STEP == $INSTALL_FIX_SUCCESS ];then
 fi
 
 if [ $CURRENT_STEP == $INSTALL_REBUILD_SUCCESS ];then
-  notice "Patching wechat-devtools package name"
+  notice "Patching package name"
   "$root_dir/tools/fix-package-name.js"
 
-  notice "Patching wechat-devtools CLI supports"
+  notice "Patching CLI supports"
   "$root_dir/tools/fix-cli.sh"
 
-  notice "Patching wechat-devtools"
+  notice "Patching skill supports"
+  "$root_dir/tools/fix-skill.sh"
+
+  notice "Patching compiler supports"
   "$root_dir/tools/fix-compiler.sh"
 
   notice "Patching Other"
