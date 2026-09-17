@@ -42,7 +42,7 @@ build_dir="$tmp_dir/build"
 mkdir -p $build_dir
 
 notice "检查版本号"
-DEVTOOLS_VERSION=$("$root_dir/node/bin/node" -p \
+DEVTOOLS_VERSION=$(node -p \
   "JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8')).version" \
   "$root_dir/resources/app.asar.unpacked/package.json")
 INPUT_VERSION=$( echo $VERSION | sed 's/v//' | sed 's/-.*//' )
@@ -71,6 +71,7 @@ mkdir -p $app_dir/usr/share/{metainfo,icons}
 notice "COPY FILES"
 cp "$root_dir/bin/wechat-devtools" "$app_dir/bin/wechat-devtools"
 cp "$root_dir/bin/wechat-devtools-cli" "$app_dir/bin/wechat-devtools-cli"
+cp "$root_dir/bin/node" "$app_dir/bin/node"
 cp "$root_dir/res/icons/512x512.png" "$app_dir/wechat-devtools.png"
 \cp -rf "$root_dir/res/appimage"/* "$app_dir"
 cp $app_dir/usr/share/applications/*.desktop "$app_dir/io.github.msojocs.wechat_devtools.desktop"
@@ -87,9 +88,8 @@ chmod +x "$app_dir/AppRun"
 
 cp -a "$root_dir/electron" "$app_dir/electron"
 cp -a "$root_dir/resources" "$app_dir/resources"
-# 清理旧构建遗留的Node，独立打包到node/bin。
+# 清理旧构建遗留的 Node，运行时由 bin/node 使用 Electron 提供。
 rm -f "$app_dir/electron/node" "$app_dir/electron/node.exe" "$app_dir/electron/node-18.exe"
-install -Dm755 "$root_dir/node/bin/node" "$app_dir/node/bin/node"
 
 # appimagetool $app_dir
 notice "MAKE APPIMAGE"

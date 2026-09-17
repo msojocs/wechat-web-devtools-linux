@@ -8,19 +8,10 @@
         }
     },
     "node": {
-        "urls": {
-            "x64": {
-                "version": "22.16.0",
-                "template": "https://npmmirror.com/mirrors/node/v${version}/node-v${version}-linux-x64.tar.gz"
-            },
-            "loongarch64": {
-                "version": "18.20.4",
-                "template": "https://github.com/loong64/node/releases/download/v${version}/node-v${version}-linux-loong64.tar.gz"
-            },
-            "arm64": {
-                "version": "16.13.1",
-                "template": "https://npmmirror.com/mirrors/node/v${version}/node-v${version}-linux-arm64.tar.gz"
-            }
+        "versions": {
+            "x64": "22.16.0",
+            "loongarch64": "18.20.4",
+            "arm64": "16.13.1"
         }
     },
     "compiler": {

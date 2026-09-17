@@ -44,7 +44,7 @@ else
 fi
 
 notice "检查版本号"
-DEVTOOLS_VERSION=$("$root_dir/node/bin/node" -p \
+DEVTOOLS_VERSION=$(node -p \
   "JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8')).version" \
   "$root_dir/resources/app.asar.unpacked/package.json")
 INPUT_VERSION=$( echo $VERSION | sed 's/v//' | sed 's/-.*//' )
@@ -63,10 +63,8 @@ notice "COPY electron"
 \cp -arf "$root_dir/electron" "$build_dir/electron"
 notice "COPY resources"
 \cp -arf "$root_dir/resources" "$build_dir/resources"
-notice "COPY node"
-# 清理旧构建遗留的Node，独立打包到node/bin。
+# 清理旧构建遗留的 Node，运行时由 bin/node 使用 Electron 提供。
 rm -f "$build_dir/electron/node" "$build_dir/electron/node.exe" "$build_dir/electron/node-18.exe"
-install -Dm755 "$root_dir/node/bin/node" "$build_dir/node/bin/node"
 
 notice "MAKE tar.gz"
 cd "$tmp_dir/tar" && tar -zcf "$store_dir/$PACKAGE_NAME.tar.gz" "$PACKAGE_NAME"

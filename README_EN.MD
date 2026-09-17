@@ -99,12 +99,14 @@ After that, you can launch WeChat DevTools by clicking the application icon or r
 
 ## Method 1
 
-Since `node-gyp` and `nw-gyp` are used, this method can encounter unpredictable issues due to `python` and `node` versions (e.g., no error messages but modules silently fail to build with node 15.0.1). However, the Docker build method handles these issues for you.
+The build uses `node`, `npm`, and `npx` from the environment's `PATH`. Install Node.js first (22 LTS with npm/npx is recommended). Build scripts do not download or create a project-local `node/` environment; npm build tools are installed under `cache/npm/node_global` by default. The Docker build image includes these dependencies.
+
+The `node.versions` entries in `conf/config.json` specify the target ABI versions for native modules, independently of the Node.js version running the build. Release packages use Electron's built-in Node.js through `bin/node`.
 
 1. If building the `wine` version, install `wine` and `wine-binfmt` in your Linux environment first.
 2. Install build dependencies for `nodegit`: `python2.7 python3.6+ libkrb5-dev gcc openssl libssh2-1-dev g++ make pkg-config`.
    
-   Also, older `7z` versions may have issues (minimum version untested; e.g., the one in ubuntu16.04 doesn't work). See the [`Dockerfile`](docker/Dockerfile) for reference.
+   Also, older `7z` versions may have issues (minimum version untested; e.g., the one in ubuntu16.04 doesn't work). See [`Dockerfile.electron`](docker/Dockerfile.electron) for reference.
 3. Clone this project:
     ```
     git clone --recurse-submodules https://github.com/msojocs/wechat-web-devtools-linux.git

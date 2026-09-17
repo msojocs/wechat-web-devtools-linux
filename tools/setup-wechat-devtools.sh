@@ -25,33 +25,28 @@ DEVTOOLS_SUPPRESS_CHILD_SCRIPT_ERROR=true
 devtools_enable_error_trap # 捕获错误情况
 set -ex
 
+# 使用构建环境提供的 Node.js，npm 构建工具安装到项目缓存。
+for command in node npm npx; do
+  if ! command -v "$command" >/dev/null 2>&1; then
+    fail "缺少构建依赖 $command，请安装 Node.js（推荐 22 LTS，含 npm/npx）或使用 tools/build-with-docker.sh"
+    exit 1
+  fi
+done
+export npm_config_prefix="${npm_config_prefix:-$root_dir/cache/npm/node_global}"
+export npm_config_cache="${npm_config_cache:-$root_dir/cache/npm/node_cache}"
+export PATH="$npm_config_prefix/bin:$PATH"
+notice "使用环境 Node.js: $(command -v node)"
+node --version
+npm --version
+
+mkdir -p "$root_dir/tmp"
 # 步骤
 source "step.sh"
 
-
 if [ $CURRENT_STEP == $INSTALL_START ];then
-  rm -rf "$root_dir"/{node,electron,resources}
-  echo "==========Initializing node=========="
-  if [ -f "$root_dir/node/bin/node" ]; then
-    step_switch $INSTALL_NPM_CONFIG_SUCCESS
-    success "node安装完毕"
-  else
-    "$root_dir/tools/update-node.sh" $@
-    step_switch $INSTALL_NPM_CONFIG_SUCCESS
-    success "node ok"
-  fi
-
-  if [ ! -f "$root_dir/node/bin/node" ]; then
-    step_switch $INSTALL_START
-    fail "Node安装失败"
-    exit
-  fi
+  rm -rf "$root_dir"/{electron,resources}
+  step_switch $INSTALL_NPM_CONFIG_SUCCESS
 fi
-
-# 将node加入环境
-export PATH="$root_dir/cache/npm/node_global/bin:$PATH"
-node --version
-npm --version
 
 if [[ -z "$HOME" || "$HOME" = "/" ]]; then
   # 部分环境HOME定义异常，导致权限问题

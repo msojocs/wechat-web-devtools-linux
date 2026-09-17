@@ -19,7 +19,6 @@ RUN apt-get update && \
         libssl-dev \
         libxkbfile-dev \
         lld \
-        nodejs \
         openssl \
         p7zip-full \
         pkg-config \
@@ -46,4 +45,12 @@ RUN case "$TARGETARCH" in \
     ln -s 7zz /opt/7z/7z && \
     rm /tmp/7z.tar.xz
 
-ENV PATH=/workspace/node/bin:/opt/7z:$PATH
+# 为构建环境提供 Node.js 和 npm，不依赖工作区中的 node/ 目录。
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x -o /tmp/nodesource-setup.sh && \
+    bash /tmp/nodesource-setup.sh && \
+    apt-get install -y --no-install-recommends nodejs && \
+    rm -f /tmp/nodesource-setup.sh && \
+    rm -rf /var/lib/apt/lists/*
+
+ENV PATH=/opt/7z:$PATH
+RUN node --version && npm --version && npx --version

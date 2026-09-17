@@ -40,9 +40,9 @@ jobs:
           test -x electron/electron
           test -f resources/app.asar
           test -f resources/app.asar.unpacked/package.json
-          test -x node/bin/node
+          test -x bin/node
           rm -f electron/node electron/node.exe electron/node-18.exe
-          tar -zcf tmp/src/src-linux.tar.gz bin electron node/bin/node resources tools
+          tar -zcf tmp/src/src-linux.tar.gz bin electron resources tools
 
       - name: Compress nodegit
         run: |
