@@ -19,4 +19,11 @@ getInstallRoots = (platform, installRoot) => {
 getWechatidePath = (platform, installRoot) => {
   return path.join(installRoot, 'bin', 'wechatide')
 }
-normalizePlatform = () => process.platform
+normalizePlatform = () => 'darwin'
+getPackagePaths = (platform, installRoot) =>{
+
+  return {
+    nw: path.join(installRoot, 'code', 'package.nw', 'package.json'),
+    electron: path.join(installRoot, 'resources', 'app.asar.unpacked', 'package.json')
+  }
+}
