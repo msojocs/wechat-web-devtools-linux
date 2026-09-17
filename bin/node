@@ -1,5 +1,5 @@
 #!/bin/bash
 root_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)
 
-BOOTSTRAP_JS="const e=process.argv[1],a=process.argv.slice(2).filter(function(x){return x!=='--electron'});if(!process.env.cwd)process.env.cwd=process.cwd();process.argv=[process.execPath,'--ms-enable-electron-run-as-node',e,'--electron'].concat(a);require(e)"
+BOOTSTRAP_JS="const e=process.argv[1],a=process.argv.slice(2).filter(function(x){return x!=='--electron'});if(!process.env.cwd)process.env.cwd=process.cwd();process.argv=[process.execPath,e,'--electron'].concat(a);require(e)"
 ELECTRON_RUN_AS_NODE=1 exec "$root_dir/electron/electron" -e "$BOOTSTRAP_JS" "$@"

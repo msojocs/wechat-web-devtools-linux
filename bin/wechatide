@@ -1,1 +1,6 @@
 #!/bin/bash
+
+root_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)
+
+cli="$root_dir/resources/app.asar.unpacked/js/common/cli/skill-index.js"
+$root_dir/bin/node "$cli" "$@"
