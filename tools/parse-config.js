@@ -18,9 +18,6 @@ const options = {
     '--get-electron-version': {
         type: 'boolean',
     },
-    '--get-node-url': {
-        type: 'boolean',
-    },
     '--get-node-version': {
         type: 'boolean',
     },
@@ -78,13 +75,9 @@ if (configArg['get-electron-version']) {
     exit(0);
 }
 
-if (configArg['get-node-url']) {
-    console.log(config.node.urls[configArg.arch].template.replace(/\${version}/g, config.node.urls[configArg.arch].version));
-    exit(0);
-}
-
 if (configArg['get-node-version']) {
-    console.log(config.node.urls[configArg.arch].version);
+    // 原生模块的目标 ABI 版本，与执行构建脚本的环境 Node.js 版本无关。
+    console.log(config.node.versions[configArg.arch]);
     exit(0);
 }
 

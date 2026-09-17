@@ -102,19 +102,21 @@
 
 ## 方法1
 
-由于使用到 `node-gyp` `nw-gyp`，此方法会受 `python`、`node` 版本影响出现一些难以预料的异常（比如使用 `node15.0.1` 时，大部分模块构建会被忽略，但没有任何报错信息）。但是，`Docker` 构建方式会帮你处理好这些问题。
+构建直接使用环境 `PATH` 中的 `node`、`npm` 和 `npx`，请预先安装 Node.js（推荐 22 LTS，含 npm/npx）。构建脚本不会下载或创建项目内的 `node/` 环境；npm 构建工具默认安装到 `cache/npm/node_global`。Docker 构建镜像已包含这些依赖。
+
+`conf/config.json` 中的 `node.versions` 仅指定原生模块的目标 ABI 版本，不限制构建环境的 Node.js 版本。发布包通过 `bin/node` 调用 Electron 内置的 Node.js。
 
 1. 如果构建 `wine` 版本，请先在Linux环境中自行安装 `wine` `wine-binfmt`；
 2. 安装编译 `nodegit` 所需的依赖：`python2.7 python3.6及以上 libkrb5-dev gcc openssl libssh2-1-dev g++ make pkg-config` ；
    
-   另外 `7z` 旧版解压可能存在问题（未测试最低版本号，比如：ubuntu16.04 自带的不行），请参考[`Dockerfile`](docker/Dockerfile)
+   另外 `7z` 旧版解压可能存在问题（未测试最低版本号，比如：ubuntu16.04 自带的不行），请参考[`Dockerfile.electron`](docker/Dockerfile.electron)
 3. 克隆本项目：
     ```
     git clone --recurse-submodules https://github.com/msojocs/wechat-web-devtools-linux.git
     ```
 4. 在本地项目目录中执行以下命令，构建开发者工具：
     ```
-    ./tools/setup-wechat-devtools-bash
+    ./tools/setup-wechat-devtools.sh
     ```
 5. 在本地项目目录中执行如下的语句，可以安装应用图标（非必须）：
     ```

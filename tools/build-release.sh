@@ -27,7 +27,7 @@ if [ -n "$1" ];then
   export ARCH=$1
 fi
 
-DEVTOOLS_VERSION=$("$root_dir/node/bin/node" -p \
+DEVTOOLS_VERSION=$(node -p \
   "JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8')).version" \
   "$root_dir/resources/app.asar.unpacked/package.json")
 

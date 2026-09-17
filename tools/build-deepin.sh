@@ -9,7 +9,7 @@ fail() {
 
 
 root_dir=$(cd `dirname $0`/.. && pwd -P)
-DEVTOOLS_VERSION=$("$root_dir/node/bin/node" -p \
+DEVTOOLS_VERSION=$(node -p \
   "JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8')).version" \
   "$root_dir/resources/app.asar.unpacked/package.json")
 echo $BUILD_VERSION
@@ -62,6 +62,7 @@ sed -i "s/BUILD_VERSION/${BUILD_VERSION//v/}/" "$build_dir/debian/control" "$bui
 sed -i "s/io.github.msojocs.wechat-devtools/$package_name/g" "$base_dir/info" "$build_dir/debian/control" "$build_dir/debian/changelog"
 \cp -rf "$root_dir/bin/wechat-devtools" "$base_dir/files/bin/bin/wechat-devtools"
 \cp -rf "$root_dir/bin/wechat-devtools-cli" "$base_dir/files/bin/bin/wechat-devtools-cli"
+\cp -rf "$root_dir/bin/node" "$base_dir/files/bin/bin/node"
 # 时间
 build_time=$(LANG=en_US date '+%a, %d %b %Y %H:%M:%S %z')
 sed -i "s#[A-Za-z]\+, [0-9]\+ [A-Za-z]\+ [0-9]\+ [0-9]\+:[0-9]\+:[0-9]\+ +[0-9]\+#${build_time}#" "$build_dir/debian/changelog"
@@ -89,9 +90,8 @@ mkdir -p "$build_dir/usr/share/applications" "$build_dir/usr/share/icons/hicolor
 # 主体文件
 cp -a "$root_dir/electron" "$base_dir/files/bin/electron"
 cp -a "$root_dir/resources" "$base_dir/files/bin/resources"
-# 清理旧构建遗留的Node，独立打包到node/bin。
+# 清理旧构建遗留的 Node，运行时由 bin/node 使用 Electron 提供。
 rm -f "$base_dir/files/bin/electron/node" "$base_dir/files/bin/electron/node.exe" "$base_dir/files/bin/electron/node-18.exe"
-install -Dm755 "$root_dir/node/bin/node" "$base_dir/files/bin/node/bin/node"
 # chown -R root:root "$base_dir"
 
 notice "BUILD DEB Package"
