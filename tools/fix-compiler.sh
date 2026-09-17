@@ -46,6 +46,13 @@ apply_prepend_patch() {
 apply_prepend_patch "$package_dir/js/electron/backend/bootstrap.js" "$root_dir/res/scripts/bootstrap.js"
 apply_prepend_patch "$package_dir/js/common/miniprogram-builder/modules/corecompiler/original/workerThread/config.js" "$root_dir/res/scripts/config.js"
 
+# 修复：模拟器编译后首次点击无效
+# Chromium 的鼠标模拟触摸层会丢掉会话内第一次点击的 touchend，而小程序的 tap 必须由
+# touchstart + touchend 配对生成，缺了 touchend 就不产生 tap，bindtap 处理器不会被调用。
+# 这里把补偿脚本前置到渲染层注入脚本（即 html/pageframe.html 引用的
+# /__dev__/documentstart.js 所对应的文件）里。
+apply_prepend_patch "$package_dir/js/extensions/inject/documentstart/index.js" "$root_dir/res/scripts/touch_first_click.js"
+
 echo "replace: wcc,wcsc linux version"
 compiler_version=$(node "$root_dir/tools/parse-config.js" --get-compiler-version $@)
 arch=$(node "$root_dir/tools/parse-config.js" --get-arch $@)
