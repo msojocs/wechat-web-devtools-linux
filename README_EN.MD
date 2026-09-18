@@ -11,7 +11,7 @@
 ----
 
 [![Node.js CI](https://github.com/msojocs/wechat-devtools-linux/actions/workflows/release.yml/badge.svg)](https://github.com/msojocs/wechat-devtools-linux/actions/workflows/release.yml)
-[![wechat-tools](https://img.shields.io/badge/wechat--devtools-2.02.2608060-blue)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+[![wechat-tools](https://img.shields.io/badge/wechat--devtools-2.02.2608070-blue)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 [![electron](https://img.shields.io/badge/electron-36.6.0-green)](https://www.electronjs.org/releases/stable)
 [![node](https://img.shields.io/badge/node-22.16.0-orange)](https://nodejs.org/en/)
 [![wx-compiler](https://img.shields.io/badge/wx--compiler-0.2.0-pink)](https://github.com/msojocs/wx-compiler)
@@ -23,7 +23,7 @@
 
 # Project Overview
 
-This project provides scripts and tools to build and run the WeChat DevTools on Linux (GNOME desktop). It helps assemble the required NW.js / Node / native modules and packaging so the DevTools can be used and updated on Linux systems.
+This project provides scripts and tools to build and run the WeChat DevTools on Linux (GNOME desktop). It assembles the Electron runtime and native modules and packages the DevTools so they can be used and updated on Linux systems.
 
 The project is adapted from https://github.com/dragonation/wechat-devtools/ and aims to make a working Linux distribution of the official WeChat DevTools.
 
@@ -33,10 +33,8 @@ The project is adapted from https://github.com/dragonation/wechat-devtools/ and 
 
 # Progress
 
-The current tool can build the latest version `2.02.2608060` on Linux, with CLI mode support.
+The current tool can build the latest version `2.02.2608070` on Linux, with CLI mode support.
 You can now modify fonts directly in the settings interface by entering the font name manually.
-
-`conf/config.latest.json` provides a `latest` experimental profile to freeze the latest NW.js / Node / native module version combinations; enable it by adding `--profile latest` to the script.
 
 # Feature Test Records
 
@@ -143,24 +141,21 @@ See: [Migration Process Records](https://github.com/msojocs/wechat-web-devtools-
 
 ## Skyline (Experimental Feature)
 
-Start the Server, then click compile; the first time you start the Server you will get a wine configuration prompt, **no need to install mono**.
+Start the server, wait a while for it to initialize, then click Compile in the DevTools.
 
 > [!Warning]
 > Experimental feature; please open an issue for any problems. Thanks.
-> Known issues: https://github.com/msojocs/skyline-client-server
+> Known issues: https://github.com/msojocs/skyline-client-server/issues
 
 ```shell
-docker run -d -it \
-  --restart=always \
-  --hostname="$(hostname)" \
-  --env="DISPLAY" \
-  --platform="linux/amd64" \
-  --volume="${XAUTHORITY:-${HOME}/.Xauthority}:/root/.Xauthority:ro" \
-  --volume="/tmp/.X11-unix:/tmp/.X11-unix:ro" \
-  --volume="/dev/shm:/dev/shm" \
-  -p 3001:3001 \
-  --name skyline_server \
-  ghcr.io/msojocs/skyline-client-server:master
+docker run -d \
+    --network host \
+    -e HOST_UID=$(id -u) \
+    -e HOST_GID=$(id -g) \
+    -v "/dev/shm:/dev/shm" \
+    --name wechat_devtools_server \
+    ghcr.io/msojocs/skyline-client-server:master
+# You can replace master with a specific version tag.
 ```
 
 For more, see: [FAQ](docs/FAQ.MD)
@@ -188,11 +183,14 @@ Listed in reverse chronological order
 
 | Sponsor | Date |
 |---------|------|
+| 青格乐 | 2026-03-26 |
+| debugdoctor | 2026-03-01 |
+| 68594 | 2026-02-28 |
 | yinyu | 2026-01-03 |
 | returning | 2025-07-12 |
 | 👍 | 2025-07-10 |
 | hanwor | 2025-06-17 |
-| ... | 2025-03-29 |
+| 。。。 | 2025-03-29 |
 | SakuraPuare | 2025-03-24 |
 | [senseab](https://github.com/senseab) | 2024-12-21 |
 | l | 2024-12-08 |

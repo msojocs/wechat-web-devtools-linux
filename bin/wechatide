@@ -9,6 +9,7 @@ done
 root_dir="$( cd -P "$( dirname "$SOURCE" )"/.. >/dev/null 2>&1 && pwd )"
 
 export USERPROFILE=$HOME
+export ELECTRON_BASE_APP_PATH="$root_dir/electron/resources/app.asar"
 
 cli="$root_dir/resources/app.asar.unpacked/js/common/cli/skill-index.js"
 $root_dir/bin/node "$cli" "$@"
