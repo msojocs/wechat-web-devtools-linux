@@ -159,8 +159,8 @@ docker run -d \
     -e HOST_GID=$(id -g) \
     -v "/dev/shm:/dev/shm" \
     --name wechat_devtools_server \
-    ghcr.io/msojocs/skyline-client-server:master
-# 可将master替换为具体版本号
+    ghcr.io/msojocs/skyline-client-server:${version}
+# ${version}是具体版本号，没有就是还没支持，不建议跨版本使用
 ```
 
 其它请参考: [FAQ](docs/FAQ.MD)
