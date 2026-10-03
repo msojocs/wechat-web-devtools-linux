@@ -13,7 +13,7 @@
 ----
 
 [![Node.js CI](https://github.com/msojocs/wechat-devtools-linux/actions/workflows/release.yml/badge.svg)](https://github.com/msojocs/wechat-devtools-linux/actions/workflows/release.yml)
-[![wechat-tools](https://img.shields.io/badge/wechat--devtools-2.02.2608070-blue)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+[![wechat-tools](https://img.shields.io/badge/wechat--devtools-2.02.2608080-blue)](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 [![electron](https://img.shields.io/badge/electron-36.6.0-green)](https://www.electronjs.org/releases/stable)
 [![node](https://img.shields.io/badge/node-22.16.0-orange)](https://nodejs.org/en/)
 [![wx-compiler](https://img.shields.io/badge/wx--compiler-0.2.0-pink)](https://github.com/msojocs/wx-compiler)
@@ -38,7 +38,7 @@
 
 # 进度
 
-当前工具可以在Linux上构建最新版 `2.02.2608070`，支持CLI模式。
+当前工具可以在Linux上构建最新版 `2.02.2608080`，支持CLI模式。
 另现在已经可以直接在设置界面里面修改字体，手工输入字体名称就可以。
 
 # 功能测试记录
