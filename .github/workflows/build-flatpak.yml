@@ -50,6 +50,10 @@ jobs:
           tools/build-prepare.sh
           tools/build-flatpak.sh "${{ steps.tag.outputs.tag }}" "${{ matrix.ARCH }}"
           tools/build-installer.sh "${{ steps.tag.outputs.tag }}" "${{ matrix.ARCH }}"
+          # tar.gz / AppImage 已由 build-tar 任务产出并上传，这里只保留 .flatpak 和 _installer.sh，
+          # 避免最终 release 出现同名附件冲突
+          rm -f tmp/build/*.tar.gz tmp/build/*.AppImage
+          ls -lh tmp/build/
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4

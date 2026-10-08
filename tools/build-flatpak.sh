@@ -187,8 +187,9 @@ modules:
   - name: wechat-devtools
     buildsystem: simple
     build-commands:
+      # flatpak-builder 解 archive source 会 strip 顶层目录（不同版本行为可能有差异），两种布局都兼容
       - mkdir -p /app
-      - cp -a bin electron resources share /app/
+      - if [ -d app ]; then cp -a app/* /app/; else cp -a bin electron resources share /app/; fi
       - chmod +x /app/bin/startup.sh
       - chmod 4755 /app/electron/chrome-sandbox || true
     sources:
