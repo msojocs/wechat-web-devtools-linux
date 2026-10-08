@@ -6,7 +6,7 @@ on:
   push:
     tags:        
       - v*
-    branches: [ master, dev, ci, electron]
+    branches: [ master, dev, ci, electron, flatpak ]
     paths-ignore:
       - 'README.MD'
       - 'CHANGELOG.MD'
