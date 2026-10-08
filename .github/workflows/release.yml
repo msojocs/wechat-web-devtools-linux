@@ -29,11 +29,17 @@ jobs:
       - build-src
     uses: ./.github/workflows/build-deb.yml
     secrets: inherit
+  build-flatpak:
+    needs:
+      - build-src
+    uses: ./.github/workflows/build-flatpak.yml
+    secrets: inherit
   upload:
     name: Create release and upload artifacts
     needs:
       - build-tar
       - build-deb
+      - build-flatpak
       # - build-snap
       # - build-arch
     runs-on: ubuntu-latest
@@ -69,7 +75,7 @@ jobs:
         run: |
           wget -q https://github.com/TheAssassin/pyuploadtool/releases/download/continuous/pyuploadtool-x86_64.AppImage
           chmod +x pyuploadtool-x86_64.AppImage
-          ./pyuploadtool-x86_64.AppImage **build/WeChat*.AppImage **build/*.tar.gz **build/*.deb
+          ./pyuploadtool-x86_64.AppImage **build/WeChat*.AppImage **build/*.tar.gz **build/*.deb **build/*.flatpak **build/*.sh
 
       - name: Release
         uses: softprops/action-gh-release@v2
@@ -83,3 +89,5 @@ jobs:
             **build/WeChat*.AppImage
             **build/*.tar.gz
             **build/*.deb
+            **build/*.flatpak
+            **build/*.sh

@@ -1,0 +1,60 @@
+name: Build Flatpak Installer Packages
+
+on:
+  workflow_call:
+
+jobs:
+  build-flatpak-installer:
+    name: Build Flatpak Installer Packages
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ARCH: ['x86_64']
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Generate TAG
+        id: tag
+        env:
+          IS_TAG: ${{ startsWith(github.ref, 'refs/tags/') }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          tag='continuous'
+          name='Continuous Build'
+          if [[ "$IS_TAG" == 'true' ]]; then
+            tag="$REF_NAME"
+            name="$REF_NAME"
+          fi
+          echo "tag result: $tag - $name"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "name=$name" >> "$GITHUB_OUTPUT"
+
+      - name: Prepare system deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y flatpak-builder flatpak
+
+      - name: Build
+        env:
+          ACTION_MODE: 'true'
+          WINE: 'false'
+        run: |
+          mkdir -p tmp/build
+          tools/build-prepare.sh
+          tools/build-flatpak.sh "${{ steps.tag.outputs.tag }}" "${{ matrix.ARCH }}"
+          tools/build-installer.sh "${{ steps.tag.outputs.tag }}" "${{ matrix.ARCH }}"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wechat-devtools-flatpak-installer-${{ matrix.ARCH }}.build
+          path: tmp/build
+          if-no-files-found: error
+          compression-level: 0
