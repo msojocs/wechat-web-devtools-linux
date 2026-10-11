@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# 数据目录固定为 <userData>/app，原理见 res/scripts/data-path.js
+# 数据目录固定为 <userData>/app，原理见 res/scripts/electron_main.js
 #
 # 目标文件是构建时保留的固定路径（package.json 的 main），不随 devtools 版本变化，
 # 也不再改动按内容哈希命名的 js/<hash>.js。
@@ -45,6 +45,6 @@ apply_prepend_patch() {
     rm "$tmp_file"
 }
 
-apply_prepend_patch "$package_dir/js/electron/main.js" "$root_dir/res/scripts/data-path.js"
+apply_prepend_patch "$package_dir/js/electron/main.js" "$root_dir/res/scripts/electron_main.js"
 
 $root_dir/tools/asar-helper.sh pack
