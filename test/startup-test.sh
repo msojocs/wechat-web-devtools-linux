@@ -20,10 +20,29 @@ run_launcher() {
 check_cache_lifecycle() {
   local config_dir=$1
   local appdata="$config_dir/wechat-devtools/app"
+  local legacy_dir
+
+  # 旧版本的数据目录（<md5(app.asar 路径)>）里的数据要迁移到 app/，缓存目录除外。
+  legacy_dir="$config_dir/wechat-devtools/$(printf '%s' "$test_dir/install/electron/resources/app.asar" | md5sum | cut -d' ' -f1)"
+  mkdir -p "$legacy_dir/Default" "$legacy_dir/WeappCache" "$legacy_dir/WeappVendor" "$appdata/Default"
+  printf '%s\n' 'legacy-settings' > "$legacy_dir/settings.json"
+  printf '%s\n' 'legacy-profile' > "$legacy_dir/Default/profile.json"
+  printf '%s\n' 'current-profile' > "$appdata/Default/settings.json"
+  touch "$legacy_dir/WeappCache/keep" "$legacy_dir/WeappVendor/keep"
 
   # First launch must create the data directory before recording the build.
   run_launcher
   cmp "$test_dir/install/resources/.build_time" "$appdata/.build_time"
+
+  # 迁移过来的数据目录里的文件保留，已存在的文件不被覆盖
+  grep -q legacy-settings "$appdata/settings.json"
+  grep -q legacy-profile "$appdata/Default/profile.json"
+  grep -q current-profile "$appdata/Default/settings.json"
+  test ! -e "$appdata/WeappCache"
+  test ! -e "$appdata/WeappVendor"
+  test -f "$legacy_dir/WeappCache/keep"
+  test -f "$legacy_dir/WeappVendor/keep"
+  rm -rf "$legacy_dir"
 
   mkdir -p "$appdata/WeappCache" "$appdata/WeappVendor" "$config_dir/wechat_devtools"
   touch "$appdata/WeappCache/keep" "$appdata/WeappVendor/keep" "$config_dir/wechat_devtools/keep" "$appdata/settings.json"

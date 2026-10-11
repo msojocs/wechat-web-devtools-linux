@@ -138,6 +138,9 @@ if [ $CURRENT_STEP == $INSTALL_REBUILD_SUCCESS ];then
   notice "Patching compiler supports"
   "$root_dir/tools/fix-compiler.sh"
 
+  notice "Patching data path"
+  "$root_dir/tools/fix-data-path.sh"
+
   notice "Patching Other"
   "$root_dir/tools/fix-other.sh" $@
 
