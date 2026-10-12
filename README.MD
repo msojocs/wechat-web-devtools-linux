@@ -66,6 +66,8 @@
 1. [在线安装](#在线安装)
 2. 可以在本项目的[Release](https://github.com/msojocs/wechat-web-devtools-linux/releases)中，寻找已经构筑好了的软件包，下载使用。
 如果`Release`版本存在问题，可以尝试[Continuous](https://github.com/msojocs/wechat-web-devtools-linux/releases/tag/continuous)版本，这是基于`master`分支的最新提交构建的，会及时修复一些 bug，但也可能会带来新的 bug。
+   - `*_installer.sh`：自解压安装包，下载后直接执行即可安装，支持 `--prefix` / `--uninstall` / `--check`，详见 `tools/build-installer.sh` 头部注释
+   - `*.flatpak`：Flatpak 单文件包，用 `flatpak install --user <file>.flatpak` 安装，用 `flatpak run io.github.msojocs.wechat_devtools` 启动
 3. 你可以 [自行构建](#自行构建)
 
 # 在线安装
@@ -124,6 +126,26 @@
     ```
 
 之后即可通过点击应用图标启动微信开发者工具，也可以运行 `bin/wechat-devtools` 通过命令行启动
+
+## 方法2（打包：Flatpak / 自解压安装包）
+
+前提：已完成方法0或方法1的构建（仓库根目录有 `bin/` `electron/` `resources/`），并安装 `flatpak-builder`（`yay -S flatpak-builder`，仅 Flatpak 需要）。
+
+```
+# 构建 tar.gz + AppImage（已有流程）
+tools/build-release.sh x86_64 <版本>
+# 构建 Flatpak 单文件包 -> tmp/build/*.flatpak
+tools/build-flatpak.sh <版本> x86_64
+# 构建自解压安装包 -> tmp/build/*_installer.sh
+tools/build-installer.sh <版本> x86_64
+```
+
+也可以直接用 Release 页下载好的 `*.tar.gz` 构建安装包，或用已解压目录构建 Flatpak：
+
+```
+tools/build-installer.sh <版本> x86_64 --from-tar ~/下载/WeChat_Dev_Tools_*.tar.gz
+tools/build-flatpak.sh <版本> x86_64 --from-dir ~/下载/WeChat_Dev_Tools_*_linux
+```
 
 # 与其他Linux下的微信开发者工具版本区别
 
