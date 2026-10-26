@@ -2,6 +2,7 @@
 - fix: 数据目录统一为 <userData>/app（原来是 <userData>/<app.asar 路径的 md5>），启动时自动迁移旧数据
 - fix: cli 的数据目录同步到 <userData>/app/Default(.cli/.ide-status)
 - fix: deb 包缺少 bin/wechatide，安装后无法使用 wechatide 命令（skill CLI）
+- fix: skill 安装检查的 Linux 补丁只在 Linux 上生效，skill 复制到 macOS / Windows 使用时不再误判为未安装
 
 # 2.02.2608080-1 / 2026-10-03
 - update: devtools to v2.02.2608080
