@@ -63,6 +63,7 @@ sed -i "s/io.github.msojocs.wechat-devtools/$package_name/g" "$base_dir/info" "$
 \cp -rf "$root_dir/bin/wechat-devtools" "$base_dir/files/bin/bin/wechat-devtools"
 \cp -rf "$root_dir/bin/wechat-devtools-cli" "$base_dir/files/bin/bin/wechat-devtools-cli"
 \cp -rf "$root_dir/bin/node" "$base_dir/files/bin/bin/node"
+\cp -rf "$root_dir/bin/wechatide" "$base_dir/files/bin/bin/wechatide"
 # 时间
 build_time=$(LANG=en_US date '+%a, %d %b %Y %H:%M:%S %z')
 sed -i "s#[A-Za-z]\+, [0-9]\+ [A-Za-z]\+ [0-9]\+ [0-9]\+:[0-9]\+:[0-9]\+ +[0-9]\+#${build_time}#" "$build_dir/debian/changelog"
