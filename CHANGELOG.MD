@@ -1,3 +1,6 @@
+# 2.02.2609240-1 / 2026-10-28
+- update: devtools to v2.02.2609240
+
 # 2.02.2608080-2 / 2026-10-11
 - fix: 数据目录统一为 <userData>/app（原来是 <userData>/<app.asar 路径的 md5>），启动时自动迁移旧数据
 - fix: cli 的数据目录同步到 <userData>/app/Default(.cli/.ide-status)
