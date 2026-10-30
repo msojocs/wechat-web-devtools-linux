@@ -41,6 +41,8 @@ jobs:
           test -f resources/app.asar
           test -f resources/app.asar.unpacked/package.json
           test -x bin/node
+          test -x resources/app.asar.unpacked/node_modules/wcc-exec/wcc
+          test -x resources/app.asar.unpacked/node_modules/wcc-exec/wcsc
           rm -f electron/node electron/node.exe electron/node-18.exe
           tar -zcf tmp/src/src-linux.tar.gz bin electron resources tools
 
