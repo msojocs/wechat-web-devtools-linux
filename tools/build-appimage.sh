@@ -55,11 +55,18 @@ notice "下载AppImage构建工具 ACTION_MODE:$ACTION_MODE"
 if [[ $ACTION_MODE != 'true' ]]; then
   appimagetool_host="https://mirror.ghproxy.com/"
 fi
-if [ ! -f "$tmp_dir/appimagetool-x86_64.AppImage" ];then
-  wget "${appimagetool_host}https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" \
-    -O "$tmp_dir/appimagetool-x86_64.AppImage"
+# appimagetool 的产物命名与打包架构 ARCH 不同：x86_64 → x86_64，arm64 → aarch64
+case "$ARCH" in
+  x86_64) appimagetool_triple="x86_64" ;;
+  arm64)  appimagetool_triple="aarch64" ;;
+  *) fail "不支持的构建架构: $ARCH"; exit 1 ;;
+esac
+appimagetool="$tmp_dir/appimagetool-${appimagetool_triple}.AppImage"
+if [ ! -f "$appimagetool" ];then
+  wget "${appimagetool_host}https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-${appimagetool_triple}.AppImage" \
+    -O "$appimagetool"
 fi
-chmod a+x "$tmp_dir/appimagetool-x86_64.AppImage"
+chmod a+x "$appimagetool"
 
 # Remove any previous build
 rm -rf "$app_dir"
@@ -93,7 +100,7 @@ rm -f "$app_dir/electron/node" "$app_dir/electron/node.exe" "$app_dir/electron/n
 
 # appimagetool $app_dir
 notice "MAKE APPIMAGE"
-APPIMAGE_EXTRACT_AND_RUN=1 "$tmp_dir/appimagetool-x86_64.AppImage" \
+APPIMAGE_EXTRACT_AND_RUN=1 "$appimagetool" \
   "$app_dir" "$build_dir/WeChat_Dev_Tools_${VERSION}_${ARCH}_${TYPE}.AppImage"
 
 rm -rf "$app_dir"
