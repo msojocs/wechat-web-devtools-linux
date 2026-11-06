@@ -12,15 +12,20 @@
       value: 'win32'
     },
   });
-  require('path').win32.normalize = function(p) {
-    return require('path').posix.normalize(p.replace(/\\/g, '/'));
+  const path = require('path');
+  path.win32.normalize = function(p) {
+    return path.posix.normalize(p.replace(/\\/g, '/'));
   }
   Object.defineProperty(global, 'electronUserDirPathRoot', {
     set(value) {
-      if (value?.includes('AppData/Local') || value?.includes('Library/Application Support')) {
-        value = value.replace('AppData/Local', '.config');
-        value = value.replace('Library/Application Support', '.config');
-        value = value.replace('User Data/', '');
+      const profile = value?.match(
+        /^(.*)\/(?:AppData\/Local|Library\/Application Support)\/([^/]+)\//
+      );
+      if (profile) {
+        const [, home, appName] = profile;
+        const configDir = process.env.XDG_CONFIG_HOME || path.posix.join(home, '.config');
+        // 与 bin/wechat-devtools 的固定数据目录一致，避免读取旧哈希目录中的端口。
+        value = path.posix.join(configDir, appName, 'app');
       }
       this._electronUserDirPathRoot = value;
     },
