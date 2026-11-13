@@ -1,6 +1,6 @@
 Source: io.github.msojocs.wechat-devtools
-Maintainer: msojocs
-Standards-Version: BUILD_VERSION
+Maintainer: msojocs <jiyecafe@gmail.com>
+Standards-Version: 4.6.2
 Priority: optional
 Section: application
 

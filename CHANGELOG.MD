@@ -1,5 +1,6 @@
 # 2.02.2609250-1 / 2026-11-13
 - update: devtools to v2.02.2609250
+- fix: deb 包 control 的 Maintainer/Standards-Version 字段非法，dpkg-source 解析失败
 
 # 2.02.2609240-3 / 2026-11-06
 - fix: wechatide 从 IDE 当前的数据目录读取端口，修复服务已启动却无法连接的问题
