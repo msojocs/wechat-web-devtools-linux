@@ -28,7 +28,8 @@ export WECHAT_DEVTOOLS_DIR="$root_dir/electron"
 export APPDATA="$DATA_DIR/$APP_NAME"
 export USERPROFILE="$APPDATA"
 export PATH="$root_dir/bin:$root_dir/electron:$PATH"
-mkdir -p "$APPDATA/Default"
+# CLI 读写的 .cli/.ide/.ide-status 在 <userData>/app/Default 下（见 res/scripts/cli.js）
+mkdir -p "$APPDATA/app/Default"
 
 "$root_dir/bin/node" "$package_dir/js/common/cli/index.js" "$@"
 if [ ! -z "$APPIMAGE" ];then
