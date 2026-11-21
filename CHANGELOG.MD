@@ -1,6 +1,7 @@
 # 2.02.2609250-2 / 2026-11-21
 - fix: CLI 吞掉第一个参数，`wechat-devtools-cli islogin` 等命令只打印帮助
 - fix: CLI 的数据目录和 IDE 不一致：不认 `XDG_CONFIG_HOME`，且没有建 `app/Default`，报「请确保 IDE 已正确安装」
+- fix: IDE 没在运行时，CLI 无法自行启动 IDE，一直等待端口
 
 # 2.02.2609250-1 / 2026-11-13
 - update: devtools to v2.02.2609250

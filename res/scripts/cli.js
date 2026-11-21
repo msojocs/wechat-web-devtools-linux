@@ -38,4 +38,18 @@
             return this._appPath
         }
     })
+    // IDE 未启动时，CLI 会用 process.execPath（electron 本体）加 --cli 参数启动 IDE，
+    // 但没有传入应用目录和 --no-sandbox，electron 启动后什么也不做，CLI 一直等不到 IDE 端口。
+    // 改为调用 bin/wechat-devtools 启动脚本，由它补齐参数和环境变量。
+    const childProcess = require('child_process')
+    const originalSpawn = childProcess.spawn
+    const launcher = process.env.WECHAT_DEVTOOLS_DIR
+        ? path.join(process.env.WECHAT_DEVTOOLS_DIR, '../bin/wechat-devtools')
+        : ''
+    childProcess.spawn = function(command, args, options) {
+        if (launcher && command === process.execPath && Array.isArray(args) && args.includes('--cli')) {
+            command = launcher
+        }
+        return originalSpawn.call(this, command, args, options)
+    }
 })();
