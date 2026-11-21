@@ -1,5 +1,11 @@
 (() => {
     process.argv[0] = 'wechat-devtools-cli'
+    // bin/node 把参数整理成 [electron, <脚本>, --electron, ...]，而 CLI 看到 --electron 时按
+    // electron 的启动形式 [electron, ., <脚本>, --electron, ...] 从 argv[4] 开始取参数，
+    // 少了 '.' 这一位会吞掉第一个参数（如 cli auto 只打印帮助）。这里补上。
+    if (process.argv[2] === '--electron') {
+        process.argv.splice(1, 0, '.')
+    }
     process.env.USERPROFILE = require('os').homedir()
     Object.defineProperty(global, 'userDirPath', {
         set: function(value) {
