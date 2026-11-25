@@ -33,6 +33,12 @@ const options = {
     '--get-devtools-version': {
         type: 'boolean',
     },
+    '--get-skyline-url': {
+        type: 'boolean',
+    },
+    '--get-skyline-version': {
+        type: 'boolean',
+    },
 }
 const configArg = {
     arch: process.arch,
@@ -98,5 +104,15 @@ if (configArg['get-devtools-url']) {
 
 if (configArg['get-devtools-version']) {
     console.log(config.devtools.version);
+    exit(0);
+}
+
+if (configArg['get-skyline-url']) {
+    console.log(config.skyline.template.replace(/\${version}/g, config.skyline.version));
+    exit(0);
+}
+
+if (configArg['get-skyline-version']) {
+    console.log(config.skyline.version);
     exit(0);
 }

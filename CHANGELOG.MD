@@ -1,3 +1,6 @@
+# 2.02.2609250-2 / 2026-11-
+- feat: skyline support beta
+
 # 2.02.2609250-1 / 2026-11-13
 - update: devtools to v2.02.2609250
 - fix: deb 包 control 的 Maintainer/Standards-Version 字段非法，dpkg-source 解析失败

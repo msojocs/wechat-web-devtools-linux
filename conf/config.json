@@ -21,5 +21,9 @@
     "devtools": {
         "version": "2.02.2609250",
         "template": "https://devtools.wxqcloud.qq.com.cn/WechatWebDev/release/be1ec64cf6184b0fa64091919793f068/wechat_devtools_${version}_win32_x64.exe"
+    },
+    "skyline": {
+        "version": "preview",
+        "template": "https://github.com/msojocs/skyline-linux/releases/download/preview/skyline-linux-${version}-linux-x64.tar.gz"
     }
 }

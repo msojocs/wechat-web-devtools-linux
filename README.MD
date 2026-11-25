@@ -146,22 +146,10 @@
 
 ## Skyline(实验性功能)
 
-启动Server后，过一段时间，点击编译即可。
+AI编写的Linux模块，实验性。
 
 > [!Warning]
 > 实验性功能，有问题请建立issue进行反馈，谢谢。
-> 已知问题：https://github.com/msojocs/skyline-client-server/issues
-
-```shell
-docker run -d \
-    --network host \
-    -e HOST_UID=$(id -u) \
-    -e HOST_GID=$(id -g) \
-    -v "/dev/shm:/dev/shm" \
-    --name wechat_devtools_server \
-    ghcr.io/msojocs/skyline-client-server:${version}
-# ${version}是具体版本号，没有就是还没支持，不建议跨版本使用
-```
 
 其它请参考: [FAQ](docs/FAQ.MD)
 
