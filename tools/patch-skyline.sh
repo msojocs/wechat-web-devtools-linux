@@ -25,11 +25,8 @@ tar -xzf "$archive" -C "$tmp_dir"
 
 cp -f "$tmp_dir/skyline.node" "$resources/node_modules/skyline-addon/build/skyline.node"
 cp -f "$tmp_dir/sharedMemory.node" "$resources/node_modules/sharedMemory/sharedMemory.node"
-for file in libskyline.so libflutter_engine.so icudtl.dat BUILD-INFO.txt; do
+for file in libflutter_engine.so icudtl.dat BUILD-INFO.txt; do
     if [ -f "$tmp_dir/$file" ]; then
-        if [ "$file" = "libskyline.so" ]; then
-            rm -f "$resources/node_modules/skyline-addon/build/$file"
-        fi
         cp -Pf "$tmp_dir/$file" "$resources/node_modules/skyline-addon/build/$file"
     fi
 done
