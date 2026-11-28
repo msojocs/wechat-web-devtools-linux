@@ -11,14 +11,22 @@ package_dir="$root_dir/resources/app.asar.unpacked"
 # sed -i '1s/^/window.prompt = parent.prompt;\n/' "${package_dir}/js/ideplugin/devtools/index.js"
 
 # Skyline解析插件修复
+# 按目标架构选择浮点着色器 napi 资产：arm64 → linux-arm64-gnu；loongarch64 上游无产物，回退 x64。
 float_pigment_version="continuous"
-if [ ! -f "${srcdir}/cache/float-pigment-${float_pigment_version}.node" ];then
-  wget -c "https://github.com/msojocs/float-pigment-rust/releases/download/${float_pigment_version}/float-pigment.linux-x64-gnu.node" -O "${srcdir}/cache/float-pigment-${float_pigment_version}.node.tmp"
-  mv "${srcdir}/cache/float-pigment-${float_pigment_version}.node.tmp" "${srcdir}/cache/float-pigment-${float_pigment_version}.node"
+_fp_arch=$(node "$root_dir/tools/parse-config.js" --get-arch "$@")
+case "$_fp_arch" in
+  arm64)       float_pigment_target="linux-arm64-gnu" ;;
+  loongarch64) float_pigment_target="linux-x64-gnu" ;;
+  *)           float_pigment_target="linux-x64-gnu" ;;
+esac
+float_pigment_file="float-pigment-${float_pigment_version}-${float_pigment_target}.node"
+if [ ! -f "${srcdir}/cache/${float_pigment_file}" ];then
+  wget -c "https://github.com/msojocs/float-pigment-rust/releases/download/${float_pigment_version}/float-pigment.${float_pigment_target}.node" -O "${srcdir}/cache/${float_pigment_file}.tmp"
+  mv "${srcdir}/cache/${float_pigment_file}.tmp" "${srcdir}/cache/${float_pigment_file}"
 fi
 rm -f "${package_dir}/node_modules/node-float-pigment-css/float-pigment-css-for-nodejs.node" "${package_dir}/node_modules/node-float-pigment-css/float-pigment-css-for-nwjs.node"
-cp "${srcdir}/cache/float-pigment-${float_pigment_version}.node" "${package_dir}/node_modules/node-float-pigment-css/float-pigment-css-for-nodejs.node"
-cp "${srcdir}/cache/float-pigment-${float_pigment_version}.node" "${package_dir}/node_modules/node-float-pigment-css/float-pigment-css-for-nwjs.node"
+cp "${srcdir}/cache/${float_pigment_file}" "${package_dir}/node_modules/node-float-pigment-css/float-pigment-css-for-nodejs.node"
+cp "${srcdir}/cache/${float_pigment_file}" "${package_dir}/node_modules/node-float-pigment-css/float-pigment-css-for-nwjs.node"
 
 # websocket找不到
 # cd "${package_dir}/js/libs/vseditor/extensions/node_modules/ws/lib"

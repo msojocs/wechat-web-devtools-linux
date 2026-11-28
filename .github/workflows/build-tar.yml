@@ -6,11 +6,16 @@ on:
 jobs:
   build-tar:
     name: Build tar.gz AppImage
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.RUNS_ON }}
 
     strategy:
       matrix:
-        ARCH: ['x86_64']
+        include:
+          - ARCH: x86_64
+            RUNS_ON: ubuntu-latest
+          # appimagetool 有 aarch64 产物，在 arm64 runner 上原生打包
+          - ARCH: arm64
+            RUNS_ON: ubuntu-22.04-arm
 
     steps:
       - uses: actions/checkout@v4
@@ -19,10 +24,12 @@ jobs:
           node-version: 22.x
       - name: Download artifacts
         uses: actions/download-artifact@v4
+        with:
+          pattern: wechat-devtools-${{ matrix.ARCH }}.src
+          merge-multiple: true
       - name: Inspect directory after downloading artifacts
         run: |
-          ls -alFR wechat-devtools-*.build
-          ls -alFR wechat-devtools-*.src
+          ls -alFR
       - name: Prepare
         run: echo "$(id -u), $(id -g)"
 

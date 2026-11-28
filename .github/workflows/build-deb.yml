@@ -19,6 +19,9 @@ jobs:
           node-version: 22.x
       - name: Download artifacts
         uses: actions/download-artifact@v4
+        with:
+          pattern: wechat-devtools-${{ matrix.ARCH }}.src
+          merge-multiple: true
 
       - name: Generate TAG
         id: tag

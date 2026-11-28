@@ -7,21 +7,27 @@ on:
 jobs:
   build-src:
     name: Build Base Packages
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.RUNS_ON }}
 
     strategy:
       matrix:
-        node-version: [22.x]
-        ARCH: ['x86_64']
+        include:
+          - ARCH: x86_64
+            NODE_ARCH: x64
+            RUNS_ON: ubuntu-latest
+          # arm64 走 GitHub 公共 arm64 runner 原生构建，无需交叉编译
+          - ARCH: arm64
+            NODE_ARCH: arm64
+            RUNS_ON: ubuntu-22.04-arm
 
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 22.x
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 22.x
 
       - name: Prepare
         run: echo "$(id -u), $(id -g)"
@@ -31,7 +37,7 @@ jobs:
           ACTION_MODE: 'true'
           WINE: 'false'
         run: |
-          tools/build-with-docker.sh
+          tools/build-with-docker.sh --arch ${{ matrix.NODE_ARCH }}
 
       - name: Compress Resources
         run: |
